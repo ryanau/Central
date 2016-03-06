@@ -1,2 +1,2 @@
-class Api::PostsController < Api::BaseController
+class Api::UsersController < Api::BaseController
 end

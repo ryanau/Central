@@ -15,4 +15,8 @@ class Api::BaseController < ApplicationController
   #     authenticate_api_user!
   #   end
   # end
+
+  def current_user
+    return current_api_user
+  end
 end

@@ -6,5 +6,7 @@ Rails.application.routes.draw do
     # as :admin do
     #   # Define routes for Admin within this block.
     # end
+
+    get 'session/identity', to: 'session#identity'
   end
 end

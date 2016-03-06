@@ -1,3 +1,3 @@
-class Api::UserSerializer < ActiveModel::Serializer
-  attributes :id
+class UserSerializer < ActiveModel::Serializer
+  attributes :uid
 end

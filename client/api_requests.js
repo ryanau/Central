@@ -1,5 +1,6 @@
 import Request from 'superagent';
 import toastr from 'toastr';
+import { browserHistory } from 'react-router';
 
 class Api_Requests {
 	_errorHandler(err, res) {
@@ -21,9 +22,17 @@ class Api_Requests {
 		  "hideMethod": "fadeOut"
 		}
 		const parsed = JSON.parse(res['text'])
-		parsed.errors.forEach((err) => {
-			toastr.error(err, res['statusText'])
-		});
+
+		// handling sign up/sign in error messages
+		if (parsed.errors.full_messages) {
+			parsed.errors.full_messages.forEach((err) => {
+				toastr.error(err, res['statusText'])
+			});
+		} else {
+			parsed.errors.forEach((err) => {
+				toastr.error(err, res['statusText'])
+			});
+		}
 	}
 	_localStorageSetter(res) {
 		if (res['header']['uid']) {
@@ -34,8 +43,10 @@ class Api_Requests {
 		localStorage.setItem('uid', res['header']['uid']);	
 		}
 	}
-	get(url, onSuccess) {
-		console.log(localStorage.getItem('uid'))
+	redirect = (url) => {
+	  browserHistory.push(url);
+	}
+	get(url, data, onSuccess) {
 		Request
 			.get(url)
 			.set('access-token', localStorage.getItem('access-token'))
@@ -47,7 +58,7 @@ class Api_Requests {
 				if (err) {
 					this._errorHandler(err, res)
 				} else {
-					_localStorageSetter(res);
+					this._localStorageSetter(res);
 					onSuccess(res);
 				}
 			});
@@ -65,7 +76,7 @@ class Api_Requests {
 		  	if (err) {
 		  		this._errorHandler(err, res)
 		  	} else {
-		  		_localStorageSetter(res);
+		  		this._localStorageSetter(res);
 		  		onSuccess(res);
 		  	}
 		  })
