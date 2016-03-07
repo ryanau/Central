@@ -65,6 +65,7 @@ class Landing extends React.Component {
       var signOutLink = (<li><input type="button" onClick={this._onSignOutClicked} value="Sign out"/></li>)
     } else {
       var signInLink = (<li><Link to="/auth">Sign Up/In</Link></li>)
+      var signInLinkAdmin = (<li><Link to="/admin_auth">Admin Sign Up/In</Link></li>)
 
     }
     return (
@@ -73,6 +74,7 @@ class Landing extends React.Component {
         {userName}
         <ul>
           {signInLink}
+          {signInLinkAdmin}
           {signOutLink}
         </ul>
         {this.props.children}
