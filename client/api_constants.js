@@ -13,6 +13,11 @@ class Api_Constants {
 			identity: this.origin + 'session/identity',
 		}
 	}
+	get events() {
+		return {
+			collection: this.origin + 'events'
+		}
+	}
 }
 
 const ApiConstants = new Api_Constants();
