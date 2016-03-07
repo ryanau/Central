@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     end
 
     get 'session/identity', to: 'session#identity'
+
+    resources :events, only: [:index, :create]
   end
 end

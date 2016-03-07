@@ -1,3 +1,5 @@
 class AdminSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :uid
+
+  has_many :events
 end
