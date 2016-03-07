@@ -59,7 +59,7 @@ class Api_Requests {
 					this._errorHandler(err, res)
 				} else {
 					this._localStorageSetter(res);
-					onSuccess(res);
+					onSuccess(JSON.parse(res['text']));
 				}
 			});
 	}
@@ -77,7 +77,7 @@ class Api_Requests {
 		  		this._errorHandler(err, res)
 		  	} else {
 		  		this._localStorageSetter(res);
-		  		onSuccess(res);
+		  		onSuccess(JSON.parse(res['text']));
 		  	}
 		  })
 	}

@@ -3,7 +3,7 @@ class Api::SessionController < Api::BaseController
 
   def identity
     user = current_user
-    render json: UserSerializer.new(user).to_json
+    render json: user
   end
 
 end

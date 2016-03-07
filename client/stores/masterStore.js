@@ -11,8 +11,8 @@ class MasterStore {
 	}
 	handleStoreUserIdentity(res) {
 		// check if token is still valid in localStorage
-		if (JSON.parse(res['text']).user != null) {
-			this.user = JSON.parse(res['text']).user;
+		if (res != null) {
+			this.user = res;
 			this.loggedIn = true;
 		} else {
 			localStorage.clear();
