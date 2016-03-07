@@ -7,7 +7,10 @@ class Api_Constants {
 			sign_up: this.origin + 'auth',
 			sign_in: this.origin + 'auth/sign_in',
 			sign_out: this.origin + 'auth/sign_out',
-			identity: this.origin + 'session/identity'
+			admin_sign_up: this.origin + 'admin_auth',
+			admin_sign_in: this.origin + 'admin_auth/sign_in',
+			admin_sign_out: this.origin + 'admin_auth/sign_out',
+			identity: this.origin + 'session/identity',
 		}
 	}
 }

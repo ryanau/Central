@@ -6,11 +6,6 @@ gem 'rails', '4.2.5.1'
 gem 'rails-api'
 
 gem 'spring', :group => :development
-
-
-gem 'pg'
-
-
 gem 'pg'
 gem 'devise_token_auth', '~> 0.1.37' # Token based authentication for Rails JSON APIs
 gem 'omniauth' # required for devise_token_auth
