@@ -1,5 +1,4 @@
 import alt from 'control';
-import $ from 'jquery';
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
 
