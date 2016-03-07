@@ -10,7 +10,6 @@ class EventsStore {
 	}
 	handleStoreEvents(res) {
 		// update its events attribute with the resposne
-		console.log(res[0].admin)
 		this.events = res
 	}
 }

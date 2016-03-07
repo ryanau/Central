@@ -22,7 +22,7 @@ class EventsContainer extends React.Component {
 	  EventsStore.unlisten(this.onChange);
 	}
 	render() {
-		if (this.state.events != null) {var name = this.state.events[0].admin.uid}
+		if (this.state.events != null) {var name = this.state.events[0].name}
 		return (
 			<div>
 				<h4>Events Container</h4>

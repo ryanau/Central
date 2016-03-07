@@ -193,7 +193,72 @@
 		export default alt.createActions(EventsActions);
 	</code></pre>
 
-10. Now we need to set up our `EventsStore.js`. The
+10. Now we need to set up our `EventsStore.js`. The `bindListeners` function gets called when our `fetchEvents` function gets called in our `EventsActions.js` file
+	<pre><code>
+		import alt from 'control'
+		import EventsActions from 'actions/eventsActions';
+
+		class EventsStore {
+			constructor() {
+				this.bindListeners({
+					handleStoreEvents: EventsActions.STORE_EVENTS
+				});
+				this.events = null;
+			}
+			handleStoreEvents(res) {
+				// update its events attribute with the resposne
+				this.events = res
+			}
+		}
+
+		export default alt.createStore(EventsStore);
+	</code></pre>
+
+11. Then once the state gets updated in our `EventsState.js`, we need to modify our `EventsContainer` to present the data. Before the component gets mounted, it will get its initial state, which is `this.events = null` from `EventsStore`. Once the component is mounted, it will call the `EventsAction.fetchEvents()` function to fetch our data from the Rails API. We also build a listener so that when the `EventsStore` is ever updated, our `EventsContainer` will get updated and re-render as well
+<pre><code>
+	import React from 'react';
+
+	import EventsStore from '../../../stores/eventsStore';
+	import EventsActions from '../../../actions/eventsActions';
+
+	class EventsContainer extends React.Component {
+		constructor(props) {
+			super(props);
+			this.onChange = this._onChange.bind(this);
+		}
+		_onChange(state) {
+		  this.setState(state);
+		}
+		componentWillMount() {
+		  this.setState(EventsStore.getState())
+		}
+		componentDidMount() {
+		  EventsStore.listen(this.onChange);
+		  EventsActions.fetchEvents();
+		}
+		componentWillUnmount() {
+		  EventsStore.unlisten(this.onChange);
+		}
+		render() {
+			if (this.state.events != null) {var name = this.state.events[0].name}
+			return (
+				<div>
+					<h4>Events Container</h4>
+					{name}
+				</div>
+			)
+		}
+	};
+
+	export default EventsContainer;
+</code></pre>
+
+12. Now let's headover to the browser and go to `http://localhost:8080/events` and you'll see the name of the event on the page!
+
+13. But what you've noticed, is that we can see the events EVEN without logging in as an admin. So we have to modify our backend to do that. Go to `events_controller.rb` and uncomment the line `before_action :authenticate_api_admin!, only: [:index]` so then we're enforcing an authorization check for our `index` action/route
+
+14. You'll only be able to see the event IF you're logged in as admin. Try logging in as a normal user and see what happens :P
+
 
 
 
