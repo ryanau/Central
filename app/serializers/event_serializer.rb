@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :name, :city
+  attributes :id, :name, :city
 
   belongs_to :admin
 end

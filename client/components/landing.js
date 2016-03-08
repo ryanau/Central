@@ -12,11 +12,13 @@ class Landing extends React.Component {
   constructor(props) {
     super(props);
     this.onChange = this._onChange.bind(this);
+    this.state = {
+      user: null,
+      loggedIn: false,
+    }
   }
   componentWillMount() {
     this.setState(
-      // user: null,
-      // loggedIn: false,
       MasterStore.getState()
     )
   }
@@ -30,13 +32,19 @@ class Landing extends React.Component {
   componentWillUnmount() {
     MasterStore.unlisten(this.onChange);
   }
+  _onSignOutClickedAdmin = () => {
+    const resolve = (res) => {
+      localStorage.clear()
+      window.location.href = '/'
+    }
+    ApiRequests.del(ApiConstants.session.admin_sign_out, null, resolve)
+  }
   _onSignOutClicked = () => {
-    Request
-      .delete(ApiConstants.session.sign_out)
-      .end((err, res) => {
-        localStorage.clear()
-        window.location.href = '/'
-      })
+    const resolve = (res) => {
+      localStorage.clear()
+      window.location.href = '/'
+    }
+    ApiRequests.del(ApiConstants.session.sign_out, null, resolve)
   }
   _onChange(state) {
     this.setState(state);
@@ -60,13 +68,15 @@ class Landing extends React.Component {
   //   }
   // }
   render() {
-    if (this.state.loggedIn) {
+    if (this.state.loggedIn && this.state.authorization == 'user') {
       var userName = this.state.user.uid;
       var signOutLink = (<li><input type="button" onClick={this._onSignOutClicked} value="Sign out"/></li>)
+    } else if (this.state.loggedIn && this.state.authorization == 'admin') {
+      var userName = this.state.user.uid;
+      var signOutLinkAdmin = (<li><input type="button" onClick={this._onSignOutClickedAdmin} value="Admin Sign out"/></li>)
     } else {
       var signInLink = (<li><Link to="/auth">Sign Up/In</Link></li>)
       var signInLinkAdmin = (<li><Link to="/admin_auth">Admin Sign Up/In</Link></li>)
-
     }
     return (
       <div>
@@ -76,6 +86,7 @@ class Landing extends React.Component {
           {signInLink}
           {signInLinkAdmin}
           {signOutLink}
+          {signOutLinkAdmin}
         </ul>
         {this.props.children}
       </div>

@@ -3,7 +3,12 @@ class Api::SessionController < Api::BaseController
 
   def identity
     user = current_user
-    render json: user, serializer: UserSerializer
+    if user.is_a?(User)
+      authorization = 'user'
+    else
+      authorization = 'admin'
+    end
+    render_json_message(:ok, resource: {identity: user.serialize, authorization: authorization})
   end
 
 end

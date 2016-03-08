@@ -1,7 +1,10 @@
 import React from 'react';
 
-import EventsStore from '../../../stores/eventsStore';
-import EventsActions from '../../../actions/eventsActions';
+import EventsStore from 'stores/eventsStore';
+import EventsActions from 'actions/eventsActions';
+
+import Event from './Event';
+import EventCreator from './EventCreator';
 
 class EventsContainer extends React.Component {
 	constructor(props) {
@@ -22,11 +25,21 @@ class EventsContainer extends React.Component {
 	  EventsStore.unlisten(this.onChange);
 	}
 	render() {
-		if (this.state.events != null) {var name = this.state.events[0].name}
+		let events
+		if (this.state.events != null) {
+			events = this.state.events.map((event) => {
+				return (
+					<li><Event key={event.id} event={event}/></li>
+				)
+			});
+		}
 		return (
 			<div>
 				<h4>Events Container</h4>
-				{name}
+					<EventCreator/>
+					<ol>
+						{events}
+					</ol>
 			</div>
 		)
 	}

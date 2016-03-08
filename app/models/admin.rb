@@ -6,4 +6,8 @@ class Admin < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :events
+
+  def serialize
+    ActiveModel::SerializableResource.new(self)
+  end
 end

@@ -15,7 +15,8 @@ class Api_Constants {
 	}
 	get events() {
 		return {
-			collection: this.origin + 'events'
+			collection: this.origin + 'events',
+			create: this.origin + 'events'
 		}
 	}
 }

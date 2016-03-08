@@ -30,6 +30,11 @@ module.exports = {
         test: /\.js?$/,
         exclude: /node_modules/, 
         loader: 'babel?cacheDirectory',
+      },
+      {
+        test: /\.css$/,
+        include: /assets/,
+        loader: "style-loader!css-loader",
       }
     ]
   },
