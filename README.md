@@ -1,23 +1,22 @@
 # Central
-IEOR 185 Project
+Project for UC Berkeley IEOR 185 Sp'16: Challenge Lab (Social Entrepreneurship); Sponsored by Twilio.org
 
-## MVP
+Central is a platform that seeks to increase the efficiency of post-disaster responses by seamlessly connecting local unaffiliated volunteers in disaster-impacted areas with organizations providing emergency response services therefore facilitating a response and reconstruction process that engages and involves local communities, local skills and local knowledge and the overall creation of a more efficient and less wasteful response system.
+
+### Members
+
+Project Manager: Ryan Au
+Head of Engineering: Alec Spencer
+Designer: Youwei Du
+Developer: Akari Asai
+Marketing Manager: Spandi Singh
+Partnerhsip Manager: Ed Kim
+
+## Minimum Viable Product
 
 Central is a web application built using Ruby on Rails as an API and React.js implemented with Flux pattern. It also incorporates Twilio SMS services as the main way form of communication with our users.
 
 Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
-
-#####  V1
-
-- [ ] 
-
-## Getting started
-
-To start Rails API, run `bundle install`, then `rake db:create`, then `rake db:migrate`, then `rails s`
-
-To start React.js frontend, run `npm install`, then `npm run watch`
-
-## Implementation Timeline
 
 ### V1
 
@@ -33,6 +32,16 @@ To start React.js frontend, run `npm install`, then `npm run watch`
 		* User can see coverage rate
 	* Victim can receive digest through SMS
 		* Victim can sign up through website
+
+## Getting started
+
+To start Rails API, run `bundle install`, then `rake db:create`, then `rake db:migrate`, then `rails s`
+
+To start React.js frontend, run `npm install`, then `npm run watch`
+
+## Implementation Timeline
+
+## V1
 
 ####  Phase 0.0: Rails Skeleton Setup + React.js Skeleton with React Router + Flux with Alt.js + Webpack Configuration (3/5/2016)
 
