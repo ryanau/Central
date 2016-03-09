@@ -5,12 +5,12 @@ Central is a platform that seeks to increase the efficiency of post-disaster res
 
 ### Members
 
-Project Manager: Ryan Au
-Head of Engineering: Alec Spencer
-Designer: Youwei Du
-Developer: Akari Asai
-Marketing Manager: Spandi Singh
-Partnerhsip Manager: Ed Kim
+	- Project Manager: Ryan Au
+	- Head of Engineering: Alec Spencer
+	- Designer: Youwei Du
+	- Developer: Akari Asai
+	- Marketing Manager: Spandi Singh
+	- Partnerhsip Manager: Ed Kim
 
 ## Minimum Viable Product
 
@@ -23,6 +23,7 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 **Objective:** Central enables one-way communication from Organizations to Victims through Twilio SMS API
 
 **Features**
+
 	* Admin can initialize new events (disasters)
 		* Admin can CRUD events
 		* Admin can approve messages from organizations
@@ -41,9 +42,7 @@ To start React.js frontend, run `npm install`, then `npm run watch`
 
 ## Implementation Timeline
 
-## V1
-
-####  Phase 0.0: Rails Skeleton Setup + React.js Skeleton with React Router + Flux with Alt.js + Webpack Configuration (3/5/2016)
+####  V0.0: Rails Skeleton Setup + React.js Skeleton with React Router + Flux with Alt.js + Webpack Configuration (3/5/2016)
 
 - [X] Set up Rails as an API
 - [X] Configure basic Ruby Gems needed
@@ -51,7 +50,7 @@ To start React.js frontend, run `npm install`, then `npm run watch`
 - [X] Set up Flux structure using Alt.js
 - [X] Configure settings for React Router
 
-####  Phase 0.1: Setup user authentication with Devise Auth Token + Create auth page for user/admin (3/6/2016)
+####  V0.1: Setup user authentication with Devise Auth Token + Create auth page for user/admin (3/6/2016)
 
 - [X] Configure Devise Auth Token in Rails API
 - [X] Create `User` and `Admin` model
@@ -61,7 +60,7 @@ To start React.js frontend, run `npm install`, then `npm run watch`
 - [X] Configure AJAX Requests with token info in headers + set up errorhandlers for taostr notifications
 - [X] Create landing page
 
-####  Phase 1.0: Create `Event` Model (3/8/2016)
+####  V1.0: Create `Event` Model (3/8/2016)
 
 - [X] Admin can view existing events
 - [X] Admin can create events
