@@ -37,6 +37,7 @@ class EventsContainer extends React.Component {
 				  	name="name"
 				  	ref="name"
 				  	placeholder="Event Name"
+				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
 				  <br/>
 				  <input
@@ -44,6 +45,7 @@ class EventsContainer extends React.Component {
 				  	name="city"
 				  	ref="city"
 				  	placeholder="Event City"
+				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
 				  <br/>
 				  <input type="button" onClick={this._onSubmit} value="Create Event"/>

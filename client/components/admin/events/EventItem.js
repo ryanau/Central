@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Event extends React.Component {
+class EventItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -13,19 +13,16 @@ class Event extends React.Component {
 	  	event: this.props.event,
 	  })
 	}
-	componentDidMount() {
-	}
-	componentWillUnmount() {
-	}
 	render() {
 		let event
 		event = this.state.event
 		return (
 			<div>
-				{event}
+				<h4>Name: {event.name} | Created by: {event.admin.uid}</h4>
+				<p>City: {event.city}</p>
 			</div>
 		)
 	}
 };
 
-export default Event;
+export default EventItem;

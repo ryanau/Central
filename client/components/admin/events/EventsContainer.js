@@ -3,7 +3,7 @@ import React from 'react';
 import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
 
-import Event from './Event';
+import EventItem from './EventItem';
 import EventCreator from './EventCreator';
 
 class EventsContainer extends React.Component {
@@ -29,7 +29,7 @@ class EventsContainer extends React.Component {
 		if (this.state.events != null) {
 			events = this.state.events.map((event) => {
 				return (
-					<li><Event key={event.id} event={event}/></li>
+					<li><EventItem key={event.id} event={event}/></li>
 				)
 			});
 		}
