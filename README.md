@@ -5,12 +5,12 @@ Central is a platform that seeks to increase the efficiency of post-disaster res
 
 ### Members
 
-	- Project Manager: Ryan Au
-	- Head of Engineering: Alec Spencer
-	- Designer: Youwei Du
-	- Developer: Akari Asai
-	- Marketing Manager: Spandi Singh
-	- Partnerhsip Manager: Ed Kim
+- Project Manager: Ryan Au
+- Head of Engineering: Alec Spencer
+- Designer: Youwei Du
+- Developer: Akari Asai
+- Marketing Manager: Spandi Singh
+- Partnerhsip Manager: Ed Kim
 
 ## Minimum Viable Product
 
@@ -24,15 +24,15 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 
 **Features**
 
-	* Admin can initialize new events (disasters)
-		* Admin can CRUD events
-		* Admin can approve messages from organizations
-		* Admin can dispatch digest manually
-	* User (organization) can create messages
-		* User can CRUB messages
-		* User can see coverage rate
-	* Victim can receive digest through SMS
-		* Victim can sign up through website
+* Admin can initialize new events (disasters)
+	* Admin can CRUD events
+	* Admin can approve messages from organizations
+	* Admin can dispatch digest manually
+* User (organization) can create messages
+	* User can CRUB messages
+	* User can see coverage rate
+* Victim can receive digest through SMS
+	* Victim can sign up through website
 
 ## Getting started
 
