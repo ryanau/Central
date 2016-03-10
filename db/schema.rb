@@ -46,11 +46,12 @@ ActiveRecord::Schema.define(version: 20160307172721) do
   add_index "admins", ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true, using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.integer  "admin_id"
-    t.string   "city"
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "admin_id",                   null: false
+    t.string   "city",                       null: false
+    t.string   "name",                       null: false
+    t.boolean  "archived",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|

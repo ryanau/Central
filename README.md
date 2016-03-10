@@ -29,7 +29,7 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 	* Admin can approve messages from organizations
 	* Admin can dispatch digest manually
 * User (organization) can create messages
-	* User can CRUB messages
+	* User can CRUD messages
 	* User can see coverage rate
 * Victim can receive digest through SMS
 	* Victim can sign up through website
@@ -39,6 +39,8 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 To start Rails API, run `bundle install`, then `rake db:create`, then `rake db:migrate`, then `rails s`
 
 To start React.js frontend, run `npm install`, then `npm run watch`
+
+Open up `http://localhost:8080`
 
 ## Implementation Timeline
 

@@ -14,6 +14,14 @@ class Api::EventsController < Api::BaseController
       render_json_message(:forbidden, errors: event.errors.messages[:name])
   end
 
+  def archive
+    event = Event.find(params[:id])
+    event.update!(archived: true)
+    render_json_message(:ok, message: "Event archived.", resource: {archived_events: Event.archived.map(&:serialize), events: Event.unarchived.map(&:serialize)})
+    rescue
+      render_json_message(:forbidden, errors: event.errors.messages[:name])
+  end
+
   private
 
   def event_params

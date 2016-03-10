@@ -6,6 +6,8 @@ class Admin < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :events
+  has_many :archived_events, -> { where(events: {archived: true}) }, :class_name => "Event", :foreign_key => :admin_id
+
 
   def serialize
     ActiveModel::SerializableResource.new(self)
