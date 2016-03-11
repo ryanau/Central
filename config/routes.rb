@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     get 'session/identity', to: 'session#identity'
 
-    resources :events, only: [:index, :create] do
+    resources :events, only: [:index, :create, :show] do
       get 'archive'
     end
   end

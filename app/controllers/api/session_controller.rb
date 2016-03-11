@@ -8,7 +8,7 @@ class Api::SessionController < Api::BaseController
     else
       authorization = 'admin'
     end
-    render_json_message(:ok, resource: {identity: user.serialize, authorization: authorization})
+    render_json_message(200, resource: {identity: user.serialize, authorization: authorization})
   end
 
 end

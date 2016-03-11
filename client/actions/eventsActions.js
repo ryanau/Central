@@ -20,12 +20,7 @@ class EventsActions {
 		}
 		ApiRequests.post(ApiConstants.events.create, data, resolve)
 	}
-	archiveEvent(id) {
-		const resolve = (res) => {
-			this.actions.storeEvents(res);
-		}
-		ApiRequests.get(ApiConstants.events.archive(id), null, resolve)
-	}
+
 }
 
 export default alt.createActions(EventsActions);

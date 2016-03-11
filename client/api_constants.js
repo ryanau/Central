@@ -18,6 +18,7 @@ class Api_Constants {
 			collection: this.origin + 'events',
 			create: this.origin + 'events',
 			archive: (id) => this.origin + `events/${id}/archive`,
+			event: (id) => this.origin + `events/${id}`,
 		}
 	}
 }

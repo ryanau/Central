@@ -6,6 +6,7 @@ import Auth from 'components/session/Auth';
 import AdminAuth from 'components/session/AdminAuth';
 import AccountActivation from 'components/session/AccountActivation';
 import EventsContainer from 'components/admin/events/EventsContainer';
+import Event from 'components/admin/events/Event';
 
 const routes = (
   <Route path='/' component={Landing}>
@@ -13,6 +14,7 @@ const routes = (
   	<Route path='admin_auth' component={AdminAuth}/>
   	<Route path='account_activation' component={AccountActivation}/>
   	<Route path='events' component={EventsContainer}/>
+		<Route path='events/:eventId' component={Event}/>
   </Route>
 );
 
