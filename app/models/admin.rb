@@ -12,4 +12,8 @@ class Admin < ActiveRecord::Base
   def serialize
     ActiveModel::SerializableResource.new(self)
   end
+
+  def identity_serialize
+    ActiveModel::SerializableResource.new(self, serializer: UserIdentitySerializer)
+  end
 end

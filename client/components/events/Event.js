@@ -1,8 +1,9 @@
 import React from 'react';
-import Uri from 'jsuri';
 
 import EventStore from 'stores/eventStore';
 import EventActions from 'actions/eventActions';
+
+import ReportsContainer from '../reports/ReportsContainer';
 
 class Event extends React.Component {
 	constructor(props) {
@@ -26,10 +27,10 @@ class Event extends React.Component {
 		EventActions.archiveEvent(this.state.event.id)
 	}
 	render() {
-		let event, info, archiveButton
+		let event, eventInfo, archiveButton
 		event = this.state.event
 		if (this.state.event != null) {
-			info = (
+			eventInfo = (
 				<div>
 					<p>{event.name}</p>
 					<p>Archived: {String(event.archived)}</p>
@@ -37,13 +38,15 @@ class Event extends React.Component {
 						<input type="button" onClick={this._onSubmit} value="Archive Event" disabled={event.archived}/>
 					  <br/>
 					</form>
+					<ReportsContainer eventId={event.id}/>
 				</div>
 			)
+
 		}
 		return (
 			<div>
 				<h4>Event</h4>
-				{info}
+				{eventInfo}
 			</div>
 		)
 	}

@@ -8,4 +8,14 @@ def make_responses
   end
 end
 
+def make_reports
+  1.upto(5) do |n|
+    Report.create(
+      title: FFaker::Lorem.phrase,
+      event_id: n
+    )
+  end
+end
+
 make_responses
+make_reports

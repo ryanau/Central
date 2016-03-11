@@ -16,9 +16,15 @@ class Api_Constants {
 	get events() {
 		return {
 			collection: this.origin + 'events',
+			event: (id) => this.origin + `events/${id}`,
 			create: this.origin + 'events',
 			archive: (id) => this.origin + `events/${id}/archive`,
-			event: (id) => this.origin + `events/${id}`,
+		}
+	}
+	get reports() {
+		return {
+			collection: this.origin + 'reports',
+			report: (id) => this.origin + `reports/${id}`,
 		}
 	}
 }

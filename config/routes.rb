@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :create, :show] do
       get 'archive'
     end
+
+    resources :reports, only: [:index, :show]
   end
 end

@@ -24,6 +24,7 @@ class Api_Requests {
 	get(url, data, onSuccess) {
 		Request
 			.get(url)
+			.query(data)
 			.set('access-token', localStorage.getItem('access-token'))
 			.set('client', localStorage.getItem('client'))
 			.set('expiry', localStorage.getItem('expiry'))

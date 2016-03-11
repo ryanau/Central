@@ -2,6 +2,7 @@ import React from 'react';
 
 import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
+import MasterStore from 'stores/masterStore';
 
 import EventListItem from './EventListItem';
 import EventCreator from './EventCreator';
@@ -15,7 +16,8 @@ class EventsContainer extends React.Component {
 	  this.setState(state);
 	}
 	componentWillMount() {
-	  this.setState(EventsStore.getState())
+	  this.setState(EventsStore.getState());
+	  this.setState(MasterStore.getState());
 	}
 	componentDidMount() {
 	  EventsStore.listen(this.onChange);

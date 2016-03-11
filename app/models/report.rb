@@ -1,9 +1,5 @@
-class Event < ActiveRecord::Base
-  belongs_to :admin
-  has_many :reports
-
-  validates :name, presence: true
-  validates :name, uniqueness: { scope: :city }
+class Report < ActiveRecord::Base
+  belongs_to :event
 
   scope :archived, -> { where(archived: true) }
   scope :unarchived, -> { where(archived: false) }

@@ -5,8 +5,9 @@ import Landing from 'components/Landing';
 import Auth from 'components/session/Auth';
 import AdminAuth from 'components/session/AdminAuth';
 import AccountActivation from 'components/session/AccountActivation';
-import EventsContainer from 'components/admin/events/EventsContainer';
-import Event from 'components/admin/events/Event';
+import EventsContainer from 'components/events/EventsContainer';
+import Event from 'components/events/Event';
+import Report from 'components/reports/Report';
 
 const routes = (
   <Route path='/' component={Landing}>
@@ -15,6 +16,7 @@ const routes = (
   	<Route path='account_activation' component={AccountActivation}/>
   	<Route path='events' component={EventsContainer}/>
 		<Route path='events/:eventId' component={Event}/>
+		<Route path='events/:eventId/reports/:reportId' component={Report}/>
   </Route>
 );
 
