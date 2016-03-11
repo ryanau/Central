@@ -3,7 +3,7 @@ Project for UC Berkeley IEOR 185 Sp'16: Challenge Lab (Social Entrepreneurship);
 
 Central is a platform that seeks to increase the efficiency of post-disaster responses by seamlessly connecting local unaffiliated volunteers in disaster-impacted areas with organizations providing emergency response services therefore facilitating a response and reconstruction process that engages and involves local communities, local skills and local knowledge and the overall creation of a more efficient and less wasteful response system.
 
-### Members
+**Members**
 
 - Project Manager: Ryan Au
 - Head of Engineering: Alec Spencer
@@ -24,15 +24,22 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 
 **Features**
 
-* Admin can initialize new events (disasters)
-	* Admin can CRUD events
-	* Admin can approve messages from organizations
-	* Admin can dispatch digest manually
-* User (organization) can create messages
-	* User can CRUD messages
-	* User can see coverage rate
-* Victim can receive digest through SMS
-	* Victim can sign up through website
+* Admin
+	* Admin can create, read events (disaster)
+		* Admin can archive events
+	* Admin can read reports (digest)
+		* Admin can dispatch reports manually
+	* Admin can read messages (message in a digest)
+		* Admin can approave messages
+* User (organization)
+	* User can read events
+		* User can activate events
+	* User can read reports
+	* User can create, read, update, delete messages
+		* User can submit messages for approval
+* Victim
+	* Victim can sign up through the website
+	* Victim can receive report through SMS
 
 ## Getting started
 
