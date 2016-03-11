@@ -77,9 +77,8 @@ class Api_Requests {
 		  "hideMethod": "fadeOut"
 		}
 		const parsed = JSON.parse(res['text'])
-
-		// handling sign up/sign in error messages
 		if (parsed.errors.full_messages) {
+			// handling sign up/sign in error messages
 			parsed.errors.full_messages.forEach((err) => {
 				toastr.error(this._capitalize(err), this._capitalize(res['statusText']))
 			});

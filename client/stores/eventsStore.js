@@ -7,10 +7,12 @@ class EventsStore {
 			handleStoreEvents: EventsActions.STORE_EVENTS
 		});
 		this.events = null;
+		this.archived_events = null;
 	}
 	handleStoreEvents(res) {
 		// update its events attribute with the resposne
-		this.events = res
+		this.events = res.resource.events;
+		this.archived_events = res.resource.archived_events;
 	}
 }
 

@@ -62,13 +62,15 @@ Open up `http://localhost:8080`
 - [X] Configure AJAX Requests with token info in headers + set up errorhandlers for taostr notifications
 - [X] Create landing page
 
-####  V1.0: Create `Event` Model (3/8/2016)
+####  V1.0: Create `Event` Model (3/10/2016)
 
 - [X] Admin can view existing events
 - [X] Admin can create events
+- [X] Admin can archive events
 - [X] Configure serializers to render JSON response
 - [X] Set up events components
 - [X] Modify navbar in landing page
+
 
 
 

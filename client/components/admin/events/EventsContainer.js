@@ -3,7 +3,7 @@ import React from 'react';
 import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
 
-import EventItem from './EventItem';
+import EventListItem from './EventListItem';
 import EventCreator from './EventCreator';
 
 class EventsContainer extends React.Component {
@@ -25,11 +25,18 @@ class EventsContainer extends React.Component {
 	  EventsStore.unlisten(this.onChange);
 	}
 	render() {
-		let events
+		let events, archived_events
 		if (this.state.events != null) {
 			events = this.state.events.map((event) => {
 				return (
-					<li><EventItem key={event.id} event={event}/></li>
+					<li><EventListItem key={event.id} event={event}/></li>
+				)
+			});
+		}
+		if (this.state.archived_events) {
+			archived_events = this.state.archived_events.map((event) => {
+				return (
+					<li><EventListItem key={event.id} event={event}/></li>
 				)
 			});
 		}
@@ -37,8 +44,13 @@ class EventsContainer extends React.Component {
 			<div>
 				<h4>Events Container</h4>
 					<EventCreator/>
+					<h4>Active Events</h4>
 					<ol>
 						{events}
+					</ol>
+					<h4>Archived Events</h4>
+					<ol>
+						{archived_events}
 					</ol>
 			</div>
 		)
