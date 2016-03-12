@@ -15,6 +15,9 @@ Rails.application.routes.draw do
       end
       
       resources :reports, only: [:index, :show]
+      resources :messages, only: [] do
+        get 'approve'
+      end
     end
 
     namespace :user do

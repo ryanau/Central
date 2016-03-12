@@ -14,6 +14,12 @@ class ReportActions {
 		}
 		ApiRequests.get(ApiConstants.reports.report(id), null, resolve)
 	}
+	approveMessage(id) {
+		const resolve = (res) => {
+			this.actions.storeReport(res);
+		}
+		ApiRequests.get(ApiConstants.messages.approve(id), null, resolve)
+	}
 }
 
 export default alt.createActions(ReportActions);

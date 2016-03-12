@@ -9,7 +9,9 @@ class ReportStore {
 		this.report = null;
 	}
 	handleStoreReport(res) {
+		console.log('handling store reports')
 		this.report = res.resource.report;
+		console.log(this.report)
 	}
 }
 

@@ -2,13 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 class ReportListItem extends React.Component {
-	constructor(props) {
-		super(props);
-		this.onChange = this._onChange.bind(this);
-	}
-	_onChange(state) {
-	  this.setState(state);
-	}
 	componentWillMount() {
 	  this.setState({
 	  	report: this.props.report,

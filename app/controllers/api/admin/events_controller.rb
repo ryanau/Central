@@ -1,5 +1,4 @@
 class Api::Admin::EventsController < Api::BaseController
-  # before_action :authenticate_any!, only: [:index, :show]
   before_action :authenticate_api_admin!
   
   def index

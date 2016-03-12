@@ -30,6 +30,11 @@ class Api_Constants {
 			report: (id) => this.admin_origin + `reports/${id}`,
 		}
 	}
+	get messages() {
+		return {
+			approve: (id) => this.admin_origin + `messages/${id}/approve`,
+		}
+	}
 
 	// User
 	get user_events() {

@@ -3,6 +3,8 @@ import React from 'react';
 import ReportStore from 'stores/reportStore';
 import ReportActions from 'actions/reportActions';
 
+import MessagesContainer from './MessagesContainer';
+
 class Report extends React.Component {
 	constructor(props) {
 		super(props);
@@ -28,6 +30,7 @@ class Report extends React.Component {
 			reportInfo = (
 				<div>
 					<p>Title: {report.title}</p>
+					<MessagesContainer approvedMessages={report.approved_messages} unapprovedMessages={report.unapproved_messages}/>
 				</div>
 			)
 		}
