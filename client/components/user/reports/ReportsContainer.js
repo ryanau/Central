@@ -18,13 +18,13 @@ class ReportsContainer extends React.Component {
 	}
 	componentDidMount() {
 	  ReportsStore.listen(this.onChange);
-	  ReportsActions.fetchReports(this.props.eventId);
+	  ReportsActions.fetchUserReports(this.props.eventId);
 	}
 	componentWillUnmount() {
 	  ReportsStore.unlisten(this.onChange);
 	}
 	render() {
-		let reports, dispatched_reports
+		let reports, archived_reports
 		if (this.state.reports != null) {
 			reports = this.state.reports.map((report) => {
 				return (
@@ -32,8 +32,8 @@ class ReportsContainer extends React.Component {
 				)
 			});
 		}
-		if (this.state.dispatched_reports) {
-			dispatched_reports = this.state.dispatched_reports.map((report) => {
+		if (this.state.archived_reports) {
+			archived_reports = this.state.archived_reports.map((report) => {
 				return (
 					<li><ReportListItem key={report.id} report={report}/></li>
 				)
@@ -48,7 +48,7 @@ class ReportsContainer extends React.Component {
 				</ol>
 				<h4>Dispatched Digests</h4>
 				<ol>
-					{dispatched_reports}
+					{archived_reports}
 				</ol>
 			</div>
 		)

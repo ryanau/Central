@@ -27,7 +27,7 @@ class EventsContainer extends React.Component {
 	  EventsStore.unlisten(this.onChange);
 	}
 	render() {
-		let events, archived_events
+		let events, archivedEvents
 		if (this.state.events != null) {
 			events = this.state.events.map((event) => {
 				return (
@@ -35,8 +35,8 @@ class EventsContainer extends React.Component {
 				)
 			});
 		}
-		if (this.state.archived_events) {
-			archived_events = this.state.archived_events.map((event) => {
+		if (this.state.archivedEvents) {
+			archivedEvents = this.state.archivedEvents.map((event) => {
 				return (
 					<li><EventListItem key={event.id} event={event}/></li>
 				)
@@ -52,7 +52,7 @@ class EventsContainer extends React.Component {
 					</ol>
 					<h4>Archived Events</h4>
 					<ol>
-						{archived_events}
+						{archivedEvents}
 					</ol>
 			</div>
 		)

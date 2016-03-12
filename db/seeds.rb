@@ -17,5 +17,16 @@ def make_reports
   end
 end
 
+def make_messages
+  1.upto(1) do |n|
+    Message.create(
+      content: FFaker::Lorem.phrase,
+      user_id: 1,
+      report_id: n,
+    )
+  end
+end
+
 make_responses
 make_reports
+make_messages

@@ -25,7 +25,7 @@ class EventsContainer extends React.Component {
 	  EventsStore.unlisten(this.onChange);
 	}
 	render() {
-		let events, activated_events
+		let events, activatedEvents
 		if (this.state.events != null) {
 			events = this.state.events.map((event) => {
 				return (
@@ -33,8 +33,8 @@ class EventsContainer extends React.Component {
 				)
 			});
 		}
-		if (this.state.activated_events) {
-			activated_events = this.state.activated_events.map((event) => {
+		if (this.state.activatedEvents) {
+			activatedEvents = this.state.activatedEvents.map((event) => {
 				return (
 					<li><EventListItem key={event.id} event={event}/></li>
 				)
@@ -45,7 +45,7 @@ class EventsContainer extends React.Component {
 				<h4>User Events Container</h4>
 					<h4>Activated Events</h4>
 					<ol>
-						{activated_events}
+						{activatedEvents}
 					</ol>
 					<h4>Active Events</h4>
 					<ol>

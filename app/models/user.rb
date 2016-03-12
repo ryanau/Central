@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   has_many :userevents
   has_many :events, through: :userevents
   has_many :reports, through: :events
-  # has_many :messages, through: :events
+  has_many :approved_messages, through: :reports
+  has_many :unapproved_messages, through: :reports
 
   def serialize
     ActiveModel::SerializableResource.new(self)

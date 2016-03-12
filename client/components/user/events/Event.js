@@ -3,7 +3,7 @@ import React from 'react';
 import EventStore from 'stores/eventStore';
 import EventActions from 'actions/eventActions';
 
-// import ReportsContainer from '../reports/ReportsContainer';
+import ReportsContainer from '../reports/ReportsContainer';
 
 class Event extends React.Component {
 	constructor(props) {
@@ -31,6 +31,7 @@ class Event extends React.Component {
 				<div>
 					<p>{event.name}</p>
 					<p>Activated: {String(event.activated)}</p>
+					<ReportsContainer eventId={event.id}/>
 				</div>
 			)
 

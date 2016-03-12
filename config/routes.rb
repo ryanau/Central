@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       resources :events, only: [:index, :create, :show] do
         get 'archive'
       end
-      
       resources :reports, only: [:index, :show]
       resources :messages, only: [] do
         get 'approve'
@@ -24,6 +23,8 @@ Rails.application.routes.draw do
       resources :events, only: [:index, :show] do
         get 'activate'
       end
+      resources :reports, only: [:index, :show]
+      resources :messages, only: [:index, :update, :create]
     end
   end
 end

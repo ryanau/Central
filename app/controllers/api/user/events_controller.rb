@@ -11,6 +11,8 @@ class Api::User::EventsController < Api::BaseController
     event = Event.find(params[:id])
     authorize! :read, event, :message => "Not authorized to retrieve this event."
     render_json_message(200, resource: {event: event.user_event_serialize})
+    rescue
+      render_json_message(404, errors: ["Event not found."])
   end
 
   def activate

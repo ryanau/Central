@@ -1,5 +1,5 @@
-class Api::Admin::ReportsController < Api::BaseController
-  before_action :authenticate_api_admin!
+class Api::User::ReportsController < Api::BaseController
+  before_action :authenticate_api_user!
 
   def index
     reports = Event.find(params[:event_id]).reports.undispatched
@@ -9,7 +9,7 @@ class Api::Admin::ReportsController < Api::BaseController
 
   def show
     report = Report.find(params[:id])
-    render_json_message(200, resource: {report: report.serialize})
+    render_json_message(200, resource: {report: report.user_report_serialize})
   end
 
 end

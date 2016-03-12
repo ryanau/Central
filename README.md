@@ -78,9 +78,14 @@ Open up `http://localhost:8080`
 - [X] Set up events components
 - [X] Modify navbar in landing page
 
-####  V1.1: Create `Report` Model (3/10/2016)
+####  V1.1: Create `Report` and `Message` Model (3/12/2016)
 
-- [X] Admin can view existing reports
+- [X] Admin can view existing reports (digests)
+- [X] Admin can approve messages in a report
+- [X]	User can compose one new message in report
+- [X] User can edit message, which requires re-approval from Admin
+- [X] Namespace components into Admin and User
+
 
 
 

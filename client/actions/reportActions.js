@@ -8,6 +8,7 @@ class ReportActions {
 			'storeReport'
 		)
 	}
+	// Admin
 	fetchReport(id) {
 		const resolve = (res) => {
 			this.actions.storeReport(res);
@@ -19,6 +20,13 @@ class ReportActions {
 			this.actions.storeReport(res);
 		}
 		ApiRequests.get(ApiConstants.messages.approve(id), null, resolve)
+	}
+	// User
+	fetchUserReport(id) {
+		const resolve = (res) => {
+			this.actions.storeReport(res);
+		}
+		ApiRequests.get(ApiConstants.user_reports.report(id), null, resolve)
 	}
 }
 

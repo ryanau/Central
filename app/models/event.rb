@@ -3,6 +3,8 @@ class Event < ActiveRecord::Base
   has_many :reports
   has_many :userevents
   has_many :users, through: :userevents
+  has_many :approved_messages, through: :reports
+  has_many :unapproved_messages, through: :reports
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :city }

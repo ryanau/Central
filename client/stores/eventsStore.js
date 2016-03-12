@@ -8,16 +8,16 @@ class EventsStore {
 			handleStoreUserEvents: EventsActions.STORE_USER_EVENTS,
 		});
 		this.events = null;
-		this.archived_events = null;
-		this.activated_events = null;
+		this.archivedEvents = null;
+		this.activatedEvents = null;
 	}
 	handleStoreEvents(res) {
 		this.events = res.resource.events;
-		this.archived_events = res.resource.archived_events;
+		this.archivedEvents = res.resource.archived_events;
 	}
 	handleStoreUserEvents(res) {
 		this.events = res.resource.events;
-		this.activated_events = res.resource.activated_events;
+		this.activatedEvents = res.resource.activated_events;
 	}
 }
 

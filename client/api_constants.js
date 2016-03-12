@@ -44,6 +44,20 @@ class Api_Constants {
 			activate: (id) => this.user_origin + `events/${id}/activate`,
 		}
 	}
+	get user_reports() {
+		return {
+			collection: this.user_origin + 'reports',
+			report: (id) => this.user_origin + `reports/${id}`,
+		}
+	}
+	get user_messages() {
+		return {
+			collection: this.user_origin + 'messages',
+			edit: (id) => this.user_origin + `messages/${id}`,
+			create: this.user_origin + 'messages',
+
+		}
+	}
 }
 
 const ApiConstants = new Api_Constants();

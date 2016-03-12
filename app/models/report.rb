@@ -3,10 +3,14 @@ class Report < ActiveRecord::Base
   has_many :approved_messages, -> { where(messages: {approved: true})}, :class_name => "Message", :foreign_key => :report_id
   has_many :unapproved_messages, -> { where(messages: {approved: false})}, :class_name => "Message", :foreign_key => :report_id
 
-  scope :archived, -> { where(archived: true) }
-  scope :unarchived, -> { where(archived: false) }
+  scope :dispatched, -> { where(dispatched: true) }
+  scope :undispatched, -> { where(dispatched: false) }
 
   def serialize
     ActiveModel::SerializableResource.new(self)
+  end
+
+  def user_report_serialize
+    ActiveModel::SerializableResource.new(self, serializer: UserReportSerializer)
   end
 end

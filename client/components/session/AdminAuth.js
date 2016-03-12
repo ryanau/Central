@@ -16,9 +16,6 @@ class AdminAuth extends React.Component {
     }
 	}
 	componentWillMount() {
-	  // this.setState({
-
-	  // })
     this.setState(
       MasterStore.getState()
     )

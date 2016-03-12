@@ -14,6 +14,7 @@ import AdminReport from 'components/admin/reports/Report';
 // User
 import UserEventsContainer from 'components/user/events/EventsContainer';
 import UserEvent from 'components/user/events/Event';
+import UserReport from 'components/user/reports/Report';
 
 
 
@@ -30,6 +31,7 @@ const routes = (
     <Route path='user'>
       <Route path='events' component={UserEventsContainer}/>
       <Route path='events/:eventId' component={UserEvent}/>
+      <Route path='events/:eventId/reports/:reportId' component={UserReport}/>
     </Route>
   </Route>
 );

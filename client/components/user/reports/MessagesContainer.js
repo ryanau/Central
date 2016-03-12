@@ -1,22 +1,31 @@
 import React from 'react';
 
+import MessagesStore from 'stores/messagesStore';
+import MessagesActions from 'actions/messagesActions';
+
 import MessageListItem from './MessageListItem';
+import UserMessageCreator from './UserMessageCreator';
 
 class MessagesContainer extends React.Component {
-	componentWillMount() {
-		this.setState({
-			approvedMessages: this.props.approvedMessages,
-			unapprovedMessages: this.props.unapprovedMessages,
-		})
+	constructor(props) {
+		super(props);
+		this.onChange = this._onChange.bind(this);
 	}
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			approvedMessages: nextProps.approvedMessages,
-			unapprovedMessages: nextProps.unapprovedMessages,
-		})
+	_onChange(state) {
+	  this.setState(state);
+	}
+	componentWillMount() {
+	  this.setState(MessagesStore.getState())
+	}
+	componentDidMount() {
+	  MessagesStore.listen(this.onChange);
+	  MessagesActions.fetchUserMessages(this.props.reportId);
+	}
+	componentWillUnmount() {
+	  MessagesStore.unlisten(this.onChange);
 	}
 	render() {
-		let unapprovedMessages, approvedMessages
+		let unapprovedMessages, approvedMessages, messageCreator
 		if (this.state.approvedMessages.length > 0) {
 			approvedMessages = this.state.approvedMessages.map((message) => {
 				return (
@@ -37,9 +46,13 @@ class MessagesContainer extends React.Component {
 				)
 			});
 		}
+		if (this.state.approvedMessages.length == 0 && this.state.unapprovedMessages.length == 0) {
+			messageCreator = <UserMessageCreator reportId={this.props.reportId}/>
+		}
 		return (
 			<div>
 				<h4>Messages Container</h4>
+				{messageCreator}
 				{approvedMessages}
 				{unapprovedMessages}
 			</div>

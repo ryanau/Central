@@ -8,6 +8,7 @@ class EventsActions {
 			'storeReports'
 		)
 	}
+	// Admin
 	fetchReports(eventId) {
 		const resolve = (res) => {
 			this.actions.storeReports(res);
@@ -16,6 +17,16 @@ class EventsActions {
 		  event_id: eventId,
 		}
 		ApiRequests.get(ApiConstants.reports.collection, data, resolve)
+	}
+	// User
+	fetchUserReports(eventId) {
+		const resolve = (res) => {
+			this.actions.storeReports(res);
+		}
+		const data = {
+		  event_id: eventId,
+		}
+		ApiRequests.get(ApiConstants.user_reports.collection, data, resolve)
 	}
 }
 

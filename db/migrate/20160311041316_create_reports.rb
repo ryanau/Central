@@ -4,7 +4,7 @@ class CreateReports < ActiveRecord::Migration
       t.integer :event_id, null: false
       t.string :title, null: false
 
-      t.boolean :archived, default: false
+      t.boolean :dispatched, default: false
 
       t.timestamps null: false
     end

@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20160312041058) do
   create_table "reports", force: :cascade do |t|
     t.integer  "event_id",                   null: false
     t.string   "title",                      null: false
-    t.boolean  "archived",   default: false
+    t.boolean  "dispatched", default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end

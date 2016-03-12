@@ -6,6 +6,6 @@ class Api::Admin::MessagesController < Api::BaseController
     message = Message.find(message_id)
     message.approve
     report = message.report
-    render_json_message(200, resource: {report: report.serialize})
+    render_json_message(200, message: "Message approved!", resource: {report: report.serialize})
   end
 end
