@@ -4,7 +4,7 @@ import moment from 'moment';
 
 import MessagesActions from 'actions/messagesActions';
 
-class MessageListItem extends React.Component {
+class UserMessageListItem extends React.Component {
 	componentWillMount() {
 	  this.setState({
 	  	message: this.props.message,
@@ -76,4 +76,4 @@ class MessageListItem extends React.Component {
 	}
 };
 
-export default MessageListItem;
+export default UserMessageListItem;

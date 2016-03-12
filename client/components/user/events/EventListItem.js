@@ -16,6 +16,11 @@ class EventListItem extends React.Component {
 	  	event: this.props.event,
 	  })
 	}
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			event: nextProps.event,
+		})
+	}
 	_onSubmit = () => {
 		EventsActions.activateUserEvent(this.state.event.id)
 	}

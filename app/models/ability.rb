@@ -6,8 +6,8 @@ class Ability
     if user.is_a?(Admin)
       can :manage, :all
     else
-      can :manage, :all
-      # can :read, Event, :users => { :id => user.id }
+      # can :manage, :all
+      can :read, Event, :users => { :id => user.id }
     end
 
     # Define abilities for the passed in user here. For example:

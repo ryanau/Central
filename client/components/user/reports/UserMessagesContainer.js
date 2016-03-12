@@ -3,10 +3,10 @@ import React from 'react';
 import MessagesStore from 'stores/messagesStore';
 import MessagesActions from 'actions/messagesActions';
 
-import MessageListItem from './MessageListItem';
+import UserMessageListItem from './UserMessageListItem';
 import UserMessageCreator from './UserMessageCreator';
 
-class MessagesContainer extends React.Component {
+class UserMessagesContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -31,7 +31,7 @@ class MessagesContainer extends React.Component {
 				return (
 					<div>
 						<h4>Approved Messages</h4>
-						<li><MessageListItem key={message.id} message={message}/></li>
+						<li><UserMessageListItem key={message.id} message={message}/></li>
 					</div>
 				)
 			});
@@ -41,7 +41,7 @@ class MessagesContainer extends React.Component {
 				return (
 					<div>
 						<h4>Unapproved Messages</h4>
-						<li><MessageListItem key={message.id} message={message}/></li>
+						<li><UserMessageListItem key={message.id} message={message}/></li>
 					</div>
 				)
 			});
@@ -60,4 +60,4 @@ class MessagesContainer extends React.Component {
 	}
 };
 
-export default MessagesContainer;
+export default UserMessagesContainer;

@@ -3,9 +3,9 @@ import React from 'react';
 import ReportsStore from 'stores/reportsStore';
 import ReportsActions from 'actions/reportsActions';
 
-import ReportListItem from './ReportListItem';
+import UserReportListItem from './UserReportListItem';
 
-class ReportsContainer extends React.Component {
+class UserReportsContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -18,24 +18,24 @@ class ReportsContainer extends React.Component {
 	}
 	componentDidMount() {
 	  ReportsStore.listen(this.onChange);
-	  ReportsActions.fetchUserReports(this.props.eventId);
+  	ReportsActions.fetchUserReports(this.props.eventId);
 	}
 	componentWillUnmount() {
 	  ReportsStore.unlisten(this.onChange);
 	}
 	render() {
-		let reports, archived_reports
+		let reports, dispatched_reports
 		if (this.state.reports != null) {
 			reports = this.state.reports.map((report) => {
 				return (
-					<li><ReportListItem key={report.id} report={report}/></li>
+					<li><UserReportListItem key={report.id} report={report}/></li>
 				)
 			});
 		}
-		if (this.state.archived_reports) {
-			archived_reports = this.state.archived_reports.map((report) => {
+		if (this.state.dispatched_reports) {
+			dispatched_reports = this.state.dispatched_reports.map((report) => {
 				return (
-					<li><ReportListItem key={report.id} report={report}/></li>
+					<li><UserReportListItem key={report.id} report={report}/></li>
 				)
 			});
 		}
@@ -48,11 +48,11 @@ class ReportsContainer extends React.Component {
 				</ol>
 				<h4>Dispatched Digests</h4>
 				<ol>
-					{archived_reports}
+					{dispatched_reports}
 				</ol>
 			</div>
 		)
 	}
 };
 
-export default ReportsContainer;
+export default UserReportsContainer;

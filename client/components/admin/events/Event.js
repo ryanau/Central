@@ -1,4 +1,5 @@
 import React from 'react';
+import alt from 'control'
 
 import EventStore from 'stores/eventStore';
 import EventActions from 'actions/eventActions';
@@ -22,6 +23,8 @@ class Event extends React.Component {
 	}
 	componentWillUnmount() {
 	  EventStore.unlisten(this.onChange);
+	  // reseting EventStore state to null to prevent rendering
+	  alt.recycle(EventStore);
 	}
 	_onSubmit = () => {
 		EventActions.archiveEvent(this.state.event.id)

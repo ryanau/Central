@@ -1,9 +1,10 @@
 import React from 'react';
+import alt from 'control'
 
 import EventStore from 'stores/eventStore';
 import EventActions from 'actions/eventActions';
 
-import ReportsContainer from '../reports/ReportsContainer';
+import UserReportsContainer from '../reports/UserReportsContainer';
 
 class Event extends React.Component {
 	constructor(props) {
@@ -14,7 +15,7 @@ class Event extends React.Component {
 	  this.setState(state);
 	}
 	componentWillMount() {
-	  this.setState(EventStore.getState())
+	  this.setState(EventStore.getState());
 	}
 	componentDidMount() {
 	  EventStore.listen(this.onChange);
@@ -22,6 +23,8 @@ class Event extends React.Component {
 	}
 	componentWillUnmount() {
 	  EventStore.unlisten(this.onChange);
+	  // reseting EventStore state to null to prevent rendering
+	  alt.recycle(EventStore);
 	}
 	render() {
 		let event, eventInfo
@@ -31,7 +34,7 @@ class Event extends React.Component {
 				<div>
 					<p>{event.name}</p>
 					<p>Activated: {String(event.activated)}</p>
-					<ReportsContainer eventId={event.id}/>
+					<UserReportsContainer eventId={event.id}/>
 				</div>
 			)
 

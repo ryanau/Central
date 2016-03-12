@@ -3,9 +3,9 @@ import React from 'react';
 import ReportStore from 'stores/reportStore';
 import ReportActions from 'actions/reportActions';
 
-import MessagesContainer from './MessagesContainer';
+import UserMessagesContainer from './UserMessagesContainer';
 
-class Report extends React.Component {
+class UserReport extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -29,8 +29,9 @@ class Report extends React.Component {
 		if (this.state.report != null) {
 			reportInfo = (
 				<div>
+					<p>Event: {report.event.name}</p>
 					<p>Title: {report.title}</p>
-					<MessagesContainer reportId={report.id}/>
+					<UserMessagesContainer reportId={report.id}/>
 				</div>
 			)
 		}
@@ -43,4 +44,4 @@ class Report extends React.Component {
 	}
 };
 
-export default Report;
+export default UserReport;

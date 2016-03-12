@@ -2,7 +2,7 @@ import alt from 'control';
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
 
-class EventsActions {
+class ReportsActions {
 	constructor() {
 		this.generateActions(
 			'storeReports'
@@ -30,4 +30,4 @@ class EventsActions {
 	}
 }
 
-export default alt.createActions(EventsActions);
+export default alt.createActions(ReportsActions);

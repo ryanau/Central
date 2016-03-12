@@ -14,7 +14,7 @@ import AdminReport from 'components/admin/reports/Report';
 // User
 import UserEventsContainer from 'components/user/events/EventsContainer';
 import UserEvent from 'components/user/events/Event';
-import UserReport from 'components/user/reports/Report';
+import UserReport from 'components/user/reports/UserReport';
 
 
 
