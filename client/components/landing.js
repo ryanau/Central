@@ -71,10 +71,11 @@ class Landing extends React.Component {
     if (this.state.loggedIn && this.state.authorization == 'user') {
       var userName = this.state.user.uid;
       var signOutLink = (<li><input type="button" onClick={this._onSignOutClicked} value="Sign out"/></li>)
+      var eventNav = (<li><Link to="/user/events">Events</Link></li>)
     } else if (this.state.loggedIn && this.state.authorization == 'admin') {
       var userName = this.state.user.uid;
       var signOutLinkAdmin = (<li><input type="button" onClick={this._onSignOutClickedAdmin} value="Admin Sign out"/></li>);
-      var eventNav = (<li><Link to="/events">Events</Link></li>)
+      var eventNav = (<li><Link to="/admin/events">Events</Link></li>)
     } else {
       var signInLink = (<li><Link to="/auth">Sign Up/In</Link></li>)
       var signInLinkAdmin = (<li><Link to="/admin_auth">Admin Sign Up/In</Link></li>)

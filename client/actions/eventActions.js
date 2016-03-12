@@ -8,6 +8,7 @@ class EventActions {
 			'storeEvent'
 		)
 	}
+	// Admin
 	fetchEvent(id) {
 		const resolve = (res) => {
 			this.actions.storeEvent(res);
@@ -19,6 +20,13 @@ class EventActions {
 			this.actions.storeEvent(res);
 		}
 		ApiRequests.get(ApiConstants.events.archive(id), null, resolve)
+	}
+	// User
+	fetchUserEvent(id) {
+		const resolve = (res) => {
+			this.actions.storeEvent(res);
+		}
+		ApiRequests.get(ApiConstants.user_events.event(id), null, resolve)
 	}
 }
 

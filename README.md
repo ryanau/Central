@@ -30,7 +30,7 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 	* Admin can read reports (digest)
 		* Admin can dispatch reports manually
 	* Admin can read messages (message in a digest)
-		* Admin can approave messages
+		* Admin can approve messages
 * User (organization)
 	* User can read events
 		* User can activate events

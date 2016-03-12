@@ -9,10 +9,18 @@ Rails.application.routes.draw do
 
     get 'session/identity', to: 'session#identity'
 
-    resources :events, only: [:index, :create, :show] do
-      get 'archive'
+    namespace :admin do
+      resources :events, only: [:index, :create, :show] do
+        get 'archive'
+      end
+      
+      resources :reports, only: [:index, :show]
     end
 
-    resources :reports, only: [:index, :show]
+    namespace :user do
+      resources :events, only: [:index, :show] do
+        get 'activate'
+      end
+    end
   end
 end

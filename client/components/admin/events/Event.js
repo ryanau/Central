@@ -18,7 +18,7 @@ class Event extends React.Component {
 	}
 	componentDidMount() {
 	  EventStore.listen(this.onChange);
-	  EventActions.fetchEvent(location.pathname.substring(8, location.pathname.length));
+	  EventActions.fetchEvent(location.pathname.match(`[^/]+$`)[0]);
 	}
 	componentWillUnmount() {
 	  EventStore.unlisten(this.onChange);

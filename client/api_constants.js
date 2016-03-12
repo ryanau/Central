@@ -1,6 +1,8 @@
 class Api_Constants {
 	constructor() {
 		this.origin = 'http://localhost:3000/api/'
+		this.admin_origin = this.origin + 'admin/'
+		this.user_origin = this.origin + 'user/'
 	}
 	get session() {
 		return {
@@ -13,18 +15,28 @@ class Api_Constants {
 			identity: this.origin + 'session/identity',
 		}
 	}
+	// Admin
 	get events() {
 		return {
-			collection: this.origin + 'events',
-			event: (id) => this.origin + `events/${id}`,
-			create: this.origin + 'events',
-			archive: (id) => this.origin + `events/${id}/archive`,
+			collection: this.admin_origin + 'events',
+			event: (id) => this.admin_origin + `events/${id}`,
+			create: this.admin_origin + 'events',
+			archive: (id) => this.admin_origin + `events/${id}/archive`,
 		}
 	}
 	get reports() {
 		return {
-			collection: this.origin + 'reports',
-			report: (id) => this.origin + `reports/${id}`,
+			collection: this.admin_origin + 'reports',
+			report: (id) => this.admin_origin + `reports/${id}`,
+		}
+	}
+
+	// User
+	get user_events() {
+		return {
+			collection: this.user_origin + 'events',
+			event: (id) => this.user_origin + `events/${id}`,
+			activate: (id) => this.user_origin + `events/${id}/activate`,
 		}
 	}
 }

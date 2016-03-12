@@ -33,7 +33,7 @@ class Report extends React.Component {
 		}
 		return (
 			<div>
-				<h4>Report</h4>
+				<h4>Digest</h4>
 				{reportInfo}
 			</div>
 		)

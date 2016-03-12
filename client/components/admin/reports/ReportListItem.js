@@ -17,7 +17,7 @@ class ReportListItem extends React.Component {
 	render() {
 		let report, infoLink
 		report = this.state.report
-		infoLink = location.pathname + "/reports/" + report.id
+		infoLink = '/admin/events/' + location.pathname.match(`[^/]+$`)[0] + "/reports/" + report.id
 		return (
 			<div>
 				<h4>Name: {report.title}</h4>

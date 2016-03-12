@@ -2,10 +2,8 @@ import React from 'react';
 
 import ReportsStore from 'stores/reportsStore';
 import ReportsActions from 'actions/reportsActions';
-// import MasterStore from 'stores/masterStore';
 
 import ReportListItem from './ReportListItem';
-// import EventCreator from './EventCreator';
 
 class ReportsContainer extends React.Component {
 	constructor(props) {
@@ -44,11 +42,11 @@ class ReportsContainer extends React.Component {
 		return (
 			<div>
 				<h4>Reports Container</h4>
-				<h4>Report Pending to be Dispatched</h4>
+				<h4>Digests Pending to be Dispatched</h4>
 				<ol>
 					{reports}
 				</ol>
-				<h4>Archived Reports</h4>
+				<h4>Dispatched Digests</h4>
 				<ol>
 					{archived_reports}
 				</ol>

@@ -17,7 +17,7 @@ class EventListItem extends React.Component {
 	render() {
 		let event, infoLink
 		event = this.state.event
-		infoLink = "events/" + event.id
+		infoLink = "/admin/events/" + event.id
 		return (
 			<div>
 				<h4>Name: {event.name} | Created by: {event.admin.uid}</h4>
