@@ -11,7 +11,7 @@
     , "url" : "https://github.com/ryanau/Central.git"
   },
   "scripts": {
-    "build": "webpack -p --config webpack.pro.config.js --progress --profile --colors",
+    "build": "node_modules/.bin/webpack --progress --profile --colors",
     "watch": "webpack-dev-server --hot --inline --progress --colors",
     "postinstall": "npm run build && npm run rejoice",
     "test": "echo \"No unit tests and e2e tests yet\" && exit 1",
