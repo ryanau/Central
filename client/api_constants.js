@@ -3,6 +3,7 @@ class Api_Constants {
 		this.origin = 'http://localhost:3000/api/'
 		this.admin_origin = this.origin + 'admin/'
 		this.user_origin = this.origin + 'user/'
+		this.victim_origin = this.origin + 'victims/'
 	}
 	get session() {
 		return {
@@ -13,6 +14,11 @@ class Api_Constants {
 			admin_sign_in: this.origin + 'admin_auth/sign_in',
 			admin_sign_out: this.origin + 'admin_auth/sign_out',
 			identity: this.origin + 'session/identity',
+		}
+	}
+	get victims() {
+		return {
+			join: this.victim_origin + 'join',
 		}
 	}
 	// Admin

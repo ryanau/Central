@@ -96,6 +96,9 @@ Open up `http://localhost:8080`
 
 ####  V1.3: Add `Victim` Model (3/12/2016)
 
+- [X] Anyone can sign up on the website thruogh landing page
+- [X] Add unique validation for victim/phone number
+
 
 
 

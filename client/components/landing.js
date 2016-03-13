@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import Request from 'superagent';
 
+import VictimSignUp from 'components/VictimSignUp';
+
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
 
@@ -68,17 +70,18 @@ class Landing extends React.Component {
   //   }
   // }
   render() {
+    let userName, signOutLink, eventNav, signOutLinkAdmin, signInLink, signInLinkAdmin
     if (this.state.loggedIn && this.state.authorization == 'user') {
-      var userName = this.state.user.uid;
-      var signOutLink = (<li><input type="button" onClick={this._onSignOutClicked} value="Sign out"/></li>)
-      var eventNav = (<li><Link to="/user/events">Events</Link></li>)
+      userName = this.state.user.uid;
+      signOutLink = (<li><input type="button" onClick={this._onSignOutClicked} value="Sign out"/></li>)
+      eventNav = (<li><Link to="/user/events">Events</Link></li>)
     } else if (this.state.loggedIn && this.state.authorization == 'admin') {
-      var userName = this.state.user.uid;
-      var signOutLinkAdmin = (<li><input type="button" onClick={this._onSignOutClickedAdmin} value="Admin Sign out"/></li>);
-      var eventNav = (<li><Link to="/admin/events">Events</Link></li>)
+      userName = this.state.user.uid;
+      signOutLinkAdmin = (<li><input type="button" onClick={this._onSignOutClickedAdmin} value="Admin Sign out"/></li>);
+      eventNav = (<li><Link to="/admin/events">Events</Link></li>)
     } else {
-      var signInLink = (<li><Link to="/auth">Sign Up/In</Link></li>)
-      var signInLinkAdmin = (<li><Link to="/admin_auth">Admin Sign Up/In</Link></li>)
+      signInLink = (<li><Link to="/auth">Sign Up/In</Link></li>)
+      signInLinkAdmin = (<li><Link to="/admin_auth">Admin Sign Up/In</Link></li>)
     }
     return (
       <div>
@@ -91,6 +94,7 @@ class Landing extends React.Component {
           {signOutLinkAdmin}
           {eventNav}
         </ul>
+        <VictimSignUp/>
         {this.props.children}
       </div>
     );    

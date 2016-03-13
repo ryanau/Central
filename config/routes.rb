@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
     get 'session/identity', to: 'session#identity'
 
+    post 'victims/join'
+
     namespace :admin do
       resources :events, only: [:index, :create, :show] do
         get 'archive'
