@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307165353) do
+ActiveRecord::Schema.define(version: 20160313032423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,40 @@ ActiveRecord::Schema.define(version: 20160307165353) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   add_index "admins", ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true, using: :btree
 
+  create_table "events", force: :cascade do |t|
+    t.integer  "admin_id",                   null: false
+    t.string   "city",                       null: false
+    t.string   "name",                       null: false
+    t.boolean  "archived",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer  "report_id",                  null: false
+    t.integer  "user_id",                    null: false
+    t.string   "content",                    null: false
+    t.boolean  "approved",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.integer  "event_id",                    null: false
+    t.string   "title",                       null: false
+    t.boolean  "dispatched",  default: false
+    t.boolean  "dispatching", default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "userevents", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "event_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
     t.string   "uid",                    default: "",      null: false
@@ -73,5 +107,11 @@ ActiveRecord::Schema.define(version: 20160307165353) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
+
+  create_table "victims", force: :cascade do |t|
+    t.string   "phone_number", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
 end

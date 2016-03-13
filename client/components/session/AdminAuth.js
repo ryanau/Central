@@ -9,13 +9,13 @@ import MasterStore from 'stores/masterStore';
 class AdminAuth extends React.Component {
 	constructor(props) {
 	  super(props);
+    this.state = {
+      email: null,
+      password: null,
+      password_confirmation: null,
+    }
 	}
 	componentWillMount() {
-	  this.setState({
-	    email: null,
-	    password: null,
-	    password_confirmation: null,
-	  })
     this.setState(
       MasterStore.getState()
     )

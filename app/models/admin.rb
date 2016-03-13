@@ -4,4 +4,16 @@ class Admin < ActiveRecord::Base
           :recoverable, :rememberable, :trackable, :validatable,
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
+
+  has_many :events
+  has_many :archived_events, -> { where(events: {archived: true}) }, :class_name => "Event", :foreign_key => :admin_id
+
+
+  def serialize
+    ActiveModel::SerializableResource.new(self)
+  end
+
+  def identity_serialize
+    ActiveModel::SerializableResource.new(self, serializer: UserIdentitySerializer)
+  end
 end

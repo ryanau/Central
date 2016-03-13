@@ -8,5 +8,27 @@ Rails.application.routes.draw do
     end
 
     get 'session/identity', to: 'session#identity'
+
+    post 'victims/join'
+
+    namespace :admin do
+      resources :events, only: [:index, :create, :show] do
+        get 'archive'
+      end
+      resources :reports, only: [:index, :show] do
+        get 'dispatch_report'
+      end
+      resources :messages, only: [] do
+        get 'approve'
+      end
+    end
+
+    namespace :user do
+      resources :events, only: [:index, :show] do
+        get 'activate'
+      end
+      resources :reports, only: [:index, :show]
+      resources :messages, only: [:index, :update, :create]
+    end
   end
 end
