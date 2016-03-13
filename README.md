@@ -43,11 +43,17 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 
 ## Getting started
 
-To start Rails API, run `bundle install`, then `rake db:create`, then `rake db:migrate`, then `rails s`
+To start Rails API, run `bundle install` to install the gems needed, then `rake db:create`, then `rake db:migrate` then seed data with `rake db:seed`, then `rails s`
 
-To start React.js frontend, run `npm install`, then `npm run watch`
+To start React.js frontend, run `npm install`, then `npm run watch`. Note the browser will auto-refresh when changes are made in the `/client` folder
 
-Open up `http://localhost:8080`
+To start Redis server for Sidekiq, run `redis-server`
+
+To start Sidekiq for background processing, run `bundle exec sidekiq`
+
+If you want to experience the SMS capability through Twilio, add `.env` file in the root with your Twilio credentials.
+
+Open up `http://localhost:8080` to access the app.
 
 ## Implementation Timeline
 
@@ -65,7 +71,7 @@ Open up `http://localhost:8080`
 - [X] Create `User` and `Admin` model
 - [X] User/Admin sign up/sign in page
 - [X] Account confirmation email using Letter Opener Gem in development
-- [X] Create helper files for API Requests and API Constants
+- [X] Create helper files for API Requests and API Constants (api endpoints)
 - [X] Configure AJAX Requests with token info in headers + set up errorhandlers for taostr notifications
 - [X] Create landing page
 
@@ -86,10 +92,11 @@ Open up `http://localhost:8080`
 - [X] User can edit message, which requires re-approval from Admin
 - [X] Namespace components into Admin and User
 
-####  V1.2: Admin dispatch Digest (3/12/2016)
+####  V1.2: Admin can dispatch `Report` (3/12/2016)
 
 - [X] Set up Twilio gem and Sidekiq for background process
 - [X] Admin can dispatch digest with approved messages
+- [X] Report is sent to registered 'Victim' through SMS
 - [X]	Add auto generate first digest feature
 - [X] Add auto generate subsequent digest feature after the previous one is sent
 - [X] Add transition phase on frontend while digest is being sent through Twilio

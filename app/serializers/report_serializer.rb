@@ -1,7 +1,7 @@
 class ReportSerializer < ActiveModel::Serializer
-  attributes :title, :id, :approved_messages, :unapproved_messages, :dispatched, :dispatching
+  attributes :id, :title, :dispatched, :dispatching, :approved_messages, :unapproved_messages
 
-  # belongs_to :event
+  belongs_to :event, serializer: EventArchivedSerializer
   def approved_messages
     object.approved_messages.map(&:serialize)
   end

@@ -39,7 +39,7 @@ class Report extends React.Component {
 					<MessagesContainer approvedMessages={report.approved_messages} unapprovedMessages={report.unapproved_messages}/>
 				</div>
 			)
-			if (report.approved_messages.length > 0 && !report.dispatched) {
+			if (report.approved_messages.length > 0 && !report.dispatched && !report.event.archived) {
 				dispatchButton = (
 					<form>
 						<input type="button" onClick={this._onSubmit} value="Dispatch Digest" disabled={report.dispatching}/>
