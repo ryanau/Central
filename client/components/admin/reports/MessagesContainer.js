@@ -21,7 +21,6 @@ class MessagesContainer extends React.Component {
 			approvedMessages = this.state.approvedMessages.map((message) => {
 				return (
 					<div>
-						<h4>Approved Messages</h4>
 						<li><MessageListItem key={message.id} message={message}/></li>
 					</div>
 				)
@@ -31,7 +30,6 @@ class MessagesContainer extends React.Component {
 			unapprovedMessages = this.state.unapprovedMessages.map((message) => {
 				return (
 					<div>
-						<h4>Unapproved Messages</h4>
 						<li><MessageListItem key={message.id} message={message}/></li>
 					</div>
 				)
@@ -40,7 +38,9 @@ class MessagesContainer extends React.Component {
 		return (
 			<div>
 				<h4>Messages Container</h4>
+				<h4>Approved Messages</h4>
 				{approvedMessages}
+				<h4>Unapproved Messages</h4>
 				{unapprovedMessages}
 			</div>
 		)

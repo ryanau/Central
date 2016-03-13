@@ -32,24 +32,24 @@ class Report extends React.Component {
 	render() {
 		let report, reportInfo, dispatchButton, dispatchedInfo
 		report = this.state.report
-		if (this.state.report != null) {
+		if (report != null) {
 			reportInfo = (
 				<div>
 					<p>Title: {report.title}</p>
 					<MessagesContainer approvedMessages={report.approved_messages} unapprovedMessages={report.unapproved_messages}/>
 				</div>
 			)
-			if (this.state.report.approved_messages.length > 0) {
+			if (report.approved_messages.length > 0 && !report.dispatched) {
 				dispatchButton = (
 					<form>
-						<input type="button" onClick={this._onSubmit} value="Dispatch Digest"/>
+						<input type="button" onClick={this._onSubmit} value="Dispatch Digest" disabled={report.dispatching}/>
 					  <br/>
 					</form>
 				)
 			}
-			if (this.state.report.dispatched) {
+			if (report.dispatched) {
 				dispatchedInfo = (
-					<h4>Digest dispatched</h4>
+					<h2>Digest dispatched!</h2>
 				)
 			}
 		}

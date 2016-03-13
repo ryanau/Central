@@ -27,20 +27,26 @@ class UserReport extends React.Component {
 	  alt.recycle(ReportStore);
 	}
 	render() {
-		let report, reportInfo
+		let report, reportInfo, dispatchedInfo
 		report = this.state.report
 		if (this.state.report != null) {
 			reportInfo = (
 				<div>
 					<p>Event: {report.event.name}</p>
 					<p>Title: {report.title}</p>
-					<UserMessagesContainer reportId={report.id} archived={report.event.archived}/>
+					<UserMessagesContainer reportId={report.id} archived={report.event.archived} report={report}/>
 				</div>
 			)
+			if (report.dispatched) {
+				dispatchedInfo = (
+					<h2>Digest dispatched!</h2>
+				)
+			}
 		}
 		return (
 			<div>
 				<h4>Digest</h4>
+				{dispatchedInfo}
 				{reportInfo}
 			</div>
 		)

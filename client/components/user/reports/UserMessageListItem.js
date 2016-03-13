@@ -39,8 +39,9 @@ class UserMessageListItem extends React.Component {
     })
 	}
 	render() {
-		let message, editButton, editForm, messageBox
+		let message, editButton, editForm, messageBox, report
 		message = this.state.message
+		report = this.props.report
 		if (this.state.editing) {
 			editForm = (
 				<form>
@@ -56,10 +57,10 @@ class UserMessageListItem extends React.Component {
 				</form>
 			)
 		} else {
-			if (!this.props.archived) {
+			if (!this.props.archived && !report.dispatched) {
 				editButton = (
 					<form>
-						<input type="button" onClick={this._changeToEditMode} value="Edit Message"/>
+						<input type="button" onClick={this._changeToEditMode} value="Edit Message" disabled={report.dispatching}/>
 					  <br/>
 					</form>
 				)

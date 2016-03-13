@@ -31,7 +31,7 @@ class UserMessagesContainer extends React.Component {
 				return (
 					<div>
 						<h4>Approved Messages</h4>
-						<li><UserMessageListItem key={message.id} message={message} archived={this.props.archived}/></li>
+						<li><UserMessageListItem key={message.id} message={message} archived={this.props.archived} report={this.props.report}/></li>
 					</div>
 				)
 			});
@@ -41,7 +41,7 @@ class UserMessagesContainer extends React.Component {
 				return (
 					<div>
 						<h4>Unapproved Messages</h4>
-						<li><UserMessageListItem key={message.id} message={message} archived={this.props.archived}/></li>
+						<li><UserMessageListItem key={message.id} message={message} archived={this.props.archived} report={this.props.report}/></li>
 					</div>
 				)
 			});

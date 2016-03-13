@@ -21,7 +21,7 @@ class Event < ActiveRecord::Base
   end
 
   def generate_first_report
-    self.reports.create(title: "First Digest")
+    self.reports.create(title: "#{self.name} Digest 1")
   end
 end
 

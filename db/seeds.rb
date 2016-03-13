@@ -1,10 +1,14 @@
-def make_responses
+def make_events
+  disasters = ["Meatball Storm", "Candy Rain", "Champagne Volcano", "Cotton Candy Typhoon", "Chocolate Hurricane"]
   1.upto(5) do |n|
-    Event.create(
-      name: FFaker::Product.product,
-      city: FFaker::Address.city,
+    city = FFaker::Address.city
+    name = "#{city} #{disasters[n-1]}"
+    event = Event.create(
+      name: name,
+      city: city,
       admin_id: 1
     )
+    event.generate_first_report
   end
 end
 
@@ -27,6 +31,6 @@ def make_messages
   end
 end
 
-make_responses
-make_reports
-make_messages
+make_events
+# make_reports
+# make_messages

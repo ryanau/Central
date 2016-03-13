@@ -1,5 +1,5 @@
 class ReportSerializer < ActiveModel::Serializer
-  attributes :title, :id, :approved_messages, :unapproved_messages, :dispatched
+  attributes :title, :id, :approved_messages, :unapproved_messages, :dispatched, :dispatching
 
   # belongs_to :event
   def approved_messages
