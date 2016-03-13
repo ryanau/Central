@@ -13,5 +13,6 @@ module ReportDispatchBuilder
       SmsOutbound.send_from_main_phone(to, message)
     end
     report.update(dispatched: true)
+    report.event.generate_next_report
   end
 end

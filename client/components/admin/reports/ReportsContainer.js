@@ -24,7 +24,7 @@ class ReportsContainer extends React.Component {
 	  ReportsStore.unlisten(this.onChange);
 	}
 	render() {
-		let reports, dispatched_reports
+		let reports, dispatchedReports
 		if (this.state.reports != null) {
 			reports = this.state.reports.map((report) => {
 				return (
@@ -32,8 +32,8 @@ class ReportsContainer extends React.Component {
 				)
 			});
 		}
-		if (this.state.dispatched_reports) {
-			dispatched_reports = this.state.dispatched_reports.map((report) => {
+		if (this.state.dispatchedReports != null) {
+			dispatchedReports = this.state.dispatchedReports.map((report) => {
 				return (
 					<li><ReportListItem key={report.id} report={report}/></li>
 				)
@@ -48,7 +48,7 @@ class ReportsContainer extends React.Component {
 				</ol>
 				<h4>Dispatched Digests</h4>
 				<ol>
-					{dispatched_reports}
+					{dispatchedReports}
 				</ol>
 			</div>
 		)

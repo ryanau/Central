@@ -23,6 +23,11 @@ class Event < ActiveRecord::Base
   def generate_first_report
     self.reports.create(title: "#{self.name} Digest 1")
   end
+
+  def generate_next_report
+    next_digest = self.reports.count + 1
+    self.reports.create(title: "#{self.name} Digest #{next_digest}")
+  end
 end
 
 

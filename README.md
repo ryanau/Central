@@ -88,6 +88,16 @@ Open up `http://localhost:8080`
 
 ####  V1.2: Admin dispatch Digest (3/12/2016)
 
+- [X] Set up Twilio gem and Sidekiq for background process
+- [X] Admin can dispatch digest with approved messages
+- [X]	Add auto generate first digest feature
+- [X] Add auto generate subsequent digest feature after the previous one is sent
+- [X] Add transition phase on frontend while digest is being sent through Twilio
+
+####  V1.3: Add `Victim` Model (3/12/2016)
+
+
+
 
 
 

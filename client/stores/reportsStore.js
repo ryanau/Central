@@ -7,10 +7,12 @@ class ReportsStore {
 			handleStoreReports: ReportsActions.STORE_REPORTS,
 		});
 		this.reports = null;
+		this.dispatchedReports = null;
 	}
 	handleStoreReports(res) {
 		// update its reports attribute with the resposne
 		this.reports = res.resource.reports;
+		this.dispatchedReports = res.resource.dispatched_reports;
 	}
 }
 
