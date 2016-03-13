@@ -12,7 +12,6 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'cancancan', '~> 1.10'
 gem 'twilio-ruby', '~> 4.11.1'
 gem 'sidekiq', '3.5.0'
-gem 'puma'
 
 group :development, :test do
   gem 'dotenv-rails'
