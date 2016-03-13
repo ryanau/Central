@@ -56,14 +56,16 @@ class UserMessageListItem extends React.Component {
 				</form>
 			)
 		} else {
+			if (!this.props.archived) {
+				editButton = (
+					<form>
+						<input type="button" onClick={this._changeToEditMode} value="Edit Message"/>
+					  <br/>
+					</form>
+				)
+			}
 			messageBox = (
 				<p>Name: {message.content} | Created {moment(message.created_at).fromNow()} | Updated {moment(message.updated_at).fromNow()}</p>
-			)
-			editButton = (
-				<form>
-					<input type="button" onClick={this._changeToEditMode} value="Edit Message"/>
-				  <br/>
-				</form>
 			)
 		}
 		return (

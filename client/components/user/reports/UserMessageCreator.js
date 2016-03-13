@@ -8,10 +8,6 @@ class UserMessageCreator extends React.Component {
 	  	content: null,
 	  })
 	}
-	componentDidMount() {
-	}
-	componentWillUnmount() {
-	}
 	_onSubmit = () => {
 		MessagesActions.createUserMessage(this.props.reportId, this.state.content)
 		this.setState({

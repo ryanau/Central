@@ -1,4 +1,5 @@
 import React from 'react';
+import alt from 'control';
 
 import ReportStore from 'stores/reportStore';
 import ReportActions from 'actions/reportActions';
@@ -18,10 +19,12 @@ class Report extends React.Component {
 	}
 	componentDidMount() {
 	  ReportStore.listen(this.onChange);
-	  ReportActions.fetchReport(location.pathname.match(`[^/]+$`)[0]);
+	  ReportActions.fetchReport(location.pathname.match(`[^/]+$`)[0], location.pathname.match(/events\/(.{1})/)[1]);
 	}
 	componentWillUnmount() {
 	  ReportStore.unlisten(this.onChange);
+	  // reseting ReportStore state to null to prevent rendering
+	  alt.recycle(ReportStore);
 	}
 	render() {
 		let report, reportInfo

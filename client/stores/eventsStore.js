@@ -10,6 +10,7 @@ class EventsStore {
 		this.events = null;
 		this.archivedEvents = null;
 		this.activatedEvents = null;
+		this.archivedActivatedEvents = null;
 	}
 	handleStoreEvents(res) {
 		this.events = res.resource.events;
@@ -18,6 +19,7 @@ class EventsStore {
 	handleStoreUserEvents(res) {
 		this.events = res.resource.events;
 		this.activatedEvents = res.resource.activated_events;
+		this.archivedActivatedEvents = res.resource.archived_activated_events;
 	}
 }
 

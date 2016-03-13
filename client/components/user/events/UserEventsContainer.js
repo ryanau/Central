@@ -4,9 +4,9 @@ import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
 import MasterStore from 'stores/masterStore';
 
-import EventListItem from './EventListItem';
+import UserEventListItem from './UserEventListItem';
 
-class EventsContainer extends React.Component {
+class UserEventsContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -25,18 +25,25 @@ class EventsContainer extends React.Component {
 	  EventsStore.unlisten(this.onChange);
 	}
 	render() {
-		let events, activatedEvents
+		let events, activatedEvents, archivedActivatedEvents
 		if (this.state.events != null) {
 			events = this.state.events.map((event) => {
 				return (
-					<li><EventListItem key={event.id} event={event}/></li>
+					<li><UserEventListItem key={event.id} event={event}/></li>
 				)
 			});
 		}
 		if (this.state.activatedEvents) {
 			activatedEvents = this.state.activatedEvents.map((event) => {
 				return (
-					<li><EventListItem key={event.id} event={event}/></li>
+					<li><UserEventListItem key={event.id} event={event}/></li>
+				)
+			});
+		}
+		if (this.state.archivedActivatedEvents) {
+			archivedActivatedEvents = this.state.archivedActivatedEvents.map((event) => {
+				return (
+					<li><UserEventListItem key={event.id} event={event}/></li>
 				)
 			});
 		}
@@ -51,9 +58,13 @@ class EventsContainer extends React.Component {
 					<ol>
 						{events}
 					</ol>
+					<h4>Archived Activated Events</h4>
+					<ol>
+						{archivedActivatedEvents}
+					</ol>
 			</div>
 		)
 	}
 };
 
-export default EventsContainer;
+export default UserEventsContainer;

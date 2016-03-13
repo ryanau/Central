@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import EventsActions from 'actions/eventsActions';
 
-class EventListItem extends React.Component {
+class UserEventListItem extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -50,4 +50,4 @@ class EventListItem extends React.Component {
 	}
 };
 
-export default EventListItem;
+export default UserEventListItem;

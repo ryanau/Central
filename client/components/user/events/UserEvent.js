@@ -1,12 +1,12 @@
 import React from 'react';
-import alt from 'control'
+import alt from 'control';
 
 import EventStore from 'stores/eventStore';
 import EventActions from 'actions/eventActions';
 
 import UserReportsContainer from '../reports/UserReportsContainer';
 
-class Event extends React.Component {
+class UserEvent extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -48,4 +48,4 @@ class Event extends React.Component {
 	}
 };
 
-export default Event;
+export default UserEvent;

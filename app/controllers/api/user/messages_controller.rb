@@ -14,6 +14,7 @@ class Api::User::MessagesController < Api::BaseController
     if message.update!(update_params)
       message.update(approved: false)
     end
+    authorize! :update, message, :message => "Not authorized to update this message."
     approved_messages = Report.find(message.report_id).approved_messages.where(user_id: current_user.id)
     unapproved_messages = Report.find(message.report_id).unapproved_messages.where(user_id: current_user.id)
     render_json_message(200, message: "Message saved!", resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})

@@ -8,8 +8,12 @@ class Api::User::ReportsController < Api::BaseController
   end
 
   def show
-    report = Report.find(params[:id])
+    event = Event.find(params[:event_id])
+    report = event.reports.find(params[:id])
+    authorize! :read, report, :message => "Not authorized to retrieve this event."
     render_json_message(200, resource: {report: report.user_report_serialize})
+    rescue
+      render_json_message(404, errors: ["Digest not found."])
   end
 
 end

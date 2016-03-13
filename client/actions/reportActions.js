@@ -9,11 +9,14 @@ class ReportActions {
 		)
 	}
 	// Admin
-	fetchReport(id) {
+	fetchReport(id, eventId) {
+		const data = {
+		  event_id: eventId,
+		}
 		const resolve = (res) => {
 			this.actions.storeReport(res);
 		}
-		ApiRequests.get(ApiConstants.reports.report(id), null, resolve)
+		ApiRequests.get(ApiConstants.reports.report(id), data, resolve)
 	}
 	approveMessage(id) {
 		const resolve = (res) => {
@@ -22,11 +25,14 @@ class ReportActions {
 		ApiRequests.get(ApiConstants.messages.approve(id), null, resolve)
 	}
 	// User
-	fetchUserReport(id) {
+	fetchUserReport(id, eventId) {
+		const data = {
+		  event_id: eventId,
+		}
 		const resolve = (res) => {
 			this.actions.storeReport(res);
 		}
-		ApiRequests.get(ApiConstants.user_reports.report(id), null, resolve)
+		ApiRequests.get(ApiConstants.user_reports.report(id), data, resolve)
 	}
 }
 

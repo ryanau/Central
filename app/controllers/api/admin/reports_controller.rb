@@ -8,8 +8,12 @@ class Api::Admin::ReportsController < Api::BaseController
   end
 
   def show
-    report = Report.find(params[:id])
+    # report = Report.find(params[:id])
+    event = Event.find(params[:event_id])
+    report = event.reports.find(params[:id])
     render_json_message(200, resource: {report: report.serialize})
+    rescue
+      render_json_message(404, errors: ["Digest not found."])
   end
 
 end

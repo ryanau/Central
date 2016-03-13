@@ -1,4 +1,5 @@
 import React from 'react';
+import alt from 'control';
 
 import ReportStore from 'stores/reportStore';
 import ReportActions from 'actions/reportActions';
@@ -18,10 +19,12 @@ class UserReport extends React.Component {
 	}
 	componentDidMount() {
 	  ReportStore.listen(this.onChange);
-	  ReportActions.fetchUserReport(location.pathname.match(`[^/]+$`)[0]);
+	  ReportActions.fetchUserReport(location.pathname.match(`[^/]+$`)[0], location.pathname.match(/events\/(.{1})/)[1]);
 	}
 	componentWillUnmount() {
 	  ReportStore.unlisten(this.onChange);
+	  // reseting ReportStore state to null to prevent rendering
+	  alt.recycle(ReportStore);
 	}
 	render() {
 		let report, reportInfo
@@ -31,7 +34,7 @@ class UserReport extends React.Component {
 				<div>
 					<p>Event: {report.event.name}</p>
 					<p>Title: {report.title}</p>
-					<UserMessagesContainer reportId={report.id}/>
+					<UserMessagesContainer reportId={report.id} archived={report.event.archived}/>
 				</div>
 			)
 		}
