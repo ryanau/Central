@@ -26,8 +26,11 @@ class Report extends React.Component {
 	  // reseting ReportStore state to null to prevent rendering
 	  alt.recycle(ReportStore);
 	}
+	_onSubmit = () => {
+		ReportActions.dispatchReport(this.state.report.id)
+	}
 	render() {
-		let report, reportInfo
+		let report, reportInfo, dispatchButton, dispatchedInfo
 		report = this.state.report
 		if (this.state.report != null) {
 			reportInfo = (
@@ -36,11 +39,26 @@ class Report extends React.Component {
 					<MessagesContainer approvedMessages={report.approved_messages} unapprovedMessages={report.unapproved_messages}/>
 				</div>
 			)
+			if (this.state.report.approved_messages.length > 0) {
+				dispatchButton = (
+					<form>
+						<input type="button" onClick={this._onSubmit} value="Dispatch Digest"/>
+					  <br/>
+					</form>
+				)
+			}
+			if (this.state.report.dispatched) {
+				dispatchedInfo = (
+					<h4>Digest dispatched</h4>
+				)
+			}
 		}
 		return (
 			<div>
 				<h4>Digest</h4>
+				{dispatchedInfo}
 				{reportInfo}
+				{dispatchButton}
 			</div>
 		)
 	}

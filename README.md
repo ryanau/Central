@@ -86,6 +86,8 @@ Open up `http://localhost:8080`
 - [X] User can edit message, which requires re-approval from Admin
 - [X] Namespace components into Admin and User
 
+####  V1.2: Admin dispatch Digest (3/12/2016)
+
 
 
 

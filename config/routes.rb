@@ -13,7 +13,9 @@ Rails.application.routes.draw do
       resources :events, only: [:index, :create, :show] do
         get 'archive'
       end
-      resources :reports, only: [:index, :show]
+      resources :reports, only: [:index, :show] do
+        get 'dispatch_report'
+      end
       resources :messages, only: [] do
         get 'approve'
       end

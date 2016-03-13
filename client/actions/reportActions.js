@@ -24,6 +24,12 @@ class ReportActions {
 		}
 		ApiRequests.get(ApiConstants.messages.approve(id), null, resolve)
 	}
+	dispatchReport(id) {
+		const resolve = (res) => {
+			this.actions.storeReport(res);
+		}
+		ApiRequests.get(ApiConstants.reports.dispatch(id), null, resolve)
+	}
 	// User
 	fetchUserReport(id, eventId) {
 		const data = {

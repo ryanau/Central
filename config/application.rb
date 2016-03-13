@@ -33,5 +33,8 @@ module Central
           :methods => [:get, :post, :options, :delete, :put]
       end
     end
+
+    # Loading from lib folder
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
   end
 end

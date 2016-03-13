@@ -28,6 +28,7 @@ class Api_Constants {
 		return {
 			collection: this.admin_origin + 'reports',
 			report: (id) => this.admin_origin + `reports/${id}`,
+			dispatch: (id) => this.admin_origin + `reports/${id}/dispatch_report`,
 		}
 	}
 	get messages() {

@@ -12,6 +12,7 @@
 /node_modules
 /log
 npm-debug.log
+.env
 
 ## Specific to RubyMotion:
 .dat*

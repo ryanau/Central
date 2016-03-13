@@ -17,4 +17,12 @@ class Report < ActiveRecord::Base
   def user_report_serialize
     ActiveModel::SerializableResource.new(self, serializer: UserReportSerializer)
   end
+
+  def dispatch_report?
+    if ReportDispatcher.perform_async(self.id)
+      true
+    else
+      false
+    end
+  end
 end
