@@ -96,16 +96,20 @@ Open up `http://localhost:8080` to access the app.
 
 - [X] Set up Twilio gem and Sidekiq for background process
 - [X] Admin can dispatch digest with approved messages
-- [X] Report is sent to registered 'Victim' through SMS
+- [X] Report is sent to registered `Victim` through SMS
 - [X]	Add auto generate first digest
 - [X] Add auto generate subsequent digest after the previous one is sent
 - [X] Add transition phase on frontend while digest is being sent through Twilio
 
 ####  V1.3: Add `Victim` Model (3/12/2016)
 
-- [X] Anyone can sign up on the website thruogh landing page
+- [X] Anyone can sign up on the website through landing page
 - [X] Add unique validation for victim/phone number
 
+####  V1.4: Configure to deploy on Heroku (3/13/2016)
+
+- [X] Configure multi buildpacks
+- [X] Configure webpack
 
 
 
