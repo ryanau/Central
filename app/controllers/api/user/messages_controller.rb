@@ -9,8 +9,7 @@ class Api::User::MessagesController < Api::BaseController
   end
 
   def update
-    message_id = params[:id]
-    message = Message.find(message_id)
+    message = Message.find(params[:id])
     if message.update!(update_params)
       message.update(approved: false)
     end
@@ -29,6 +28,17 @@ class Api::User::MessagesController < Api::BaseController
     approved_messages = Report.find(message.report_id).approved_messages.where(user_id: current_user.id)
     unapproved_messages = Report.find(message.report_id).unapproved_messages.where(user_id: current_user.id)
     render_json_message(200, message: "Message created!", resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})
+    rescue
+      render_json_message(:forbidden, errors: message.errors.full_messages)
+  end
+
+  def destroy
+    message = Message.find(params[:id])
+    message.destroy!
+    authorize! :delete, message, :message => "Not authorized to delete this message."
+    approved_messages = Report.find(message.report_id).approved_messages.where(user_id: current_user.id)
+    unapproved_messages = Report.find(message.report_id).unapproved_messages.where(user_id: current_user.id)
+    render_json_message(200, message: "Message deleted.", resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})
     rescue
       render_json_message(:forbidden, errors: message.errors.full_messages)
   end

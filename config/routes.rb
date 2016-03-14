@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         get 'activate'
       end
       resources :reports, only: [:index, :show]
-      resources :messages, only: [:index, :update, :create]
+      resources :messages, only: [:index, :update, :create, :destroy]
     end
   end
 end
