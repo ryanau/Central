@@ -1,5 +1,5 @@
 class Api::SessionController < Api::BaseController
-  before_action :authenticate_any!, only: [:identity]
+  before_action :authenticate_any!
 
   def identity
     user = current_user

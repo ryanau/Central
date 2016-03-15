@@ -2,45 +2,48 @@ class Api::User::MessagesController < Api::BaseController
   before_action :authenticate_api_user!
 
   def index
-    report_id = params[:report_id]
-    approved_messages = Report.find(report_id).approved_messages.where(user_id: current_user.id)
-    unapproved_messages = Report.find(report_id).unapproved_messages.where(user_id: current_user.id)
+    report = Report.find(params[:report_id])
+    # authorize! :read, report
+    approved_messages = report.approved_messages.where(user_id: current_user.id)
+    unapproved_messages = report.unapproved_messages.where(user_id: current_user.id)
     render_json_message(200, resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})
   end
 
   def update
     message = Message.find(params[:id])
+    report = Report.find(message.report_id)
+    authorize! :update, message
     if message.update!(update_params)
       message.update(approved: false)
     end
-    authorize! :update, message, :message => "Not authorized to update this message."
-    approved_messages = Report.find(message.report_id).approved_messages.where(user_id: current_user.id)
-    unapproved_messages = Report.find(message.report_id).unapproved_messages.where(user_id: current_user.id)
+    approved_messages = report.approved_messages.where(user_id: current_user.id)
+    unapproved_messages = report.unapproved_messages.where(user_id: current_user.id)
     render_json_message(200, message: "Message saved!", resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})
     rescue
-      render_json_message(:forbidden, errors: message.errors.full_messages)
+      render_json_message(403, errors: ["Not authorize to update this message."])
   end
 
   def create
     message = Message.new(user_id: current_user.id)
     message.update!(message_params)
+    authorize! :create, message
     message.save!
     approved_messages = Report.find(message.report_id).approved_messages.where(user_id: current_user.id)
     unapproved_messages = Report.find(message.report_id).unapproved_messages.where(user_id: current_user.id)
-    render_json_message(200, message: "Message created!", resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})
+    render_json_message(201, message: "Message created!", resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})
     rescue
-      render_json_message(:forbidden, errors: message.errors.full_messages)
+      render_json_message(403, errors: ["Cannot create a message for an archived event."])
   end
 
   def destroy
     message = Message.find(params[:id])
+    authorize! :destroy, message
     message.destroy!
-    authorize! :delete, message, :message => "Not authorized to delete this message."
     approved_messages = Report.find(message.report_id).approved_messages.where(user_id: current_user.id)
     unapproved_messages = Report.find(message.report_id).unapproved_messages.where(user_id: current_user.id)
     render_json_message(200, message: "Message deleted.", resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})
     rescue
-      render_json_message(:forbidden, errors: message.errors.full_messages)
+      render_json_message(403, errors: ["Not authorized to delete this message."])
   end
 
   private

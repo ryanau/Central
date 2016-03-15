@@ -12,10 +12,12 @@ class EventsStore {
 		this.activatedEvents = null;
 		this.archivedActivatedEvents = null;
 	}
+	// Admin
 	handleStoreEvents(res) {
 		this.events = res.resource.events;
 		this.archivedEvents = res.resource.archived_events;
 	}
+	// User
 	handleStoreUserEvents(res) {
 		this.events = res.resource.events;
 		this.activatedEvents = res.resource.activated_events;

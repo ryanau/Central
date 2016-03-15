@@ -2,11 +2,9 @@ module ReportDispatchBuilder
   def self.build_report(report_id)
     report = Report.find(report_id)
     message = ""
-    message << report.title
-    message << "\n\n"
+    message << report.title + "\n\n"
     report.approved_messages.each do |msg|
-      message << msg.content
-      message << "\n"
+      message << msg.content + "\n"
     end
     Victim.all.each do |victim|
       to = victim.phone_number

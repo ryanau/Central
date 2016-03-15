@@ -1,8 +1,11 @@
 class Event < ActiveRecord::Base
   belongs_to :admin
+  
   has_many :reports
+
   has_many :userevents
   has_many :users, through: :userevents
+
   has_many :approved_messages, through: :reports
   has_many :unapproved_messages, through: :reports
 
