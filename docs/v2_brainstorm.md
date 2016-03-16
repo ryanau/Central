@@ -39,12 +39,12 @@ Message has_one Questionnaire
 Message has_one Shortcode
 
 Questionnaire has_many Questions (expecting a response)
-Questionnaire has_many Conclusion (concluding message)
+Questionnaire has_many Conclusions (concluding message)
 
 Question has_many Responses
 Response belongs_to Question
 
-4 types of questions: boolean yes/no, number, text, cancel, stop
+5 types of questions: boolean yes/no, number, text, cancel, stop
 
 MessageVictim joint table
 Victim has_many Messages (victim answered with short code)
