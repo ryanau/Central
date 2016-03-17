@@ -18,6 +18,18 @@ class ReportActions {
 		}
 		ApiRequests.get(ApiConstants.reports.report(id), data, resolve)
 	}
+
+	editReport(id, title) {
+		const data = {
+			title: title,
+		}
+		const resolve = (res) => {
+			this.actions.storeReport(res)
+		}
+
+		ApiRequests.put(ApiConstants.reports.edit(id), data, resolve)
+	}
+
 	approveMessage(id) {
 		const resolve = (res) => {
 			this.actions.storeReport(res);

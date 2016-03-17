@@ -15,6 +15,14 @@ class Api::Admin::ReportsController < Api::BaseController
       render_json_message(404, errors: ["Digest not found."])
   end
 
+  def update
+    report = Report.find(params[:id])
+    report.update!(title: params[:title])
+    render_json_message(200, resource: {report: report.serialize})
+    rescue
+      render_json_message(400, errors: ["Update unsuccessful."])
+  end
+
   def dispatch_report
     report = Report.find(params[:report_id])
     if report.dispatch_report?
