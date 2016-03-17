@@ -16,6 +16,7 @@ class Report extends React.Component {
 	}
 	componentWillMount() {
 	  this.setState(ReportStore.getState())
+	  this.setState({editing: false, content: null})
 	}
 	componentDidMount() {
 	  ReportStore.listen(this.onChange);
@@ -29,13 +30,57 @@ class Report extends React.Component {
 	_onSubmit = () => {
 		ReportActions.dispatchReport(this.state.report.id)
 	}
+
+	_onSaveButton = () => {
+		ReportActions.editReport(location.pathname.match(`[^/]+$`)[0], this.state.content)
+		this.setState({editing: false, content: null})
+	}
+
+	_changeToEditMode = () => {
+		this.setState({
+			editing: true,
+		})
+	}
+	_handleChange = () => {
+		this.setState({
+      content: React.findDOMNode(this.refs.content).value,
+    })
+	}
+
+
 	render() {
-		let report, reportInfo, dispatchButton, dispatchedInfo
+		let report, reportInfo, dispatchButton, dispatchedInfo, editButton, editForm
 		report = this.state.report
+		editButton = (
+			<form>
+				<input type="button" onClick={this._changeToEditMode} value="Edit Digest"/>
+			  <br/>
+			</form>
+		)
 		if (report != null) {
+			if (this.state.editing) {
+				editForm = (
+					<form>
+					  <input
+					  	type="text"
+					  	name="content"
+					  	ref="content"
+					  	placeholder={report.title}
+					  	onChange={this._handleChange}/>
+					  <br/>
+					  <input type="button" onClick={this._onSaveButton} value="Save Digest"/>
+					  <br/>
+					</form>
+				)
+				editButton = null
+			} 
+
+
 			reportInfo = (
 				<div>
 					<p>Title: {report.title}</p>
+					{editForm}
+					{editButton}
 					<MessagesContainer approvedMessages={report.approved_messages} unapprovedMessages={report.unapproved_messages}/>
 				</div>
 			)

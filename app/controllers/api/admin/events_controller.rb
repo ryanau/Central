@@ -4,6 +4,10 @@ class Api::Admin::EventsController < Api::BaseController
   def index
     events = Event.unarchived
     archived_events = Event.archived
+    events = Event.unarchived.order(created_at: :DESC)
+    archived_events = Event.archived.order(created_at: :DESC)
+    # render json: events, each_serializer: EventSerializer
+    # authorize! :read, events, :message => "Not authorized to read this post."
     render_json_message(200, resource: {events: events.map(&:serialize), archived_events: archived_events.map(&:serialize)})
   end
 

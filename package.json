@@ -11,9 +11,11 @@
     , "url" : "https://github.com/ryanau/Central.git"
   },
   "scripts": {
-    "build": "webpack --progress --profile --colors",
+    "build": "node_modules/.bin/webpack --progress --profile --colors",
     "watch": "webpack-dev-server --hot --inline --progress --colors",
-    "test": "echo \"No unit tests and e2e tests yet\" && exit 1"
+    "postinstall": "npm run build && npm run rejoice",
+    "test": "echo \"No unit tests and e2e tests yet\" && exit 1",
+    "rejoice": "echo yay!"
   },
   "author": "Ryan Au",
   "license": "MIT",
@@ -28,9 +30,7 @@
     "style-loader": "^0.13.0",
     "jsuri": "^1.3.0",
     "toastr": "^2.1.2",
-    "moment": "^2.11.2"
-  },
-  "devDependencies": {
+    "moment": "^2.11.2",
     "babel-core": "5.6.18",
     "babel-loader": "5.3.1",
     "html-webpack-plugin": "1.6.0",

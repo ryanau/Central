@@ -26,6 +26,10 @@ class EventsContainer extends React.Component {
 		  city: this.state.city,
 		}
 		EventsActions.createEvent(data)
+		this.setState({
+			name: null,
+			city: null,
+		})
 	}
 	render() {
 		return (
@@ -36,6 +40,7 @@ class EventsContainer extends React.Component {
 				  	type="text"
 				  	name="name"
 				  	ref="name"
+				  	value={this.state.name}
 				  	placeholder="Event Name"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
@@ -44,6 +49,7 @@ class EventsContainer extends React.Component {
 				  	type="text"
 				  	name="city"
 				  	ref="city"
+				  	value={this.state.city}
 				  	placeholder="Event City"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>

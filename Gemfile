@@ -1,10 +1,8 @@
 source 'https://rubygems.org'
-
+ruby '2.2.3'
 
 gem 'rails', '4.2.5.1'
-
 gem 'rails-api'
-
 gem 'spring', :group => :development
 gem 'pg'
 gem 'devise_token_auth', '~> 0.1.37' # Token based authentication for Rails JSON APIs
