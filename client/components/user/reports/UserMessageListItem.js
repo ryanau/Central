@@ -28,6 +28,9 @@ class UserMessageListItem extends React.Component {
 			content: null,
 		})
 	}
+	_onDelete = () => {
+		MessagesActions.deleteUserMessage(this.state.message.id, this.state.content)
+	}
 	_changeToEditMode = () => {
 		this.setState({
 			editing: true,
@@ -39,7 +42,7 @@ class UserMessageListItem extends React.Component {
     })
 	}
 	render() {
-		let message, editButton, editForm, messageBox, report
+		let message, editButton, editForm, messageBox, report, deleteButton
 		message = this.state.message
 		report = this.props.report
 		if (this.state.editing) {
@@ -64,9 +67,15 @@ class UserMessageListItem extends React.Component {
 					  <br/>
 					</form>
 				)
+				deleteButton = (
+					<form>
+						<input type="button" onClick={this._onDelete} value="Delete Message" disabled={report.dispatching}/>
+					  <br/>
+					</form>
+				)
 			}
 			messageBox = (
-				<p>Name: {message.content} | Created {moment(message.created_at).fromNow()} | Updated {moment(message.updated_at).fromNow()}</p>
+				<p>Content: {message.content} | Created {moment(message.created_at).fromNow()} | Updated {moment(message.updated_at).fromNow()}</p>
 			)
 		}
 		return (
@@ -74,6 +83,7 @@ class UserMessageListItem extends React.Component {
 				{messageBox}
 				{editForm}
 				{editButton}
+				{deleteButton}
 			</div>
 		)
 	}

@@ -2,6 +2,8 @@ class Api::Admin::EventsController < Api::BaseController
   before_action :authenticate_api_admin!
   
   def index
+    events = Event.unarchived
+    archived_events = Event.archived
     events = Event.unarchived.order(created_at: :DESC)
     archived_events = Event.archived.order(created_at: :DESC)
     # render json: events, each_serializer: EventSerializer
@@ -23,7 +25,7 @@ class Api::Admin::EventsController < Api::BaseController
     event.update(archived: true)
     render_json_message(200, message: "Event archived.", resource: {event: event.serialize})
     rescue
-      render_json_message(403, errors: event.errors.messages[:name])
+      render_json_message(404, errors: event.errors.messages[:name])
   end
 
   def show
