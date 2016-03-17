@@ -25,7 +25,7 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 * Admin
 	* Admin can create, read events (disaster)
 		* Admin can archive events
-	* Admin can read reports (digest)
+	* Admin can read, edit reports (digest)
 		* Admin can dispatch reports manually
 	* Admin can read messages (message in a digest)
 		* Admin can approve messages
@@ -133,6 +133,10 @@ Open up `http://localhost:8080` to access the app.
 
 - [X] Configure multi buildpacks
 - [X] Configure webpack
+
+#### V1.5: Add misc. features to polish V1 (3/16/2016)
+
+- [X] Admin can edit report
 
 
 
