@@ -37,6 +37,12 @@ class MessagesActions {
 		}
 		ApiRequests.post(ApiConstants.user_messages.create, data, resolve)
 	}
+	deleteUserMessage(id) {
+		const resolve = (res) => {
+			this.actions.storeUserMessages(res);
+		}
+		ApiRequests.del(ApiConstants.user_messages.delete(id), null, resolve)
+	}
 }
 
 export default alt.createActions(MessagesActions);

@@ -63,7 +63,7 @@ class Api_Constants {
 			collection: this.user_origin + 'messages',
 			edit: (id) => this.user_origin + `messages/${id}`,
 			create: this.user_origin + 'messages',
-
+			delete: (id) => this.user_origin + `messages/${id}`,
 		}
 	}
 }
