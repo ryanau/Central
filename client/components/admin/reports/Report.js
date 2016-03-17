@@ -20,7 +20,7 @@ class Report extends React.Component {
 	}
 	componentDidMount() {
 	  ReportStore.listen(this.onChange);
-	  ReportActions.fetchReport(location.pathname.match(`[^/]+$`)[0], location.pathname.match(/events\/(.{1})/)[1]);
+	  ReportActions.fetchReport(location.pathname.match(`[^/]+$`)[0], location.pathname.match(/events\/(\d+)/)[1]);
 	}
 	componentWillUnmount() {
 	  ReportStore.unlisten(this.onChange);
