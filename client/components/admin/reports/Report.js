@@ -51,13 +51,15 @@ class Report extends React.Component {
 	render() {
 		let report, reportInfo, dispatchButton, dispatchedInfo, editButton, editForm
 		report = this.state.report
-		editButton = (
-			<form>
-				<input type="button" onClick={this._changeToEditMode} value="Edit Digest"/>
-			  <br/>
-			</form>
-		)
 		if (report != null) {
+			if (!report.dispatched) {
+				editButton = (
+					<form>
+						<input type="button" onClick={this._changeToEditMode} value="Edit Digest"/>
+					  <br/>
+					</form>
+				)
+			}
 			if (this.state.editing) {
 				editForm = (
 					<form>
@@ -74,8 +76,6 @@ class Report extends React.Component {
 				)
 				editButton = null
 			} 
-
-
 			reportInfo = (
 				<div>
 					<p>Title: {report.title}</p>
