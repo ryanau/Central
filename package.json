@@ -13,9 +13,8 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --progress --profile --colors",
     "watch": "webpack-dev-server --hot --inline --progress --colors",
-    "postinstall": "npm run build && npm run rejoice",
+    "postinstall": "npm run build",
     "test": "echo \"No unit tests and e2e tests yet\" && exit 1",
-    "rejoice": "echo yay!"
   },
   "author": "Ryan Au",
   "license": "MIT",
