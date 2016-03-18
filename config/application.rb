@@ -23,10 +23,10 @@ module Central
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    # Enabling CORS from localhost:8080
+    # Enabling CORS from localhost:8080 and herokuapp
     config.middleware.use Rack::Cors do
       allow do
-        origins 'localhost:8080'
+        origins 'localhost:8080', 'https://calcentral.herokuapp.com'
         resource '*',
           :headers => :any,
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
