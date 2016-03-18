@@ -12,7 +12,11 @@ module.exports = {
     publicPath: '/public/'
   },
   plugins: [
-    new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        "NODE_ENV": JSON.stringify("production")
+      }
+    })
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compress: {
@@ -21,6 +25,7 @@ module.exports = {
     })
   ],
   resolve: {
+    root: path.join(__dirname, 'client'),
     extensions: ['', '.js', '.jsx']
   },
   module: {
