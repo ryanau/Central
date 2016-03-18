@@ -13,7 +13,8 @@
   "scripts": {
     "build": "node_modules/.bin/webpack --progress --profile --colors",
     "watch": "webpack-dev-server --hot --inline --progress --colors",
-    "postinstall": "npm run build && npm run rejoice",
+    "probuild": "webpack -p --config webpack.pro.config.js --profile --progress --colors",
+    "postinstall": "npm run probuild && npm run rejoice",
     "test": "echo \"No unit tests and e2e tests yet\" && exit 1",
     "rejoice": "echo yay!"
   },
