@@ -1,11 +1,12 @@
 class Api_Constants {
 	constructor() {
-		if (process.env.NODE_ENV === 'production') {
-			this.origin = 'https://calcentral.herokuapp.com/api/'
-		} else {
-			this.origin = 'http://localhost:3000/api/'
-		}
-		this.origin = 'http://localhost:3000/api/'
+		// if (process.env.NODE_ENV === 'production') {
+		// 	this.origin = 'https://calcentral.herokuapp.com/api/'
+		// } else {
+		// 	this.origin = 'http://localhost:3000/api/'
+		// }
+		// this.origin = 'http://localhost:3000/api/'
+		this.origin = 'https://calcentral.herokuapp.com/api/'
 		this.admin_origin = this.origin + 'admin/'
 		this.user_origin = this.origin + 'user/'
 		this.volunteer_origin = this.origin + 'volunteers/'
