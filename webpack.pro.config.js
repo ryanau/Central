@@ -11,6 +11,11 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/public/'
   },
+  resolve: {
+    root: path.join(__dirname, 'client'),
+    extensions: ['', '.js'],
+    modulesDirectories: ['node_modules', 'client']
+  },
   plugins: [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
