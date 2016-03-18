@@ -6,8 +6,8 @@ module ReportDispatchBuilder
     report.approved_messages.each do |msg|
       message << msg.content + "\n"
     end
-    Victim.all.each do |victim|
-      to = victim.phone_number
+    Volunteer.all.each do |volunteer|
+      to = volunteer.phone_number
       SmsOutbound.send_from_main_phone(to, message)
     end
     report.update(dispatched: true)

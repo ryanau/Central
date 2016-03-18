@@ -6,7 +6,7 @@ import ApiRequests from 'api_requests';
 import MasterStore from 'stores/masterStore';
 import MasterActions from 'actions/masterActions';
 
-class Landing extends React.Component {
+class VolunteerSignUpBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +20,7 @@ class Landing extends React.Component {
     const data = {
       phone_number: this.state.phone
     }
-    ApiRequests.post(ApiConstants.victims.join, data, resolve)
+    ApiRequests.post(ApiConstants.volunteers.join, data, resolve)
   }
   _handleChange = () => {
     this.setState({
@@ -51,4 +51,4 @@ class Landing extends React.Component {
   }
 }
 
-export default Landing;
+export default VolunteerSignUpBox;
