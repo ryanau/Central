@@ -9,7 +9,7 @@ module.exports = {
   target: 'web',
   cache: true,
   entry: {
-    module: ['./tmp/module.js'],
+    module: path.join(srcPath, 'module.js'),
     common: ['react', 'react-router', 'alt']
   },
   resolve: {
@@ -18,8 +18,8 @@ module.exports = {
     modulesDirectories: ['node_modules', 'client']
   },
   output: {
-    path: './client',
-    publicPath: '/',
+    path: path.join(__dirname, 'tmp'),
+    publicPath: './',
     filename: '[name].js',
     library: ['Example', '[name]'],
     pathInfo: true
