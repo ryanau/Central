@@ -16,10 +16,10 @@ Central is a platform that seeks to increase the efficiency of post-disaster res
 
 Central is a web application built using Ruby on Rails as an API and React.js implemented with Flux pattern. It also incorporates Twilio SMS services as the main way form of communication with our users.
 
-Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
+Target Audience: User (Rescue Organization) & Volunteer (Spontaneous volunteers during disasters)
 
 ### V1
-**Objective:** Central enables one-way communication from Organizations to Victims through Twilio SMS API
+**Objective:** Central enables one-way communication from Organizations to Volunteers through Twilio SMS API
 
 **Features**
 * Admin
@@ -35,12 +35,12 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 	* User can read reports
 	* User can create, read, update, delete messages
 		* User can submit messages for approval
-* Victim
-	* Victim can sign up through the website
-	* Victim can receive report through SMS
+* Volunteer
+	* Volunteer can sign up through the website
+	* Volunteer can receive report through SMS
 
 ### V2
-**Objective:** Central enables two-way communication between Organizations and Victims through a Questionnaire-type SMS conversation, so Organizations can gather Responses from the Victims
+**Objective:** Central enables two-way communication between Organizations and Volunteers through a Questionnaire-type SMS conversation, so Organizations can gather Responses from the Volunteers
 
 **Features**
 * Admin
@@ -54,12 +54,13 @@ Target Audience: User (Rescue Organization) & Victim (Victims during disasters)
 			* Strings
 			* Cancel command
 			* Stop command
-		* User can read Responses from Victims for each Question
-* Victim
-	* Victim can reply with shortcode for follow up information of a Message in the Report
-	* Vicitm can reply with Responses for a Question in the Questionnaire
+		* User can read Responses from Volunteers for each Question
+* Volunteer
+	* Volunteer can reply with shortcode for follow up information of a Message in the Report
+	* Volunteer can reply with Responses for a Question in the Questionnaire
 
 ## Getting started
+Clone this repo.
 
 To start Rails API, run `bundle install` to install the gems needed, then `rake db:create`, then `rake db:migrate` then seed data with `rake db:seed`, then `rails s`
 
@@ -119,15 +120,15 @@ Open up `http://localhost:8080` to access the app.
 
 - [X] Set up Twilio gem and Sidekiq for background process
 - [X] Admin can dispatch digest with approved messages
-- [X] Report is sent to registered `Victim` through SMS
+- [X] Report is sent to registered `Volunteer` through SMS
 - [X]	Add auto generate first digest
 - [X] Add auto generate subsequent digest after the previous one is sent
 - [X] Add transition phase on frontend while digest is being sent through Twilio
 
-####  V1.3: Add `Victim` Model (3/12/2016)
+####  V1.3: Add `Volunteer` Model (3/12/2016)
 
 - [X] Anyone can sign up on the website through landing page
-- [X] Add unique validation for victim/phone number
+- [X] Add unique validation for volunteer/phone number
 
 ####  V1.4: Configure to deploy on Heroku (3/13/2016)
 

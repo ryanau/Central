@@ -5,6 +5,6 @@ class EventSerializer < ActiveModel::Serializer
   # has_many :reports
 
   def audience
-    Victim.count
+    Volunteer.count
   end
 end

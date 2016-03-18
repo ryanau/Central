@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Request from 'superagent';
 
-import VictimSignUp from 'components/VictimSignUp';
+import VolunteerSignUpBox from 'components/VolunteerSignUpBox';
 
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
@@ -94,7 +94,7 @@ class Landing extends React.Component {
           {signOutLinkAdmin}
           {eventNav}
         </ul>
-        <VictimSignUp/>
+        <VolunteerSignUpBox/>
         {this.props.children}
       </div>
     );    
