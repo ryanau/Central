@@ -18,7 +18,7 @@ module.exports = {
     modulesDirectories: ['node_modules', 'client']
   },
   output: {
-    path: path.join(__dirname, 'tmp'),
+    path: './client',
     publicPath: '/',
     filename: '[name].js',
     library: ['Example', '[name]'],
