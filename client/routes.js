@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router';
 
-import Landing from 'components/Landing';
+import Landing from 'components/landing';
 import Auth from 'components/session/Auth';
 import AdminAuth from 'components/session/AdminAuth';
 import AccountActivation from 'components/session/AccountActivation';
