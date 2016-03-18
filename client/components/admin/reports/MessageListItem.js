@@ -26,7 +26,7 @@ class MessageListItem extends React.Component {
 		}
 		return (
 			<div>
-				<p>Name: {message.content} | Created at: {moment(message.created_at).fromNow() + ' by ' + message.user.uid} | Updated {moment(message.updated_at).fromNow()}</p>
+				<p>Content: {message.content} | Created at: {moment(message.created_at).fromNow() + ' by ' + message.user.uid} | Updated {moment(message.updated_at).fromNow()}</p>
 				{approveButton}
 			</div>
 		)

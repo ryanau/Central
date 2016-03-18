@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     get 'session/identity', to: 'session#identity'
 
-    post 'victims/join'
+    post 'volunteers/join'
 
     namespace :admin do
       resources :events, only: [:index, :create, :show] do
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         get 'activate'
       end
       resources :reports, only: [:index, :show]
-      resources :messages, only: [:index, :update, :create]
+      resources :messages, only: [:index, :update, :create, :destroy]
     end
   end
 end

@@ -35,7 +35,7 @@ class Event extends React.Component {
 		if (this.state.event != null) {
 			eventInfo = (
 				<div>
-					<p>{event.audience} victims will recieve these digests</p>
+					<p>{event.audience} volunteers will recieve these digests</p>
 					<p>{event.name}</p>
 					<p>City: {event.city}</p>
 					<p>Archived: {String(event.archived)}</p>
