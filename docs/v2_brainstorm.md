@@ -3,12 +3,12 @@ V2 Objective: enables 2-way communications
 ## Features
 
 * Admin
-	* Admin can read Questionnaire created by User
-		* Admin can approve Questionnaire
+	* Admin can read Task created by User
+		* Admin can approve Task
 * User
-	* User can create a specific type of Questionnaire predetermined by Admin
-		* User can create "Recruit Volunteers" Questionnaire
-		* User can fill out information needed for the specific Questionnaire
+	* User can create a specific type of Task predetermined by Admin
+		* User can create "Recruit Volunteers" Task
+		* User can fill out information needed for the specific Task
 
 
 ## Scenario
@@ -44,12 +44,13 @@ If you cannot make it, please let us know by replying 'cancel' any time. Thank y
 
 ## Schema
 
-User has_many Questionnaires
-Event has_many Questionnaires through Users
-Questionnaire belongs_to Event through Users
+User has_many Task
+Task belongs_to Users
+Event has_many Task through Users
+Task belongs_to Event through Users
 
-Questionnaire has_many Questions
-Question belongs_to Questionnaire
+Task has_many Questions
+Question belongs_to Task
 
 Question has_many Responses
 Response belongs_to Question 
@@ -60,18 +61,17 @@ Response belongs_to Question
 	* text
 	* cancel
 
-Questionnaire has_many Responses through Questions
-Respone belongs_to Questionnaire through Questions
+Task has_many Responses through Questions
+Respone belongs_to Task through Questions
 
-Questionnaire belongs_to Message
-Message has_one Questionnaire
+Task belongs_to Message
+Message has_one Task
 
 Message has_one Replycode
 Replycode belongs_to Message
 
-VolunteerResponse joint table
 Volunteer has_many Responses
-Respones has_many Volunteers
+Response belongs_to Volunteer
 
 
 

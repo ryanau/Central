@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   has_many :approved_messages, through: :reports
   has_many :unapproved_messages, through: :reports
 
+  has_many :tasks
+
   def serialize
     ActiveModel::SerializableResource.new(self)
   end

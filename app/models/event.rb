@@ -9,6 +9,8 @@ class Event < ActiveRecord::Base
   has_many :approved_messages, through: :reports
   has_many :unapproved_messages, through: :reports
 
+  has_many :tasks, through: :users
+
   validates :name, presence: true
   validates :name, uniqueness: { scope: :city }
 
