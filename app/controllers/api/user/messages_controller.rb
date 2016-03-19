@@ -24,10 +24,8 @@ class Api::User::MessagesController < Api::BaseController
   end
 
   def create
-    message = Message.new(user_id: current_user.id)
-    message.update!(message_params)
+    message = Message.create!(create_params)
     authorize! :create, message
-    message.save!
     approved_messages = Report.find(message.report_id).approved_messages.where(user_id: current_user.id)
     unapproved_messages = Report.find(message.report_id).unapproved_messages.where(user_id: current_user.id)
     render_json_message(201, message: "Message created!", resource: {approved_messages: approved_messages.map(&:user_message_serialize), unapproved_messages: unapproved_messages.map(&:user_message_serialize)})
@@ -49,10 +47,10 @@ class Api::User::MessagesController < Api::BaseController
   private
 
   def update_params
-    params.permit(:content, :id)
+    params.require(:message).permit(:content, :id)
   end
 
-  def message_params
-    params.permit(:content, :report_id)
+  def create_params
+    params.require(:message).permit(:content, :report_id).merge(user_id: current_user.id)
   end
 end

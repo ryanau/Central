@@ -1,6 +1,6 @@
 class Volunteer < ActiveRecord::Base
   has_many :responses  
-  belongs_to :task, through: :conversation
+  has_many :task, through: :conversation
   
   validates :phone_number, uniqueness: true
 end

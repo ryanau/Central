@@ -2,20 +2,18 @@ class Api::Admin::EventsController < Api::BaseController
   before_action :authenticate_api_admin!
   
   def index
-    events = Event.unarchived
-    archived_events = Event.archived
-    events = Event.unarchived.order(created_at: :DESC)
-    archived_events = Event.archived.order(created_at: :DESC)
-    # render json: events, each_serializer: EventSerializer
     # authorize! :read, events, :message => "Not authorized to read this post."
+    events = Event.unarchived_events_newest
+    archived_events = Event.archived_events_newest
     render_json_message(200, resource: {events: events.map(&:serialize), archived_events: archived_events.map(&:serialize)})
   end
 
   def create
-    event = current_api_admin.events.new(event_params)
-    event.save!
+    event = Event.create!(create_params)
     event.generate_first_report
-    render_json_message(201, message: "Event created!", resource: {events: Event.unarchived.map(&:serialize), archived_events: Event.archived.map(&:serialize)})
+    events = Event.unarchived_events_newest
+    archived_events = Event.archived_events_newest
+    render_json_message(201, message: "Event created!", resource: {events: events.map(&:serialize), archived_events: archived_events.map(&:serialize)})
     rescue
       render_json_message(403, errors: event.errors.messages[:name])
   end
@@ -37,7 +35,7 @@ class Api::Admin::EventsController < Api::BaseController
 
   private
 
-  def event_params
-    params.permit(:name, :city)
+  def create_params
+    params.require(:event).permit(:name, :city).merge(admin_id: current_api_admin.id)
   end
 end

@@ -16,7 +16,14 @@ class EventsActions {
 		}
 		ApiRequests.get(ApiConstants.events.collection, null, resolve)
 	}
-	createEvent(data) {
+	createEvent(name, city) {
+		// strong params see admin/events_controller
+		const data = {
+			event: {
+			  name: name, 
+			  city: city,
+			}
+		}
 		const resolve = (res) => {
 			this.actions.storeEvents(res);
 		}

@@ -21,11 +21,7 @@ class EventsContainer extends React.Component {
 		if (e.which == 13) {this._onSubmit()}
 	}
 	_onSubmit = () => {
-		const data = {
-		  name: this.state.name, 
-		  city: this.state.city,
-		}
-		EventsActions.createEvent(data)
+		EventsActions.createEvent(this.state.name, this.state.city)
 		this.setState({
 			name: null,
 			city: null,

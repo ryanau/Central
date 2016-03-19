@@ -29,7 +29,9 @@ Rails.application.routes.draw do
       end
       resources :reports, only: [:index, :show]
       resources :messages, only: [:index, :update, :create, :destroy]
+      resources :tasks, only: [:index, :show, :create]
     end
   end
+
   match '*all', to: 'client_app#index', via: [:get]
 end

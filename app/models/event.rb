@@ -33,6 +33,17 @@ class Event < ActiveRecord::Base
     next_digest = self.reports.count + 1
     self.reports.create(title: "#{self.name} Digest #{next_digest}")
   end
+
+  def self.unarchived_events_newest
+    Event.unarchived.order(created_at: :DESC)
+  end
+
+  def self.archived_events_newest
+    Event.archived.order(created_at: :DESC)
+  end
+
+  # def self in method when using it Event
+  # self within the method is individual
 end
 
 
