@@ -31,4 +31,5 @@ Rails.application.routes.draw do
       resources :messages, only: [:index, :update, :create, :destroy]
     end
   end
+  match '*all', to: 'client_app#index', via: [:get]
 end
