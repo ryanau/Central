@@ -11,7 +11,7 @@ module.exports = {
     common: ['react', 'react-router', 'alt']
   },
   output: {
-    path: path.join(__dirname, 'tmp'),
+    path: path.join(__dirname, 'public'),
     publicPath: '/',
     filename: '[name].js',
     library: ['Example', '[name]'],
@@ -27,7 +27,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      template: 'client/index.html'
+      template: 'public/index.html'
     }),
   ],
   resolve: {
