@@ -7,7 +7,10 @@ class Api::User::TasksController < Api::BaseController
 
   def create
     task = Task.create!(create_params)
-
+    task.build_task
+    render_json_message(201, message: "Task created!")
+    rescue
+      render_json_message(500, errors: task.errors.messages[:name])
   end
 
   private

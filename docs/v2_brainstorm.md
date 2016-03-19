@@ -87,6 +87,12 @@ Conversation belongs_to Task
 Task has_many Volunteers through Conversations
 Volunteer belongs_to Task through Conversations
 
+---
+
+Task created with params
+generate message
+assign it to the last digest
+
 
 
 

@@ -31,6 +31,19 @@ def make_messages
   end
 end
 
+def make_tasks
+  1.upto(1) do |n|
+    Task.create(
+      title: "Volunteers needed for Berkeley Fire",
+      zipcode: "94704",
+      number_of_volunteers: 20,
+      user_id: 1,
+      event_id: 1,
+    )
+  end
+end
+
 make_events
+make_tasks
 # make_reports
 # make_messages

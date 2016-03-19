@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20160319172100) do
     t.datetime "date_time"
     t.integer  "message_id"
     t.integer  "user_id"
+    t.integer  "event_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end

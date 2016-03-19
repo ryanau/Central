@@ -1,3 +1,3 @@
 class Replycode < ActiveRecord::Base
-  belongs_to :replycode
+  belongs_to :message
 end

@@ -8,6 +8,7 @@ class CreateTasks < ActiveRecord::Migration
 
       t.integer :message_id
       t.integer :user_id
+      t.integer :event_id
       
       t.timestamps null: false
     end

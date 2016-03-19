@@ -2,6 +2,8 @@ class Event < ActiveRecord::Base
   belongs_to :admin
   
   has_many :reports
+  has_many :undispatched_reports, -> { where(reports: {dispatched: false})}, :class_name => "Report", :foreign_key => :event_id
+  has_many :dispatched_reports, -> { where(reports: {dispatched: true})}, :class_name => "Report", :foreign_key => :event_id
 
   has_many :userevents
   has_many :users, through: :userevents
@@ -9,7 +11,7 @@ class Event < ActiveRecord::Base
   has_many :approved_messages, through: :reports
   has_many :unapproved_messages, through: :reports
 
-  has_many :tasks, through: :users
+  has_many :tasks
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :city }
