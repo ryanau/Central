@@ -4,4 +4,6 @@ class Task < ActiveRecord::Base
 
   has_many :responses, through: :questions
   has_many :questions
+
+  has_many :volunteers, through: :conversations
 end

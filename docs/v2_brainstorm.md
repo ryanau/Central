@@ -73,6 +73,20 @@ Replycode belongs_to Message
 Volunteer has_many Responses
 Response belongs_to Volunteer
 
+Conversation (joint table of phone, volunteer, task)
+validates uniqueness of phonenumber and volunteer
+
+Volunteer has_many Conversations
+Phone has_many Conversations
+Task has_many Conversations
+Conversation belongs_to Volunteer
+Conversation belongs_to Phone
+Conversation belongs_to Task
+
+
+Task has_many Volunteers through Conversations
+Volunteer belongs_to Task through Conversations
+
 
 
 
