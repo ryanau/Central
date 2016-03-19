@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
     post 'volunteers/join'
 
+    post 'sms_inbound', :to => 'sms#inbound'
+
     namespace :admin do
       resources :events, only: [:index, :create, :show] do
         get 'archive'
