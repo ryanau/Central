@@ -10,7 +10,7 @@ class Api::User::TasksController < Api::BaseController
   end
 
   def demo_get
-    task = Task.create!(title: "Debris cleaning", zipcode: "94704", number_of_volunteers: 20, user_id: 1, event_id: 1)
+    task = Task.create!(title: "Debris cleaning", zipcode: "94704", number_of_volunteers: 20, user_id: 1, event_id: 1, task_type: 1)
     task.build_task
     render_json_message(201, message: "Task created!")
   end
@@ -18,6 +18,6 @@ class Api::User::TasksController < Api::BaseController
   private
 
   def create_params
-    params.require(:task).permit(:title, :zipcode, :number_of_volunteers, :date_time, :event_id).merge(user_id: current_user.id)
+    params.require(:task).permit(:title, :zipcode, :number_of_volunteers, :date_time, :event_id, :task_type).merge(user_id: current_user.id)
   end
 end

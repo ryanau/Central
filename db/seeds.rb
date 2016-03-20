@@ -39,6 +39,7 @@ def make_tasks
       number_of_volunteers: 20,
       user_id: 1,
       event_id: 1,
+      task_type: 1,
     )
   end
 end

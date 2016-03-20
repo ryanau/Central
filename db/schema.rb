@@ -46,11 +46,12 @@ ActiveRecord::Schema.define(version: 20160320005450) do
   add_index "admins", ["uid", "provider"], name: "index_admins_on_uid_and_provider", unique: true, using: :btree
 
   create_table "conversations", force: :cascade do |t|
-    t.integer  "phone_id",     null: false
-    t.integer  "volunteer_id", null: false
-    t.integer  "task_id",      null: false
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "phone_id",                    null: false
+    t.integer  "volunteer_id",                null: false
+    t.integer  "task_id",                     null: false
+    t.boolean  "active",       default: true
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -121,6 +122,7 @@ ActiveRecord::Schema.define(version: 20160320005450) do
     t.string   "zipcode",              null: false
     t.integer  "number_of_volunteers", null: false
     t.datetime "date_time"
+    t.integer  "task_type"
     t.integer  "message_id"
     t.integer  "user_id"
     t.integer  "event_id"

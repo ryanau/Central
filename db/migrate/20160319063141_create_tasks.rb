@@ -6,6 +6,8 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :number_of_volunteers, null: false
       t.datetime :date_time
 
+      t.integer :task_type
+
       t.integer :message_id
       t.integer :user_id
       t.integer :event_id

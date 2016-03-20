@@ -59,7 +59,7 @@ Response belongs_to Question
 	* boolean yes/no
 	* number
 	* text
-	* cancel
+	* remove
 
 Task has_many Responses through Questions
 Respone belongs_to Task through Questions
