@@ -93,6 +93,13 @@ Task created with params
 generate message
 assign it to the last digest
 
+---
+
+Task controller -> task.build_task (task.rb) -> MessageCreator -> 
+report controller -> report.dispatch (report.rb) -> report_dispatch_builder
+
+
+
 
 
 

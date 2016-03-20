@@ -43,7 +43,17 @@ def make_tasks
   end
 end
 
+def seed_number
+  Phone.create(number: "5102302759")
+end
+
+def seed_ryan_volunteer
+  Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au")
+end
+
 make_events
 make_tasks
+seed_number
+seed_ryan_volunteer
 # make_reports
 # make_messages

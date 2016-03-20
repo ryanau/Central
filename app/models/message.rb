@@ -2,6 +2,7 @@ class Message < ActiveRecord::Base
   belongs_to :report
   belongs_to :user
 
+  has_one :task
   has_one :replycode
   
   def serialize

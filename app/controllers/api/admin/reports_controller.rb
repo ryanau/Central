@@ -1,5 +1,5 @@
 class Api::Admin::ReportsController < Api::BaseController
-  before_action :authenticate_api_admin!
+  # before_action :authenticate_api_admin!
 
   def index
     reports = Event.find(params[:event_id]).reports.undispatched

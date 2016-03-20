@@ -3,7 +3,7 @@ class CreateReplycodes < ActiveRecord::Migration
     create_table :replycodes do |t|
       t.string :code, null: false
 
-      t.integer :message_id, null: false
+      t.integer :message_id
       
       t.timestamps null: false
     end

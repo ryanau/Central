@@ -1,9 +1,5 @@
 class Api::User::TasksController < Api::BaseController
-  before_action :authenticate_api_user!
-
-  def index
-    
-  end
+  # before_action :authenticate_api_user!
 
   def create
     task = Task.create!(create_params)
@@ -13,9 +9,15 @@ class Api::User::TasksController < Api::BaseController
       render_json_message(500, errors: task.errors.messages[:name])
   end
 
+  def demo_get
+    task = Task.create!(title: "Debris cleaning", zipcode: "94704", number_of_volunteers: 20, user_id: 1, event_id: 1)
+    task.build_task
+    render_json_message(201, message: "Task created!")
+  end
+
   private
 
   def create_params
-    params.require(:task).permit(:title, :zipcode, :number_of_volunteers, :date_time).merge(user_id: current_user.id)
+    params.require(:task).permit(:title, :zipcode, :number_of_volunteers, :date_time, :event_id).merge(user_id: current_user.id)
   end
 end

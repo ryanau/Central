@@ -5,10 +5,15 @@ class Task < ActiveRecord::Base
   has_many :responses, through: :questions
   has_many :questions
 
+  has_many :conversations
   has_many :volunteers, through: :conversations
 
+  belongs_to :message
+
   def build_task
-    task = MessageCreator.new(self.id)
-    task.build_message
+    message_creator = MessageCreator.new(self.id)
+    message_creator.build_message
+    # only for now
+    message_creator.approve_message
   end
 end

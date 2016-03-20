@@ -4,6 +4,8 @@ class Report < ActiveRecord::Base
   has_many :messages
   has_many :users, through: :messages
 
+  has_many :report_volunteer_logs
+
   has_many :approved_messages, -> { where(messages: {approved: true})}, :class_name => "Message", :foreign_key => :report_id
   has_many :unapproved_messages, -> { where(messages: {approved: false})}, :class_name => "Message", :foreign_key => :report_id
 

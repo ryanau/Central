@@ -5,6 +5,12 @@ module SmsOutbound
     twilio_sms(from, to, message)
   end
 
+  def self.send_from_system_phone(from, to, message)
+    from = '+1' + from
+    to = '+1' + to.to_s
+    twilio_sms(from, to, message)
+  end
+
   private
   
   def self.twilio_sms(from, to, body)
