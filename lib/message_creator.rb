@@ -8,6 +8,7 @@ class MessageCreator
   end
 
   def build_message
+    # create a message in a report for the task
     replycode = create_replycode
     message_content = "#{@task.title} by #{@user.organization_name} [#{replycode.code}]"
     @message = Message.create(report_id: @undispatched_report.id, user_id: @user.id, content: message_content)

@@ -15,7 +15,9 @@ class SystemPhoneChecker
       system_phone_response_handler = SystemPhoneResponseHandler.new(@body, @volunteer, @task, @phone, @conversation)
       system_phone_response_handler.proceed
     else
-      # error handler: inbound invalid, prompt to register for central
+      # error handler: inbound invalid
+      # conversation is inactive
+      handle_conversation_is_inactive
     end
   end
 
@@ -23,12 +25,17 @@ class SystemPhoneChecker
 
   def check_conversation?
     p 'checking conversation'
-    @conversation = Conversation.find_by(volunteer_id: @volunteer.id, phone_id: @phone.id)
+    @conversation = Conversation.find_by(volunteer_id: @volunteer.id, phone_id: @phone.id, active: true)
   end
 
   def check_system_phone?
     p 'checking system phone'
     p @target_phone
     @phone = Phone.find_by(number: @target_phone)
+  end
+
+  def handle_conversation_is_inactive
+    content = "Sorry you are no longer eligible for this volunteering opportunity. For more info, please wait for the next digest."
+    SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
   end
 end

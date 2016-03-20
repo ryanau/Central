@@ -1,6 +1,6 @@
 class SystemPhoneResponseHandler
   def initialize(text_body, volunteer, task, phone, conversation)
-    @body = text_body.downcase
+    @body = text_body
     @volunteer = volunteer
     @task = task
     @system_phone = phone
@@ -11,6 +11,7 @@ class SystemPhoneResponseHandler
   end
 
   def proceed
+    # handle responses from volunteer in a task
     check_volunteer_progress_in_task
     response_type_identifier
   end
@@ -27,23 +28,17 @@ class SystemPhoneResponseHandler
 
   def identify_questions(unanswered_question_ids)
     @question = Question.find(unanswered_question_ids.first)
-    p 'laksjflkajslf'
-    p unanswered_question_ids.length
-    unanswered_question_ids.shift
-    p unanswered_question_ids.length
     if unanswered_question_ids.length > 0
       @question_remaining = true
     else
       @question_remaining = false
     end
-    p @question_remaining
     if @question_remaining
       @next_question = Question.find(unanswered_question_ids.first)
     end
   end
 
   def response_type_identifier
-    p 'checking response type'
     if @question.response_type == 1
       # expecting boolean yes/no
       boolean_yes_no_handler
@@ -65,6 +60,7 @@ class SystemPhoneResponseHandler
   end
 
   def incorrect_response_handler
+    # for now there are 4 types of responses
     if @question.response_type == 1
       filler = "YES or NO"
     elsif @question.response_type == 2
@@ -81,13 +77,11 @@ class SystemPhoneResponseHandler
   # different respones handler
   def boolean_yes_no_handler
     if @body == 'yes' || @body == 'no'
-      p 'correct type of response'
       log_response
       if @body == 'yes' && @question_remaining
         dispatch_next_question
       end
     else
-      p 'incorrect response type'
       incorrect_response_handler
     end
   end
@@ -104,6 +98,7 @@ class SystemPhoneResponseHandler
   def remove_handler
     if @body == 'remove'
       log_response
+      # don't need to dispatch next question coz this should be the last one, instead send concluding removal SMS
       after_volunteer_removes
     else
       incorrect_response_handler

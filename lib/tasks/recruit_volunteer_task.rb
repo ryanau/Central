@@ -9,6 +9,7 @@ class RecruitVolunteerTask
   end
 
   def proceed
+    # build questions in a task
     create_initial_question
     create_follow_up_questions
   end
@@ -17,7 +18,6 @@ class RecruitVolunteerTask
     content = "Hi #{@volunteer.first_name}! Hope you are safe and sound. This is #{@user.organization_name} contacting you through Central. Are you interested in volunteering for our upcoming event: #{@task.title}?\n\nIf you are, please reply 'YES'. Thank you!"
     Question.create(content: content, response_type: 1, task_id: @task.id)
     dispatch_question(content)
-
   end
 
   private
@@ -37,6 +37,7 @@ class RecruitVolunteerTask
   end
 
   def remove_if_volunteer_no_longer_available
+    # below is not possible at the moment
     # look up previous response
     # previous_question = @volunteer.responses.find_by(question_id: @number_of_participants_question.id)
     # number_of_participants = previous_question.content

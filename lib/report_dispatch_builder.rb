@@ -22,6 +22,13 @@ module ReportDispatchBuilder
     report.approved_messages.each do |msg|
       message << msg.content + "\n"
     end
+    dispatch_report(report)
+  end
+
+  private
+
+  def dispatch_report(report)
+    # dispatch report and also log which volunteer should've received it
     Volunteer.all.each do |volunteer|
       to = volunteer.phone_number
       SmsOutbound.send_from_main_phone(to, message)
