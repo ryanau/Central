@@ -18,16 +18,24 @@ class MainPhoneChecker
     else
       # handle error when replycode is invalid
       # or when volounteer didn't actually receive a report
+      handle_invalid_replycode
     end
   end
 
   private
 
+  def handle_invalid_replycode
+    content = "Sorry your replycode is not valid. Please try again by replying the code within the [bracket]."
+    to = @volunteer.phone_number
+    SmsOutbound.send_from_main_phone(to, content)
+  end
+
   def check_replycode_for_message
-    @replycode = Replycode.find_by(code: @body)
-    @message = @replycode.message
-    @report = @message.report
-    @task = @message.task
+    if @replycode = Replycode.find_by(code: @body)
+      @message = @replycode.message
+      @report = @message.report
+      @task = @message.task
+    end
   end
 
   def did_volunteer_receive_report?
@@ -45,8 +53,8 @@ class MainPhoneChecker
     # task types: (if we have more than 1 task in the future)
     # 1: recruit volunteer task
     if @message.task.task_type == 1
-      recruit_volunteer_task = RecruitVolunteerTask.new(@volunteer, @message, @report, @system_phone)
-      recruit_volunteer_task.proceed
+      recruit_volunteer_task_response = RecruitVolunteerTaskResponse.new(@volunteer, @message, @report, @system_phone)
+      recruit_volunteer_task_response.proceed
     end
     log_conversation
   end

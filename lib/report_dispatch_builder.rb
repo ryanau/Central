@@ -19,15 +19,16 @@ module ReportDispatchBuilder
     report = Report.find(report_id)
     message = ""
     message << report.title + "\n\n"
+    message << "Please respond with the code within the [bracket] if you want more info.\n\n"
     report.approved_messages.each do |msg|
       message << msg.content + "\n"
     end
-    dispatch_report(report)
+    dispatch_report(report, message)
   end
 
   private
 
-  def dispatch_report(report)
+  def self.dispatch_report(report, message)
     # dispatch report and also log which volunteer should've received it
     Volunteer.all.each do |volunteer|
       to = volunteer.phone_number

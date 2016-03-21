@@ -44,9 +44,12 @@ class SmsInboundChecker
   def handle_caller_not_registered
     if check_main_phone?
       content = "Come on! You are not registered with Central! Please reply with 'JOIN' if you are interested in joining."
+      to = @caller_phone
+      SmsOutbound.send_from_main_phone(to, content)
     else
       content = "ARE YOU KIDDING!! You are not registered with Central yet! Please text 'JOIN' to 5102963977 to sign up!"
+      to = @caller_phone
+      SmsOutbound.send_from_system_phone(@target_phone, to, content)
     end
-    SmsOutbound.send_from_main_phone(to, content)
   end
 end

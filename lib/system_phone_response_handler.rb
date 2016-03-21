@@ -20,20 +20,28 @@ class SystemPhoneResponseHandler
 
   def check_volunteer_progress_in_task
     # check how many questions the volunteer has answered
-    question_ids = @task.questions.pluck(:id)
-    responded_question_ids = @volunteer.responses.where(question_id: question_ids).pluck(:question_id)
-    unanswered_question_ids = question_ids - responded_question_ids
-    identify_questions(unanswered_question_ids)
+    p 'alskdjflaskjd'
+    p question_ids = @task.questions.pluck(:id)
+    p responded_question_ids = @volunteer.responses.where(question_id: question_ids).pluck(:question_id)
+    p unanswered_question_ids = question_ids - responded_question_ids
+    identify_questions(responded_question_ids, unanswered_question_ids)
   end
 
-  def identify_questions(unanswered_question_ids)
-    @question = Question.find(unanswered_question_ids.first)
+  def identify_questions(responded_question_ids, unanswered_question_ids)
+    p 'responded question'
+    p responded_question_ids
+    if responded_question_ids.length > 0
+      @question = Question.find(unanswered_question_ids.first)
+    else
+      @question = @task.questions.first
+    end
     if unanswered_question_ids.length > 0
       @question_remaining = true
     else
       @question_remaining = false
     end
-    if @question_remaining
+    if @question_remaining && unanswered_question_ids.length > 1
+      unanswered_question_ids.shift
       @next_question = Question.find(unanswered_question_ids.first)
     end
   end
@@ -61,6 +69,8 @@ class SystemPhoneResponseHandler
 
   def incorrect_response_handler
     # for now there are 4 types of responses
+    p 'printing question'
+    p @question
     if @question.response_type == 1
       filler = "YES or NO"
     elsif @question.response_type == 2

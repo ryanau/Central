@@ -15,5 +15,10 @@ class Task < ActiveRecord::Base
     message_creator.build_message
     # only for now
     message_creator.approve_message
+    if self.task_type == 1
+      # ******** this has to be rewritten ********
+      recruit_volunteer_task = RecruitVolunteerTask.new(self)
+      recruit_volunteer_task.proceed
+    end
   end
 end

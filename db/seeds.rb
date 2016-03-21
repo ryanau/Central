@@ -53,7 +53,7 @@ def seed_ryan_volunteer
 end
 
 make_events
-make_tasks
+# make_tasks
 seed_number
 seed_ryan_volunteer
 # make_reports
