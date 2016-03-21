@@ -71,6 +71,11 @@ class Api_Constants {
 			collection: this.user_origin + 'tasks',
 		}
 	}
+	get user_task_types() {
+		return {
+			collection: this.user_origin + 'task_types',
+		}
+	}
 }
 
 const ApiConstants = new Api_Constants();

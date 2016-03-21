@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-// import EventsActions from 'actions/eventsActions';
-
 class UserTaskListItem extends React.Component {
 	constructor(props) {
 		super(props);

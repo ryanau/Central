@@ -4,7 +4,7 @@ import TasksStore from 'stores/tasksStore';
 import TasksActions from 'actions/tasksActions';
 
 import UserTaskListItem from './UserTaskListItem';
-import UserTaskSelector from './UserTaskSelector';
+import UserTaskTypeSelector from './UserTaskTypeSelector';
 
 class UserTasksContainer extends React.Component {
 	constructor(props) {
@@ -39,7 +39,7 @@ class UserTasksContainer extends React.Component {
 		return (
 			<div>
 				<h4>Tasks Container</h4>
-				<UserTaskSelector />
+				<UserTaskTypeSelector />
 				{tasks}
 			</div>
 		)

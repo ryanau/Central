@@ -1,6 +1,7 @@
 import React from 'react';
 
 import TasksActions from 'actions/tasksActions';
+import TaskTypesActions from 'actions/tasktypesActions';
 
 class UserTaskSelector extends React.Component {
 	constructor(props) {
@@ -23,18 +24,21 @@ class UserTaskSelector extends React.Component {
 		if (e.which == 13) {this._onSubmit()}
 	}
 	_onSubmit = () => {
-		TasksActions.createEvent(this.state.name, this.state.city)
-		this.setState({
-			title: null,
-			zipcode: null,
-			numberOfVolunteers: null,
-			taskType: null,
-		})
+		// TasksActions.createEvent(this.state.name, this.state.city)
+		// this.setState({
+		// 	title: null,
+		// 	zipcode: null,
+		// 	numberOfVolunteers: null,
+		// 	taskType: null,
+		// })
+	}
+	_onCancel = () => {
+		TaskTypesActions.hideCreateTaskForm();
 	}
 	render() {
 		return (
 			<div>
-				<h4>Create Recruit Volunteers Task</h4>
+				<h4>{this.props.taskType.name}</h4>
 				<form>
 				  <input
 				  	type="text"
@@ -64,6 +68,8 @@ class UserTaskSelector extends React.Component {
 				  	onChange={this._handleChange}/>
 				  <br/>
 				  <input type="button" onClick={this._onSubmit} value="Create Task"/>
+				  <br/>
+				  <input type="button" onClick={this._onCancel} value="Cancel"/>
 				  <br/>
 				</form>
 			</div>

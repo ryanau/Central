@@ -51,7 +51,7 @@ class MainPhoneChecker
   def act_on_task_type
     # task types: (if we have more than 1 task in the future)
     # 1: recruit volunteer task
-    if @message.task.task_type == 1
+    if @message.task.task_type_id == 1
       recruit_volunteer_task_response = RecruitVolunteerTaskResponse.new(@volunteer, @message, @report, @system_phone)
       recruit_volunteer_task_response.proceed
     end

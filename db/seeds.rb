@@ -39,7 +39,7 @@ def make_tasks
       number_of_volunteers: 20,
       user_id: 1,
       event_id: 1,
-      task_type: 1,
+      task_type_id: 1,
     )
   end
 end
@@ -54,9 +54,14 @@ def seed_ryan_volunteer
   Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au")
 end
 
+def make_task_type
+  TaskType.create(name: "Recruit Volunteers")
+end
+
 make_events
 # make_tasks
 seed_number
 seed_ryan_volunteer
+make_task_type
 # make_reports
 # make_messages
