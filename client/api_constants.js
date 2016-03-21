@@ -66,6 +66,11 @@ class Api_Constants {
 			delete: (id) => this.user_origin + `messages/${id}`,
 		}
 	}
+	get user_tasks() {
+		return {
+			collection: this.user_origin + 'tasks',
+		}
+	}
 }
 
 const ApiConstants = new Api_Constants();

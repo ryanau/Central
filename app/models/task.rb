@@ -21,4 +21,8 @@ class Task < ActiveRecord::Base
       recruit_volunteer_task.proceed
     end
   end
+
+  def serialize
+    ActiveModel::SerializableResource.new(self)
+  end
 end

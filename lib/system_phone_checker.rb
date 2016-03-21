@@ -10,7 +10,6 @@ class SystemPhoneChecker
 
   def proceed
     if check_system_phone? && check_conversation?
-      p 'proceeding in system phone'
       @task = @conversation.task
       system_phone_response_handler = SystemPhoneResponseHandler.new(@body, @volunteer, @task, @phone, @conversation)
       system_phone_response_handler.proceed
@@ -24,18 +23,15 @@ class SystemPhoneChecker
   private
 
   def check_conversation?
-    p 'checking conversation'
     @conversation = Conversation.find_by(volunteer_id: @volunteer.id, phone_id: @phone.id, active: true)
   end
 
   def check_system_phone?
-    p 'checking system phone'
-    p @target_phone
     @phone = Phone.find_by(number: @target_phone)
   end
 
   def handle_conversation_is_inactive
     content = "Sorry you are no longer eligible for this volunteering opportunity. For more info, please wait for the next digest."
-    SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
+    SmsOutbound.send_from_system_phone(@target_phone, @volunteer.phone_number, content)
   end
 end

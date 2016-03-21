@@ -134,10 +134,46 @@ Open up `http://localhost:8080` to access the app.
 
 - [X] Configure multi buildpacks
 - [X] Configure webpack
+- [X] Add `client_app_controller` as catch all routes from backend API; delegates routing to `react-router`
+- [X] Add `public/index.html` to mount frontend
 
 #### V1.5: Add misc. features to polish V1 (3/16/2016)
 
 - [X] Admin can edit report
+
+#### V2.0: Add `Question`, `Replycode`, `ReportVolunteerLog`, `Task`, `Response` models (3/18/2016)
+
+- [X] User can add a `Task` consisting of many `Questions`
+- [X] Volunteer can receive a text digest and reply with a replycode for more info
+- [X] Volunteer can text back for and saved as responses in the database
+- [X] `ReportVolunteerLog` keeps track of volunteers who should have received a digest
+
+#### V2.1 Build `sms_inbound_checker` to deal with incoming texts from volunteers (3/20/2016)
+
+- [X] Just magic ;)
+
+#### V2.2 Build frontend for `User` to create a `Task` (3/21/2016) 
+
+- [X] Add `Task Type` model to categorize tasks if there are to be more tasks in the future
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

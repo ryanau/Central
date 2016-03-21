@@ -1,6 +1,14 @@
 class Api::User::TasksController < Api::BaseController
   # before_action :authenticate_api_user!
 
+  def index
+    event = Event.find(params[:event_id])
+    tasks = event.tasks.where(user_id: current_user.id)
+    p '8' *40
+    p tasks
+    render_json_message(200, resource: {tasks: tasks.map(&:serialize)})
+  end
+
   def create
     task = Task.create!(create_params)
     task.build_task

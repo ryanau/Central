@@ -50,6 +50,8 @@ end
 
 def seed_ryan_volunteer
   Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au")
+  Volunteer.create(phone_number: "5103355359", first_name: "Cynthia", last_name: "Huang")
+  Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au")
 end
 
 make_events

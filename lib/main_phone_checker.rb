@@ -17,7 +17,6 @@ class MainPhoneChecker
       act_on_task_type
     else
       # handle error when replycode is invalid
-      # or when volounteer didn't actually receive a report
       handle_invalid_replycode
     end
   end
@@ -25,7 +24,7 @@ class MainPhoneChecker
   private
 
   def handle_invalid_replycode
-    content = "Sorry your replycode is not valid. Please try again by replying the code within the [bracket]."
+    content = "Sorry your replycode is not valid. Please try again by replying the code within the [bracket] from the previous digest."
     to = @volunteer.phone_number
     SmsOutbound.send_from_main_phone(to, content)
   end
