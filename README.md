@@ -155,6 +155,7 @@ Open up `http://localhost:8080` to access the app.
 #### V2.2 Build frontend for `User` to create a `Task` (3/21/2016) 
 
 - [X] Add `Task Type` model to categorize tasks if there are to be more tasks in the future
+- [X] User can create tasks
 
 
 

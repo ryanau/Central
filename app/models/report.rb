@@ -22,7 +22,7 @@ class Report < ActiveRecord::Base
 
   def dispatch_report?
     # check if event is archived
-    if !self.event.archived && ReportDispatcher.perform_async(self.id)
+    if !self.event.archived && ReportDispatcherWorker.perform_async(self.id)
       true
     else
       false

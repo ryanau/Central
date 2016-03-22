@@ -10,7 +10,7 @@ class Api::User::TasksController < Api::BaseController
   def create
     task = Task.create!(create_params)
     # make into async
-    # task.build_task
+    task.build_task
     event = Event.find(task.event_id)
     tasks = event.tasks.where(user_id: current_user.id)
     render_json_message(201, message: "Task created!", resource: {tasks: tasks.map(&:serialize)})

@@ -1,6 +1,6 @@
 class MessageCreator
-  def initialize(task_id)
-    @task = Task.find(task_id)
+  def initialize(task)
+    @task = task
     @user = @task.user
     @event = @task.event
     @undispatched_report = @event.undispatched_reports.first

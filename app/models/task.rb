@@ -13,15 +13,8 @@ class Task < ActiveRecord::Base
   belongs_to :task_type
 
   def build_task
-    message_creator = MessageCreator.new(self.id)
-    message_creator.build_message
-    # only for now
-    message_creator.approve_message
-    if self.task_type_id == 1
-      # ******** this has to be rewritten ********
-      recruit_volunteer_task = RecruitVolunteerTask.new(self)
-      recruit_volunteer_task.proceed
-    end
+    # pass in task id
+    TaskBuilderWorker.perform_async(self.id)
   end
 
   def serialize
