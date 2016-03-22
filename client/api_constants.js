@@ -69,6 +69,7 @@ class Api_Constants {
 	get user_tasks() {
 		return {
 			collection: this.user_origin + 'tasks',
+			task: (id) => this.user_origin + `tasks/${id}`,
 			create: this.user_origin + 'tasks',
 		}
 	}

@@ -1,10 +1,19 @@
 class Api::User::TasksController < Api::BaseController
-  # before_action :authenticate_api_user!
+  before_action :authenticate_api_user!
 
   def index
     event = Event.find(params[:event_id])
     tasks = event.tasks.where(user_id: current_user.id)
     render_json_message(200, resource: {tasks: tasks.map(&:serialize)})
+  end
+
+  def show
+    event = Event.find(params[:event_id])
+    task = event.tasks.find(params[:id])
+    # authorize! :read, task
+    render_json_message(200, resource: {task: task.user_task_serialize})
+    rescue
+      render_json_message(404, errors: ["Task not found."])
   end
 
   def create

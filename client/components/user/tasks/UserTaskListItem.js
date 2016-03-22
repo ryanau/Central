@@ -16,11 +16,13 @@ class UserTaskListItem extends React.Component {
 		})
 	}
 	render() {
-		let task
+		let task, infoLink
 		task = this.state.task
+		infoLink = '/user/events/' + location.pathname.match(`[^/]+$`)[0] + "/tasks/" + task.id
 		return (
 			<div>
-				<h4>Title: {task.title} | # of Volunteer: {task.number_of_volunteers}</h4>
+				<p>Title: {task.title} | # of Volunteer: {task.number_of_volunteers}</p>
+				{<Link to={infoLink}>See Responses</Link>}
 			</div>
 		)
 	}

@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       end
       resources :reports, only: [:index, :show]
       resources :messages, only: [:index, :update, :create, :destroy]
-      resources :tasks, only: [:index, :create]
+      resources :tasks, only: [:index, :create, :show]
       resources :task_types, only: [:index]
 
       get 'tasks/demo_get', to: 'tasks#demo_get'

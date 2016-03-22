@@ -20,4 +20,8 @@ class Task < ActiveRecord::Base
   def serialize
     ActiveModel::SerializableResource.new(self)
   end
+
+  def user_task_serialize
+    ActiveModel::SerializableResource.new(self, serializer: UserTaskSerializer)
+  end
 end
