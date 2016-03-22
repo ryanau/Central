@@ -69,6 +69,7 @@ class Api_Constants {
 	get user_tasks() {
 		return {
 			collection: this.user_origin + 'tasks',
+			create: this.user_origin + 'tasks',
 		}
 	}
 	get user_task_types() {

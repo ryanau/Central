@@ -2,18 +2,18 @@ class Api::User::TasksController < Api::BaseController
   # before_action :authenticate_api_user!
 
   def index
-    p 'in index'
     event = Event.find(params[:event_id])
     tasks = event.tasks.where(user_id: current_user.id)
-    p '8' *40
-    p tasks
     render_json_message(200, resource: {tasks: tasks.map(&:serialize)})
   end
 
   def create
     task = Task.create!(create_params)
-    task.build_task
-    render_json_message(201, message: "Task created!")
+    # make into async
+    # task.build_task
+    event = Event.find(task.event_id)
+    tasks = event.tasks.where(user_id: current_user.id)
+    render_json_message(201, message: "Task created!", resource: {tasks: tasks.map(&:serialize)})
     rescue
       render_json_message(500, errors: task.errors.messages[:name])
   end

@@ -3,15 +3,22 @@ import React from 'react';
 import TasksActions from 'actions/tasksActions';
 import TaskTypesActions from 'actions/tasktypesActions';
 
-class UserTaskSelector extends React.Component {
+class UserTaskCreator extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			title: null,
 			zipcode: null,
 			numberOfVolunteers: null,
-			taskType: null,
+			taskTypeId: null,
+			eventId: null,
 		}
+	}
+	componentDidMount() {
+		this.setState({
+			taskTypeId: this.props.taskType.id,
+			eventId: location.pathname.match(/events\/(\d+)/)[1],
+		})
 	}
 	_handleChange = () => {
 		this.setState({
@@ -24,13 +31,21 @@ class UserTaskSelector extends React.Component {
 		if (e.which == 13) {this._onSubmit()}
 	}
 	_onSubmit = () => {
-		// TasksActions.createEvent(this.state.name, this.state.city)
-		// this.setState({
-		// 	title: null,
-		// 	zipcode: null,
-		// 	numberOfVolunteers: null,
-		// 	taskType: null,
-		// })
+		TasksActions.createUserTask(
+			this.state.title,
+			this.state.zipcode,
+			this.state.numberOfVolunteers,
+			this.state.taskTypeId,
+			this.state.eventId,
+		)
+		this.setState({
+			title: null,
+			zipcode: null,
+			numberOfVolunteers: null,
+			taskTypeId: null,
+			eventId: null,
+		})
+		TaskTypesActions.hideCreateTaskForm();
 	}
 	_onCancel = () => {
 		TaskTypesActions.hideCreateTaskForm();
@@ -77,4 +92,4 @@ class UserTaskSelector extends React.Component {
 	}
 };
 
-export default UserTaskSelector;
+export default UserTaskCreator;

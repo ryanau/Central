@@ -18,6 +18,21 @@ class TasksActions {
 		}
 		ApiRequests.get(ApiConstants.user_tasks.collection, data, resolve)
 	}
+	createUserTask(title, zipcode, numberOfVolunteers, taskTypeId, eventId) {
+		const data = {
+			task: {
+				title: title,
+				zipcode: zipcode,
+				number_of_volunteers: numberOfVolunteers,
+				task_type_id: taskTypeId,
+				event_id: eventId,
+			}
+		}
+		const resolve = (res) => {
+			this.actions.storeTasks(res);
+		}
+		ApiRequests.post(ApiConstants.user_tasks.create, data, resolve)
+	}
 }
 
 export default alt.createActions(TasksActions);

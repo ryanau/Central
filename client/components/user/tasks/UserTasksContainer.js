@@ -30,7 +30,6 @@ class UserTasksContainer extends React.Component {
 			tasks = this.state.tasks.map((task) => {
 				return (
 					<div>
-						<h4>Tasks</h4>
 						<li><UserTaskListItem key={task.id} task={task}/></li>
 					</div>
 				)
@@ -40,6 +39,7 @@ class UserTasksContainer extends React.Component {
 			<div>
 				<h4>Tasks Container</h4>
 				<UserTaskTypeSelector />
+				<h4>Tasks</h4>
 				{tasks}
 			</div>
 		)
