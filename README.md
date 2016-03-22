@@ -156,6 +156,7 @@ Open up `http://localhost:8080` to access the app.
 
 - [X] Add `Task Type` model to categorize tasks if there are to be more tasks in the future
 - [X] User can create tasks
+- [X] User can view individual `Task`
 
 
 

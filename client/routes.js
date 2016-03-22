@@ -1,7 +1,9 @@
 import React from 'react';
 import { Route } from 'react-router';
 
+// System
 import Landing from 'components/Landing';
+import NoMatch from 'components/NoMatch';
 import Auth from 'components/session/Auth';
 import AdminAuth from 'components/session/AdminAuth';
 import AccountActivation from 'components/session/AccountActivation';
@@ -35,6 +37,7 @@ const routes = (
       <Route path='events/:eventId/reports/:reportId' component={UserReport}/>
       <Route path='events/:eventId/tasks/:taskId' component={UserTask}/>
     </Route>
+    <Route path="*" component={NoMatch}/>
   </Route>
 );
 
