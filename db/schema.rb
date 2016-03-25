@@ -125,16 +125,18 @@ ActiveRecord::Schema.define(version: 20160321224014) do
   end
 
   create_table "tasks", force: :cascade do |t|
-    t.string   "title",                null: false
-    t.string   "zipcode",              null: false
-    t.integer  "number_of_volunteers", null: false
+    t.string   "title",                                null: false
+    t.string   "zipcode",                              null: false
+    t.integer  "number_of_volunteers",                 null: false
     t.datetime "date_time"
-    t.integer  "task_type_id",         null: false
+    t.boolean  "approved",             default: false
+    t.boolean  "dispatched",           default: false
+    t.integer  "task_type_id",                         null: false
     t.integer  "message_id"
     t.integer  "user_id"
     t.integer  "event_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "userevents", force: :cascade do |t|

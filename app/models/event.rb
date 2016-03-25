@@ -20,7 +20,9 @@ class Event < ActiveRecord::Base
   has_many :approved_messages, through: :reports
   has_many :unapproved_messages, through: :reports
 
-  has_many :tasks
+  has_many :approved_tasks, -> { where(tasks: {approved: true})}, :class_name => "Task", :foreign_key => :event_id
+  has_many :unapproved_tasks, -> { where(tasks: {approved: false})}, :class_name => "Task", :foreign_key => :event_id
+  has_many :dispatched_tasks, -> { where(tasks: {dispatched: true})}, :class_name => "Task", :foreign_key => :event_id
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :city }
@@ -34,6 +36,10 @@ class Event < ActiveRecord::Base
 
   def user_event_serialize
     ActiveModel::SerializableResource.new(self, serializer: UserEventSerializer)
+  end
+
+  def event_task_serialize
+    ActiveModel::SerializableResource.new(self, serializer: EventTaskSerializer)
   end
 
   def generate_first_report

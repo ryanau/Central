@@ -28,7 +28,7 @@ class Api::Admin::EventsController < Api::BaseController
 
   def show
     event = Event.find(params[:id])
-    render_json_message(200, resource: {event: event.serialize})
+    render_json_message(200, resource: {event: event.event_task_serialize})
     rescue
       render_json_message(404, errors: ["Event not found."])
   end

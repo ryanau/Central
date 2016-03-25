@@ -15,8 +15,8 @@ class AuthComplete extends React.Component {
     this.findParams();
   }
   findParams() {
-    let clientId, expiry, token, uid
-    var promise = new Promise(function() {
+    let clientId, expiry, token, uid, promise
+    promise = new Promise(function() {
       clientId = new Uri(location.search).getQueryParamValue('client_id');
       token = new Uri(location.search).getQueryParamValue('token');
       expiry = new Uri(location.search).getQueryParamValue('expiry');

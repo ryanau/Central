@@ -32,11 +32,11 @@ def make_messages
 end
 
 def make_tasks
-  1.upto(1) do |n|
+  1.upto(4) do |n|
     Task.create(
-      title: "Volunteers needed for Berkeley Fire",
+      title: FFaker::Lorem.phrase,
       zipcode: "94704",
-      number_of_volunteers: 20,
+      number_of_volunteers: n,
       user_id: 1,
       event_id: 1,
       task_type_id: 1,
@@ -59,7 +59,7 @@ def make_task_type
 end
 
 make_events
-# make_tasks
+make_tasks
 seed_number
 seed_ryan_volunteer
 make_task_type

@@ -6,6 +6,9 @@ class CreateTasks < ActiveRecord::Migration
       t.integer :number_of_volunteers, null: false
       t.datetime :date_time
 
+      t.boolean :approved, default: false
+      t.boolean :dispatched, default: false
+
       t.integer :task_type_id, null: false
 
       t.integer :message_id

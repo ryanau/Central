@@ -5,6 +5,7 @@ import EventStore from 'stores/eventStore';
 import EventActions from 'actions/eventActions';
 
 import ReportsContainer from '../reports/ReportsContainer';
+import TasksContainer from '../tasks/TasksContainer';
 
 class Event extends React.Component {
 	constructor(props) {
@@ -43,6 +44,7 @@ class Event extends React.Component {
 						<input type="button" onClick={this._onSubmit} value="Archive Event" disabled={event.archived}/>
 					  <br/>
 					</form>
+					<TasksContainer approvedTasks={event.approved_tasks} unapprovedTasks={event.unapproved_tasks} dispatchedTasks={event.dispatched_tasks}/>
 					<ReportsContainer eventId={event.id}/>
 				</div>
 			)

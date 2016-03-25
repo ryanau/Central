@@ -1,10 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :city, :archived, :audience
-
+  attributes :id, :name, :city, :archived
+  
   belongs_to :admin
-  # has_many :reports
-
-  def audience
-    Volunteer.count
-  end
 end
