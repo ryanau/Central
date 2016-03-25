@@ -15,12 +15,7 @@ class MessageCreator
     @task.update(message_id: @message.id)
     replycode.update(message_id: @message.id)
   end
-
-  def approve_message
-    # only for now
-    @message.update(approved: true)
-  end
-
+  
   def create_replycode
     random_num = rand.to_s[2..5]
     replycode = Replycode.new(code: random_num)

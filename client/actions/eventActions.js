@@ -21,6 +21,12 @@ class EventActions {
 		}
 		ApiRequests.get(ApiConstants.events.archive(id), null, resolve)
 	}
+	approveTask(id) {
+		const resolve = (res) => {
+			this.actions.storeEvent(res);
+		}
+		ApiRequests.get(ApiConstants.tasks.approve(id), null, resolve)
+	}
 	// User
 	fetchUserEvent(id) {
 		const resolve = (res) => {

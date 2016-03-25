@@ -25,9 +25,27 @@ class UserTasksContainer extends React.Component {
 	  TasksStore.unlisten(this.onChange);
 	}
 	render() {
-		let tasks
-		if (this.state.tasks != null) {
-			tasks = this.state.tasks.map((task) => {
+		let approvedTasks, unapprovedTasks, dispatchedTasks
+		if (this.state.approvedTasks.length > 0) {
+			approvedTasks = this.state.approvedTasks.map((task) => {
+				return (
+					<div>
+						<li><UserTaskListItem key={task.id} task={task}/></li>
+					</div>
+				)
+			});
+		}
+		if (this.state.unapprovedTasks.length > 0) {
+			unapprovedTasks = this.state.unapprovedTasks.map((task) => {
+				return (
+					<div>
+						<li><UserTaskListItem key={task.id} task={task}/></li>
+					</div>
+				)
+			});
+		}
+		if (this.state.dispatchedTasks.length > 0) {
+			dispatchedTasks = this.state.dispatchedTasks.map((task) => {
 				return (
 					<div>
 						<li><UserTaskListItem key={task.id} task={task}/></li>
@@ -40,7 +58,9 @@ class UserTasksContainer extends React.Component {
 				<h4>Tasks Container</h4>
 				<UserTaskTypeSelector />
 				<h4>Tasks</h4>
-				{tasks}
+				{approvedTasks}
+				{unapprovedTasks}
+				{dispatchedTasks}
 			</div>
 		)
 	}

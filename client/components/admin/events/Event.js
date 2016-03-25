@@ -27,8 +27,11 @@ class Event extends React.Component {
 	  // reseting EventStore state to null to prevent rendering
 	  alt.recycle(EventStore);
 	}
-	_onSubmit = () => {
+	_onArchiveButtonClicked = () => {
 		EventActions.archiveEvent(this.state.event.id)
+	}
+	_onDispatchButtonClicked = () => {
+
 	}
 	render() {
 		let event, eventInfo, archiveButton
@@ -41,7 +44,11 @@ class Event extends React.Component {
 					<p>City: {event.city}</p>
 					<p>Archived: {String(event.archived)}</p>
 					<form>
-						<input type="button" onClick={this._onSubmit} value="Archive Event" disabled={event.archived}/>
+						<input type="button" onClick={this._onArchiveButtonClicked} value="Archive Event" disabled={event.archived}/>
+					  <br/>
+					</form>
+					<form>
+						<input type="button" onClick={this._onDispatchButtonClicked} value="Dispatch Next Report" disabled={false}/>
 					  <br/>
 					</form>
 					<TasksContainer approvedTasks={event.approved_tasks} unapprovedTasks={event.unapproved_tasks} dispatchedTasks={event.dispatched_tasks}/>

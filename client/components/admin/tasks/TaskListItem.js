@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
 
-// import ReportActions from 'actions/reportActions';
+import EventActions from 'actions/eventActions';
 
 class TaskListItem extends React.Component {
 	componentWillMount() {
@@ -11,7 +11,7 @@ class TaskListItem extends React.Component {
 	  })
 	}
 	_onSubmit = () => {
-		// ReportActions.approveMessage(this.state.message.id)
+		EventActions.approveTask(this.state.task.id)
 	}
 	render() {
 		let task, approveButton

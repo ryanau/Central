@@ -3,17 +3,18 @@ class Api::User::TasksController < Api::BaseController
 
   def index
     event = Event.find(params[:event_id])
-    tasks = event.tasks.where(user_id: current_user.id)
-    render_json_message(200, resource: {tasks: tasks.map(&:serialize)})
+    approved_tasks = event.approved_tasks.where(user_id: current_user.id)
+    unapproved_tasks = event.unapproved_tasks.where(user_id: current_user.id)
+    dispatched_tasks = event.dispatched_tasks.where(user_id: current_user.id)
+    render_json_message(200, resource: {approved_tasks: approved_tasks.map(&:serialize), unapproved_tasks: unapproved_tasks.map(&:serialize), dispatched_tasks: dispatched_tasks.map(&:serialize)})
   end
 
   def show
-    event = Event.find(params[:event_id])
-    task = event.tasks.find(params[:id])
+    task = Task.find_by(event_id: params[:event_id], id: params[:id])
     # authorize! :read, task
     render_json_message(200, resource: {task: task.user_task_serialize})
-    rescue
-      render_json_message(404, errors: ["Task not found."])
+    # rescue
+    #   render_json_message(404, errors: ["Task not found."])
   end
 
   def create

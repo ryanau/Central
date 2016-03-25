@@ -45,7 +45,11 @@ class Api_Constants {
 			approve: (id) => this.admin_origin + `messages/${id}/approve`,
 		}
 	}
-
+	get tasks() {
+		return {
+			approve: (id) => this.admin_origin + `tasks/${id}/approve`,
+		}
+	}
 	// User
 	get user_events() {
 		return {

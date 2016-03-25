@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       resources :messages, only: [] do
         get 'approve'
       end
+      resources :tasks, only: [] do
+        get 'approve'
+      end
     end
 
     namespace :user do

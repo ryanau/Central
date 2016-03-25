@@ -24,4 +24,9 @@ class Task < ActiveRecord::Base
   def user_task_serialize
     ActiveModel::SerializableResource.new(self, serializer: UserTaskSerializer)
   end
+
+  def approve
+    self.update(approved: true)
+    self.message(approved: true)
+  end
 end

@@ -6,11 +6,15 @@ class TasksStore {
 		this.bindListeners({
 			handleStoreTasks: TasksActions.STORE_TASKS,
 		});
-		this.tasks = null;
+		this.approvedTasks = [];
+		this.unapprovedTasks = [];
+		this.dispatchedTasks = [];
 	}
 	handleStoreTasks(res) {
 		// update its tasks attribute with the resposne
-		this.tasks = res.resource.tasks;
+		this.approvedTasks = res.resource.approved_tasks;
+		this.unapprovedTasks = res.resource.unapproved_tasks;
+		this.dispatchedTasks = res.resource.dispatched_tasks;
 	}
 }
 
