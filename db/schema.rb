@@ -79,11 +79,12 @@ ActiveRecord::Schema.define(version: 20160321224014) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "content",       null: false
-    t.integer  "response_type", null: false
+    t.string   "content",        null: false
+    t.integer  "response_type",  null: false
+    t.integer  "question_order", null: false
     t.integer  "task_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "replycodes", force: :cascade do |t|

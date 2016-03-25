@@ -1,6 +1,7 @@
 class Api_Constants {
 	constructor() {
 		this.origin = 'http://localhost:3000/api/'
+		this.frontend = 'http://localhost:8080/'
 		this.admin_origin = this.origin + 'admin/'
 		this.user_origin = this.origin + 'user/'
 		this.volunteer_origin = this.origin + 'volunteers/'
@@ -14,6 +15,7 @@ class Api_Constants {
 			admin_sign_in: this.origin + 'admin_auth/sign_in',
 			admin_sign_out: this.origin + 'admin_auth/sign_out',
 			identity: this.origin + 'session/identity',
+			auth_complete: this.frontend + 'auth_complete'
 		}
 	}
 	get volunteers() {

@@ -14,7 +14,7 @@ Central is a platform that seeks to increase the efficiency of post-disaster res
 
 ## Minimum Viable Product
 
-Central is a web application built using Ruby on Rails as an API and React.js implemented with Flux pattern. It also incorporates Twilio SMS services as the main way form of communication with our users.
+Central is a single page web application built using Ruby on Rails as an API and React.js implemented with Flux pattern. It also incorporates Twilio SMS services as the main way form of communication with our users.
 
 Target Audience: User (Rescue Organization) & Volunteer (Spontaneous volunteers during disasters)
 

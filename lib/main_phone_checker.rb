@@ -51,11 +51,18 @@ class MainPhoneChecker
   def act_on_task_type
     # task types: (if we have more than 1 task in the future)
     # 1: recruit volunteer task
-    if @message.task.task_type_id == 1
-      recruit_volunteer_task_response = RecruitVolunteerTaskResponse.new(@volunteer, @message, @report, @system_phone)
-      recruit_volunteer_task_response.proceed
+    if @task.task_type_id == 1
+      recruit_volunteer_task_response = RecruitVolunteerTaskResponse.new(@volunteer, @task)
+      # format question based on the task; have to add in personalized information in text; only for initial question
+      recruit_volunteer_task_response.format_initial_question
+      # dispatch question
+      dispatch_question(recruit_volunteer_task_response.initial_question_content)
     end
     log_conversation
+  end
+
+  def dispatch_question(content)
+    SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
   end
 
   def log_conversation

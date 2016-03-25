@@ -3,7 +3,8 @@ class CreateQuestions < ActiveRecord::Migration
     create_table :questions do |t|
       t.string :content, null: false
       t.integer :response_type, null: false
-
+      t.integer :question_order, null: false
+      
       t.integer :task_id
 
       t.timestamps null: false

@@ -25,12 +25,13 @@ class Api::Admin::ReportsController < Api::BaseController
 
   def dispatch_report
     report = Report.find(params[:report_id])
-    if report.dispatch_report?
-      report.update(dispatching: true)
-      render_json_message(200, message: "Digest dispatching...", resource: {report: report.serialize})
-    else
-      render_json_message(500, message: "Error when dispatching.")
-    end
+    p 'dispatching'
+    # if report.dispatch_report?
+    #   report.update(dispatching: true)
+    #   render_json_message(200, message: "Digest dispatching...", resource: {report: report.serialize})
+    # else
+    #   render_json_message(500, message: "Error when dispatching.")
+    # end
   end
 
 end

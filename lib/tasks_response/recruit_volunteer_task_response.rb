@@ -1,29 +1,48 @@
 class RecruitVolunteerTaskResponse
-  def initialize(volunteer, message, report, available_phone)
+  attr_reader :initial_question_content, :next_question_content
+  def initialize(volunteer, task, question)
     @volunteer = volunteer
-    @message = message
-    @report = report
-    @task = @message.task
-    @user = @message.user
-    @system_phone = available_phone
+    @task = task
+    @user = @task.user
+    @question = question
+    @next_question = {}
+    @initial_question_content = {}
+    @next_question_content = {}
+    # @system_phone = available_phone
   end
 
-  def proceed
-    # build questions in a task
-    configure_initial_question
+  def format_initial_question
+    @initial_question_content = @task.questions.first.content
+    @initial_question_content = content % {volunteer_first_name: @volunteer.first_name, organization_name: @task.user.organization_name, task_title: @task.title}
+    # move to main_phone_checker
+    # dispatch_question(content)
   end
 
-  def configure_initial_question
-    content = @message.task.questions.first.content
-    content = content % {volunteer_first_name: @volunteer.first_name, organization_name: @task.user.organization_name, task_title: @task.title}
-    dispatch_question(content)
+  def format_question
+    identify_questions
   end
 
   private
 
-  def dispatch_question(content)
-    SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
+  def identify_questions
+    if @question.question_order == 1
+      @next_question = @task.questions.find_by(question_order: 2)
+      @next_question_content = @next_question.content
+      @next_question_content = content % {volunteer_first_name: @volunteer.first_name}
+    elsif @question.question_order == 2
+      @next_question = @task.questions.find_by(question_order: 3)
+      @next_question_content = @next_question.content
+      @next_question_content = content % {number_of_participants: @volunteer.responses.find_by(task_id: @task.id, question_order: 2).content}
+    end
+
   end
+
+
+  # private
+
+  # def dispatch_question(content)
+  #   SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
+  # end
 end
 
 

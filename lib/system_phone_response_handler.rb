@@ -13,6 +13,7 @@ class SystemPhoneResponseHandler
   def proceed
     # handle responses from volunteer in a task
     check_volunteer_progress_in_task
+    # check response type
     response_type_identifier
   end
 
@@ -37,6 +38,7 @@ class SystemPhoneResponseHandler
     else
       @question_remaining = false
     end
+    # might not need this now, since we're delegating the next question task to individual task response file, i.e. using question formatter
     if @question_remaining && unanswered_question_ids.length > 1
       unanswered_question_ids.shift
       @next_question = Question.find(unanswered_question_ids.first)
@@ -52,16 +54,15 @@ class SystemPhoneResponseHandler
       number_handler
     elsif @question.response_type == 3
       # expecting text/string
-
     elsif @question.response_type == 4
       # expecting word 'remove'
       remove_handler
     end
   end
 
-  def dispatch_next_question
-    content = @next_question.content
-    SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
+  def dispatch_next_question(next_question_content)
+    # content = @next_question.content
+    SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, next_question_content)
   end
 
   def incorrect_response_handler
@@ -84,6 +85,10 @@ class SystemPhoneResponseHandler
     if @body == 'yes' || @body == 'no'
       log_response
       if @body == 'yes' && @question_remaining
+        # ********** question formatter **********
+        # question_formatter = QuestionFormatter.new(@task, @question, @volunteer)
+        # next_question_content = question_formatter.proceed
+        # dispatch_next_question(next_question_content)
         dispatch_next_question
       else
         after_volunteer_removes

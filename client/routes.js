@@ -7,6 +7,7 @@ import NoMatch from 'components/NoMatch';
 import Auth from 'components/session/Auth';
 import AdminAuth from 'components/session/AdminAuth';
 import AccountActivation from 'components/session/AccountActivation';
+import AuthComplete from 'components/session/AuthComplete';
 
 // Admin
 import AdminEventsContainer from 'components/admin/events/EventsContainer';
@@ -25,7 +26,8 @@ const routes = (
   <Route path='/' component={Landing}>
   	<Route path='auth' component={Auth}/>
   	<Route path='admin_auth' component={AdminAuth}/>
-  	<Route path='account_activation' component={AccountActivation}/>
+    <Route path='account_activation' component={AccountActivation}/>
+  	<Route path='auth_complete' component={AuthComplete}/>
   	<Route path='admin'>
 	  	<Route path='events' component={AdminEventsContainer}/>
 			<Route path='events/:eventId' component={AdminEvent}/>
