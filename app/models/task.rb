@@ -9,6 +9,7 @@ class Task < ActiveRecord::Base
   has_many :volunteers, through: :conversations
 
   belongs_to :message
+  belongs_to :report
 
   belongs_to :task_type
 
@@ -27,6 +28,6 @@ class Task < ActiveRecord::Base
 
   def approve
     self.update(approved: true)
-    self.message(approved: true)
+    self.message.update(approved: true)
   end
 end

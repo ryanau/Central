@@ -6,6 +6,7 @@ import EventActions from 'actions/eventActions';
 
 import ReportsContainer from '../reports/ReportsContainer';
 import TasksContainer from '../tasks/TasksContainer';
+import DispatchNextReport from './DispatchNextReport';
 
 class Event extends React.Component {
 	constructor(props) {
@@ -30,9 +31,6 @@ class Event extends React.Component {
 	_onArchiveButtonClicked = () => {
 		EventActions.archiveEvent(this.state.event.id)
 	}
-	_onDispatchButtonClicked = () => {
-
-	}
 	render() {
 		let event, eventInfo, archiveButton
 		event = this.state.event
@@ -47,10 +45,7 @@ class Event extends React.Component {
 						<input type="button" onClick={this._onArchiveButtonClicked} value="Archive Event" disabled={event.archived}/>
 					  <br/>
 					</form>
-					<form>
-						<input type="button" onClick={this._onDispatchButtonClicked} value="Dispatch Next Report" disabled={false}/>
-					  <br/>
-					</form>
+					<DispatchNextReport event={event}/>
 					<TasksContainer approvedTasks={event.approved_tasks} unapprovedTasks={event.unapproved_tasks} dispatchedTasks={event.dispatched_tasks}/>
 					<ReportsContainer eventId={event.id}/>
 				</div>

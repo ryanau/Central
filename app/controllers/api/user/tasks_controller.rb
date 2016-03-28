@@ -20,12 +20,15 @@ class Api::User::TasksController < Api::BaseController
   def create
     task = Task.create!(create_params)
     # make into async
+    # TaskBuilderWorker -> TaskBuilder
     task.build_task
     event = Event.find(task.event_id)
-    tasks = event.tasks.where(user_id: current_user.id)
-    render_json_message(201, message: "Task created!", resource: {tasks: tasks.map(&:serialize)})
-    rescue
-      render_json_message(500, errors: task.errors.messages[:name])
+    approved_tasks = event.approved_tasks.where(user_id: current_user.id)
+    unapproved_tasks = event.unapproved_tasks.where(user_id: current_user.id)
+    dispatched_tasks = event.dispatched_tasks.where(user_id: current_user.id)
+    render_json_message(201, message: "Task created!", resource: {approved_tasks: approved_tasks.map(&:serialize), unapproved_tasks: unapproved_tasks.map(&:serialize), dispatched_tasks: dispatched_tasks.map(&:serialize)})
+    # rescue
+    #   render_json_message(500, errors: ["Error when creating task."])
   end
 
   def demo_get

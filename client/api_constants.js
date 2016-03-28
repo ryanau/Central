@@ -37,7 +37,8 @@ class Api_Constants {
 			collection: this.admin_origin + 'reports',
 			report: (id) => this.admin_origin + `reports/${id}`,
 			dispatch: (id) => this.admin_origin + `reports/${id}/dispatch_report`,
-			edit: (id) => this.admin_origin + `reports/${id}`,		
+			edit: (id) => this.admin_origin + `reports/${id}`,	
+			dispatchNext: this.admin_origin + 'reports/dispatch_next',
 		}
 	}
 	get messages() {

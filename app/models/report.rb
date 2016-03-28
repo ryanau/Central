@@ -3,6 +3,7 @@ class Report < ActiveRecord::Base
 
   has_many :messages
   has_many :users, through: :messages
+  has_many :tasks, through: :messages
 
   has_many :report_volunteer_logs
 
@@ -18,6 +19,10 @@ class Report < ActiveRecord::Base
 
   def user_report_serialize
     ActiveModel::SerializableResource.new(self, serializer: UserReportSerializer)
+  end
+
+  def event_report_serialize
+    ActiveModel::SerializableResource.new(self, serializer: EventReportSerializer)
   end
 
   def dispatch_report?

@@ -3,7 +3,7 @@ import React from 'react';
 import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
 
-class EventsContainer extends React.Component {
+class EventCreator extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -58,4 +58,4 @@ class EventsContainer extends React.Component {
 	}
 };
 
-export default EventsContainer;
+export default EventCreator;

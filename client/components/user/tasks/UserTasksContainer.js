@@ -58,8 +58,11 @@ class UserTasksContainer extends React.Component {
 				<h4>Tasks Container</h4>
 				<UserTaskTypeSelector />
 				<h4>Tasks</h4>
+				<p>Approved Tasks</p>
 				{approvedTasks}
+				<p>Unapproved Tasks</p>
 				{unapprovedTasks}
+				<p>Dispatched Tasks</p>
 				{dispatchedTasks}
 			</div>
 		)

@@ -19,6 +19,9 @@ Rails.application.routes.draw do
       end
       resources :reports, only: [:index, :update, :show] do
         get 'dispatch_report'
+        collection do
+          get 'dispatch_next'
+        end
       end
       resources :messages, only: [] do
         get 'approve'

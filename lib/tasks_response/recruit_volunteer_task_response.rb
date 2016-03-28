@@ -12,7 +12,8 @@ class RecruitVolunteerTaskResponse
   end
 
   def format_initial_question
-    @initial_question_content = @task.questions.first.content
+    content = @task.questions.first.content
+    p 'ppppp'
     @initial_question_content = content % {volunteer_first_name: @volunteer.first_name, organization_name: @task.user.organization_name, task_title: @task.title}
     # move to main_phone_checker
     # dispatch_question(content)
@@ -27,12 +28,12 @@ class RecruitVolunteerTaskResponse
   def identify_questions
     if @question.question_order == 1
       @next_question = @task.questions.find_by(question_order: 2)
-      @next_question_content = @next_question.content
+      content = @next_question.content
       @next_question_content = content % {volunteer_first_name: @volunteer.first_name}
     elsif @question.question_order == 2
       @next_question = @task.questions.find_by(question_order: 3)
-      @next_question_content = @next_question.content
-      @next_question_content = content % {number_of_participants: @volunteer.responses.find_by(task_id: @task.id, question_order: 2).content}
+      content = @next_question.content
+      @next_question_content = content % {number_of_participants: @volunteer.responses.find_by(question_id: @question.id).content}
     end
 
   end

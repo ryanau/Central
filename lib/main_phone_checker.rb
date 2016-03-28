@@ -24,7 +24,7 @@ class MainPhoneChecker
   private
 
   def handle_invalid_replycode
-    content = "Sorry your replycode is not valid. Please try again by replying the code within the [bracket] from the previous digest."
+    content = "Sorry your replycode is not valid. Please try again by replying with the code in the [bracket] from the previous digest."
     to = @volunteer.phone_number
     SmsOutbound.send_from_main_phone(to, content)
   end
@@ -52,7 +52,7 @@ class MainPhoneChecker
     # task types: (if we have more than 1 task in the future)
     # 1: recruit volunteer task
     if @task.task_type_id == 1
-      recruit_volunteer_task_response = RecruitVolunteerTaskResponse.new(@volunteer, @task)
+      recruit_volunteer_task_response = RecruitVolunteerTaskResponse.new(@volunteer, @task, nil)
       # format question based on the task; have to add in personalized information in text; only for initial question
       recruit_volunteer_task_response.format_initial_question
       # dispatch question

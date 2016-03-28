@@ -1,6 +1,6 @@
 class EventTaskSerializer < ActiveModel::Serializer
-  attributes :id, :name, :city, :archived, :audience, :approved_tasks, :unapproved_tasks, :dispatched_tasks
-  
+  attributes :id, :name, :city, :archived, :audience, :approved_tasks, :unapproved_tasks, :dispatched_tasks, :undispatched_reports
+
   def audience
     Volunteer.count
   end

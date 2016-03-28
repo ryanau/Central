@@ -68,13 +68,13 @@ class SystemPhoneResponseHandler
   def incorrect_response_handler
     # for now there are 4 types of responses
     if @question.response_type == 1
-      filler = "YES or NO"
+      filler = "'YES' or 'NO'"
     elsif @question.response_type == 2
       filler = "a number"
     elsif @question.response_type == 3
       filler = "a word"
     elsif @question.response_type == 4
-      filler = "REMOVE if you no longer want to volunteer for this event"
+      filler = "'REMOVE' if you no longer want to volunteer for this event"
     end
     content = "Sorry your input is invalid. Please reply with #{filler}."
     SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
@@ -86,10 +86,9 @@ class SystemPhoneResponseHandler
       log_response
       if @body == 'yes' && @question_remaining
         # ********** question formatter **********
-        # question_formatter = QuestionFormatter.new(@task, @question, @volunteer)
-        # next_question_content = question_formatter.proceed
-        # dispatch_next_question(next_question_content)
-        dispatch_next_question
+        question_formatter = QuestionFormatter.new(@task, @question, @volunteer)
+        next_question_content = question_formatter.proceed
+        dispatch_next_question(next_question_content)
       else
         after_volunteer_removes
       end
@@ -101,7 +100,10 @@ class SystemPhoneResponseHandler
   def number_handler
     if is_number?(@body) && @question_remaining
       log_response
-      dispatch_next_question
+      # ********** question formatter **********
+      question_formatter = QuestionFormatter.new(@task, @question, @volunteer)
+      next_question_content = question_formatter.proceed
+      dispatch_next_question(next_question_content)
     else
       incorrect_response_handler
     end
