@@ -50,7 +50,7 @@ class SystemPhoneResponseHandler
       # expecting boolean yes/no
       boolean_yes_no_handler
     elsif @question.response_type == 2
-      # expeciting number
+      # expecting number
       number_handler
     elsif @question.response_type == 3
       # expecting text/string
