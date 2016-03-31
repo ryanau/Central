@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 import TasksActions from 'actions/tasksActions';
 import TaskTypesActions from 'actions/tasktypesActions';
@@ -22,9 +23,9 @@ class UserTaskCreator extends React.Component {
 	}
 	_handleChange = () => {
 		this.setState({
-      title: React.findDOMNode(this.refs.title).value,
-      zipcode: React.findDOMNode(this.refs.zipcode).value,
-      numberOfVolunteers: React.findDOMNode(this.refs.numberOfVolunteers).value,
+      title: ReactDOM.findDOMNode(this.refs.title).value,
+      zipcode: ReactDOM.findDOMNode(this.refs.zipcode).value,
+      numberOfVolunteers: ReactDOM.findDOMNode(this.refs.numberOfVolunteers).value,
     })
 	}
 	_handleKeydown = (e) => {

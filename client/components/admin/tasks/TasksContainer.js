@@ -68,7 +68,7 @@ class TasksContainer extends React.Component {
 			<div>
 				<h4>Tasks Container</h4>
 				<h4>Tasks</h4>
-				<p>Approved Tasks</p>
+				<p>Approved but Undispatched Tasks</p>
 				{approvedTasks}
 				<p>Unapproved Tasks</p>
 				{unapprovedTasks}

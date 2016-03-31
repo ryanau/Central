@@ -20,9 +20,9 @@ class Event < ActiveRecord::Base
   has_many :approved_messages, through: :reports
   has_many :unapproved_messages, through: :reports
 
-  has_many :approved_tasks, -> { where(tasks: {approved: true})}, :class_name => "Task", :foreign_key => :event_id
-  has_many :unapproved_tasks, -> { where(tasks: {approved: false})}, :class_name => "Task", :foreign_key => :event_id
-  has_many :dispatched_tasks, -> { where(tasks: {dispatched: true})}, :class_name => "Task", :foreign_key => :event_id
+  has_many :approved_tasks, -> { where(tasks: {approved: true, dispatched: false})}, :class_name => "Task", :foreign_key => :event_id
+  has_many :unapproved_tasks, -> { where(tasks: {approved: false, dispatched: false})}, :class_name => "Task", :foreign_key => :event_id
+  has_many :dispatched_tasks, -> { where(tasks: {approved: true, dispatched: true})}, :class_name => "Task", :foreign_key => :event_id
 
   validates :name, presence: true
   validates :name, uniqueness: { scope: :city }

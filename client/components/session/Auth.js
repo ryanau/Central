@@ -6,6 +6,8 @@ import ApiRequests from 'api_requests';
 
 import MasterStore from 'stores/masterStore';
 
+import { Input, ButtonInput } from 'react-bootstrap';
+
 class Auth extends React.Component {
 	constructor(props) {
 	  super(props);
@@ -69,7 +71,7 @@ class Auth extends React.Component {
           	placeholder="Password"
           	onChange={this._handleChange}/>
           <br/>
-          <input type="button" onClick={this._onSignUpSubmit} value="Sign Up"/>
+          <ButtonInput bsStyle="danger" type="button" onClick={this._onSignUpSubmit} value="Sign Up"/>
           <br/>
           <input type="button" onClick={this._onSignInSubmit} value="Sign In"/>
           <br/>

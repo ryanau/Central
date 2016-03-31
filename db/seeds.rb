@@ -49,7 +49,14 @@ def seed_number
 end
 
 def seed_ryan_volunteer
+<<<<<<< HEAD
   Volunteer.create(phone_number: "6122269607", first_name: "Alec", last_name: "Spencer")
+=======
+  Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au")
+  Volunteer.create(phone_number: "6122269607", first_name: "Alec", last_name: "Spencer")
+  Volunteer.create(phone_number: "4155280013", first_name: "Sassy Spandi", last_name: "Singh")
+  Volunteer.create(phone_number: "5107100656", first_name: "Youwei", last_name: "Du")
+>>>>>>> 8819e42dc629fde04afcf763d58e09633aa09058
   # Volunteer.create(phone_number: "5103355359", first_name: "Cynthia", last_name: "Huang")
   # Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au")
 end
