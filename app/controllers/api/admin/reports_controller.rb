@@ -24,8 +24,8 @@ class Api::Admin::ReportsController < Api::BaseController
   end
 
   def dispatch_report
-    report = Report.find(params[:report_id])
-    p 'dispatching'
+    # *** probably don't need this anymore, use dispatch_next
+    # report = Report.find(params[:report_id])
     # if report.dispatch_report?
     #   report.update(dispatching: true)
     #   render_json_message(200, message: "Digest dispatching...", resource: {report: report.serialize})
@@ -36,10 +36,9 @@ class Api::Admin::ReportsController < Api::BaseController
 
   def dispatch_next
     event = Event.find(params[:event_id])
-    report = event.reports.first
-    p 'dispatching'
+    report = event.undispatched_reports.first
     if report.dispatch_report?
-      report.update(dispatched: true)
+      report.update(dispatching: true)
       render_json_message(200, message: "Digest dispatching...", resource: {event: event.event_task_serialize})
     else
       render_json_message(500, message: "Error when dispatching.")

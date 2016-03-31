@@ -19,7 +19,8 @@ module ReportDispatchBuilder
       SmsOutbound.send_from_main_phone(to, message)
       ReportVolunteerLog.create(volunteer_id: volunteer.id, report_id: report.id)
     end
-    report.update(dispatched: true)
+    report.update(dispatched: true, dispatching: false)
+    report.tasks.update_all(dispatched: true)
     report.event.generate_next_report
   end
 end
