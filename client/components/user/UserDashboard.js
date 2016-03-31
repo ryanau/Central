@@ -1,9 +1,9 @@
 import React from 'react';
 import alt from 'control';
 
-import VolunteerSignUpBox from 'components/VolunteerSignUpBox';
+// import UserEventsContainer from 'components/user/events/UserEventsContainer';
 
-class Landing extends React.Component {
+class UserDashboard extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -20,11 +20,10 @@ class Landing extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2>Welcome to Central</h2>
-				<VolunteerSignUpBox/>
+				<h2>User Dashboard</h2>
 			</div>
 		)
 	}
 };
 
-export default Landing;
+export default UserDashboard;

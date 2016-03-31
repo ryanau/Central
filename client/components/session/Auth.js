@@ -42,7 +42,6 @@ class Auth extends React.Component {
     ApiRequests.post(ApiConstants.session.sign_up, data, resolve)
   }
   _onSignInSubmit = () => {
-    console.log('signing in')
     const resolve = (res) => {
       toastr.success('Redirecting...', 'Logged In');
       setTimeout(() => {
