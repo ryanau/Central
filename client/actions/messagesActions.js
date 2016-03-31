@@ -19,8 +19,11 @@ class MessagesActions {
 		ApiRequests.get(ApiConstants.user_messages.collection, data, resolve)
 	}
 	editUserMessage(id, content) {
+		// nesting it because rails require strong params, see user/messages_controller
 		const data = {
-		  content: content,
+			message: {
+			  content: content,
+			}
 		}
 		const resolve = (res) => {
 			this.actions.storeUserMessages(res);
@@ -29,8 +32,10 @@ class MessagesActions {
 	}
 	createUserMessage(reportId, content) {
 		const data = {
-			report_id: reportId,
-		  content: content,
+			message: {
+				report_id: reportId,
+			  content: content,
+			}
 		}
 		const resolve = (res) => {
 			this.actions.storeUserMessages(res);

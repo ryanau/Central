@@ -4,7 +4,8 @@ import alt from 'control';
 import EventStore from 'stores/eventStore';
 import EventActions from 'actions/eventActions';
 
-import UserReportsContainer from '../reports/UserReportsContainer';
+// import UserReportsContainer from '../reports/UserReportsContainer';
+import UserTasksContainer from '../tasks/UserTasksContainer';
 
 class UserEvent extends React.Component {
 	constructor(props) {
@@ -34,7 +35,7 @@ class UserEvent extends React.Component {
 				<div>
 					<p>{event.name}</p>
 					<p>Activated: {String(event.activated)}</p>
-					<UserReportsContainer eventId={event.id}/>
+					<UserTasksContainer eventId={event.id}/>
 				</div>
 			)
 

@@ -34,7 +34,7 @@ class AdminAuth extends React.Component {
       email: this.state.email, 
       password: this.state.password,
       password_confirmation: this.state.password,
-      confirm_success_url: 'http://localhost:8080/'
+      confirm_success_url: ApiConstants.session.auth_complete,
     }
     ApiRequests.post(ApiConstants.session.admin_sign_up, data, resolve)
   }

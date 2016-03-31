@@ -21,6 +21,22 @@ class EventActions {
 		}
 		ApiRequests.get(ApiConstants.events.archive(id), null, resolve)
 	}
+	approveTask(id) {
+		const resolve = (res) => {
+			this.actions.storeEvent(res);
+		}
+		ApiRequests.get(ApiConstants.tasks.approve(id), null, resolve)
+	}
+	dispatchNextReport(eventId) {
+		const data = {
+			event_id: eventId
+		}
+		const resolve = (res) => {
+			console.log(res)
+			this.actions.storeEvent(res);
+		}
+		ApiRequests.get(ApiConstants.reports.dispatchNext, data, resolve)
+	}
 	// User
 	fetchUserEvent(id) {
 		const resolve = (res) => {

@@ -3,7 +3,7 @@ import React from 'react';
 import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
 
-class EventsContainer extends React.Component {
+class EventCreator extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -21,11 +21,7 @@ class EventsContainer extends React.Component {
 		if (e.which == 13) {this._onSubmit()}
 	}
 	_onSubmit = () => {
-		const data = {
-		  name: this.state.name, 
-		  city: this.state.city,
-		}
-		EventsActions.createEvent(data)
+		EventsActions.createEvent(this.state.name, this.state.city)
 		this.setState({
 			name: null,
 			city: null,
@@ -62,4 +58,4 @@ class EventsContainer extends React.Component {
 	}
 };
 
-export default EventsContainer;
+export default EventCreator;

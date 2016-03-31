@@ -3,6 +3,9 @@ class Report < ActiveRecord::Base
 
   has_many :messages
   has_many :users, through: :messages
+  has_many :tasks, through: :messages
+
+  has_many :report_volunteer_logs
 
   has_many :approved_messages, -> { where(messages: {approved: true})}, :class_name => "Message", :foreign_key => :report_id
   has_many :unapproved_messages, -> { where(messages: {approved: false})}, :class_name => "Message", :foreign_key => :report_id
@@ -18,9 +21,13 @@ class Report < ActiveRecord::Base
     ActiveModel::SerializableResource.new(self, serializer: UserReportSerializer)
   end
 
+  def event_report_serialize
+    ActiveModel::SerializableResource.new(self, serializer: EventReportSerializer)
+  end
+
   def dispatch_report?
     # check if event is archived
-    if !self.event.archived && ReportDispatcher.perform_async(self.id)
+    if !self.event.archived && ReportDispatcherWorker.perform_async(self.id)
       true
     else
       false

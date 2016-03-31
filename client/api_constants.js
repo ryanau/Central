@@ -1,6 +1,7 @@
 class Api_Constants {
 	constructor() {
 		this.origin = 'http://localhost:3000/api/'
+		this.frontend = 'http://localhost:8080/'
 		this.admin_origin = this.origin + 'admin/'
 		this.user_origin = this.origin + 'user/'
 		this.volunteer_origin = this.origin + 'volunteers/'
@@ -14,6 +15,7 @@ class Api_Constants {
 			admin_sign_in: this.origin + 'admin_auth/sign_in',
 			admin_sign_out: this.origin + 'admin_auth/sign_out',
 			identity: this.origin + 'session/identity',
+			auth_complete: this.frontend + 'auth_complete'
 		}
 	}
 	get volunteers() {
@@ -35,7 +37,8 @@ class Api_Constants {
 			collection: this.admin_origin + 'reports',
 			report: (id) => this.admin_origin + `reports/${id}`,
 			dispatch: (id) => this.admin_origin + `reports/${id}/dispatch_report`,
-			edit: (id) => this.admin_origin + `reports/${id}`,		
+			edit: (id) => this.admin_origin + `reports/${id}`,	
+			dispatchNext: this.admin_origin + 'reports/dispatch_next',
 		}
 	}
 	get messages() {
@@ -43,7 +46,11 @@ class Api_Constants {
 			approve: (id) => this.admin_origin + `messages/${id}/approve`,
 		}
 	}
-
+	get tasks() {
+		return {
+			approve: (id) => this.admin_origin + `tasks/${id}/approve`,
+		}
+	}
 	// User
 	get user_events() {
 		return {
@@ -64,6 +71,18 @@ class Api_Constants {
 			edit: (id) => this.user_origin + `messages/${id}`,
 			create: this.user_origin + 'messages',
 			delete: (id) => this.user_origin + `messages/${id}`,
+		}
+	}
+	get user_tasks() {
+		return {
+			collection: this.user_origin + 'tasks',
+			task: (id) => this.user_origin + `tasks/${id}`,
+			create: this.user_origin + 'tasks',
+		}
+	}
+	get user_task_types() {
+		return {
+			collection: this.user_origin + 'task_types',
 		}
 	}
 }

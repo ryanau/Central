@@ -31,6 +31,39 @@ def make_messages
   end
 end
 
+def make_tasks
+  1.upto(4) do |n|
+    Task.create(
+      title: FFaker::Lorem.phrase,
+      zipcode: "94704",
+      number_of_volunteers: n,
+      user_id: 1,
+      event_id: 1,
+      task_type_id: 1,
+    )
+  end
+end
+
+def seed_number
+  Phone.create(number: "5102302759")
+  Phone.create(number: "6692310845")
+  Phone.create(number: "4847274200")
+end
+
+def seed_ryan_volunteer
+  Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au")
+  # Volunteer.create(phone_number: "5103355359", first_name: "Cynthia", last_name: "Huang")
+  # Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au")
+end
+
+def make_task_type
+  TaskType.create(name: "Recruit Volunteers")
+end
+
 make_events
+make_tasks
+seed_number
+seed_ryan_volunteer
+make_task_type
 # make_reports
 # make_messages
