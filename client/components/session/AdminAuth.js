@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import toastr from 'toastr';
 
 import ApiConstants from 'api_constants';
@@ -22,8 +23,8 @@ class AdminAuth extends React.Component {
 	}
 	_handleChange = () => {
 		this.setState({
-      email: React.findDOMNode(this.refs.email).value,
-      password: React.findDOMNode(this.refs.password).value,
+      email: ReactDOM.findDOMNode(this.refs.email).value,
+      password: ReactDOM.findDOMNode(this.refs.password).value,
     })
 	}
   _onSignUpSubmit = () => {
