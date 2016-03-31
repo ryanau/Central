@@ -57,7 +57,7 @@ class Auth extends React.Component {
     return (
       <div>
         <form>
-          <Input
+          <input
           	type="email"
           	name="email"
           	ref="email"
@@ -71,7 +71,7 @@ class Auth extends React.Component {
           	placeholder="Password"
           	onChange={this._handleChange}/>
           <br/>
-          <ButtonInput type="button" onClick={this._onSignUpSubmit} value="Sign Up"/>
+          <ButtonInput bsStyle="danger" type="button" onClick={this._onSignUpSubmit} value="Sign Up"/>
           <br/>
           <input type="button" onClick={this._onSignInSubmit} value="Sign In"/>
           <br/>

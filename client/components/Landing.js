@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Request from 'superagent';
 
 import VolunteerSignUpBox from 'components/VolunteerSignUpBox';
 
@@ -29,7 +28,6 @@ class Landing extends React.Component {
       MasterActions.fetchUserIdentity();
     }
     MasterStore.listen(this.onChange);
-    // this.getUserIdentity();
   }
   componentWillUnmount() {
     MasterStore.unlisten(this.onChange);
@@ -51,24 +49,6 @@ class Landing extends React.Component {
   _onChange(state) {
     this.setState(state);
   }
-  // getUserIdentity = () => {
-  //   if (localStorage.getItem('uid')) {
-  //     const resolve = (response) => {
-  //       if (JSON.parse(response['text']).user != null) {
-  //         this.setState({
-  //           user: JSON.parse(response['text']).user,
-  //           loggedIn: true,
-  //         });
-  //       } else {
-  //         localStorage.clear();
-  //         this.setState({
-  //           loggedIn: false
-  //         })
-  //       }
-  //     }
-  //     ApiRequests.get(ApiConstants.session.identity, null, resolve)
-  //   }
-  // }
   render() {
     let userName, signOutLink, eventNav, signOutLinkAdmin, signInLink, signInLinkAdmin
     if (this.state.loggedIn && this.state.authorization == 'user') {

@@ -85,6 +85,7 @@ class Report extends React.Component {
 				</div>
 			)
 			if (report.approved_messages.length > 0 && !report.dispatched && !report.event.archived) {
+				// probably don't need this anymore, only allow admin to dispatchNextReport from Event container
 				dispatchButton = (
 					<form>
 						<input type="button" onClick={this._onSubmit} value="Dispatch Digest" disabled={report.dispatching}/>
@@ -103,7 +104,6 @@ class Report extends React.Component {
 				<h4>Digest</h4>
 				{dispatchedInfo}
 				{reportInfo}
-				{dispatchButton}
 			</div>
 		)
 	}
