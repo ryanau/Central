@@ -24,10 +24,10 @@ class Intake
 		when 3
 			@volunteer.update!(age: @body.to_i)
 		when 4
-			@body == "YES" ? answer = true : answer = false
+			@body == "yes" ? answer = true : answer = false
 			@volunteer.update!(heavy_lifting: answer)
 		when 5
-			@body == "YES" ? answer = true : answer = false
+			@body == "yes" ? answer = true : answer = false
 			@volunteer.update!(driver: answer)
 		when 6
 			@volunteer.update!(zipcode: @body, profile_completed: true) #update volunteer profile to complete
