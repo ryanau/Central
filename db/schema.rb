@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160321224014) do
+ActiveRecord::Schema.define(version: 20160401022445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(version: 20160321224014) do
     t.boolean  "archived",   default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "intake_states", force: :cascade do |t|
+    t.integer  "volunteer_id"
+    t.integer  "last_intake_question_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "messages", force: :cascade do |t|
@@ -177,12 +184,16 @@ ActiveRecord::Schema.define(version: 20160321224014) do
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
   create_table "volunteers", force: :cascade do |t|
-    t.string   "phone_number", null: false
+    t.string   "phone_number",                      null: false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "zipcode"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "age"
+    t.boolean  "driver"
+    t.boolean  "heavy_lifting"
+    t.boolean  "profile_completed", default: false
   end
 
 end

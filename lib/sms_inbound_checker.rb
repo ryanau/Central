@@ -7,20 +7,20 @@ class SmsInboundChecker
   end
 
   def proceed
-    if is_caller_a_volunteer?
+    if check_intake_phone?
+      intake = Intake.new(@caller_phone, @body)
+      intake.proceed
+    elsif is_caller_a_registered_volunteer?
       # it's a volunteer
       check_target_phone
-    elsif @body == 'join' && check_main_phone?
-      # not a volunteer and texting to join
-      # dispatch questionnaire (alec)
     else
       # it's not a volunteer and not texting to register
       handle_caller_not_registered
     end
   end
 
-  def is_caller_a_volunteer?
-    @volunteer = Volunteer.find_by(phone_number: @caller_phone)
+  def is_caller_a_registered_volunteer?
+    @volunteer = Volunteer.find_by(phone_number: @caller_phone, profile_completed: true)
   end
 
   def check_target_phone
@@ -36,6 +36,10 @@ class SmsInboundChecker
   end
 
   private
+
+  def check_intake_phone?
+    @target_phone == ENV['TWILIO_INTAKE']
+  end
 
   def check_main_phone?
     @target_phone == ENV['TWILIO_PHONE']
