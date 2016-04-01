@@ -21,7 +21,7 @@
   "author": "Ryan Au",
   "license": "MIT",
   "dependencies": {
-    "alt": "0.18.4",
+    "alt": "0.17.1",
     "css-loader": "0.23.1",
     "babel-runtime": "5.6.18",
     "react": "0.14.8",
