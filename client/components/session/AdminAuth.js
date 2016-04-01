@@ -60,8 +60,8 @@ class AdminAuth extends React.Component {
       <div>
       <Grid>
        <Row className="show-grid">
-       <Col xs={6} md={4}></Col>
-        <Col xs={6} md={4}>
+       <Col xs={0} md={4}></Col>
+        <Col xs={12} md={4}>
         <Panel header = "Admin Sign Up/Sign In">
         <form>
           <Input type="email" label="Email Address" ref="email" placeholder="Enter email" onChange={this._handleChange}/>
@@ -71,13 +71,13 @@ class AdminAuth extends React.Component {
           <br/>
           <ButtonToolbar>
             <Button button bsStyle="primary" onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
-            <Button button bsStyle="primary" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
+            <Button button bsStyle="primary" sonClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
           </ButtonToolbar>
           <br/>
         </form>
         </Panel>
         </Col>
-         <Col xsHidden md={4}></Col>
+         <Col md={4}></Col>
         </Row>
         </Grid>
       </div>
