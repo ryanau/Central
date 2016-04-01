@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import toastr from 'toastr';
 
 import ApiConstants from 'api_constants';
@@ -6,7 +7,7 @@ import ApiRequests from 'api_requests';
 
 import MasterStore from 'stores/masterStore';
 
-import { Input, ButtonInput } from 'react-bootstrap';
+import { Input, ButtonInput, Button } from 'react-bootstrap';
 
 class Auth extends React.Component {
 	constructor(props) {
@@ -14,9 +15,9 @@ class Auth extends React.Component {
 	}
 	componentWillMount() {
 	  this.setState({
-	    email: null,
-	    password: null,
-	    password_confirmation: null,
+	    email: "",
+	    password: "",
+	    password_confirmation: "",
 	  })
     this.setState(
       MasterStore.getState()
@@ -24,8 +25,8 @@ class Auth extends React.Component {
 	}
 	_handleChange = () => {
 		this.setState({
-      email: React.findDOMNode(this.refs.email).value,
-      password: React.findDOMNode(this.refs.password).value,
+      email: ReactDOM.findDOMNode(this.refs.email).value,
+      password: ReactDOM.findDOMNode(this.refs.password).value,
     })
 	}
   _onSignUpSubmit = () => {
@@ -54,6 +55,8 @@ class Auth extends React.Component {
     ApiRequests.post(ApiConstants.session.sign_in, data, resolve)
   }
   render() {
+    let disabled
+    this.state.email.length > 0 && this.state.password.length > 0 ? disabled = false : disabled = true
     return (
       <div>
         <form>
@@ -71,9 +74,9 @@ class Auth extends React.Component {
           	placeholder="Password"
           	onChange={this._handleChange}/>
           <br/>
-          <ButtonInput bsStyle="danger" type="button" onClick={this._onSignUpSubmit} value="Sign Up"/>
+          <Button onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
           <br/>
-          <input type="button" onClick={this._onSignInSubmit} value="Sign In"/>
+          <Button onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
           <br/>
         </form>
       </div>
