@@ -6,27 +6,28 @@ import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
 
 import MasterStore from 'stores/masterStore';
+import { Input, Grid, Row, Col, ButtonInput, Button, Panel, ButtonToolbar } from 'react-bootstrap';
 
 class AdminAuth extends React.Component {
-	constructor(props) {
-	  super(props);
-    this.state = {
-      email: null,
-      password: null,
-      password_confirmation: null,
-    }
-	}
-	componentWillMount() {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    this.setState({
+      email: "",
+      password: "",
+      password_confirmation: "",
+    })
     this.setState(
       MasterStore.getState()
     )
-	}
-	_handleChange = () => {
-		this.setState({
+  }
+  _handleChange = () => {
+    this.setState({
       email: ReactDOM.findDOMNode(this.refs.email).value,
       password: ReactDOM.findDOMNode(this.refs.password).value,
     })
-	}
+  }
   _onSignUpSubmit = () => {
     const resolve = (res) => {
       ApiRequests.redirect('account_activation')
@@ -53,29 +54,33 @@ class AdminAuth extends React.Component {
     ApiRequests.post(ApiConstants.session.admin_sign_in, data, resolve)
   }
   render() {
+    let disabled
+    console.log(this.state.email)
+    // this.state.email.length > 0 && this.state.password.length > 0 ? disabled = false : disabled = true
     return (
       <div>
-        <h4>Admin Sign Up/Sign In</h4>
+      <Grid>
+       <Row className="show-grid">
+       <Col xs={6} md={4}></Col>
+        <Col xs={6} md={4}>
+        <Panel header = "Admin Sign Up/Sign In">
         <form>
-          <input
-          	type="email"
-          	name="email"
-          	ref="email"
-          	placeholder="Email"
-          	onChange={this._handleChange}/>
+          <Input type="email" label="Email Address" ref="email" placeholder="Enter email" onChange={this._handleChange}/>
           <br/>
-          <input
-          	type="password"
-          	name="password"
-          	ref="password"
-          	placeholder="Password"
-          	onChange={this._handleChange}/>
+            <Input type="password" placeholder="Password" label="Password" ref="password" onChange={this._handleChange} />
+         
           <br/>
-          <input type="button" onClick={this._onSignUpSubmit} value="Sign Up"/>
-          <br/>
-          <input type="button" onClick={this._onSignInSubmit} value="Sign In"/>
+          <ButtonToolbar>
+            <Button button onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
+            <Button button onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
+          </ButtonToolbar>
           <br/>
         </form>
+        </Panel>
+        </Col>
+         <Col xsHidden md={4}></Col>
+        </Row>
+        </Grid>
       </div>
     );
   }
