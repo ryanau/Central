@@ -45,9 +45,7 @@ def make_tasks
 end
 
 def seed_number
-  Phone.create(number: "5102302759")
-  Phone.create(number: "6692310845")
-  Phone.create(number: "4847274200")
+  Phone.create(number: "9734409239")
 end
 
 def seed_ryan_volunteer
