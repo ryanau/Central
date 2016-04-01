@@ -14,7 +14,7 @@ module ReportDispatchBuilder
 
   def self.dispatch_report(report, message)
     # dispatch report and also log which volunteer should've received it
-    Volunteer.all.each do |volunteer|
+    Volunteer.where(profile_completed: true).each do |volunteer|
       to = volunteer.phone_number
       SmsOutbound.send_from_main_phone(to, message)
       ReportVolunteerLog.create(volunteer_id: volunteer.id, report_id: report.id)
