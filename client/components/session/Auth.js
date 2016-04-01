@@ -25,8 +25,8 @@ class Auth extends React.Component {
 	}
 	_handleChange = () => {
 		this.setState({
-      email: ReactDOM.findDOMNode(this.refs.email).value,
-      password: ReactDOM.findDOMNode(this.refs.password).value,
+      email: this.refs.email.getValue(),
+      password: this.refs.password.getValue(),
     })
 	}
   _onSignUpSubmit = () => {
@@ -76,7 +76,6 @@ class Auth extends React.Component {
             	type="email"
             	name="email"
             	ref="email"
-              bsStyle ="large"
             	placeholder="Email"
             	onChange={this._handleChange}/>
             <br/>
@@ -85,7 +84,6 @@ class Auth extends React.Component {
             	type="password"
             	name="password"
             	ref="password"
-              bsStyle = "large"
             	placeholder="Password"
             	onChange={this._handleChange}/>
             <br/>
