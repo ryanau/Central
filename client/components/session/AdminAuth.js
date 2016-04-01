@@ -24,8 +24,8 @@ class AdminAuth extends React.Component {
   }
   _handleChange = () => {
     this.setState({
-      email: ReactDOM.findDOMNode(this.refs.email).value,
-      password: ReactDOM.findDOMNode(this.refs.password).value,
+      email: this.refs.email.getValue(),
+      password: this.refs.password.getValue(),
     })
   }
   _onSignUpSubmit = () => {
@@ -55,8 +55,7 @@ class AdminAuth extends React.Component {
   }
   render() {
     let disabled
-    console.log(this.state.email)
-    // this.state.email.length > 0 && this.state.password.length > 0 ? disabled = false : disabled = true
+    this.state.email.length > 0 && this.state.password.length > 0 ? disabled = false : disabled = true
     return (
       <div>
       <Grid>
