@@ -31,12 +31,6 @@ class Api::User::TasksController < Api::BaseController
     #   render_json_message(500, errors: ["Error when creating task."])
   end
 
-  def demo_get
-    task = Task.create!(title: "Debris cleaning", zipcode: "94704", number_of_volunteers: 20, user_id: 1, event_id: 1, task_type_id: 1)
-    task.build_task
-    render_json_message(201, message: "Task created!")
-  end
-
   private
 
   def create_params

@@ -8,9 +8,9 @@ class LoggedInLanding extends React.Component {
 		super(props);
 	}
 	componentWillMount() {
-		if (this.props.loggedIn && this.props.authorization == "user") {
-			ApiRequests.redirect('/user/dashboard')
-		}
+		// if (this.props.loggedIn && this.props.authorization == "user") {
+		// 	ApiRequests.redirect('/user/dashboard')
+		// }
 	}
 	render() {
 		return (

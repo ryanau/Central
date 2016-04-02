@@ -71,7 +71,7 @@ class AdminAuth extends React.Component {
           <br/>
           <ButtonToolbar>
             <Button button bsStyle="primary" onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
-            <Button button bsStyle="primary" sonClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
+            <Button button bsStyle="primary" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
           </ButtonToolbar>
           <br/>
         </form>

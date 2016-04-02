@@ -48,11 +48,17 @@ def seed_number
   Phone.create(number: "9734409239")
 end
 
+def seed_ryan_number
+  Phone.create(number: "5102302759")
+  Phone.create(number: "6692310845")
+  Phone.create(number: "4847274200")
+end
+
 def seed_ryan_volunteer
-  Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au")
-  Volunteer.create(phone_number: "6122269607", first_name: "Alec", last_name: "Spencer")
-  Volunteer.create(phone_number: "4155280013", first_name: "Sassy Spandi", last_name: "Singh")
-  Volunteer.create(phone_number: "5107100656", first_name: "Youwei", last_name: "Du")
+  Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au", zipcode: "94704", age: 21, driver: true, heavy_lifting: false, profile_completed: true)
+  # Volunteer.create(phone_number: "6122269607", first_name: "Alec", last_name: "Spencer")
+  # Volunteer.create(phone_number: "4155280013", first_name: "Sassy Spandi", last_name: "Singh")
+  # Volunteer.create(phone_number: "5107100656", first_name: "Youwei", last_name: "Du")
   # Volunteer.create(phone_number: "5103355359", first_name: "Cynthia", last_name: "Huang")
   # Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au")
 end
@@ -62,9 +68,10 @@ def make_task_type
 end
 
 make_events
-make_tasks
-seed_number
+# make_tasks
+# seed_number
 seed_ryan_volunteer
 make_task_type
 # make_reports
 # make_messages
+seed_ryan_number

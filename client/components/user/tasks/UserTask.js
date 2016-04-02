@@ -1,8 +1,11 @@
 import React from 'react';
 import alt from 'control';
+import { Table, Column, Cell } from 'fixed-data-table';
 
 import TaskStore from 'stores/taskStore';
 import TaskActions from 'actions/taskActions';
+
+import UserResponseTable from '../responses/UserResponseTable';
 
 class UserTask extends React.Component {
 	constructor(props) {
@@ -25,7 +28,7 @@ class UserTask extends React.Component {
 	  alt.recycle(TaskStore);
 	}
 	render() {
-		let task, taskInfo
+		let task, taskInfo, attendeeResponses, table
 		task = this.state.task
 		if (task != null) {
 			taskInfo = (
@@ -33,6 +36,7 @@ class UserTask extends React.Component {
 					<p>ID: {task.id}</p>
 					<p>Task Title: {task.title}</p>
 					<p># of Volunteers: {task.number_of_volunteers}</p>
+					<UserResponseTable attendeeResponses={task.number_of_attendees_responses}/>
 				</div>
 			)
 		}
@@ -40,6 +44,7 @@ class UserTask extends React.Component {
 			<div>
 				<h4>Task</h4>
 				{taskInfo}
+				{table}
 			</div>
 		)
 	}
