@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
+import {Navbar, Nav, NavItem, MenuItem} from 'react-bootstrap'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -55,16 +56,29 @@ class NavBar extends React.Component {
       signInLinkAdmin = (<li><Link to="/admin_auth">Admin Sign Up/In</Link></li>)
     }
     return (
-      <div>
-        <ul>
-          {userName}
-          {signInLink}
-          {signInLinkAdmin}
-          {signOutLink}
-          {signOutLinkAdmin}
-          {eventNav}
-        </ul>
-      </div>
+      <Navbar inverse>
+    <Navbar.Header>
+      <Navbar.Brand>
+        <a href="#">Central</a>
+      </Navbar.Brand>
+      <Navbar.Toggle />
+    </Navbar.Header>
+    <Navbar.Collapse>
+      <Nav>
+        <NavItem eventKey={1} href="/auth">User Signin/Out</NavItem>
+        <NavItem eventKey={2} href="/admin_auth">Admin Signin/Out</NavItem>
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar>
+      // <div>
+      //   <ul>
+      //     {userName}
+      //     {signInLink}
+      //     {signInLinkAdmin}
+      //     {signOutLink}
+      //     {eventNav}
+      //   </ul>
+      // </div>
     );    
   }
 }
