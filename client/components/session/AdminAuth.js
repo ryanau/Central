@@ -62,7 +62,7 @@ class AdminAuth extends React.Component {
        <Row className="show-grid">
        <Col xs={0} md={4}></Col>
         <Col xs={12} md={4}>
-        <Panel header = "Admin Sign Up/Sign In">
+        <Panel header = "Admin Sign Up/Sign In" bsStyle="primary">
         <form>
           <Input type="email" label="Email Address" ref="email" placeholder="Enter email" onChange={this._handleChange}/>
           <br/>

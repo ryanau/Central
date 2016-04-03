@@ -7,7 +7,7 @@ import ApiRequests from 'api_requests';
 
 import MasterStore from 'stores/masterStore';
 
-import { Input, ButtonInput, Button } from 'react-bootstrap';
+import { Input, ButtonInput, Button, Panel, ButtonGroup, Row, Col, ButtonToolbar} from 'react-bootstrap';
 
 class Auth extends React.Component {
 	constructor(props) {
@@ -25,8 +25,8 @@ class Auth extends React.Component {
 	}
 	_handleChange = () => {
 		this.setState({
-      email: ReactDOM.findDOMNode(this.refs.email).value,
-      password: ReactDOM.findDOMNode(this.refs.password).value,
+      email: this.refs.email.getValue(),
+      password: this.refs.password.getValue(),
     })
 	}
   _onSignUpSubmit = () => {
@@ -49,37 +49,57 @@ class Auth extends React.Component {
       }, 1000)
     }
     const data = {
-      email: this.state.email, 
+      email: this.state.email,
       password: this.state.password,
     }
     ApiRequests.post(ApiConstants.session.sign_in, data, resolve)
   }
   render() {
-    let disabled
+    let disabled, panel
     this.state.email.length > 0 && this.state.password.length > 0 ? disabled = false : disabled = true
+    // panel = (
+      // <div>
+      // <Panel>
+        // <h3>thalsdfjlkasjdf</h3>
+      // </Panel>
+      // </div>
+    // )
     return (
-      <div>
-        <form>
-          <input
-          	type="email"
-          	name="email"
-          	ref="email"
-          	placeholder="Email"
-          	onChange={this._handleChange}/>
-          <br/>
-          <input
-          	type="password"
-          	name="password"
-          	ref="password"
-          	placeholder="Password"
-          	onChange={this._handleChange}/>
-          <br/>
-          <Button onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
-          <br/>
-          <Button onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
-          <br/>
-        </form>
-      </div>
+      <Row className="show-grid">
+      <Col xs={6} md={4}></Col>
+      <Col xs={6} md={4}>
+        <div>
+          <Panel header="User SignIn">
+          <form>
+            <Input
+              label="Email"
+            	type="email"
+            	name="email"
+            	ref="email"
+            	placeholder="Email"
+            	onChange={this._handleChange}/>
+            <br/>
+            <Input
+              label="Password"
+            	type="password"
+            	name="password"
+            	ref="password"
+            	placeholder="Password"
+            	onChange={this._handleChange}/>
+            <br/>
+            <ButtonToolbar>
+              <Button bsStyle="primary" onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
+
+              <Button bsStyle="success" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
+            </ButtonToolbar>
+            <br/>
+
+          </form>
+          </Panel>
+        </div>
+      </Col>
+      <Col xs={6} md={4}></Col>
+    </Row>
     );
   }
 };
