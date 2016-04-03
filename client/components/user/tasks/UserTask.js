@@ -35,7 +35,11 @@ class UserTask extends React.Component {
 				<div>
 					<p>ID: {task.id}</p>
 					<p>Task Title: {task.title}</p>
-					<p># of Volunteers: {task.number_of_volunteers}</p>
+					<p># of Volunteers requested: {task.number_of_volunteers}</p>
+					<p>Digest reached: {task.report_reached}</p>
+					<p># of Volunteers responded: {task.volunteer_responded}</p>
+					<p># of Volunteers removed: {task.volunteer_removed}</p>
+					<p># of total participants: {task.total_coming}</p>
 					<UserResponseTable attendeeResponses={task.number_of_attendees_responses}/>
 				</div>
 			)

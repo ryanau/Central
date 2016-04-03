@@ -25,9 +25,9 @@ class UserResponseTable extends React.Component {
 				<Table
 				  rowHeight={30}
 				  rowsCount={attendeeResponses.length}
-				  width={1000}
+				  width={900}
 				  height={1000}
-				  headerHeight={50}>
+				  headerHeight={30}>
 				  <Column
 				    header={<Cell>First Name</Cell>}
 				    fixed={true}
@@ -52,7 +52,7 @@ class UserResponseTable extends React.Component {
 				        data={attendeeResponses}
 				        field={["content"]}
 				        measureWord="ppl"/>}
-				    width={150}/>
+				    width={50}/>
 				  <Column
 				    header={<Cell>Driver?</Cell>}
 				    cell={
