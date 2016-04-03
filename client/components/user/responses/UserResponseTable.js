@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table, Column, Cell } from 'fixed-data-table';
 
-import TextCell from './tables/TextCell';
+import TextCell from 'components/tables/TextCell';
 
 class UserResponseTable extends React.Component {
 	constructor(props) {

@@ -44,6 +44,12 @@ def make_tasks
   end
 end
 
+def make_questions
+  Question.create(content: "Hi %{volunteer_first_name}! Hope you are safe and sound. This is %{organization_name} contacting you through Central. Are you interested in volunteering for our upcoming event: %{task_title}?\n\nIf you are, please reply 'YES'. If not, please reply 'NO'. Thank you!", response_type: 1, question_order: 1, task_id: 1)
+  Question.create(content: "Glad to hear that %{volunteer_first_name}! How many people (including yourself) are coming to this event?\n\nPlease reply with a number.", response_type: 2, question_order: 2, task_id: 1)
+  Question.create(content: "We have confirmed you have %{number_of_participants} people coming!\n\nPlease reply 'REMOVE' if you are no longer interested in coming anymore.", response_type: 4, question_order: 3, task_id: 1)
+end
+
 def seed_number
   Phone.create(number: "9734409239")
 end
@@ -56,15 +62,23 @@ end
 
 def seed_ryan_volunteer
   Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au", zipcode: "94704", age: 21, driver: true, heavy_lifting: false, profile_completed: true)
-  # Volunteer.create(phone_number: "6122269607", first_name: "Alec", last_name: "Spencer")
-  # Volunteer.create(phone_number: "4155280013", first_name: "Sassy Spandi", last_name: "Singh")
-  # Volunteer.create(phone_number: "5107100656", first_name: "Youwei", last_name: "Du")
-  # Volunteer.create(phone_number: "5103355359", first_name: "Cynthia", last_name: "Huang")
-  # Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au")
+  Volunteer.create(phone_number: "6122269607", first_name: "Alec", last_name: "Spencer", age: 17, driver: true, heavy_lifting: false, profile_completed: true)
+  Volunteer.create(phone_number: "4155280013", first_name: "Sassy Spandi", last_name: "Singh", age: 69, driver: true, heavy_lifting: true, profile_completed: true)
+  Volunteer.create(phone_number: "5107100656", first_name: "Youwei", last_name: "Du", age: 42, driver: true, heavy_lifting: false, profile_completed: true)
+  Volunteer.create(phone_number: "5103355359", first_name: "Cynthia", last_name: "Huang", age: 22, driver: false, heavy_lifting: false, profile_completed: true)
+  Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au", age: 21, driver: true, heavy_lifting: true, profile_completed: true)
 end
 
 def make_task_type
   TaskType.create(name: "Recruit Volunteers")
+end
+
+def seed_responses
+  Volunteer.all.each do |volunteer|
+    Response.create(content: "yes", question_id: 1, volunteer_id: volunteer.id)
+    Response.create(content: volunteer.id, question_id: 2, volunteer_id: volunteer.id)
+    Response.create(content: "remove", question_id: 3, volunteer_id: volunteer.id)
+  end
 end
 
 make_events
@@ -75,3 +89,5 @@ make_task_type
 # make_reports
 # make_messages
 seed_ryan_number
+seed_responses
+make_questions

@@ -4,9 +4,7 @@ class UserTaskSerializer < ActiveModel::Serializer
   # has_many :responses
 
   def number_of_attendees_responses
-    object.questions.find_by(question_order: 2).responses.map(&:user_response_serialize)
+    still_in_volunteer_ids = object.active_conversations.pluck(:volunteer_id)
+    object.questions.find_by(question_order: 2).responses.where(volunteer_id: still_in_volunteer_ids).map(&:user_response_serialize)
   end
-
-
-
 end

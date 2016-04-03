@@ -7,6 +7,8 @@ class Task < ActiveRecord::Base
 
   has_many :conversations
   has_many :volunteers, through: :conversations
+  has_many :active_conversations, -> { where(conversations: {active: true})}, :class_name => "Conversation", :foreign_key => :task_id
+  has_many :inactive_conversations, -> { where(conversations: {active: false})}, :class_name => "Conversation", :foreign_key => :task_id
 
   belongs_to :message
   belongs_to :report
