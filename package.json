@@ -24,6 +24,7 @@
     "alt": "0.17.1",
     "css-loader": "0.23.1",
     "babel-runtime": "5.6.18",
+    "fixed-data-table": "0.6.0",
     "react": "0.14.8",
     "react-dom": "0.14.8",
     "react-router": "2.0.0",
