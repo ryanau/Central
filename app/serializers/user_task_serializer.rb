@@ -1,5 +1,5 @@
 class UserTaskSerializer < ActiveModel::Serializer
-  attributes :id, :title, :number_of_volunteers, :number_of_attendees_responses, :report_reached, :volunteer_responded, :volunteer_removed, :total_coming
+  attributes :id, :title, :number_of_volunteers, :created_at, :number_of_attendees_responses, :report_reached, :volunteer_responded, :volunteer_removed, :total_coming
 
   def number_of_attendees_responses
     still_in_volunteer_ids = object.active_conversations.pluck(:volunteer_id)

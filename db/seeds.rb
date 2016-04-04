@@ -65,8 +65,9 @@ def seed_ryan_volunteer
   Volunteer.create(phone_number: "6122269607", first_name: "Alec", last_name: "Spencer", zipcode: "94704", age: 17, driver: true, heavy_lifting: false, profile_completed: true)
   Volunteer.create(phone_number: "4155280013", first_name: "Sassy Spandi", last_name: "Singh", zipcode: "94704", age: 69, driver: true, heavy_lifting: true, profile_completed: true)
   Volunteer.create(phone_number: "5107100656", first_name: "Youwei", last_name: "Du", zipcode: "94704", age: 42, driver: true, heavy_lifting: false, profile_completed: true)
-  Volunteer.create(phone_number: "5103355359", first_name: "Cynthia", last_name: "Huang", zipcode: "94704", age: 22, driver: false, heavy_lifting: false, profile_completed: true)
-  Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au", zipcode: "94704", age: 21, driver: true, heavy_lifting: true, profile_completed: true)
+  Volunteer.create(phone_number: "3237676169", first_name: "Ed", last_name: "Kim", zipcode: "94704", age: 42, driver: true, heavy_lifting: false, profile_completed: true)
+  # Volunteer.create(phone_number: "5103355359", first_name: "Cynthia", last_name: "Huang", zipcode: "94704", age: 22, driver: false, heavy_lifting: false, profile_completed: true)
+  # Volunteer.create(phone_number: "6263487279", first_name: "Devin", last_name: "Au", zipcode: "94704", age: 21, driver: true, heavy_lifting: true, profile_completed: true)
 end
 
 def make_task_type
@@ -82,13 +83,13 @@ def seed_responses_conversation
   end
 end
 
-make_events
-make_tasks
+# make_events
+# make_tasks
 # seed_number
 seed_ryan_volunteer
 make_task_type
 # make_reports
 # make_messages
 seed_ryan_number
-seed_responses_conversation
-make_questions
+# seed_responses_conversation
+# make_questions
