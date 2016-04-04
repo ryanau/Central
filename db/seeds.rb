@@ -60,6 +60,10 @@ def seed_ryan_number
   Phone.create(number: "4847274200")
 end
 
+def seed_youwei_number
+  Phone.create(number: "2013899283")
+end
+
 def seed_ryan_volunteer
   Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au", zipcode: "94704", age: 21, driver: true, heavy_lifting: false, profile_completed: true)
   Volunteer.create(phone_number: "6122269607", first_name: "Alec", last_name: "Spencer", zipcode: "94704", age: 17, driver: true, heavy_lifting: false, profile_completed: true)
@@ -89,6 +93,6 @@ seed_ryan_volunteer
 make_task_type
 # make_reports
 # make_messages
-seed_ryan_number
+# seed_ryan_number
 seed_responses_conversation
 make_questions
