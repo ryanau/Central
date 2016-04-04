@@ -10,11 +10,16 @@ class UserResponseTable extends React.Component {
 	componentWillMount() {
 	  this.setState({
 	  	attendeeResponses: this.props.attendeeResponses,
+			windowWidth: window.innerWidth - 30,
 	  })
 	}
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			attendeeResponses: nextProps.attendeeResponses,
+		})
+	}
+	componentDidMount() {
+		this.setState({
 		})
 	}
 	render() {
@@ -25,8 +30,8 @@ class UserResponseTable extends React.Component {
 				<Table
 				  rowHeight={30}
 				  rowsCount={attendeeResponses.length}
-				  width={900}
-				  height={1000}
+				  width={this.state.windowWidth}
+				  height={attendeeResponses.length * 30 + 35}
 				  headerHeight={30}>
 				  <Column
 				    header={<Cell>First Name</Cell>}
@@ -52,7 +57,7 @@ class UserResponseTable extends React.Component {
 				        data={attendeeResponses}
 				        field={["content"]}
 				        measureWord="ppl"/>}
-				    width={50}/>
+				    width={80}/>
 				  <Column
 				    header={<Cell>Driver?</Cell>}
 				    cell={
