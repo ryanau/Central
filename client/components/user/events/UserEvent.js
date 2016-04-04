@@ -6,6 +6,7 @@ import EventActions from 'actions/eventActions';
 
 // import UserReportsContainer from '../reports/UserReportsContainer';
 import UserTasksContainer from '../tasks/UserTasksContainer';
+import {Panel, Grid, Row, Col, Tabs, Tab} from 'react-bootstrap';
 
 class UserEvent extends React.Component {
 	constructor(props) {
@@ -28,23 +29,41 @@ class UserEvent extends React.Component {
 	  alt.recycle(EventStore);
 	}
 	render() {
-		let event, eventInfo
+		let event, eventInfo, taskInfo
 		event = this.state.event
 		if (this.state.event != null) {
 			eventInfo = (
 				<div>
 					<p>{event.name}</p>
 					<p>Activated: {String(event.activated)}</p>
-					<UserTasksContainer eventId={event.id}/>
 				</div>
 			)
+			taskInfo = (
+					<div>
+						<UserTasksContainer eventId={event.id}/>
+					</div>
+				)
 
 		}
 		return (
-			<div>
-				<h4>Event</h4>
-				{eventInfo}
-			</div>
+			<Grid>
+				<Row className="show-grid">
+		      <Col xs={3} md={2}></Col>
+		      <Col xs={15} md={10}>
+			      <div>
+					    <Panel header="Events" bsStyle="primary">
+								{eventInfo}
+					    </Panel>
+					    	<h3>Tasks</h3>
+					      <Tabs defaultActiveKey={1}>
+								    <Tab eventKey={1} title="Approved Tasks">{taskInfo}</Tab>
+								    <Tab eventKey={2} title="Unapproved Tasks">{taskInfo}</Tab>
+								    <Tab eventKey={3} title="Dispatched Tasks" disabled>{taskInfo}</Tab>
+  							</Tabs>
+						</div>
+		      </Col>
+    		</Row>
+    	</Grid>
 		)
 	}
 };
