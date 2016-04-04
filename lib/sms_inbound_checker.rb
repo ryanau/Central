@@ -2,7 +2,7 @@ class SmsInboundChecker
   def initialize(params)
     @target_phone = params[:To][2, params[:To].length]
     @caller_phone = params[:From][2, params[:From].length]
-    @body = params[:Body].downcase
+    @body = params[:Body].strip!.downcase
     @volunteer = {}
   end
 
