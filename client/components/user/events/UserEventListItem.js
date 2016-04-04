@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import EventsActions from 'actions/eventsActions';
+import {ListGroupItem, Button} from 'react-bootstrap';
 
 class UserEventListItem extends React.Component {
 	constructor(props) {
@@ -35,16 +36,16 @@ class UserEventListItem extends React.Component {
 		} else {
 			actionButton = (
 				<form>
-					<input type="button" onClick={this._onSubmit} value="Activate Event"/>
+					<Button onClick={this._onSubmit}  bsSize="xsmall" bsStyle="success">Activate EventS</Button>
 				  <br/>
 				</form>
 			)
 		}
 		return (
 			<div>
-				<h4>Name: {event.name}</h4>
-				<p>City: {event.city}</p>
-				{actionButton}
+					<h4>Name: {event.name}</h4>
+					<p>City: {event.city}</p>
+					{actionButton}
 			</div>
 		)
 	}
