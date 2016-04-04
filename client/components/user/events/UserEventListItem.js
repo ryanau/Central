@@ -43,9 +43,9 @@ class UserEventListItem extends React.Component {
 		}
 		return (
 			<div>
-					<h4>Name: {event.name}</h4>
-					<p>City: {event.city}</p>
-					{actionButton}
+				<h4>Name: {event.name}</h4>
+				<p>City: {event.city}</p>
+				{actionButton}
 			</div>
 		)
 	}

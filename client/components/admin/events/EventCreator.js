@@ -3,18 +3,20 @@ import React from 'react';
 import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
 
+import {Panel, Input, Button} from "react-bootstrap";
+
 class EventCreator extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			name: null,
-			city: null,
+			name: "",
+			city: "",
 		}
 	}
 	_handleChange = () => {
 		this.setState({
-      name: React.findDOMNode(this.refs.name).value,
-      city: React.findDOMNode(this.refs.city).value,
+      name: this.refs.name.getValue(),
+      city: this.refs.city.getValue(),
     })
 	}
 	_handleKeydown = (e) => {
@@ -23,36 +25,40 @@ class EventCreator extends React.Component {
 	_onSubmit = () => {
 		EventsActions.createEvent(this.state.name, this.state.city)
 		this.setState({
-			name: null,
-			city: null,
+			name: "",
+			city: "",
 		})
 	}
 	render() {
+		let disabled
+    	this.state.name.length > 0 && this.state.city.length > 0 ? disabled = false : disabled = true
 		return (
 			<div>
-				<h4>Create an Event</h4>
+				<Panel header = "Create an Event" bsStyle="primary">
+
 				<form>
-				  <input
-				  	type="text"
-				  	name="name"
+				  <Input
+				  	type="name"
+				  	label="Name"
 				  	ref="name"
 				  	value={this.state.name}
 				  	placeholder="Event Name"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
 				  <br/>
-				  <input
+				  <Input
 				  	type="text"
-				  	name="city"
+				  	label="City"
 				  	ref="city"
 				  	value={this.state.city}
 				  	placeholder="Event City"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
 				  <br/>
-				  <input type="button" onClick={this._onSubmit} value="Create Event"/>
+					  <Button button bsStyle="primary" onClick={this._onSubmit} disabled={disabled}>Create Event</Button>
 				  <br/>
 				</form>
+				</Panel>
 			</div>
 		)
 	}
