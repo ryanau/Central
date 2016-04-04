@@ -1,4 +1,5 @@
 import React from 'react';
+import {Panel, Grid, Row, Col, Tabs, Tab} from 'react-bootstrap';
 
 import TasksStore from 'stores/tasksStore';
 import TasksActions from 'actions/tasksActions';
@@ -58,12 +59,11 @@ class UserTasksContainer extends React.Component {
 				<h4>Tasks Container</h4>
 				<UserTaskTypeSelector />
 				<h4>Tasks</h4>
-				<p>Approved Tasks</p>
-				{approvedTasks}
-				<p>Unapproved Tasks</p>
-				{unapprovedTasks}
-				<p>Dispatched Tasks</p>
-				{dispatchedTasks}
+				<Tabs defaultActiveKey={1}>
+				    <Tab eventKey={1} title="Approved Tasks">{approvedTasks}</Tab>
+				    <Tab eventKey={2} title="Unapproved Tasks">{unapprovedTasks}</Tab>
+				    <Tab eventKey={3} title="Dispatched Tasks">{dispatchedTasks}</Tab>
+				</Tabs>
 			</div>
 		)
 	}

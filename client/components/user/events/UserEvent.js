@@ -55,11 +55,7 @@ class UserEvent extends React.Component {
 								{eventInfo}
 					    </Panel>
 					    	<h3>Tasks</h3>
-					      <Tabs defaultActiveKey={1}>
-								    <Tab eventKey={1} title="Approved Tasks">{taskInfo}</Tab>
-								    <Tab eventKey={2} title="Unapproved Tasks">{taskInfo}</Tab>
-								    <Tab eventKey={3} title="Dispatched Tasks" disabled>{taskInfo}</Tab>
-  							</Tabs>
+					    	{taskInfo}
 						</div>
 		      </Col>
     		</Row>
