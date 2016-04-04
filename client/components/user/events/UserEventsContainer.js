@@ -6,6 +6,8 @@ import MasterStore from 'stores/masterStore';
 
 import UserEventListItem from './UserEventListItem';
 
+import {Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
+
 class UserEventsContainer extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,39 +31,40 @@ class UserEventsContainer extends React.Component {
 		if (this.state.events != null) {
 			events = this.state.events.map((event) => {
 				return (
-					<li><UserEventListItem key={event.id} event={event}/></li>
+					<ListGroupItem><UserEventListItem key={event.id} event={event}/></ListGroupItem>
 				)
 			});
 		}
 		if (this.state.activatedEvents) {
 			activatedEvents = this.state.activatedEvents.map((event) => {
 				return (
-					<li><UserEventListItem key={event.id} event={event}/></li>
+					<ListGroupItem><UserEventListItem key={event.id} event={event}/></ListGroupItem>
 				)
 			});
 		}
 		if (this.state.archivedActivatedEvents) {
 			archivedActivatedEvents = this.state.archivedActivatedEvents.map((event) => {
 				return (
-					<li><UserEventListItem key={event.id} event={event}/></li>
+					<ListGroupItem><UserEventListItem key={event.id} event={event}/></ListGroupItem>
 				)
 			});
 		}
 		return (
 			<div>
-				<h4>User Events Container</h4>
-					<h4>Activated Events</h4>
-					<ol>
+				<h3>User Events Container</h3>
+				<Panel collapsible defaultExpanded header = "Activated Events" bsStyle="info"> 
+					<ListGroup fill>
 						{activatedEvents}
-					</ol>
-					<h4>Active Events</h4>
-					<ol>
+					 </ListGroup>
+				</Panel>
+				<Panel collapsible defaultExpanded header = "Active Events" bsStyle="info">
+					<ListGroup fill>
 						{events}
-					</ol>
-					<h4>Archived Activated Events</h4>
-					<ol>
+					</ListGroup>
+				</Panel>
+				<Panel collapsible defaultExpanded header = "Archived Activated Events" bsStyle="info">
 						{archivedActivatedEvents}
-					</ol>
+				</Panel>
 			</div>
 		)
 	}
