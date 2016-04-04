@@ -55,8 +55,17 @@ class NavBar extends React.Component {
       signInLink = (<li><Link to="/auth">Sign Up/In</Link></li>)
       signInLinkAdmin = (<li><Link to="/admin_auth">Admin Sign Up/In</Link></li>)
     }
+
+    let signOutNavItem
+    if (this.state.loggedIn && this.state.authorization == 'user') {
+      signOutNavItem = (<NavItem onClick={this._onSignOutClicked} value="Sign out">User SignOut</NavItem>)
+    } else if (this.state.loggedIn && this.state.authorization == 'admin') {
+        signOutNavItem = (<NavItem onClick={this._onSignOutClickedAdmin} value="Admin Sign out">Admin Signout</NavItem>)
+    }
+
+
     return (
-      <Navbar inverse>
+    <Navbar inverse>
     <Navbar.Header>
       <Navbar.Brand>
         <a href="#">Central</a>
@@ -65,20 +74,12 @@ class NavBar extends React.Component {
     </Navbar.Header>
     <Navbar.Collapse>
       <Nav>
-        <NavItem eventKey={1} href="/auth">User Signin/Out</NavItem>
-        <NavItem eventKey={2} href="/admin_auth">Admin Signin/Out</NavItem>
+        <NavItem eventKey={1} href="/auth">User Signin</NavItem>
+        <NavItem eventKey={2} href="/admin_auth">Admin Signin</NavItem>
+        {signOutNavItem}
       </Nav>
     </Navbar.Collapse>
   </Navbar>
-      // <div>
-      //   <ul>
-      //     {userName}
-      //     {signInLink}
-      //     {signInLinkAdmin}
-      //     {signOutLink}
-      //     {eventNav}
-      //   </ul>
-      // </div>
     );    
   }
 }
