@@ -7,6 +7,8 @@ import MasterStore from 'stores/masterStore';
 import EventListItem from './EventListItem';
 import EventCreator from './EventCreator';
 
+import {Panel, ListGroup, ListGroupItem} from "react-bootstrap";
+
 class EventsContainer extends React.Component {
 	constructor(props) {
 		super(props);
@@ -31,29 +33,31 @@ class EventsContainer extends React.Component {
 		if (this.state.events != null) {
 			events = this.state.events.map((event) => {
 				return (
-					<li><EventListItem key={event.id} event={event}/></li>
+					<ListGroupItem><EventListItem key={event.id} event={event}/></ListGroupItem>
 				)
 			});
 		}
 		if (this.state.archivedEvents) {
 			archivedEvents = this.state.archivedEvents.map((event) => {
 				return (
-					<li><EventListItem key={event.id} event={event}/></li>
+					<ListGroupItem><EventListItem key={event.id} event={event}/></ListGroupItem>
 				)
 			});
 		}
 		return (
 			<div>
-				<h4>Events Container</h4>
-					<EventCreator/>
-					<h4>Active Events</h4>
-					<ol>
+				<h3>Events Container</h3>
+				<EventCreator/>
+				<Panel collapsible defaultExpanded header = "Active Events" bsStyle="info"> 
+					<ListGroup fill>
 						{events}
-					</ol>
-					<h4>Archived Events</h4>
-					<ol>
+					 </ListGroup>
+				</Panel>
+				<Panel collapsible defaultExpanded header = "Archived Events" bsStyle="info">
+					<ListGroup fill>
 						{archivedEvents}
-					</ol>
+					</ListGroup>
+				</Panel>
 			</div>
 		)
 	}
