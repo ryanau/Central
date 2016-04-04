@@ -10,7 +10,7 @@ class MainPhoneChecker
 
   def proceed
     # locate message and check if volunteer has indeed received digest
-    if check_replycode_for_message && did_volunteer_receive_report?
+    if check_replycode_for_message && did_volunteer_receive_report? && !did_volunteer_activate_replycode_previously?
       # find unused number to use
       conversation_check_release_number
       # if we have more than one type of task
@@ -23,8 +23,20 @@ class MainPhoneChecker
 
   private
 
+  def did_volunteer_activate_replycode_previously?
+    if @volunteer.conversations.find_by(task_id: @replycode.message.task.id)
+      true
+    end
+    rescue
+      false
+  end
+
   def handle_invalid_replycode
-    content = "Sorry your replycode is not valid. Please try again by replying with the code in the [bracket] from the previous digest."
+    if did_volunteer_activate_replycode_previously?
+      content = "You have already replied with this replycode. A member of the NGO will contact you shortly."
+    else
+      content = "Sorry your replycode is not valid. Please try again by replying with the code in the [bracket] from the previous digest."
+    end
     to = @volunteer.phone_number
     SmsOutbound.send_from_main_phone(to, content)
   end
