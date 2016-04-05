@@ -2,7 +2,7 @@ import React from 'react';
 import alt from 'control';
 import moment from 'moment';
 import { Table, Column, Cell } from 'fixed-data-table';
-import { ListGroup, ListGroupItem, Panel, Button, ButtonToolbar, Glyphicon } from 'react-bootstrap'
+import { ListGroup, ListGroupItem, Panel, Button, ButtonToolbar, Glyphicon, Col } from 'react-bootstrap'
 
 import TaskStore from 'stores/taskStore';
 import TaskActions from 'actions/taskActions';
@@ -39,23 +39,29 @@ class UserTask extends React.Component {
 			taskTitle = this.state.task.title + " | Created " + moment(task.created_at).fromNow()
 			taskInfo = (
 				<div>
-					<Panel header={taskTitle} bsStyle="primary">
-						<ButtonToolbar>
-							<Button
-								bsStyle="info"
-								onClick={this._onRefreshButtonClicked}>
-								<Glyphicon glyph="refresh"/> Refresh
-							</Button>
-						</ButtonToolbar>
-						<ListGroup>
-							<ListGroupItem># of Volunteers requested: {task.number_of_volunteers}</ListGroupItem>
-							<ListGroupItem>Digest reached: {task.report_reached}</ListGroupItem>
-							<ListGroupItem># of Volunteers responded: {task.volunteer_responded}</ListGroupItem>
-							<ListGroupItem># of total participants: {task.total_coming}</ListGroupItem>
-							<ListGroupItem># of Volunteers removed: {task.volunteer_removed}</ListGroupItem>
-						</ListGroup>
-						<UserResponseTable attendeeResponses={task.number_of_attendees_responses}/>
-					</Panel>
+					<Col lg={2}>
+					</Col>
+					<Col lg={8}>
+						<Panel header={taskTitle} bsStyle="primary">
+							<ButtonToolbar>
+								<Button
+									bsStyle="info"
+									onClick={this._onRefreshButtonClicked}>
+									<Glyphicon glyph="refresh"/> Refresh
+								</Button>
+							</ButtonToolbar>
+							<ListGroup>
+								<ListGroupItem># of Volunteers requested: {task.number_of_volunteers}</ListGroupItem>
+								<ListGroupItem>Digest reached: {task.report_reached}</ListGroupItem>
+								<ListGroupItem># of Volunteers responded: {task.volunteer_responded}</ListGroupItem>
+								<ListGroupItem># of total participants: {task.total_coming}</ListGroupItem>
+								<ListGroupItem># of Volunteers removed: {task.volunteer_removed}</ListGroupItem>
+							</ListGroup>
+							<UserResponseTable attendeeResponses={task.number_of_attendees_responses}/>
+						</Panel>
+					</Col>
+					<Col lg={2}>
+					</Col>
 				</div>
 			)
 		}

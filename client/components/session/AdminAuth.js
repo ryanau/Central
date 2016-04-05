@@ -44,7 +44,7 @@ class AdminAuth extends React.Component {
     const resolve = (res) => {
       toastr.success('Redirecting...', 'Logged In');
       setTimeout(() => {
-        window.location.href='/'
+        window.location.href='/admin/dashboard'
       }, 1000)
     }
     const data = {

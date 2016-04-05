@@ -16,7 +16,6 @@ class MasterStore {
 			this.user = res.resource.identity;
 			this.loggedIn = true;
 			this.authorization = res.resource.authorization;
-			localStorage.setItem('authorization', res.resource.authorization);
 		} else {
 			localStorage.clear();
 			this.loggedIn = false;

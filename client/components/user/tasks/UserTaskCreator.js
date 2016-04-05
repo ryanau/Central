@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Modal } from 'react-bootstrap'
 
 import TasksActions from 'actions/tasksActions';
 import TaskTypesActions from 'actions/tasktypesActions';
@@ -18,7 +19,7 @@ class UserTaskCreator extends React.Component {
 	componentDidMount() {
 		this.setState({
 			taskTypeId: this.props.taskType.id,
-			eventId: location.pathname.match(/events\/(\d+)/)[1],
+			eventId: this.props.eventId,
 		})
 	}
 	_handleChange = () => {

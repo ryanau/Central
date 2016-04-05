@@ -15,22 +15,22 @@ class Root extends React.Component {
     super(props);
     this.onChange = this._onChange.bind(this);
   }
+  _onChange(state) {
+    this.setState(state);
+  }
   componentWillMount() {
     this.setState(
       MasterStore.getState()
     )
   }
   componentDidMount() {
+    MasterStore.listen(this.onChange);
     if (localStorage.getItem('uid')) {
       MasterActions.fetchUserIdentity();
     }
-    MasterStore.listen(this.onChange);
   }
   componentWillUnmount() {
     MasterStore.unlisten(this.onChange);
-  }
-  _onChange(state) {
-    this.setState(state);
   }
   render() {
     let display
@@ -41,8 +41,10 @@ class Root extends React.Component {
     }
     return (
       <div>
-        <NavBar user={this.state.user} loggedIn={this.state.loggedIn} authorization={this.state.authorization}/>
+        <NavBar user={this.state.user} loggedIn={this.state.loggedIn} authorization={this.state.authorization} />
+        <div className="mT-70">
         {display}
+        </div>
         {this.props.children}
       </div>
     );    

@@ -4,10 +4,16 @@ class UserTaskSerializer < ActiveModel::Serializer
   def number_of_attendees_responses
     still_in_volunteer_ids = object.active_conversations.pluck(:volunteer_id)
     object.questions.find_by(question_order: 2).responses.where(volunteer_id: still_in_volunteer_ids).map(&:user_response_serialize)
+    rescue
+      []
   end
 
   def report_reached
-    ReportVolunteerLog.count
+    if arr = object.report.report_volunteer_log
+      arr.count
+    end
+    rescue
+    0
   end
 
   def volunteer_responded
@@ -25,5 +31,7 @@ class UserTaskSerializer < ActiveModel::Serializer
       total += response.content.to_i
     end
     total
+    rescue
+      0
   end
 end

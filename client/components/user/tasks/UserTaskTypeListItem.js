@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap'
 
 import TaskTypesActions from 'actions/tasktypesActions';
 
@@ -21,9 +22,7 @@ class UserTaskTypeListItem extends React.Component {
 		taskType = this.state.taskType
 		return (
 			<div>
-				<form>
-					<input type="button" onClick={this._onSubmit} value={taskType.name}/>
-				</form>
+				<Button type="button" onClick={this._onSubmit}>{taskType.name}</Button>
 			</div>
 		)
 	}
