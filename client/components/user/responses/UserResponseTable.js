@@ -10,7 +10,7 @@ class UserResponseTable extends React.Component {
 	componentWillMount() {
 	  this.setState({
 	  	attendeeResponses: this.props.attendeeResponses,
-			windowWidth: window.innerWidth - 30,
+			windowWidth: window.innerWidth - 700,
 	  })
 	}
 	componentWillReceiveProps(nextProps) {
@@ -31,7 +31,7 @@ class UserResponseTable extends React.Component {
 				  rowHeight={30}
 				  rowsCount={attendeeResponses.length}
 				  width={this.state.windowWidth}
-				  height={attendeeResponses.length * 30 + 35}
+				  height={attendeeResponses.length * 30 + 50}
 				  headerHeight={30}>
 				  <Column
 				    header={<Cell>First Name</Cell>}

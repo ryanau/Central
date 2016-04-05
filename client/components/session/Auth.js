@@ -45,7 +45,7 @@ class Auth extends React.Component {
     const resolve = (res) => {
       toastr.success('Redirecting...', 'Logged In');
       setTimeout(() => {
-        window.location.href='/'
+        window.location.href='/user/dashboard'
       }, 1000)
     }
     const data = {

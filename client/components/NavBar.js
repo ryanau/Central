@@ -53,7 +53,7 @@ class NavBar extends React.Component {
     }
     return (
       <div>
-        <Navbar inverse>
+        <Navbar inverse fixedTop>
         <Navbar.Header>
           <Navbar.Brand>
             <LinkContainer to={{ pathname: '/' }}>

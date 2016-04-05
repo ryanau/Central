@@ -3,3 +3,11 @@
 html * {
   font-family: 'Lato', sans-serif;
 }
+
+.mT-70 {
+	margin-top: 70px;
+}
+
+.mB-20 {
+	margin-bottom: 20px;
+}

@@ -22,7 +22,7 @@ import AdminEvent from 'components/admin/events/Event';
 import AdminReport from 'components/admin/reports/Report';
 
 // User
-import UserDashboard from 'components/user/UserDashboard';
+import UserDashboard from 'components/user/dashboard/UserDashboard';
 import UserEventsContainer from 'components/user/events/UserEventsContainer';
 import UserEvent from 'components/user/events/UserEvent';
 import UserReport from 'components/user/reports/UserReport';

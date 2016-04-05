@@ -6,7 +6,7 @@ import MasterStore from 'stores/masterStore';
 
 import UserEventListItem from './UserEventListItem';
 
-import {Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
+import { Panel, ListGroup, ListGroupItem, Tabs, Tab, Badge } from 'react-bootstrap';
 
 class UserEventsContainer extends React.Component {
 	constructor(props) {
@@ -28,43 +28,56 @@ class UserEventsContainer extends React.Component {
 	}
 	render() {
 		let events, activatedEvents, archivedActivatedEvents
-		if (this.state.events != null) {
-			events = this.state.events.map((event) => {
+		let activatedEventsTitle, eventsTitle, archivedActivatedEventsTitle
+		if (this.state.activatedEvents) {
+			activatedEventsTitle = "Activated Events" + " [" + this.state.activatedEvents.length + "] "
+			activatedEvents = this.state.activatedEvents.map((event, index) => {
 				return (
-					<ListGroupItem><UserEventListItem key={event.id} event={event}/></ListGroupItem>
+					<Tab eventKey={index + 1} title={event.name}>
+						<UserEventListItem key={event.id} event={event} index={index}/>
+					</Tab>
 				)
 			});
 		}
-		if (this.state.activatedEvents) {
-			activatedEvents = this.state.activatedEvents.map((event) => {
+		if (this.state.events != null) {
+			eventsTitle = "Active Events" + " [" + this.state.events.length + "] "
+			events = this.state.events.map((event, index) => {
 				return (
-					<ListGroupItem><UserEventListItem key={event.id} event={event}/></ListGroupItem>
+					<Tab eventKey={index + 1} title={event.name}>
+						<UserEventListItem key={event.id} event={event} index={index}/>
+					</Tab>
 				)
 			});
 		}
 		if (this.state.archivedActivatedEvents) {
-			archivedActivatedEvents = this.state.archivedActivatedEvents.map((event) => {
+			archivedActivatedEventsTitle = "Archived Events" + " [" + this.state.archivedActivatedEvents.length + "] "
+			archivedActivatedEvents = this.state.archivedActivatedEvents.map((event, index) => {
 				return (
-					<ListGroupItem><UserEventListItem key={event.id} event={event}/></ListGroupItem>
+					<Tab eventKey={index + 1} title={event.name}>
+						<UserEventListItem key={event.id} event={event} index={index}/>
+					</Tab>
 				)
 			});
 		}
 		return (
 			<div>
-				<h3>User Events Container</h3>
-				<Panel collapsible defaultExpanded header = "Activated Events" bsStyle="info"> 
-					<ListGroup fill>
-						{activatedEvents}
-					 </ListGroup>
-				</Panel>
-				<Panel collapsible defaultExpanded header = "Active Events" bsStyle="info">
-					<ListGroup fill>
-						{events}
-					</ListGroup>
-				</Panel>
-				<Panel collapsible defaultExpanded header = "Archived Activated Events" bsStyle="info">
-						{archivedActivatedEvents}
-				</Panel>
+				<Tabs defaultActiveKey={1} position="left" tabWidth={2}>
+				  <Tab eventKey={1} title={activatedEventsTitle}>
+				  	<Tabs defaultActiveKey={1}>
+						  {activatedEvents}
+				  	</Tabs>
+				  </Tab>
+				  <Tab eventKey={2} title={archivedActivatedEventsTitle}>
+					  <Tabs defaultActiveKey={1}>
+						  {archivedActivatedEvents}
+						</Tabs>
+				  </Tab>
+				  <Tab eventKey={3} title={eventsTitle}>
+				  	<Tabs defaultActiveKey={1}>
+						  {events}
+					  </Tabs>
+				  </Tab>
+				</Tabs>
 			</div>
 		)
 	}

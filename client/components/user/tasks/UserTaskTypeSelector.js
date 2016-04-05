@@ -29,7 +29,7 @@ class UserTaskTypeSelector extends React.Component {
 		if (this.state.taskTypes != null) {
 			if (this.state.showForm) {
 				taskType = this.state.taskType
-				taskCreator = <UserTaskCreator taskType={taskType}/>
+				taskCreator = <UserTaskCreator taskType={taskType} eventId={this.props.eventId}/>
 			} else {
 				taskTypes = this.state.taskTypes.map((taskType) => {
 					return (

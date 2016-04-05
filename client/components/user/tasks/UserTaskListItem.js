@@ -8,17 +8,18 @@ class UserTaskListItem extends React.Component {
 	componentWillMount() {
 	  this.setState({
 	  	task: this.props.task,
+	  	eventId: this.props.eventId
 	  })
 	}
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			event: nextProps.event,
+			task: nextProps.task,
 		})
 	}
 	render() {
 		let task, infoLink
 		task = this.state.task
-		infoLink = '/user/events/' + location.pathname.match(`[^/]+$`)[0] + "/tasks/" + task.id
+		infoLink = '/user/events/' + this.state.eventId + "/tasks/" + task.id
 		return (
 			<div>
 				<p>Title: {task.title} | # of Volunteer: {task.number_of_volunteers}</p>

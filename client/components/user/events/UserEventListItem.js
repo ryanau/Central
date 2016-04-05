@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { ListGroupItem, Button, Tab, PageHeader} from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 import EventsActions from 'actions/eventsActions';
-import {ListGroupItem, Button} from 'react-bootstrap';
+
+import UserTasksContainer from 'components/user/tasks/UserTasksContainer';
 
 class UserEventListItem extends React.Component {
 	constructor(props) {
@@ -31,21 +34,23 @@ class UserEventListItem extends React.Component {
 		infoLink = "/user/events/" + event.id
 		if (event.activated) {
 			actionButton = (
-				<Link to={infoLink}>More Info</Link>
+				<LinkContainer to={{ pathname: infoLink }}>
+					<Button bsStyle="info">See Details</Button>
+				</LinkContainer>
 			)
 		} else {
 			actionButton = (
 				<form>
-					<Button onClick={this._onSubmit}  bsSize="xsmall" bsStyle="success">Activate EventS</Button>
+					<Button onClick={this._onSubmit} bsStyle="success">Activate Event</Button>
 				  <br/>
 				</form>
 			)
 		}
 		return (
 			<div>
-				<h4>Name: {event.name}</h4>
-				<p>City: {event.city}</p>
+				<PageHeader>{event.name} <small>{event.city}</small></PageHeader>
 				{actionButton}
+				<UserTasksContainer eventId={event.id}/>
 			</div>
 		)
 	}
