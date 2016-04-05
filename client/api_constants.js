@@ -5,7 +5,7 @@ class Api_Constants {
 		// this.origin = 'http://5a2c6ea0.ngrok.io/api/'
 		// this.frontend = 'http://bef732cc.ngrok.io/'
 		this.origin = 'https://calcentral.herokuapp.com/api/'
-		this.frontend = 'https://calcentral.herokuapp.com'
+		this.frontend = 'https://calcentral.herokuapp.com/'
 		this.admin_origin = this.origin + 'admin/'
 		this.user_origin = this.origin + 'user/'
 		this.volunteer_origin = this.origin + 'volunteers/'
