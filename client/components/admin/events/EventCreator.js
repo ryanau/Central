@@ -3,7 +3,7 @@ import React from 'react';
 import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
 
-import {Panel, Input, Button} from "react-bootstrap";
+import {Panel, Input, Button, Modal} from "react-bootstrap";
 
 class EventCreator extends React.Component {
 	constructor(props) {
@@ -15,8 +15,8 @@ class EventCreator extends React.Component {
 	}
 	_handleChange = () => {
 		this.setState({
-      name: this.refs.name.getValue(),
-      city: this.refs.city.getValue(),
+	      name: this.refs.name.getValue(),
+	      city: this.refs.city.getValue(),
     })
 	}
 	_handleKeydown = (e) => {
@@ -25,40 +25,66 @@ class EventCreator extends React.Component {
 	_onSubmit = () => {
 		EventsActions.createEvent(this.state.name, this.state.city)
 		this.setState({
+			show: false,
+			name: "",
+			city: "",
+		})
+	}
+	_onCancel = () => {
+		this.setState({
+			show: false,
 			name: "",
 			city: "",
 		})
 	}
 	render() {
+		let close = () => this.setState({ show: false});
 		let disabled
     	this.state.name.length > 0 && this.state.city.length > 0 ? disabled = false : disabled = true
 		return (
-			<div>
-				<Panel header = "Create an Event" bsStyle="primary">
+			<div className="modal-container" style={{height: 50}}>
+				<Button
+		          bsStyle="primary"
+		          onClick={() => this.setState({ show: true})}
+		        >
+		          Create an Event
+		        </Button>
 
-				<form>
-				  <Input
-				  	type="name"
-				  	label="Name"
-				  	ref="name"
-				  	value={this.state.name}
-				  	placeholder="Event Name"
-				  	onKeyDown={this._handleKeydown}
-				  	onChange={this._handleChange}/>
-				  <br/>
-				  <Input
-				  	type="text"
-				  	label="City"
-				  	ref="city"
-				  	value={this.state.city}
-				  	placeholder="Event City"
-				  	onKeyDown={this._handleKeydown}
-				  	onChange={this._handleChange}/>
-				  <br/>
-					  <Button button bsStyle="primary" onClick={this._onSubmit} disabled={disabled}>Create Event</Button>
-				  <br/>
-				</form>
-				</Panel>
+		        <Modal
+		          show={this.state.show}
+		          onHide={close}
+		          container={this}
+		          aria-labelledby="contained-modal-title"
+		        >
+		        	<Modal.Header >
+			            <Modal.Title id="contained-modal-title">Create an Event</Modal.Title>
+			         </Modal.Header>
+			         <Modal.Body>
+						<form>
+						  <Input
+						  	type="name"
+						  	label="Name"
+						  	ref="name"
+						  	value={this.state.name}
+						  	placeholder="Event Name"
+						  	onKeyDown={this._handleKeydown}
+						  	onChange={this._handleChange}/>
+						  <br/>
+						  <Input
+						  	type="text"
+						  	label="City"
+						  	ref="city"
+						  	value={this.state.city}
+						  	placeholder="Event City"
+						  	onKeyDown={this._handleKeydown}
+						  	onChange={this._handleChange}/>
+						</form>
+						</Modal.Body>
+			          <Modal.Footer>
+						<Button button onClick={this._onCancel}>Cancel</Button>
+			            <Button button onClick={this._onSubmit} bsStyle="primary"  disabled={disabled}>Submit</Button>
+			          </Modal.Footer>
+			        </Modal>
 			</div>
 		)
 	}

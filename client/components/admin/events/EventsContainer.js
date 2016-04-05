@@ -47,7 +47,9 @@ class EventsContainer extends React.Component {
 		return (
 			<div>
 				<h3>Events Container</h3>
+				<br/>
 				<EventCreator/>
+				<br/>
 				<Panel collapsible defaultExpanded header = "Active Events" bsStyle="info"> 
 					<ListGroup fill>
 						{events}
