@@ -8,11 +8,14 @@ class MasterActions {
 			'storeUserIdentity'
 		)
 	}
-	fetchUserIdentity() {
+	fetchUserIdentity(uid) {
+		const data = {
+			uid: uid,
+		}
 		const resolve = (res) => {
 			this.actions.storeUserIdentity(res);
 		}
-		ApiRequests.get(ApiConstants.session.identity, null, resolve)
+		ApiRequests.get(ApiConstants.session.identity, data, resolve)
 	}
 }
 

@@ -13,7 +13,6 @@ class RecruitVolunteerTaskResponse
 
   def format_initial_question
     content = @task.questions.first.content
-    p 'ppppp'
     @initial_question_content = content % {volunteer_first_name: @volunteer.first_name, organization_name: @task.user.organization_name, task_title: @task.title}
     # move to main_phone_checker
     # dispatch_question(content)
