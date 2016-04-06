@@ -9,7 +9,7 @@ class UserTaskSerializer < ActiveModel::Serializer
   end
 
   def report_reached
-    if arr = object.report.report_volunteer_log
+    if arr = object.message.report.report_volunteer_logs
       arr.count
     end
     rescue

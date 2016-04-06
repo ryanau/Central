@@ -29,7 +29,7 @@ class UserEventListItem extends React.Component {
 		EventsActions.activateUserEvent(this.state.event.id)
 	}
 	render() {
-		let event, infoLink, actionButton
+		let event, infoLink, actionButton, userTaskContainer
 		event = this.state.event
 		infoLink = "/user/events/" + event.id
 		if (event.activated) {
@@ -37,6 +37,9 @@ class UserEventListItem extends React.Component {
 				<LinkContainer to={{ pathname: infoLink }}>
 					<Button bsStyle="info">See Details</Button>
 				</LinkContainer>
+			)
+			userTaskContainer = (
+				<UserTasksContainer eventId={event.id}/>
 			)
 		} else {
 			actionButton = (
@@ -50,7 +53,7 @@ class UserEventListItem extends React.Component {
 			<div>
 				<PageHeader>{event.name} <small>{event.city}</small></PageHeader>
 				{actionButton}
-				<UserTasksContainer eventId={event.id}/>
+				{userTaskContainer}
 			</div>
 		)
 	}

@@ -21,7 +21,6 @@ class Landing extends React.Component {
 		return (
 			<div>
 				<h2>Welcome to Central</h2>
-				<VolunteerSignUpBox/>
 			</div>
 		)
 	}

@@ -19,33 +19,55 @@ class Root extends React.Component {
     this.setState(state);
   }
   componentWillMount() {
+    let uid
+    uid = this._makeId()
     this.setState(
       MasterStore.getState()
     )
+    this.setState({
+      uid: uid,
+    })
   }
   componentDidMount() {
     MasterStore.listen(this.onChange);
     if (localStorage.getItem('uid')) {
-      MasterActions.fetchUserIdentity();
+      MasterActions.fetchUserIdentity(this.state.uid);
     }
   }
   componentWillUnmount() {
     MasterStore.unlisten(this.onChange);
   }
+  _makeId() {
+    let text, possible
+    text = "";
+    possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
   render() {
-    let display
-    if (!this.state.loggedIn) {
+    let display, uid, navBar
+    uid = this.state.uid
+    if (Object.keys(this.state.loggedIn).length === 0 && JSON.stringify(this.state.loggedIn) === JSON.stringify({})) {
       display = <Landing/>
+      navBar = (
+        <NavBar user={null} loggedIn={false} authorization={null} />
+      )
     } else {
-      display = <LoggedInLanding loggedIn={this.state.loggedIn} authorization={this.state.authorization}/>
+      display = <LoggedInLanding loggedIn={this.state.loggedIn[uid]} authorization={this.state.authorization[uid]}/>
+      navBar = (
+        <NavBar user={this.state.user[uid]} loggedIn={this.state.loggedIn[uid]} authorization={this.state.authorization[uid]} />
+      )
     }
     return (
       <div>
-        <NavBar user={this.state.user} loggedIn={this.state.loggedIn} authorization={this.state.authorization} />
+        {navBar}
         <div className="mT-70">
         {display}
         </div>
-        {this.props.children}
+        {React.cloneElement(this.props.children, {globalState: this.state})}
       </div>
     );    
   }
