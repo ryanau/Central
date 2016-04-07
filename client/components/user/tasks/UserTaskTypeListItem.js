@@ -22,7 +22,7 @@ class UserTaskTypeListItem extends React.Component {
 		taskType = this.state.taskType
 		return (
 			<div>
-				<Button type="button" onClick={this._onSubmit}>{taskType.name}</Button>
+				<Button type="button" onClick={this._onSubmit} bsStyle="info">{taskType.name}</Button>
 			</div>
 		)
 	}
