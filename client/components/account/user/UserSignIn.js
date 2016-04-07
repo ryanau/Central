@@ -29,6 +29,9 @@ class UserSignIn extends React.Component {
       password: this.refs.password.getValue(),
     })
 	}
+  _handleKeydown = (e) => {
+    if (e.which == 13 && this.state.email.length > 0 && this.state.password.length > 0) {this._onSignInSubmit()}
+  }
   _onSignInSubmit = () => {
     const resolve = (res) => {
       toastr.success('Redirecting...', 'Logged In');
@@ -58,7 +61,8 @@ class UserSignIn extends React.Component {
               	ref="email"
               	placeholder="Email"
                 help="Required"
-              	onChange={this._handleChange}/>
+              	onKeyDown={this._handleKeydown}
+                onChange={this._handleChange}/>
               <Input
                 label="Password"
               	type="password"
@@ -66,7 +70,8 @@ class UserSignIn extends React.Component {
               	ref="password"
               	placeholder="Password"
                 help="Required"
-              	onChange={this._handleChange}/>
+              	onKeyDown={this._handleKeydown}
+                onChange={this._handleChange}/>
               <ButtonToolbar>
                 <Button bsStyle="primary" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
               </ButtonToolbar>

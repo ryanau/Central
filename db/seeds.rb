@@ -80,8 +80,13 @@ def seed_responses_conversation
   end
 end
 
+def make_access_code
+  AccessCode.create(code: "test")
+end
+
 def seed_production
   make_task_type
+  make_access_code
   Phone.create(number: "4847274200")
 end
 
@@ -94,6 +99,7 @@ when "development"
   make_task_type
   # make_reports
   # make_messages
+  make_access_code
   seed_ryan_number
   # seed_responses_conversation
   # make_questions

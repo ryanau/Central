@@ -27,6 +27,9 @@ class UserSignUp extends React.Component {
       code: this.refs.code.getValue(),
     })
 	}
+  _handleKeydown = (e) => {
+    if (e.which == 13 && this.state.email.length > 0 && this.state.password.length > 0 && this.state.code.length > 0 && this.state.password == this.state.password_confirmation) {this._onSignUpSubmit()}
+  }
   _onSignUpSubmit = () => {
     const resolve = (res) => {
       ApiRequests.redirect('account_activation')
@@ -60,7 +63,7 @@ class UserSignUp extends React.Component {
    }
   render() {
     let disabled, panel
-    this.state.email.length > 0 && this.state.password.length > 0 && this.state.password == this.state.password_confirmation ? disabled = false : disabled = true
+    this.state.email.length > 0 && this.state.password.length > 0 && this.state.code.length > 0 && this.state.password == this.state.password_confirmation ? disabled = false : disabled = true
     return (
         <div>
           <Col xs={0} sm={3} md={4}></Col>
@@ -74,7 +77,8 @@ class UserSignUp extends React.Component {
               	ref="email"
               	placeholder="Email"
                 help="Required"
-              	onChange={this._handleChange}/>
+              	onKeyDown={this._handleKeydown}
+                onChange={this._handleChange}/>
               <Input
                 label="Password"
               	type="password"
@@ -82,7 +86,8 @@ class UserSignUp extends React.Component {
               	ref="password"
               	placeholder="Minimum 8 characters"
                 help="Required"
-              	onChange={this._handleChange}/>
+              	onKeyDown={this._handleKeydown}
+                onChange={this._handleChange}/>
               <Input
                 label="Password Confirmation"
                 type="password"
@@ -92,6 +97,7 @@ class UserSignUp extends React.Component {
                 bsStyle={this._checkPasswordMatch()}
                 hasFeedback
                 help="Required"
+                onKeyDown={this._handleKeydown}
                 onChange={this._handleChange}/>
               <Input
                 label="Access Code"
@@ -101,6 +107,7 @@ class UserSignUp extends React.Component {
                 placeholder="Access Code"
                 hasFeedback
                 help="Required"
+                onKeyDown={this._handleKeydown}
                 onChange={this._handleChange}/>
               <ButtonToolbar>
                 <Button bsStyle="primary" onClick={this._checkCode} disabled={disabled}>Sign Up</Button>
