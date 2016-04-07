@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
     post 'sms_inbound', :to => 'sms#inbound'
 
+    get 'access_codes/check', to: 'access_codes#check'
+
     namespace :admin do
       resources :events, only: [:index, :create, :show] do
         get 'archive'

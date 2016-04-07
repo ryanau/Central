@@ -19,7 +19,8 @@ class Api_Constants {
 			admin_sign_in: this.origin + 'admin_auth/sign_in',
 			admin_sign_out: this.origin + 'admin_auth/sign_out',
 			identity: this.origin + 'session/identity',
-			auth_complete: this.frontend + 'auth_complete'
+			auth_complete: this.frontend + 'auth_complete',
+			check_code: this.origin + 'access_codes/check',
 		}
 	}
 	get volunteers() {

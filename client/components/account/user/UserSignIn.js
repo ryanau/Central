@@ -7,9 +7,9 @@ import ApiRequests from 'api_requests';
 
 import MasterStore from 'stores/masterStore';
 
-import { Input, ButtonInput, Button, Panel, ButtonGroup, Row, Col, ButtonToolbar} from 'react-bootstrap';
+import { Input, ButtonInput, Button, Panel, ButtonGroup, Row, Col, ButtonToolbar } from 'react-bootstrap';
 
-class Auth extends React.Component {
+class UserSignIn extends React.Component {
 	constructor(props) {
 	  super(props);
 	}
@@ -29,18 +29,6 @@ class Auth extends React.Component {
       password: this.refs.password.getValue(),
     })
 	}
-  _onSignUpSubmit = () => {
-    const resolve = (res) => {
-      ApiRequests.redirect('account_activation')
-    }
-    const data = {
-      email: this.state.email, 
-      password: this.state.password,
-      password_confirmation: this.state.password,
-      confirm_success_url: ApiConstants.session.auth_complete,
-    }
-    ApiRequests.post(ApiConstants.session.sign_up, data, resolve)
-  }
   _onSignInSubmit = () => {
     const resolve = (res) => {
       toastr.success('Redirecting...', 'Logged In');
@@ -61,7 +49,7 @@ class Auth extends React.Component {
         <div>
           <Col xs={0} sm={3} md={4}></Col>
           <Col xs={12} sm={6} md={4}>
-            <Panel header="User SignIn">
+            <Panel header="Organization Sign In">
             <form>
               <Input
                 label="Email"
@@ -69,22 +57,19 @@ class Auth extends React.Component {
               	name="email"
               	ref="email"
               	placeholder="Email"
+                help="Required"
               	onChange={this._handleChange}/>
-              <br/>
               <Input
                 label="Password"
               	type="password"
               	name="password"
               	ref="password"
               	placeholder="Password"
+                help="Required"
               	onChange={this._handleChange}/>
-              <br/>
               <ButtonToolbar>
-                <Button bsStyle="primary" onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
-
-                <Button bsStyle="success" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
+                <Button bsStyle="primary" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
               </ButtonToolbar>
-              <br/>
             </form>
             </Panel>
           </Col>
@@ -94,4 +79,4 @@ class Auth extends React.Component {
   }
 };
 
-export default Auth;
+export default UserSignIn;
