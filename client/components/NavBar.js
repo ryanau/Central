@@ -64,11 +64,11 @@ class NavBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            {userSignInLink}
-            {adminSignInLink}
           </Nav>
           <Nav pullRight>
             <NavItem eventKey={1}>{userName}</NavItem>
+            {userSignInLink}
+            {adminSignInLink}
             {signOutLink}
           </Nav>
         </Navbar.Collapse>

@@ -9,6 +9,6 @@ class Api::VolunteersController < Api::BaseController
   private
 
   def join_params
-    params.permit(:phone_number)
+    params.require(:volunteer).permit(:phone_number, :first_name, :last_name, :zipcode, :driver, :heavy_lifting, :age).merge(profile_completed: true)
   end
 end

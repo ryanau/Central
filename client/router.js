@@ -7,7 +7,10 @@ import Root from 'components/Root';
 import NoMatch from 'components/NoMatch';
 import Index from 'components/Index';
 
-// Session
+// Welcome
+import Welcome from 'components/welcome/Welcome';
+
+// Account
 import Auth from 'components/session/Auth';
 import AdminAuth from 'components/session/AdminAuth';
 import AccountActivation from 'components/session/AccountActivation';
@@ -32,11 +35,11 @@ const router = (
   <Router history={browserHistory}>
   <Route path='/' component={Root}>
     <IndexRoute component={Index}/>
-  	<Route path='auth' component={Auth}/>
+  	<Route path='welcome' component={Welcome}/>
+    <Route path='auth' component={Auth}/>
   	<Route path='admin_auth' component={AdminAuth}/>
     <Route path='account_activation' component={AccountActivation}/>
     <Route path='auth_complete' component={AuthComplete}/>
-  	<Route path='auth_complete' component={AuthComplete}/>
   	<Route path='admin'>
       <Route path='dashboard' component={AdminDashboard}/>
       <Route path='sign_out' component={AdminSignOut}/>
