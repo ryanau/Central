@@ -27,6 +27,9 @@ class UserSignUp extends React.Component {
       code: this.refs.code.getValue(),
     })
 	}
+  _handleKeydown = (e) => {
+    if (e.which == 13 && this.state.email.length > 0 && this.state.password.length > 0 && this.state.code.length > 0 && this.state.password == this.state.password_confirmation) {this._onSignUpSubmit()}
+  }
   _onSignUpSubmit = () => {
     const resolve = (res) => {
       ApiRequests.redirect('account_activation')
@@ -48,8 +51,17 @@ class UserSignUp extends React.Component {
     }
     ApiRequests.get(ApiConstants.session.check_code, data, resolve)
   }
+  _checkPasswordLength() {
+    let password
+    password = this.state.password;
+    if (password.length < 8) {
+      return 'error';
+    } else {
+      return 'success';
+    }
+  }
   _checkPasswordMatch() {
-    let password, password_confirmation;
+    let password, password_confirmation
     password = this.state.password;
     password_confirmation = this.state.password_confirmation;
      if (password.length > 0 && password == password_confirmation) {
@@ -57,10 +69,29 @@ class UserSignUp extends React.Component {
     } else {
       return 'error';
     }
-   }
+  }
+  _feedPhrase() {
+    let password, password_confirmation
+    password = this.state.password;
+    password_confirmation = this.state.password_confirmation;
+     if (password.length > 0 && password == password_confirmation) {
+      return null;
+    } else {
+      return 'Passwords do not match';
+    }
+  }
+  _feedPasswordPhrase() {
+    let password, password_confirmation
+    password = this.state.password;
+    if (password.length < 8) {
+      return 'Password is less than 8 characters';
+    } else {
+      return null;
+    }
+  }
   render() {
     let disabled, panel
-    this.state.email.length > 0 && this.state.password.length > 0 && this.state.password == this.state.password_confirmation ? disabled = false : disabled = true
+    this.state.email.length > 0 && this.state.password.length > 0 && this.state.code.length > 0 && this.state.password == this.state.password_confirmation ? disabled = false : disabled = true
     return (
         <div>
           <Col xs={0} sm={3} md={4}></Col>
@@ -74,15 +105,19 @@ class UserSignUp extends React.Component {
               	ref="email"
               	placeholder="Email"
                 help="Required"
-              	onChange={this._handleChange}/>
+              	onKeyDown={this._handleKeydown}
+                onChange={this._handleChange}/>
               <Input
                 label="Password"
               	type="password"
               	name="password"
               	ref="password"
               	placeholder="Minimum 8 characters"
-                help="Required"
-              	onChange={this._handleChange}/>
+                bsStyle={this._checkPasswordLength()}
+                hasFeedback
+                help={this._feedPasswordPhrase()}
+              	onKeyDown={this._handleKeydown}
+                onChange={this._handleChange}/>
               <Input
                 label="Password Confirmation"
                 type="password"
@@ -91,7 +126,8 @@ class UserSignUp extends React.Component {
                 placeholder="Password Confirmation"
                 bsStyle={this._checkPasswordMatch()}
                 hasFeedback
-                help="Required"
+                help={this._feedPhrase()}
+                onKeyDown={this._handleKeydown}
                 onChange={this._handleChange}/>
               <Input
                 label="Access Code"
@@ -101,6 +137,7 @@ class UserSignUp extends React.Component {
                 placeholder="Access Code"
                 hasFeedback
                 help="Required"
+                onKeyDown={this._handleKeydown}
                 onChange={this._handleChange}/>
               <ButtonToolbar>
                 <Button bsStyle="primary" onClick={this._checkCode} disabled={disabled}>Sign Up</Button>

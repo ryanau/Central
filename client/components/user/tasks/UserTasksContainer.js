@@ -21,50 +21,55 @@ class UserTasksContainer extends React.Component {
 	}
 	componentDidMount() {
 	  TasksStore.listen(this.onChange);
-  	TasksActions.fetchUserTasks(this.props.eventId);
+  	TasksActions.fetchUserTasks(this.props.event.id);
 	}
 	componentWillReceiveProps(nextProps) {
 		this.setState({
-			eventId: nextProps.eventId,
+			event: nextProps.event,
 		})
 	}
 	componentWillUnmount() {
 	  TasksStore.unlisten(this.onChange);
 	}
 	render() {
-		let approvedTasks, unapprovedTasks, dispatchedTasks, eventId
-		eventId = this.props.eventId
-		if (this.state.approvedTasks[eventId] && this.state.approvedTasks[eventId].length > 0) {
-			approvedTasks = this.state.approvedTasks[eventId].map((task) => {
+		let approvedTasks, unapprovedTasks, dispatchedTasks, event, taskTypeSelector
+		event = this.props.event
+		if (this.state.approvedTasks[event.id] && this.state.approvedTasks[event.id].length > 0) {
+			approvedTasks = this.state.approvedTasks[event.id].map((task) => {
 				return (
 					<div>
-						<li><UserTaskListItem key={task.id} task={task} eventId={eventId}/></li>
+						<li><UserTaskListItem key={task.id} task={task} event={event}/></li>
 					</div>
 				)
 			});
 		}
-		if (this.state.unapprovedTasks[eventId] && this.state.unapprovedTasks[eventId].length > 0) {
-			unapprovedTasks = this.state.unapprovedTasks[eventId].map((task) => {
+		if (this.state.unapprovedTasks[event.id] && this.state.unapprovedTasks[event.id].length > 0) {
+			unapprovedTasks = this.state.unapprovedTasks[event.id].map((task) => {
 				return (
 					<div>
-						<li><UserTaskListItem key={task.id} task={task} eventId={eventId}/></li>
+						<li><UserTaskListItem key={task.id} task={task} event={event}/></li>
 					</div>
 				)
 			});
 		}
-		if (this.state.dispatchedTasks[eventId] && this.state.dispatchedTasks[eventId].length > 0) {
-			dispatchedTasks = this.state.dispatchedTasks[eventId].map((task) => {
+		if (this.state.dispatchedTasks[event.id] && this.state.dispatchedTasks[event.id].length > 0) {
+			dispatchedTasks = this.state.dispatchedTasks[event.id].map((task) => {
 				return (
 					<div>
-						<li><UserTaskListItem key={task.id} task={task} eventId={eventId}/></li>
+						<li><UserTaskListItem key={task.id} task={task} event={event}/></li>
 					</div>
 				)
 			});
+		}
+		if (!event.archived && event.activated) {
+			taskTypeSelector = (
+				<UserTaskTypeSelector eventId={this.props.event.id}/>
+			)
 		}
 		return (
 			<div>
-				<UserTaskTypeSelector eventId={this.props.eventId}/>
 				<Col lg={12}>
+					{taskTypeSelector}
 			    <Panel header="Dispatched Tasks">{dispatchedTasks}</Panel>
 		    </Col>
 		    <Col lg={6}>

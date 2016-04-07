@@ -8,7 +8,7 @@ class UserTaskListItem extends React.Component {
 	componentWillMount() {
 	  this.setState({
 	  	task: this.props.task,
-	  	eventId: this.props.eventId
+	  	event: this.props.event
 	  })
 	}
 	componentWillReceiveProps(nextProps) {
@@ -19,7 +19,7 @@ class UserTaskListItem extends React.Component {
 	render() {
 		let task, infoLink
 		task = this.state.task
-		infoLink = '/user/events/' + this.state.eventId + "/tasks/" + task.id
+		infoLink = '/user/events/' + this.state.event.id + "/tasks/" + task.id
 		return (
 			<div>
 				<p>Title: {task.title} | # of Volunteer: {task.number_of_volunteers}</p>

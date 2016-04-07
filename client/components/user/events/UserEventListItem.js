@@ -39,7 +39,7 @@ class UserEventListItem extends React.Component {
 				</LinkContainer>
 			)
 			userTaskContainer = (
-				<UserTasksContainer eventId={event.id}/>
+				<UserTasksContainer event={event}/>
 			)
 		} else {
 			actionButton = (
