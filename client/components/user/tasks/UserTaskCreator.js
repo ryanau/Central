@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Modal } from 'react-bootstrap'
+import { Modal, Input, Panel, ButtonInput, Button} from 'react-bootstrap'
 
 import TasksActions from 'actions/tasksActions';
 import TaskTypesActions from 'actions/tasktypesActions';
+
 
 class UserTaskCreator extends React.Component {
 	constructor(props) {
@@ -24,9 +25,9 @@ class UserTaskCreator extends React.Component {
 	}
 	_handleChange = () => {
 		this.setState({
-      title: ReactDOM.findDOMNode(this.refs.title).value,
-      zipcode: ReactDOM.findDOMNode(this.refs.zipcode).value,
-      numberOfVolunteers: ReactDOM.findDOMNode(this.refs.numberOfVolunteers).value,
+      title: this.refs.title.getValue(),
+      zipcode: this.refs.zipcode.getValue(),
+      numberOfVolunteers: this.refs.numberOfVolunteers.getValue(),
     })
 	}
 	_handleKeydown = (e) => {
@@ -55,40 +56,39 @@ class UserTaskCreator extends React.Component {
 	render() {
 		return (
 			<div>
-				<h4>{this.props.taskType.name}</h4>
+				<Panel header={this.props.taskType.name} bsStyle="info">
 				<form>
-				  <input
+				  <Input
 				  	type="text"
-				  	name="title"
+				  	label="Title"
 				  	ref="title"
 				  	value={this.state.title}
 				  	placeholder="Task Title"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
-				  <br/>
-				  <input
+				  <Input
 				  	type="text"
-				  	name="zipcode"
+				  	label="Zipcode"
 				  	ref="zipcode"
 				  	value={this.state.zipcode}
 				  	placeholder="Zip Code"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
-				  <br/>
-				  <input
+				  <Input
 				  	type="number"
-				  	name="numberOfVolunteers"
+				  	label="Number of Volunteers"
 				  	ref="numberOfVolunteers"
 				  	value={this.state.numberOfVolunteers}
 				  	placeholder="Number of Volunteers"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
 				  <br/>
-				  <input type="button" onClick={this._onSubmit} value="Create Task"/>
+				  <Button onClick={this._onSubmit} >Create Task</Button>
 				  <br/>
-				  <input type="button" onClick={this._onCancel} value="Cancel"/>
+				  <Button onClick={this._onCancel}>Cacncel</Button>
 				  <br/>
 				</form>
+				</Panel>
 			</div>
 		)
 	}
