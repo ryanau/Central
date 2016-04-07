@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Col } from "react-bootstrap";
+
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
 
@@ -20,7 +22,13 @@ class AdminSignOut extends React.Component {
   render() {
     return (
       <div>
-        <h4>Signing Out</h4>
+        <Col lg={5}>
+        </Col>
+        <Col lg={2}>
+          <h4>Signing Out</h4>
+        </Col>
+        <Col lg={5}>
+        </Col>
       </div>
     );
   }

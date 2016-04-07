@@ -44,22 +44,19 @@ class EventCreator extends React.Component {
 		return (
 			<div className="modal-container" style={{height: 50}}>
 				<Button
-		          bsStyle="primary"
-		          onClick={() => this.setState({ show: true})}
-		        >
-		          Create an Event
-		        </Button>
-
-		        <Modal
-		          show={this.state.show}
-		          onHide={close}
-		          container={this}
-		          aria-labelledby="contained-modal-title"
-		        >
-		        	<Modal.Header >
-			            <Modal.Title id="contained-modal-title">Create an Event</Modal.Title>
-			         </Modal.Header>
-			         <Modal.Body>
+          bsStyle="primary"
+          onClick={() => this.setState({ show: true})}>
+          Create an Event
+        </Button>
+        <Modal
+          show={this.state.show}
+          onHide={close}
+          container={this}
+          aria-labelledby="contained-modal-title">
+        	<Modal.Header >
+	            <Modal.Title id="contained-modal-title">Create an Event</Modal.Title>
+	        </Modal.Header>
+	        <Modal.Body>
 						<form>
 						  <Input
 						  	type="name"
@@ -79,12 +76,12 @@ class EventCreator extends React.Component {
 						  	onKeyDown={this._handleKeydown}
 						  	onChange={this._handleChange}/>
 						</form>
-						</Modal.Body>
-			          <Modal.Footer>
-						<Button button onClick={this._onCancel}>Cancel</Button>
-			            <Button button onClick={this._onSubmit} bsStyle="primary"  disabled={disabled}>Submit</Button>
-			          </Modal.Footer>
-			        </Modal>
+					</Modal.Body>
+	        <Modal.Footer>
+							<Button button onClick={this._onCancel}>Cancel</Button>
+	            <Button button onClick={this._onSubmit} bsStyle="primary"  disabled={disabled}>Submit</Button>
+	        </Modal.Footer>
+	      </Modal>
 			</div>
 		)
 	}

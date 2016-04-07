@@ -2,7 +2,6 @@ import React from 'react';
 
 import NavBar from 'components/NavBar';
 import LoggedInLanding from 'components/LoggedInLanding';
-import Landing from 'components/Landing';
 
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
@@ -41,7 +40,6 @@ class Root extends React.Component {
     let text, possible
     text = "";
     possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
     for( var i=0; i < 5; i++ )
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
@@ -51,7 +49,6 @@ class Root extends React.Component {
     let display, uid, navBar
     uid = this.state.uid
     if (Object.keys(this.state.loggedIn).length === 0 && JSON.stringify(this.state.loggedIn) === JSON.stringify({})) {
-      display = <Landing/>
       navBar = (
         <NavBar user={null} loggedIn={false} authorization={null} />
       )

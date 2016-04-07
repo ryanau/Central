@@ -1,9 +1,9 @@
 import React from 'react';
 import alt from 'control';
 
-import VolunteerSignUpBox from 'components/VolunteerSignUpBox';
+import VolunteerSignUpBox from 'components/welcome/VolunteerSignUpBox';
 
-class Landing extends React.Component {
+class Welcome extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -21,9 +21,10 @@ class Landing extends React.Component {
 		return (
 			<div>
 				<h2>Welcome to Central</h2>
+				<VolunteerSignUpBox/>
 			</div>
 		)
 	}
 };
 
-export default Landing;
+export default Welcome;

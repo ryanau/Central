@@ -18,6 +18,8 @@ class Index extends React.Component {
 			ApiRequests.redirect('/user/dashboard');
 		} else if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.globalState.uid] == "admin") {
 			ApiRequests.redirect('/admin/dashboard');
+		} else {
+			ApiRequests.redirect('/welcome');
 		}
 	}
 	componentDidUpdate() {
@@ -25,6 +27,8 @@ class Index extends React.Component {
 			ApiRequests.redirect('/user/dashboard')
 		} else if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.uid] == "admin") {
 			ApiRequests.redirect('/admin/dashboard');
+		} else {
+			ApiRequests.redirect('/welcome');
 		}
 	}
 	componentWillUnmount() {

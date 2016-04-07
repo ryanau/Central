@@ -58,28 +58,23 @@ class AdminAuth extends React.Component {
     this.state.email.length > 0 && this.state.password.length > 0 ? disabled = false : disabled = true
     return (
       <div>
-      <Grid>
-       <Row className="show-grid">
-       <Col xs={0} md={4}></Col>
-        <Col xs={12} md={4}>
-        <Panel header = "Admin Sign Up/Sign In" bsStyle="primary">
-        <form>
-          <Input type="email" label="Email Address" ref="email" placeholder="Enter email" onChange={this._handleChange}/>
-          <br/>
-            <Input type="password" placeholder="Password" label="Password" ref="password" onChange={this._handleChange} />
-         
-          <br/>
-          <ButtonToolbar>
-            <Button button bsStyle="primary" onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
-            <Button button bsStyle="primary" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
-          </ButtonToolbar>
-          <br/>
-        </form>
-        </Panel>
+        <Col xs={0} sm={3} md={4}></Col>
+        <Col xs={12} sm={6} md={4}>
+          <Panel header = "Admin Sign Up/Sign In" bsStyle="primary">
+          <form>
+            <Input type="email" label="Email Address" ref="email" placeholder="Enter email" onChange={this._handleChange}/>
+            <br/>
+              <Input type="password" placeholder="Password" label="Password" ref="password" onChange={this._handleChange} />
+            <br/>
+            <ButtonToolbar>
+              <Button button bsStyle="primary" onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
+              <Button button bsStyle="primary" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
+            </ButtonToolbar>
+            <br/>
+          </form>
+          </Panel>
         </Col>
-         <Col md={4}></Col>
-        </Row>
-        </Grid>
+        <Col sm={3} md={4}></Col>
       </div>
     );
   }

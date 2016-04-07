@@ -57,49 +57,39 @@ class Auth extends React.Component {
   render() {
     let disabled, panel
     this.state.email.length > 0 && this.state.password.length > 0 ? disabled = false : disabled = true
-    // panel = (
-      // <div>
-      // <Panel>
-        // <h3>thalsdfjlkasjdf</h3>
-      // </Panel>
-      // </div>
-    // )
     return (
-      <Row className="show-grid">
-      <Col xs={6} md={4}></Col>
-      <Col xs={6} md={4}>
         <div>
-          <Panel header="User SignIn">
-          <form>
-            <Input
-              label="Email"
-            	type="email"
-            	name="email"
-            	ref="email"
-            	placeholder="Email"
-            	onChange={this._handleChange}/>
-            <br/>
-            <Input
-              label="Password"
-            	type="password"
-            	name="password"
-            	ref="password"
-            	placeholder="Password"
-            	onChange={this._handleChange}/>
-            <br/>
-            <ButtonToolbar>
-              <Button bsStyle="primary" onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
+          <Col xs={0} sm={3} md={4}></Col>
+          <Col xs={12} sm={6} md={4}>
+            <Panel header="User SignIn">
+            <form>
+              <Input
+                label="Email"
+              	type="email"
+              	name="email"
+              	ref="email"
+              	placeholder="Email"
+              	onChange={this._handleChange}/>
+              <br/>
+              <Input
+                label="Password"
+              	type="password"
+              	name="password"
+              	ref="password"
+              	placeholder="Password"
+              	onChange={this._handleChange}/>
+              <br/>
+              <ButtonToolbar>
+                <Button bsStyle="primary" onClick={this._onSignUpSubmit} disabled={disabled}>Sign Up</Button>
 
-              <Button bsStyle="success" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
-            </ButtonToolbar>
-            <br/>
-
-          </form>
-          </Panel>
+                <Button bsStyle="success" onClick={this._onSignInSubmit} disabled={disabled}>Sign In</Button>
+              </ButtonToolbar>
+              <br/>
+            </form>
+            </Panel>
+          </Col>
+          <Col sm={3} md={4}></Col>
         </div>
-      </Col>
-      <Col xs={6} md={4}></Col>
-    </Row>
     );
   }
 };
