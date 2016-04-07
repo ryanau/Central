@@ -7,6 +7,7 @@ import EventActions from 'actions/eventActions';
 import ReportsContainer from '../reports/ReportsContainer';
 import TasksContainer from '../tasks/TasksContainer';
 import DispatchNextReport from './DispatchNextReport';
+import {Panel, Grid, Row, Col, Tabs, Tab} from 'react-bootstrap';
 
 class Event extends React.Component {
 	constructor(props) {
@@ -32,7 +33,7 @@ class Event extends React.Component {
 		EventActions.archiveEvent(this.state.event.id)
 	}
 	render() {
-		let event, eventInfo, archiveButton
+		let event, eventInfo,taskInfo, archiveButton
 		event = this.state.event
 		if (this.state.event != null) {
 			eventInfo = (
@@ -46,16 +47,31 @@ class Event extends React.Component {
 					  <br/>
 					</form>
 					<DispatchNextReport event={event}/>
+				</div>
+				)
+			taskInfo = (
+				<div>
 					<TasksContainer approvedTasks={event.approved_tasks} unapprovedTasks={event.unapproved_tasks} dispatchedTasks={event.dispatched_tasks}/>
 					<ReportsContainer eventId={event.id}/>
 				</div>
 			)
 		}
 		return (
-			<div>
-				<h4>Event</h4>
-				{eventInfo}
-			</div>
+			<Grid>
+				<Row className="show-grid">
+		      <Col xs={3} md={2}></Col>
+		      <Col xs={15} md={10}>
+						<div>
+					    <Panel header="Events" bsStyle="primary">
+								{eventInfo}
+					    </Panel>
+					    <Panel header="Tasks" bsStyle="primary">
+								{taskInfo}
+					    </Panel>
+						</div>
+					</Col>
+    		</Row>
+    	</Grid>
 		)
 	}
 };
