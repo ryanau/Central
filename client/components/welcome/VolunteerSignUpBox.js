@@ -78,48 +78,55 @@ class VolunteerSignUpBox extends React.Component {
           <Modal.Title>Join as Volunteer</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <form>
+        <form className="form-horizontal">
           <Input
+            labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="text"
             label="Phone Number"
             ref="phone"
             placeholder="e.g. 5109902345"
             onChange={this._handleChange}/>
           <Input
+            labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="text"
             label="First Name"
             ref="firstName"
             placeholder="Required"
             onChange={this._handleChange}/>
           <Input
+            labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="text"
             label="Last Name"
             ref="lastName"
             placeholder="Required"
             onChange={this._handleChange}/>
           <Input
+            labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="text"
             label="Postal Code"
             ref="zipcode"
             placeholder="Required"
             onChange={this._handleChange}/>
           <Input
+            labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="number"
             label="Age"
             ref="age"
             placeholder="Required"
             onChange={this._handleChange}/>
           <Input
+            labelClassName="col-xs-8" wrapperClassName="col-xs-4"
             type="select"
-            label="Are you a licensed driver and a vehicle?"
+            label="Are you a licensed driver and can provide a vehicle?"
             ref="driver"
             onChange={this._handleChange}>
             <option value="true">Yes</option>
             <option value="false">No</option>
           </Input>
           <Input
+            labelClassName="col-xs-8" wrapperClassName="col-xs-4"
             type="select"
-            label="Can you lift a 25-pound box?"
+            label="Can you lift a 25lb/11kg box?"
             ref="heavyLifting"
             onChange={this._handleChange}>
             <option value="true">Yes</option>
@@ -139,6 +146,7 @@ class VolunteerSignUpBox extends React.Component {
         <h4>Join Central Now</h4>
         {modal}
         <Button
+          bsStyle="primary"
           onClick={this._openModal}>
           Join as Volunteer
         </Button>
