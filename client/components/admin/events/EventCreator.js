@@ -3,7 +3,7 @@ import React from 'react';
 import EventsStore from 'stores/eventsStore';
 import EventsActions from 'actions/eventsActions';
 
-import {Panel, Input, Button, Modal} from "react-bootstrap";
+import { Panel, Input, Button, Modal } from "react-bootstrap";
 
 class EventCreator extends React.Component {
 	constructor(props) {

@@ -85,34 +85,35 @@ class VolunteerSignUpBox extends React.Component {
             label="Phone Number"
             ref="phone"
             placeholder="e.g. 5109902345"
+            help="Required"
             onChange={this._handleChange}/>
           <Input
             labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="text"
             label="First Name"
             ref="firstName"
-            placeholder="Required"
+            help="Required"
             onChange={this._handleChange}/>
           <Input
             labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="text"
             label="Last Name"
             ref="lastName"
-            placeholder="Required"
+            help="Required"
             onChange={this._handleChange}/>
           <Input
             labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="text"
             label="Postal Code"
             ref="zipcode"
-            placeholder="Required"
+            help="Required"
             onChange={this._handleChange}/>
           <Input
             labelClassName="col-xs-4" wrapperClassName="col-xs-8"
             type="number"
             label="Age"
             ref="age"
-            placeholder="Required"
+            help="Required"
             onChange={this._handleChange}/>
           <Input
             labelClassName="col-xs-8" wrapperClassName="col-xs-4"
