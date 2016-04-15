@@ -5,6 +5,7 @@ class MasterStore {
 	constructor() {
 		this.bindListeners({
 			handleStoreUserIdentity: MasterActions.STORE_USER_IDENTITY,
+			handleResetLoading: MasterActions.RESET_LOADING,
 		});
 		// this.user = null;
 		// this.loggedIn = false;
@@ -12,6 +13,7 @@ class MasterStore {
 		this.user = {};
 		this.loggedIn = {};
 		this.authorization = {};
+		this.loading = true;
 	}
 	handleStoreUserIdentity(res) {
 		// check if token is still valid in localStorage
@@ -20,10 +22,14 @@ class MasterStore {
 			this.loggedIn[res.resource.uid] = true;
 			this.authorization[res.resource.uid] = res.resource.authorization;
 			localStorage.setItem('authorization', res.resource.authorization);
+			this.loading = false;
 		} else {
 			localStorage.clear();
 			this.loggedIn = false;
 		}
+	}
+	handleResetLoading() {
+		this.loading = false;
 	}
 }
 

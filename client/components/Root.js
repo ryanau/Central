@@ -2,6 +2,7 @@ import React from 'react';
 
 import NavBar from 'components/NavBar';
 import LoggedInLanding from 'components/LoggedInLanding';
+import Welcome from 'components/welcome/Welcome';
 
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
@@ -26,12 +27,14 @@ class Root extends React.Component {
     this.setState({
       uid: uid,
     })
+    if (localStorage.getItem('uid')) {
+      MasterActions.fetchUserIdentity(uid);
+    } else {
+      MasterActions.resetLoading()
+    }
   }
   componentDidMount() {
     MasterStore.listen(this.onChange);
-    if (localStorage.getItem('uid')) {
-      MasterActions.fetchUserIdentity(this.state.uid);
-    }
   }
   componentWillUnmount() {
     MasterStore.unlisten(this.onChange);

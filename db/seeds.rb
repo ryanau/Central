@@ -1,7 +1,8 @@
 def make_events
   disasters = ["Meatball Storm", "Candy Rain", "Champagne Volcano", "Cotton Candy Typhoon", "Chocolate Hurricane"]
-  1.upto(20) do |n|
-    city = FFaker::Address.city
+  city_arr = ["SF", "LA", "SD", "NYC", "DC"]
+  1.upto(5) do |n|
+    city = city_arr[n-1]
     name = "#{city} #{disasters[n-1]}"
     event = Event.create(
       name: name,

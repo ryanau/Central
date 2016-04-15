@@ -34,31 +34,31 @@ import UserTask from 'components/user/tasks/UserTask';
 
 const router = (
   <Router history={browserHistory}>
-  <Route path='/' component={Root}>
-    <IndexRoute component={Index}/>
-    <Route path='welcome' component={Welcome}/>
-  	<Route path='admin_auth' component={AdminAuth}/>
-    <Route path='account_activation' component={AccountActivation}/>
-    <Route path='auth_complete' component={AuthComplete}/>
-  	<Route path='admin'>
-      <Route path='dashboard' component={AdminDashboard}/>
-      <Route path='sign_out' component={AdminSignOut}/>
-      <Route path='events' component={AdminEventsContainer}/>
-      <Route path='events/:eventId' component={AdminEvent}/>
-      <Route path='events/:eventId/reports/:reportId' component={AdminReport}/>
+    <Route path='/' component={Root}>
+      <IndexRoute component={Index}/>
+      <Route path='welcome' component={Welcome}/>
+    	<Route path='admin_auth' component={AdminAuth}/>
+      <Route path='account_activation' component={AccountActivation}/>
+      <Route path='auth_complete' component={AuthComplete}/>
+    	<Route path='admin'>
+        <Route path='dashboard' component={AdminDashboard}/>
+        <Route path='sign_out' component={AdminSignOut}/>
+        <Route path='events' component={AdminEventsContainer}/>
+        <Route path='events/:eventId' component={AdminEvent}/>
+        <Route path='events/:eventId/reports/:reportId' component={AdminReport}/>
+      </Route>
+      <Route path='user'>
+        <Route path='dashboard' component={UserDashboard}/>
+        <Route path='events' component={UserEventsContainer}/>
+        <Route path='events/:eventId' component={UserEvent}/>
+        <Route path='events/:eventId/reports/:reportId' component={UserReport}/>
+        <Route path='events/:eventId/tasks/:taskId' component={UserTask}/>
+        <Route path='sign_in' component={UserSignIn}/>
+        <Route path='sign_up' component={UserSignUp}/>
+        <Route path='sign_out' component={UserSignOut}/>
+      </Route>
+      <Route path="*" component={NoMatch}/>
     </Route>
-    <Route path='user'>
-      <Route path='dashboard' component={UserDashboard}/>
-      <Route path='events' component={UserEventsContainer}/>
-      <Route path='events/:eventId' component={UserEvent}/>
-      <Route path='events/:eventId/reports/:reportId' component={UserReport}/>
-      <Route path='events/:eventId/tasks/:taskId' component={UserTask}/>
-      <Route path='sign_in' component={UserSignIn}/>
-      <Route path='sign_up' component={UserSignUp}/>
-      <Route path='sign_out' component={UserSignOut}/>
-    </Route>
-    <Route path="*" component={NoMatch}/>
-  </Route>
   </Router>
 );
 
