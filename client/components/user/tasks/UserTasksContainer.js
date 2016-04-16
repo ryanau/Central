@@ -6,7 +6,8 @@ import TasksStore from 'stores/tasksStore';
 import TasksActions from 'actions/tasksActions';
 
 import UserTaskListItem from './UserTaskListItem';
-import UserTaskTypeSelector from './UserTaskTypeSelector';
+// import UserTaskTypeSelector from './UserTaskTypeSelector';
+import UserTaskCreator from './UserTaskCreator';
 
 class UserTasksContainer extends React.Component {
 	constructor(props) {
@@ -32,7 +33,7 @@ class UserTasksContainer extends React.Component {
 	  TasksStore.unlisten(this.onChange);
 	}
 	render() {
-		let approvedTasks, unapprovedTasks, dispatchedTasks, event, taskTypeSelector
+		let approvedTasks, unapprovedTasks, dispatchedTasks, event, taskTypeSelector, taskCreator
 		event = this.props.event
 		if (this.state.approvedTasks[event.id] && this.state.approvedTasks[event.id].length > 0) {
 			approvedTasks = this.state.approvedTasks[event.id].map((task) => {
@@ -62,15 +63,18 @@ class UserTasksContainer extends React.Component {
 			});
 		}
 		if (!event.archived && event.activated) {
-			taskTypeSelector = (
-				<UserTaskTypeSelector eventId={this.props.event.id}/>
+			// taskTypeSelector = (
+			// 	<UserTaskTypeSelector eventId={this.props.event.id}/>
+			// )
+			taskCreator = (
+				<UserTaskCreator eventId={this.props.event.id}/>
 			)
 		}
 		return (
 			<div>
 				<Col lg={12}>
-					{taskTypeSelector}
-			    <Panel header="Dispatched Tasks">{dispatchedTasks}</Panel>
+					{taskCreator}
+			  <Panel header="Dispatched Tasks">{dispatchedTasks}</Panel>
 		    </Col>
 		    <Col lg={6}>
 			    <Panel header="Approved Tasks">{approvedTasks}</Panel>

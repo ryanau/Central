@@ -93,7 +93,7 @@ end
 
 case Rails.env
 when "development"
-  # make_events
+  make_events
   # make_tasks
   # seed_number
   seed_ryan_volunteer

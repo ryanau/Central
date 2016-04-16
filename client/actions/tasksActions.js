@@ -18,7 +18,7 @@ class TasksActions {
 		}
 		ApiRequests.get(ApiConstants.user_tasks.collection, data, resolve)
 	}
-	createUserTask(title, zipcode, numberOfVolunteers, taskTypeId, eventId) {
+	createUserTask(title, zipcode, numberOfVolunteers, description, location, start, end, taskTypeId, eventId) {
 		const data = {
 			task: {
 				title: title,
@@ -26,6 +26,10 @@ class TasksActions {
 				number_of_volunteers: numberOfVolunteers,
 				task_type_id: taskTypeId,
 				event_id: eventId,
+				description: description,
+				location: location,
+				start: start,
+				end: end,
 			}
 		}
 		const resolve = (res) => {
