@@ -26,14 +26,22 @@ class NavBar extends React.Component {
   render() {
     let signOutLink, userSignInLink, userSignUpLink, userName
     if (this.state.loggedIn && this.state.authorization == 'user') {
-      userName = this.state.user.uid;
+      userName = (
+        <LinkContainer to={{ pathname: '/user/account' }}>
+          <NavItem eventKey={1}>{this.state.user.uid}</NavItem>
+        </LinkContainer>
+      )
       signOutLink = (
         <LinkContainer to={{ pathname: '/user/sign_out' }}>
           <NavItem eventKey={1}>Sign Out</NavItem>
         </LinkContainer>
       )
     } else if (this.state.loggedIn && this.state.authorization == 'admin') {
-      userName = this.state.user.uid;
+      userName = (
+        <LinkContainer to={{ pathname: '/admin/account' }}>
+          <NavItem eventKey={1}>{this.state.user.uid}</NavItem>
+        </LinkContainer>
+      )
       signOutLink = (
         <LinkContainer to={{ pathname: '/admin/sign_out' }}>
           <NavItem eventKey={1}>Sign Out</NavItem>
@@ -66,7 +74,7 @@ class NavBar extends React.Component {
           <Nav>
           </Nav>
           <Nav pullRight>
-            <NavItem eventKey={1}>{userName}</NavItem>
+            {userName}
             {userSignInLink}
             {userSignUpLink}
             {signOutLink}

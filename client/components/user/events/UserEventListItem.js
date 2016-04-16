@@ -52,6 +52,7 @@ class UserEventListItem extends React.Component {
 		return (
 			<div>
 				<PageHeader>{event.name} <small>{event.city}</small></PageHeader>
+				{actionButton}
 				{userTaskContainer}
 			</div>
 		)

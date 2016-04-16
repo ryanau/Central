@@ -31,6 +31,7 @@ import UserEventsContainer from 'components/user/events/UserEventsContainer';
 import UserEvent from 'components/user/events/UserEvent';
 import UserReport from 'components/user/reports/UserReport';
 import UserTask from 'components/user/tasks/UserTask';
+import UserAccount from 'components/user/account/UserAccount';
 
 const router = (
   <Router history={browserHistory}>
@@ -53,6 +54,7 @@ const router = (
         <Route path='events/:eventId' component={UserEvent}/>
         <Route path='events/:eventId/reports/:reportId' component={UserReport}/>
         <Route path='events/:eventId/tasks/:taskId' component={UserTask}/>
+        <Route path='account' component={UserAccount}/>
         <Route path='sign_in' component={UserSignIn}/>
         <Route path='sign_up' component={UserSignUp}/>
         <Route path='sign_out' component={UserSignOut}/>

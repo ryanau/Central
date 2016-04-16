@@ -21,6 +21,8 @@ class Api_Constants {
 			identity: this.origin + 'session/identity',
 			auth_complete: this.frontend + 'auth_complete',
 			check_code: this.origin + 'access_codes/check',
+			account: this.origin + 'session/account',
+			update_account: this.origin + 'session/update_organization_name',
 		}
 	}
 	get volunteers() {

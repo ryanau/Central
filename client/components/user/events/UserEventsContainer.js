@@ -50,7 +50,7 @@ class UserEventsContainer extends React.Component {
 			});
 		}
 		if (this.state.archivedActivatedEvents) {
-			archivedActivatedEventsTitle = "Archived Events" + " [" + this.state.archivedActivatedEvents.length + "] "
+			archivedActivatedEventsTitle = "Past Events" + " [" + this.state.archivedActivatedEvents.length + "] "
 			archivedActivatedEvents = this.state.archivedActivatedEvents.map((event, index) => {
 				return (
 					<Tab eventKey={index + 1} title={event.name}>
@@ -67,15 +67,15 @@ class UserEventsContainer extends React.Component {
 						  {activatedEvents}
 				  	</Tabs>
 				  </Tab>
-				  <Tab eventKey={2} title={archivedActivatedEventsTitle}>
-					  <Tabs defaultActiveKey={1}>
-						  {archivedActivatedEvents}
-						</Tabs>
-				  </Tab>
-				  <Tab eventKey={3} title={eventsTitle}>
+				  <Tab eventKey={2} title={eventsTitle}>
 				  	<Tabs defaultActiveKey={1}>
 						  {events}
 					  </Tabs>
+				  </Tab>
+				  <Tab eventKey={3} title={archivedActivatedEventsTitle}>
+					  <Tabs defaultActiveKey={1}>
+						  {archivedActivatedEvents}
+						</Tabs>
 				  </Tab>
 				</Tabs>
 			</div>
