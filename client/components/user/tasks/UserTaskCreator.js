@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Modal, Input, Panel, ButtonInput, Button, Row, Col } from 'react-bootstrap'
+import { Modal, Input, Panel, ButtonInput, Button, Row, Col, ButtonToolbar } from 'react-bootstrap'
 import moment from 'moment';
 import DateTimeField from 'react-bootstrap-datetimepicker'
 
@@ -173,18 +173,22 @@ class UserTaskCreator extends React.Component {
 				</Modal.Body>
         <Modal.Footer>
           <Button button onClick={this._closeModal}>Cancel</Button>
-          <Button button onClick={this._onSubmit} bsStyle="primary"  disabled={disabled}>Submit</Button>
+          <Button button onClick={this._onSubmit} bsStyle="success"  disabled={disabled}>Submit</Button>
         </Modal.Footer>
     	</Modal>
 		)
 		return (
 			<div>
 				{modal}
-				<Button
-          bsStyle="primary"
-          onClick={this._openModal}>
-          Recruit Volunteers
-        </Button>
+				<div className="mB-10">
+					<ButtonToolbar>
+						<Button
+		          bsStyle="primary"
+		          onClick={this._openModal}>
+		          Recruit Volunteers
+		        </Button>
+	        </ButtonToolbar>
+        </div>
 			</div>
 		)
 	}

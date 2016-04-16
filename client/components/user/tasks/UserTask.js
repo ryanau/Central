@@ -43,13 +43,20 @@ class UserTask extends React.Component {
 					</Col>
 					<Col lg={8}>
 						<Panel header={taskTitle} bsStyle="primary">
-							<ButtonToolbar>
-								<Button
-									bsStyle="info"
-									onClick={this._onRefreshButtonClicked}>
-									<Glyphicon glyph="refresh"/> Refresh
-								</Button>
-							</ButtonToolbar>
+							<h3>{task.title}</h3>
+							<h4>{task.description}</h4>
+							<p>Location: {task.location + ' (' + task.zipcode + ')'}</p>
+							<p>From {moment(task.start).format("ddd, M/D/YYYY, H:mm") + ' to ' + moment(task.end).format("ddd, M/D/YYYY, H:mm")}</p>
+							<p>Volunteers Requested: {task.number_of_volunteers}</p>
+							<div className="mB-10">
+								<ButtonToolbar>
+									<Button
+										bsStyle="primary"
+										onClick={this._onRefreshButtonClicked}>
+										<Glyphicon glyph="refresh"/> Refresh
+									</Button>
+								</ButtonToolbar>
+							</div>
 							<ListGroup>
 								<ListGroupItem># of Volunteers requested: {task.number_of_volunteers}</ListGroupItem>
 								<ListGroupItem>Digest reached: {task.report_reached}</ListGroupItem>

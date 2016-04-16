@@ -17,8 +17,6 @@ class Task < ActiveRecord::Base
 
   def build_task
     # pass in task id
-    p '*' * 100
-    p self.id
     TaskBuilderWorker.perform_async(self.id)
   end
 
