@@ -61,7 +61,7 @@ class UserEventsContainer extends React.Component {
 		}
 		return (
 			<div>
-				<Tabs defaultActiveKey={1} position="left" tabWidth={2}>
+				<Tabs defaultActiveKey={1} position="left" tabWidth={3}>
 				  <Tab eventKey={1} title={activatedEventsTitle}>
 				  	<Tabs defaultActiveKey={1}>
 						  {activatedEvents}

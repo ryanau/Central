@@ -20,7 +20,7 @@ class UserTaskCreator extends React.Component {
 			start: "",
 			end: "",
 			taskTypeId: 1,
-			eventId: this.props.eventId,
+			eventId: this.props.event.id,
 			openModal: false,
 		}
 	}
@@ -44,7 +44,7 @@ class UserTaskCreator extends React.Component {
 		})
 	}
 	_handleKeydown = (e) => {
-		if (e.which == 13 && this.state.title.length > 0 && this.state.zipcode.length > 0 && this.state.numberOfVolunteers.length > 0 && this.state.description.length > 0 && this.state.location.length > 0 && this.state.start.length > 0 && this.state.end.length > 0) {this._onSubmit()}
+		if (e.which == 13 && this.state.title.length > 0 && this.state.title.length <= 30 && this.state.zipcode.length > 0 && this.state.numberOfVolunteers.length > 0 && this.state.description.length > 0 && this.state.location.length > 0 && this.state.start.length > 0 && this.state.end.length > 0) {this._onSubmit()}
 	}
 	_onSubmit = () => {
 		TasksActions.createUserTask(
@@ -86,13 +86,31 @@ class UserTaskCreator extends React.Component {
 	    openModal: false,
 		});
 	}
+  _checkTitleCharacterCount() {
+    let title
+    title = this.state.title;
+    if (title.length > 0 && title.length <= 30) {
+      return 'success';
+    } else {
+      return 'error';
+    }
+  }
+  _feedTitleCharacterCountPhrase() {
+    let title
+    title = this.state.title;
+    if (title.length <= 30) {
+      return 'Title has to be within 30 characters';
+    } else {
+      return 'Title is longer than 30 characters';
+    }
+  }
 	render() {
 		let modal, disabled
-    this.state.title.length > 0 && this.state.zipcode.length > 0 && this.state.numberOfVolunteers.length > 0 && this.state.description.length > 0 && this.state.location.length > 0 && this.state.start.length > 0 && this.state.end.length > 0 ? disabled = false : disabled = true
+    this.state.title.length > 0 && this.state.title.length <= 30 && this.state.zipcode.length > 0 && this.state.numberOfVolunteers.length > 0 && this.state.description.length > 0 && this.state.location.length > 0 && this.state.start.length > 0 && this.state.end.length > 0 ? disabled = false : disabled = true
 		modal = (
 			<Modal show={this.state.openModal}>
         <Modal.Header>
-          <Modal.Title>Recruit Volunteers</Modal.Title>
+          <Modal.Title>Recruit Volunteers for {this.props.event.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
 				<form className="form-horizontal">
@@ -101,9 +119,11 @@ class UserTaskCreator extends React.Component {
 				  	type="text"
 				  	label="Title"
 				  	ref="title"
-            help="Required"
+            help={this._feedTitleCharacterCountPhrase()}
 				  	value={this.state.title}
-				  	placeholder="e.g. Debris clean up near Channing/Haste St."
+				  	placeholder="e.g. Debris clean up/ Move sand bags"
+            bsStyle={this._checkTitleCharacterCount()}
+            hasFeedback
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
 				  <Input
@@ -119,11 +139,11 @@ class UserTaskCreator extends React.Component {
           <Input
             labelClassName="col-xs-4" wrapperClassName="col-xs-8"
 				  	type="text"
-				  	label="Zipcode"
+				  	label="Postal Code"
 				  	ref="zipcode"
             help="Required"
 				  	value={this.state.zipcode}
-				  	placeholder="Zip Code"
+				  	placeholder="Postal Code"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
 				  <Input

@@ -61,7 +61,7 @@ class UserTasksContainer extends React.Component {
 			// 	<UserTaskTypeSelector eventId={this.props.event.id}/>
 			// )
 			taskCreator = (
-				<UserTaskCreator eventId={this.props.event.id}/>
+				<UserTaskCreator event={this.props.event}/>
 			)
 		}
 		return (

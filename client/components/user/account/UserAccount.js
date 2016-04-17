@@ -37,6 +37,9 @@ class UserAccount extends React.Component {
 	componentWillUnmount() {
 	  AccountStore.unlisten(this.onChange);
 	}
+  _handleKeydown = (e) => {
+    if (e.which == 13) {this._onSubmit()}
+  }
 	_onEditOrganizationNameClicked = () => {
 		this.setState({
 			editMode: true,
@@ -52,6 +55,7 @@ class UserAccount extends React.Component {
     this.setState({
       editMode: false,
     })
+    ApiRequests.redirect('/');
   }
 	render() {
 		let organizationName, editButton
@@ -64,6 +68,7 @@ class UserAccount extends React.Component {
             placeholder={this.state.organization_name}
             ref="organization_name"
             help="Required"
+          	onKeyDown={this._handleKeydown}
             onChange={this._handleChange}/>
         </form>
 			)
