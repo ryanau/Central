@@ -56,7 +56,7 @@ class VolunteerSignUpBox extends React.Component {
       openModal: true,
     })
   }
-  _closeMOdal = () => {
+  _closeModal = () => {
     this.setState({
       phone: "",
       firstName: "",
@@ -69,8 +69,7 @@ class VolunteerSignUpBox extends React.Component {
     })
   }
   render() {
-    let joinBox, modal
-    let disabled
+    let joinBox, modal, disabled
       this.state.phone.length > 0 && this.state.firstName.length > 0 && this.state.lastName.length > 0 && this.state.zipcode.length > 0 && this.state.age.length > 0 ? disabled = false : disabled = true
     modal = (
       <Modal show={this.state.openModal}>
@@ -121,8 +120,8 @@ class VolunteerSignUpBox extends React.Component {
             label="Are you a licensed driver and can provide a vehicle?"
             ref="driver"
             onChange={this._handleChange}>
-            <option value="true">Yes</option>
             <option value="false">No</option>
+            <option value="true">Yes</option>
           </Input>
           <Input
             labelClassName="col-xs-8" wrapperClassName="col-xs-4"
@@ -130,15 +129,15 @@ class VolunteerSignUpBox extends React.Component {
             label="Can you lift a 25lb/11kg box?"
             ref="heavyLifting"
             onChange={this._handleChange}>
-            <option value="true">Yes</option>
             <option value="false">No</option>
+            <option value="true">Yes</option>
           </Input>
           <br/>
         </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button button onClick={this._closeMOdal}>Cancel</Button>
-          <Button button onClick={this._onSubmit} bsStyle="primary"  disabled={disabled}>Join Now!</Button>
+          <Button button onClick={this._closeModal}>Cancel</Button>
+          <Button button onClick={this._onSubmit} bsStyle="success"  disabled={disabled}>Join Now!</Button>
         </Modal.Footer>
       </Modal>
     )

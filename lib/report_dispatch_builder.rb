@@ -24,3 +24,9 @@ module ReportDispatchBuilder
     report.event.generate_next_report
   end
 end
+
+
+
+# digest opening line: "This is Central, the community volunteering platform for local disasters you signed up for. We have matched you with a number of volunteering opportunities"
+
+# each msg, more info, include blurb, time, location

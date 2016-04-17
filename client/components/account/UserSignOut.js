@@ -25,7 +25,7 @@ class UserSignOut extends React.Component {
         <Col lg={5}>
         </Col>
         <Col lg={2}>
-          <h4>Signing Out</h4>
+          <h4>Goodbye! Signing Out...</h4>
         </Col>
         <Col lg={5}>
         </Col>

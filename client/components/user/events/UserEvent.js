@@ -40,25 +40,20 @@ class UserEvent extends React.Component {
 			)
 			taskInfo = (
 					<div>
-						<UserTasksContainer eventId={event.id}/>
+						<UserTasksContainer event={event}/>
 					</div>
 				)
 
 		}
 		return (
 			<Grid>
-				<Row className="show-grid">
-		      <Col xs={3} md={2}></Col>
-		      <Col xs={15} md={10}>
-			      <div>
-					    <Panel header="Events" bsStyle="primary">
-								{eventInfo}
-					    </Panel>
-					    	<h3>Tasks</h3>
-					    	{taskInfo}
-						</div>
-		      </Col>
-    		</Row>
+		      <div>
+				    <Panel header="Events" bsStyle="primary">
+							{eventInfo}
+				    </Panel>
+				    	<h3>Tasks</h3>
+				    	{taskInfo}
+					</div>
     	</Grid>
 		)
 	}

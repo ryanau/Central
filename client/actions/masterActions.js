@@ -5,7 +5,8 @@ import ApiRequests from 'api_requests';
 class MasterActions {
 	constructor() {
 		this.generateActions(
-			'storeUserIdentity'
+			'storeUserIdentity',
+			'resetLoading'
 		)
 	}
 	fetchUserIdentity(uid) {
@@ -16,6 +17,9 @@ class MasterActions {
 			this.actions.storeUserIdentity(res);
 		}
 		ApiRequests.get(ApiConstants.session.identity, data, resolve)
+	}
+	resetLoading() {
+		this.actions.resetLoading();
 	}
 }
 

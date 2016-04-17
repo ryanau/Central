@@ -1,6 +1,8 @@
 import React from 'react';
 import alt from 'control';
 
+import MasterStore from 'stores/masterStore';
+
 import ApiRequests from 'api_requests';
 
 class Index extends React.Component {
@@ -12,26 +14,34 @@ class Index extends React.Component {
 	  this.setState(state);
 	}
 	componentWillMount() {
+		this.setState(
+		  MasterStore.getState()
+		)
 	}
 	componentDidMount() {
-		if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.globalState.uid] == "user") {
-			ApiRequests.redirect('/user/dashboard');
-		} else if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.globalState.uid] == "admin") {
-			ApiRequests.redirect('/admin/dashboard');
-		} else {
-			ApiRequests.redirect('/welcome');
+		MasterStore.listen(this.onChange);
+		if (!this.state.loading) {
+			if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.globalState.uid] == "user") {
+				ApiRequests.redirect('/user/dashboard');
+			} else if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.globalState.uid] == "admin") {
+				ApiRequests.redirect('/admin/dashboard');
+			} else if (!this.props.globalState.loggedIn[this.props.globalState.uid]) {
+				ApiRequests.redirect('/welcome');
+			}
 		}
 	}
 	componentDidUpdate() {
+		console.log('did update')
 		if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.globalState.uid] == "user") {
 			ApiRequests.redirect('/user/dashboard')
 		} else if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.uid] == "admin") {
 			ApiRequests.redirect('/admin/dashboard');
-		} else {
-			ApiRequests.redirect('/welcome');
+		} else if (!this.props.globalState.loggedIn[this.props.globalState.uid]) {
+				ApiRequests.redirect('/welcome');
 		}
 	}
 	componentWillUnmount() {
+		MasterStore.unlisten(this.onChange);
 	}
 	render() {
 		return (

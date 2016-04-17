@@ -33,11 +33,11 @@ class UserEventListItem extends React.Component {
 		event = this.state.event
 		infoLink = "/user/events/" + event.id
 		if (event.activated) {
-			actionButton = (
-				<LinkContainer to={{ pathname: infoLink }}>
-					<Button bsStyle="info">See Details</Button>
-				</LinkContainer>
-			)
+			// actionButton = (
+			// 	<LinkContainer to={{ pathname: infoLink }}>
+			// 		<Button bsStyle="info">See Details</Button>
+			// 	</LinkContainer>
+			// )
 			userTaskContainer = (
 				<UserTasksContainer event={event}/>
 			)

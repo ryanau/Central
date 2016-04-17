@@ -1,12 +1,13 @@
 import React from 'react';
 import alt from 'control';
-import { Panel, Grid, Row, Col, Tabs, Tab } from 'react-bootstrap';
+import { Panel, Grid, Row, Col, Tabs, Tab, ListGroup } from 'react-bootstrap';
 
 import TasksStore from 'stores/tasksStore';
 import TasksActions from 'actions/tasksActions';
 
 import UserTaskListItem from './UserTaskListItem';
-import UserTaskTypeSelector from './UserTaskTypeSelector';
+// import UserTaskTypeSelector from './UserTaskTypeSelector';
+import UserTaskCreator from './UserTaskCreator';
 
 class UserTasksContainer extends React.Component {
 	constructor(props) {
@@ -32,51 +33,60 @@ class UserTasksContainer extends React.Component {
 	  TasksStore.unlisten(this.onChange);
 	}
 	render() {
-		let approvedTasks, unapprovedTasks, dispatchedTasks, event, taskTypeSelector
+		let approvedTasks, unapprovedTasks, dispatchedTasks, event, taskTypeSelector, taskCreator
 		event = this.props.event
 		if (this.state.approvedTasks[event.id] && this.state.approvedTasks[event.id].length > 0) {
 			approvedTasks = this.state.approvedTasks[event.id].map((task) => {
 				return (
-					<div>
-						<li><UserTaskListItem key={task.id} task={task} event={event}/></li>
-					</div>
+						<UserTaskListItem key={task.id} task={task} event={event}/>
 				)
 			});
 		}
 		if (this.state.unapprovedTasks[event.id] && this.state.unapprovedTasks[event.id].length > 0) {
 			unapprovedTasks = this.state.unapprovedTasks[event.id].map((task) => {
 				return (
-					<div>
-						<li><UserTaskListItem key={task.id} task={task} event={event}/></li>
-					</div>
+						<UserTaskListItem key={task.id} task={task} event={event}/>
 				)
 			});
 		}
 		if (this.state.dispatchedTasks[event.id] && this.state.dispatchedTasks[event.id].length > 0) {
 			dispatchedTasks = this.state.dispatchedTasks[event.id].map((task) => {
 				return (
-					<div>
-						<li><UserTaskListItem key={task.id} task={task} event={event}/></li>
-					</div>
+						<UserTaskListItem key={task.id} task={task} event={event}/>
 				)
 			});
 		}
 		if (!event.archived && event.activated) {
-			taskTypeSelector = (
-				<UserTaskTypeSelector eventId={this.props.event.id}/>
+			// taskTypeSelector = (
+			// 	<UserTaskTypeSelector eventId={this.props.event.id}/>
+			// )
+			taskCreator = (
+				<UserTaskCreator event={this.props.event}/>
 			)
 		}
 		return (
 			<div>
 				<Col lg={12}>
-					{taskTypeSelector}
-			    <Panel header="Dispatched Tasks">{dispatchedTasks}</Panel>
+					{taskCreator}
+			  <Panel header="Dispatched Tasks">
+			  	<ListGroup>
+				  	{dispatchedTasks}
+			  	</ListGroup>
+			  </Panel>
 		    </Col>
-		    <Col lg={6}>
-			    <Panel header="Approved Tasks">{approvedTasks}</Panel>
+		    <Col lg={12}>
+			    <Panel header="Approved Tasks">
+				    <ListGroup>
+				    	{approvedTasks}
+			    	</ListGroup>
+			    </Panel>
 		    </Col>
-		    <Col lg={6}>
-			    <Panel header="Unapproved Tasks">{unapprovedTasks}</Panel>
+		    <Col lg={12}>
+			    <Panel header="Unapproved Tasks">
+				    <ListGroup>
+				    	{unapprovedTasks}
+			    	</ListGroup>
+			    </Panel>
 		    </Col>
 			</div>
 		)

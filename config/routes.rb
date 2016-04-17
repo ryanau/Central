@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     end
 
     get 'session/identity', to: 'session#identity'
+    get 'session/account', to: 'session#account'
+    put 'session/update_organization_name', to: 'session#update_organization_name'
 
     post 'volunteers/join'
 
@@ -42,7 +44,6 @@ Rails.application.routes.draw do
       resources :tasks, only: [:index, :create, :show]
       resources :task_types, only: [:index]
 
-      get 'tasks/demo_get', to: 'tasks#demo_get'
     end
   end
 

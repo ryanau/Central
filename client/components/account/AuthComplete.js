@@ -29,7 +29,7 @@ class AuthComplete extends React.Component {
     localStorage.setItem('client', clientId);
     localStorage.setItem('expiry', expiry);
     localStorage.setItem('uid', uid);
-    ApiRequests.redirect('/');
+    window.location.href = '/user/account?edit_mode=true';
   }
   render() {
     return (

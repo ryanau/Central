@@ -23,13 +23,13 @@ class UserDashboard extends React.Component {
 	render() {
 		return (
 			<div>
-				<Col lg={2}>
+				<Col lg={1}>
 				</Col>
-				<Col lg={8}>
+				<Col lg={10}>
 					<PageHeader>Your Dashboard</PageHeader>
 					<UserEventsContainer/>
 				</Col>
-				<Col lg={2}>
+				<Col lg={1}>
 				</Col>
 			</div>
 		)
