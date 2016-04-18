@@ -1,6 +1,6 @@
 import React from 'react';
 import alt from 'control';
-import { Panel, Grid, Row, Col, Tabs, Tab, ListGroup } from 'react-bootstrap';
+import { Panel, Grid, Row, Col, Tabs, Tab, ListGroup, Badge, Label } from 'react-bootstrap';
 
 import TasksStore from 'stores/tasksStore';
 import TasksActions from 'actions/tasksActions';
@@ -33,29 +33,32 @@ class UserTasksContainer extends React.Component {
 	  TasksStore.unlisten(this.onChange);
 	}
 	render() {
-		let approvedTasks, unapprovedTasks, dispatchedTasks, event, taskTypeSelector, taskCreator
+		let approvedTasks, approvedTasksLength, unapprovedTasks, unapprovedTasksLength, dispatchedTasks, dispatchedTasksLength, event, taskTypeSelector, taskCreator
 		event = this.props.event
 		if (this.state.approvedTasks[event.id] && this.state.approvedTasks[event.id].length > 0) {
+			approvedTasksLength = <div>Approved Tasks <Badge>{this.state.approvedTasks[event.id].length}</Badge></div>
 			approvedTasks = this.state.approvedTasks[event.id].map((task) => {
 				return (
 						<UserTaskListItem key={task.id} task={task} event={event}/>
 				)
 			});
-		}
+		} else {approvedTasksLength = <div>Approved Tasks <Badge>0</Badge></div>}
 		if (this.state.unapprovedTasks[event.id] && this.state.unapprovedTasks[event.id].length > 0) {
+			unapprovedTasksLength = <div>Tasks Pending Approval <Badge>{this.state.unapprovedTasks[event.id].length}</Badge></div>
 			unapprovedTasks = this.state.unapprovedTasks[event.id].map((task) => {
 				return (
 						<UserTaskListItem key={task.id} task={task} event={event}/>
 				)
 			});
-		}
+		} else {unapprovedTasksLength = <div>Tasks Pending Approval <Badge>0</Badge></div>}
 		if (this.state.dispatchedTasks[event.id] && this.state.dispatchedTasks[event.id].length > 0) {
+			dispatchedTasksLength = <div>Dispatched Tasks <Badge>{this.state.dispatchedTasks[event.id].length}</Badge></div>
 			dispatchedTasks = this.state.dispatchedTasks[event.id].map((task) => {
 				return (
 						<UserTaskListItem key={task.id} task={task} event={event}/>
 				)
 			});
-		}
+		} else {dispatchedTasksLength = <div>Dispatched Tasks <Badge>0</Badge></div>}
 		if (!event.archived && event.activated) {
 			// taskTypeSelector = (
 			// 	<UserTaskTypeSelector eventId={this.props.event.id}/>
@@ -68,21 +71,21 @@ class UserTasksContainer extends React.Component {
 			<div>
 				<Col lg={12}>
 					{taskCreator}
-			  <Panel header="Dispatched Tasks">
+			  <Panel header={dispatchedTasksLength}>
 			  	<ListGroup>
 				  	{dispatchedTasks}
 			  	</ListGroup>
 			  </Panel>
 		    </Col>
 		    <Col lg={12}>
-			    <Panel header="Approved Tasks">
+			    <Panel header={approvedTasksLength}>
 				    <ListGroup>
 				    	{approvedTasks}
 			    	</ListGroup>
 			    </Panel>
 		    </Col>
 		    <Col lg={12}>
-			    <Panel header="Unapproved Tasks">
+			    <Panel header={unapprovedTasksLength}>
 				    <ListGroup>
 				    	{unapprovedTasks}
 			    	</ListGroup>

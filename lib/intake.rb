@@ -37,19 +37,19 @@ class Intake
 	def dispatch_question
 		case @intake_state.last_intake_question_id
 		when 0
-			message = "Thanks for volunteering with Central! We're going to begin by asking you a series of questions to help better match you with volunteering opportunities. To begin, what is your first name?"
+			message = "Thank you for signing up with Central! We're going to begin by asking you a series of questions to help better match you with volunteering opportunities. To begin, what is your first name?"
 		when 1
 			message = "Got it, #{@volunteer.first_name}. How about the last name?"
 		when 2
 			message = "Ok, thanks. How old are you?"
 		when 3
-			message = "Almost done! Are you able to lift a 25 pound box overhead? Reply YES or NO"
+			message = "Almost done! For some opportunities, you may be moving heavy objects. Are you able to lift a 25lb/11kg box overhead? Reply YES or NO"
 		when 4
 			message = "Are you a licensed driver with a working car or other vehicle? Reply YES or NO"
 		when 5
-			message = "All right, last question. What is the zipcode of your current location?"
+			message = "All right, last question. What is the postal code of your current location?"
 		when 6
-			message = "That completes your registration with Central! This number will no longer respond to messages, you may delete this thread."
+			message = "That completes your registration with Central! We are matching you with the right volunteering opportunities. In the mean time, please sit back and relax!.\n\nThis number will no longer respond to messages, you may delete this thread."
 		else
 			return
 		end

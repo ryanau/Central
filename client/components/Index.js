@@ -31,7 +31,6 @@ class Index extends React.Component {
 		}
 	}
 	componentDidUpdate() {
-		console.log('did update')
 		if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.globalState.uid] == "user") {
 			ApiRequests.redirect('/user/dashboard')
 		} else if (this.props.globalState.loggedIn[this.props.globalState.uid] && this.props.globalState.authorization[this.props.uid] == "admin") {

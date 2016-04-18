@@ -2,8 +2,9 @@ module ReportDispatchBuilder
   def self.build_report(report_id)
     report = Report.find(report_id)
     message = ""
-    message << report.title + "\n\n"
-    message << "Please respond with the code within the [bracket] if you want more info.\n\n"
+    # message << report.title + "\n\n"
+    message << "Central: We have matched you with a number of personalized volunteering opportunities.\n\n"
+    message << "Please respond with the code within the [bracket] to sign up for your desired volunteering opportunity.\n\n"
     report.approved_messages.each do |msg|
       message << msg.content + "\n"
     end

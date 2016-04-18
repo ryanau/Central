@@ -36,5 +36,8 @@ module Central
 
     # Loading from lib folder
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    # Set default time zone
+    config.time_zone = 'Pacific Time (US & Canada)'
   end
 end

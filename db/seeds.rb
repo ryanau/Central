@@ -60,10 +60,6 @@ def seed_ryan_number
   Phone.create(number: "6692310845")
 end
 
-def seed_youwei_number
-  Phone.create(number: "2013899283")
-end
-
 def seed_ryan_volunteer
   Volunteer.create(phone_number: "6265005826", first_name: "Ryan", last_name: "Au", zipcode: "94704", age: 21, driver: true, heavy_lifting: false, profile_completed: true)
 end
