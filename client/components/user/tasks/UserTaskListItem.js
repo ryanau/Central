@@ -24,8 +24,9 @@ class UserTaskListItem extends React.Component {
 		infoLink = '/user/events/' + this.state.event.id + "/tasks/" + task.id
 		return (
 			<ListGroupItem header={task.title + ' at ' + task.location + ' (' + task.zipcode + ')'}>
+				<p>Task created {moment(task.created_at).fromNow()}</p>
 				<p>{task.description}</p>
-				<p>From {moment(task.start).format("ddd, M/D/YYYY, H:mm") + ' to ' + moment(task.end).format("ddd, M/D/YYYY, H:mm")}</p>
+				<p>From {moment(task.start).format("ddd, M/D/YYYY, h:mm A") + ' to ' + moment(task.end).format("ddd, M/D/YYYY, h:mm A")}</p>
 				<p>Volunteers Requested: {task.number_of_volunteers}</p>
 				{<Link to={infoLink}>See Responses</Link>}
 			</ListGroupItem>

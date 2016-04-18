@@ -30,7 +30,7 @@ class UserEventsContainer extends React.Component {
 		let events, activatedEvents, archivedActivatedEvents
 		let activatedEventsTitle, eventsTitle, archivedActivatedEventsTitle
 		if (this.state.activatedEvents) {
-			activatedEventsTitle = "Activated Events" + " [" + this.state.activatedEvents.length + "] "
+			activatedEventsTitle = <div>Activated Events <Badge>{this.state.activatedEvents.length}</Badge></div>
 			activatedEvents = this.state.activatedEvents.map((event, index) => {
 				return (
 					<Tab eventKey={index + 1} title={event.name}>
@@ -40,7 +40,7 @@ class UserEventsContainer extends React.Component {
 			});
 		}
 		if (this.state.events != null) {
-			eventsTitle = "Active Events" + " [" + this.state.events.length + "] "
+			eventsTitle = <div>Active Events <Badge>{this.state.events.length}</Badge></div>
 			events = this.state.events.map((event, index) => {
 				return (
 					<Tab eventKey={index + 1} title={event.name}>
@@ -50,7 +50,7 @@ class UserEventsContainer extends React.Component {
 			});
 		}
 		if (this.state.archivedActivatedEvents) {
-			archivedActivatedEventsTitle = "Past Events" + " [" + this.state.archivedActivatedEvents.length + "] "
+			archivedActivatedEventsTitle = <div>Past Events <Badge>{this.state.archivedActivatedEvents.length}</Badge></div>
 			archivedActivatedEvents = this.state.archivedActivatedEvents.map((event, index) => {
 				return (
 					<Tab eventKey={index + 1} title={event.name}>

@@ -5,14 +5,14 @@ class Api::User::TasksController < Api::BaseController
 
   def index
     event = Event.find(params[:event_id])
-    approved_tasks = event.approved_tasks.where(user_id: current_user.id)
-    unapproved_tasks = event.unapproved_tasks.where(user_id: current_user.id)
-    dispatched_tasks = event.dispatched_tasks.where(user_id: current_user.id)
+    approved_tasks = event.approved_tasks.where(user_id: current_user.id).order(created_at: :DESC)
+    unapproved_tasks = event.unapproved_tasks.where(user_id: current_user.id).order(created_at: :DESC)
+    dispatched_tasks = event.dispatched_tasks.where(user_id: current_user.id).order(created_at: :DESC)
     render_json_message(200, resource: {approved_tasks: approved_tasks.map(&:serialize), unapproved_tasks: unapproved_tasks.map(&:serialize), dispatched_tasks: dispatched_tasks.map(&:serialize), event_id: event.id})
   end
 
   def show
-    task = Task.find_by(event_id: params[:event_id], id: params[:id])
+    task = current_user.tasks.find_by(event_id: params[:event_id], id: params[:id])
     # authorize! :read, task
     render_json_message(200, resource: {task: task.user_task_serialize})
     rescue
@@ -28,8 +28,8 @@ class Api::User::TasksController < Api::BaseController
     unapproved_tasks = event.unapproved_tasks.where(user_id: current_user.id)
     dispatched_tasks = event.dispatched_tasks.where(user_id: current_user.id)
     render_json_message(201, message: "Task created!", resource: {approved_tasks: approved_tasks.map(&:serialize), unapproved_tasks: unapproved_tasks.map(&:serialize), dispatched_tasks: dispatched_tasks.map(&:serialize), event_id: event.id})
-    # rescue
-    #   render_json_message(500, errors: ["Error when creating task."])
+    rescue
+      render_json_message(500, errors: ["Error when creating task."])
   end
 
   private

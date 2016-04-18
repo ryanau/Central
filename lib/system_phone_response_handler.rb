@@ -120,7 +120,7 @@ class SystemPhoneResponseHandler
   end
 
   def after_volunteer_removes
-    content = "You have removed yourself from the volunteering appointment with #{@task.title} by #{@task.user.organization_name}."
+    content = "You have removed yourself from the volunteering appointment: #{@task.title} by #{@task.user.organization_name}."
     SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
     # close conversation
     terminate_conversation

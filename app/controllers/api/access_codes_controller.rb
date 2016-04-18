@@ -4,7 +4,7 @@ class Api::AccessCodesController < ApplicationController
     if AccessCode.find_by(code: code)
       render_json_message(200)
     else
-      render_json_message(401, errors: ["Invalid access code."])
+      render_json_message(500, errors: ["Invalid access code."])
     end
   end
 end

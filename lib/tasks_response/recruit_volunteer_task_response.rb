@@ -32,7 +32,7 @@ class RecruitVolunteerTaskResponse
     elsif @question.question_order == 2
       @next_question = @task.questions.find_by(question_order: 3)
       content = @next_question.content
-      @next_question_content = content % {number_of_participants: @volunteer.responses.find_by(question_id: @question.id).content}
+      @next_question_content = content % {number_of_participants: @volunteer.responses.find_by(question_id: @question.id).content.to_i - 1}
     end
 
   end

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Router, browserHistory, Route, IndexRoute } from 'react-router';
-import MasterStore from 'stores/masterStore';
 
 // System
 import Root from 'components/Root';
@@ -43,10 +42,10 @@ const router = (
       <Route path='auth_complete' component={AuthComplete}/>
     	<Route path='admin'>
         <Route path='dashboard' component={AdminDashboard}/>
-        <Route path='sign_out' component={AdminSignOut}/>
         <Route path='events' component={AdminEventsContainer}/>
         <Route path='events/:eventId' component={AdminEvent}/>
         <Route path='events/:eventId/reports/:reportId' component={AdminReport}/>
+        <Route path='sign_out' component={AdminSignOut}/>
       </Route>
       <Route path='user'>
         <Route path='dashboard' component={UserDashboard}/>
