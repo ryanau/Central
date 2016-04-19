@@ -84,6 +84,7 @@ end
 def seed_production
   make_task_type
   make_access_code
+  make_events
   Phone.create(number: "4847274200")
 end
 

@@ -1,5 +1,5 @@
 class UserEventSerializer < ActiveModel::Serializer
-  attributes :name, :city, :activated, :id, :archived
+  attributes :id, :name, :city, :activated, :archived
 
   def activated
     return true

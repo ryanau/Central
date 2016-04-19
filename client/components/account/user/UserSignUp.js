@@ -66,6 +66,8 @@ class UserSignUp extends React.Component {
     password_confirmation = this.state.password_confirmation;
      if (password.length > 0 && password == password_confirmation) {
       return 'success';
+    } else if (password.length == 0) {
+      return null;
     } else {
       return 'error';
     }
@@ -75,6 +77,8 @@ class UserSignUp extends React.Component {
     password = this.state.password;
     password_confirmation = this.state.password_confirmation;
      if (password.length > 0 && password == password_confirmation) {
+      return null;
+    } else if (password.length == 0) {
       return null;
     } else {
       return 'Passwords do not match';
