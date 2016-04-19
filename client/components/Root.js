@@ -4,6 +4,8 @@ import NavBar from 'components/NavBar';
 import LoggedInLanding from 'components/LoggedInLanding';
 import Welcome from 'components/welcome/Welcome';
 
+import { Col, Glyphicon } from 'react-bootstrap';
+
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
 

@@ -16,8 +16,11 @@ class UserEventListItem extends React.Component {
 	  this.setState(state);
 	}
 	componentWillMount() {
+		let uid
+		uid = this._makeId();
 	  this.setState({
 	  	event: this.props.event,
+	  	uid: uid
 	  })
 	}
 	componentWillReceiveProps(nextProps) {
@@ -25,11 +28,26 @@ class UserEventListItem extends React.Component {
 			event: nextProps.event,
 		})
 	}
+	componentDidMount() {
+		let map
+			L.mapbox.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
+		map = L.mapbox.map(this.state.uid, 'mapbox.streets').setView([40, -74.50], 9);
+
+	}
+  _makeId() {
+    let text, possible
+    text = "";
+    possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for( var i=0; i < 5; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
 	_onSubmit = () => {
 		EventsActions.activateUserEvent(this.state.event.id)
 	}
 	render() {
-		let event, infoLink, actionButton, userTaskContainer
+		let event, infoLink, actionButton, userTaskContainer, map
 		event = this.state.event
 		infoLink = "/user/events/" + event.id
 		if (event.activated) {
@@ -52,6 +70,7 @@ class UserEventListItem extends React.Component {
 		return (
 			<div>
 				<PageHeader>{event.name} <small>{event.city}</small></PageHeader>
+				<div id={this.state.uid} style={{height: 400 + 'px'}}></div>
 				{actionButton}
 				{userTaskContainer}
 			</div>

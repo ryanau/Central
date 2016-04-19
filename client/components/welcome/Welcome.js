@@ -1,7 +1,7 @@
 import React from 'react';
 import alt from 'control';
 
-import { Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 
 import VolunteerSignUpBox from 'components/welcome/VolunteerSignUpBox';
 
@@ -22,11 +22,9 @@ class Welcome extends React.Component {
 	render() {
 		return (
 			<div>
-				<Col xs={2} md={5} lg={5}></Col>
-				<Col xs={8} md={2} lg={2}>
+				<div className="TA_center">
 					<VolunteerSignUpBox/>
-				</Col>
-				<Col xs={2} md={5} lg={5}></Col>
+				</div>
 			</div>
 		)
 	}
