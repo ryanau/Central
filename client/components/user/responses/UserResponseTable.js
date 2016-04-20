@@ -10,21 +10,51 @@ class UserResponseTable extends React.Component {
 	componentWillMount() {
 	  this.setState({
 	  	attendeeResponses: this.props.attendeeResponses,
-			windowWidth: window.innerWidth - 550,
+	  	objects: this.props.objects,
+	  	verbs: this.props.verbs,
+			windowWidth: window.innerWidth - 350,
 	  })
 	}
 	componentWillReceiveProps(nextProps) {
 		this.setState({
 			attendeeResponses: nextProps.attendeeResponses,
+	  	objects: this.props.objects,
+	  	verbs: this.props.verbs,
 		})
 	}
 	componentDidMount() {
-		this.setState({
-		})
 	}
 	render() {
-		let attendeeResponses
+		let attendeeResponses, objects, verbs, objectTags, verbTags, tagS
 		attendeeResponses = this.props.attendeeResponses
+		objects = this.props.objects
+		verbs = this.props.verbs
+		if (this.props.attendeeResponses != null && objects != null) {
+			objectTags = objects.map((tag) => {
+				return (
+				  <Column
+				    header={<Cell>Bring {tag}?</Cell>}
+				    cell={
+				      <TextCell
+				        data={attendeeResponses}
+				        field={["object_tags", tag]}/>}
+				    width={150}/>
+				)
+			});
+		}
+		if (this.props.attendeeResponses != null && verbs != null) {
+			verbTags = verbs.map((tag) => {
+				return (
+				  <Column
+				    header={<Cell>{tag}?</Cell>}
+				    cell={
+				      <TextCell
+				        data={attendeeResponses}
+				        field={["verb_tags", tag]}/>}
+				    width={150}/>
+				)
+			});
+		}
 		return (
 			<div>
 				<Table
@@ -86,6 +116,8 @@ class UserResponseTable extends React.Component {
 				        data={attendeeResponses}
 				        field={["volunteer", "zipcode"]}/>}
 				    width={100}/>
+				    {objectTags}
+				    {verbTags}
 				</Table>
 			</div>
 		)

@@ -2,7 +2,7 @@ import React from 'react';
 import alt from 'control';
 import moment from 'moment';
 import { Table, Column, Cell } from 'fixed-data-table';
-import { ListGroup, ListGroupItem, Panel, Button, ButtonToolbar, Glyphicon, Col } from 'react-bootstrap'
+import { ListGroup, ListGroupItem, Panel, Button, ButtonToolbar, Glyphicon, Col, PageHeader } from 'react-bootstrap'
 
 import TaskStore from 'stores/taskStore';
 import TaskActions from 'actions/taskActions';
@@ -33,41 +33,41 @@ class UserTask extends React.Component {
 		TaskActions.fetchUserTask(location.pathname.match(`[^/]+$`)[0], location.pathname.match(/events\/(\d+)/)[1]);
 	}
 	render() {
-		let task, taskInfo, attendeeResponses, table, refreshButton, taskTitle
+		let task, taskInfo, attendeeResponses, table, refreshButton, taskTitle, createdAt
 		task = this.state.task
 		if (task != null) {
-			taskTitle = this.state.task.title + " | Created " + moment(task.created_at).fromNow()
+			taskTitle = this.state.task.title
+			createdAt = moment(task.created_at).fromNow()
 			taskInfo = (
 				<div>
-					<Col lg={2}>
+					<Col lg={1}>
 					</Col>
-					<Col lg={8}>
-						<Panel header={taskTitle} bsStyle="primary">
-							<h3>{task.title}</h3>
-							<h4>{task.description}</h4>
-							<p>Location: {task.location + ' (' + task.zipcode + ')'}</p>
-							<p>From {moment(task.start).format("ddd, M/D/YYYY, H:mm") + ' to ' + moment(task.end).format("ddd, M/D/YYYY, H:mm")}</p>
-							<p>Volunteers Requested: {task.number_of_volunteers}</p>
-							<div className="mB-10">
-								<ButtonToolbar>
-									<Button
-										bsStyle="primary"
-										onClick={this._onRefreshButtonClicked}>
-										<Glyphicon glyph="refresh"/> Refresh
-									</Button>
-								</ButtonToolbar>
-							</div>
-							<ListGroup>
-								<ListGroupItem># of Volunteers requested: {task.number_of_volunteers}</ListGroupItem>
-								<ListGroupItem>Digest reached: {task.report_reached}</ListGroupItem>
-								<ListGroupItem># of Volunteers responded: {task.volunteer_responded}</ListGroupItem>
-								<ListGroupItem># of total participants: {task.total_coming}</ListGroupItem>
-								<ListGroupItem># of Volunteers removed: {task.volunteer_removed}</ListGroupItem>
-							</ListGroup>
-							<UserResponseTable attendeeResponses={task.number_of_attendees_responses}/>
-						</Panel>
-					</Col>
-					<Col lg={2}>
+					<Col lg={10}>
+						<PageHeader>{taskTitle} <small>{task.event.name}</small></PageHeader>
+						<h4>Description: {task.description}</h4>
+						<p>Task created {createdAt}</p>
+						<p>Location: {task.location + ' (' + task.zipcode + ')'}</p>
+						<p>From {moment(task.start).format("ddd, M/D/YYYY, H:mm") + ' to ' + moment(task.end).format("ddd, M/D/YYYY, H:mm")}</p>
+						<p>Volunteers Requested: {task.number_of_volunteers}</p>
+						<div className="mB-10">
+							<ButtonToolbar>
+								<Button
+									bsStyle="primary"
+									onClick={this._onRefreshButtonClicked}>
+									<Glyphicon glyph="refresh"/> Refresh
+								</Button>
+							</ButtonToolbar>
+						</div>
+						<ListGroup>
+							<ListGroupItem># of Volunteers requested: {task.number_of_volunteers}</ListGroupItem>
+							<ListGroupItem>Digest reached: {task.report_reached}</ListGroupItem>
+							<ListGroupItem># of Volunteers responded: {task.volunteer_responded}</ListGroupItem>
+							<ListGroupItem># of total participants: {task.total_coming}</ListGroupItem>
+							<ListGroupItem># of Volunteers removed: {task.volunteer_removed}</ListGroupItem>
+						</ListGroup>
+						<UserResponseTable attendeeResponses={task.number_of_attendees_responses} objects={task.objects} verbs={task.verbs}/>
+				</Col>
+					<Col lg={1}>
 					</Col>
 				</div>
 			)

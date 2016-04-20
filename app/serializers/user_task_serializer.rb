@@ -1,5 +1,7 @@
 class UserTaskSerializer < ActiveModel::Serializer
-  attributes :id, :title, :number_of_volunteers, :location, :zipcode, :description, :start, :end, :created_at, :number_of_attendees_responses, :report_reached, :volunteer_responded, :volunteer_removed, :total_coming
+  attributes :id, :title, :number_of_volunteers, :location, :zipcode, :description, :start, :end, :created_at, :number_of_attendees_responses, :report_reached, :volunteer_responded, :volunteer_removed, :total_coming, :objects, :verbs
+
+  belongs_to :event, serializer: UserEventSerializer
 
   def number_of_attendees_responses
     still_in_volunteer_ids = object.active_conversations.pluck(:volunteer_id)
@@ -34,4 +36,19 @@ class UserTaskSerializer < ActiveModel::Serializer
     rescue
       0
   end
+
+  def objects
+    if !object.object_tags.empty?
+      object_tags = object.object_tags
+      object_tags_key = object_tags.pluck(:object)
+    end
+  end
+
+  def verbs
+    if !object.verb_tags.empty?
+      verb_tags = object.verb_tags
+      verb_tags_key = verb_tags.pluck(:verb)
+    end
+  end
+
 end
