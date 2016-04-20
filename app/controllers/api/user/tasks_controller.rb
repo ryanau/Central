@@ -21,6 +21,12 @@ class Api::User::TasksController < Api::BaseController
 
   def create
     task = Task.create!(create_params)
+    if !params[:task][:object_tags].nil?
+      task.add_object_tags(params[:task][:object_tags])
+    end
+    if !params[:task][:verb_tags].nil?
+      task.add_verb_tags(params[:task][:verb_tags])
+    end
     # TaskBuilderWorker -> TaskBuilder
     task.build_task
     event = Event.find(task.event_id)
