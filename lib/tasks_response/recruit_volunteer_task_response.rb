@@ -43,7 +43,7 @@ class RecruitVolunteerTaskResponse
         fill_in_first_name
       end
     elsif @question.question_order == 1.1
-      if @question.object_tag
+      if verb_tags?
         @next_question = @task.questions.find_by(question_order: 1.2)
         fill_in_expression
       else

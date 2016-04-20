@@ -15,8 +15,8 @@ class Api::User::TasksController < Api::BaseController
     task = current_user.tasks.find_by(event_id: params[:event_id], id: params[:id])
     # authorize! :read, task
     render_json_message(200, resource: {task: task.user_task_serialize})
-    rescue
-      render_json_message(404, errors: ["Task not found."])
+    # rescue
+    #   render_json_message(404, errors: ["Task not found."])
   end
 
   def create

@@ -55,7 +55,7 @@ class RecruitVolunteerTask
       verbs << "#{tag.verb.capitalize}\n"
     end
     content = "%{expression}. Additionally, we would like to check if you can perform the following actions:\n\n#{verbs}\nPlease reply with the actions that you are confident in performing *separated by a comma*.\nPlease reply 'NO' if you are not confident in performing the above actions."
-    Question.create(content: content, response_type: 6, task_id: @task.id, question_order: 1.2, object_tag: true)
+    Question.create(content: content, response_type: 6, task_id: @task.id, question_order: 1.2, verb_tag: true)
   end
 
   def create_follow_up_questions
