@@ -15,6 +15,21 @@ class Task < ActiveRecord::Base
 
   belongs_to :task_type
 
+  has_many :object_tags
+  has_many :verb_tags
+
+  def add_object_tags(object_tags)
+    object_tags.each do |tag|
+      self.object_tags.create(object: tag)
+    end
+  end
+
+  def add_verb_tags(verb_tags)
+    verb_tags.each do |tag|
+      self.verb_tags.create(verb: tag)
+    end
+  end
+
   def build_task
     # pass in task id
     TaskBuilderWorker.perform_async(self.id)

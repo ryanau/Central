@@ -6,6 +6,10 @@ class RecruitVolunteerTask
   def proceed
     # build questions in a task
     create_initial_question
+
+    # check if there are verb/object tags
+    create_tags_questions
+    # generic follow up questions
     create_follow_up_questions
   end
 
@@ -19,13 +23,52 @@ class RecruitVolunteerTask
 
   private
 
+  def create_tags_questions
+    if object_tags?
+      create_object_tags_questions
+    end
+    if verb_tags?
+      create_verb_tags_questions
+    end
+  end
+
+  def object_tags?
+    !@task.object_tags.empty?
+  end
+
+  def verb_tags?
+    !@task.verb_tags.empty?
+  end
+
+  def create_object_tags_questions
+    objects = ""
+    @task.object_tags.each do |tag|
+      objects << "#{tag.object.capitalize}\n"
+    end
+    content = "%{expression}. To better utilize our resources, we would like to know if you can bring the following items:\n\n#{objects}\nPlease reply with the items that you can bring *separated by a comma*.\nPlease reply 'NO' if you cannot bring any of the item listed."
+    Question.create(content: content, response_type: 5, task_id: @task.id, question_order: 1.1, object_tag: true)
+  end
+
+  def create_verb_tags_questions
+    verbs = ""
+    @task.verb_tags.each do |tag|
+      verbs << "#{tag.verb.capitalize}\n"
+    end
+    content = "%{expression}. Additionally, we would like to check if you can perform the following actions:\n\n#{verbs}\nPlease reply with the actions that you are confident in performing *separated by a comma*.\nPlease reply 'NO' if you are not confident in performing the above actions."
+    Question.create(content: content, response_type: 6, task_id: @task.id, question_order: 1.2, object_tag: true)
+  end
+
   def create_follow_up_questions
     ask_number_of_participants
     remove_if_volunteer_no_longer_available
   end
 
   def ask_number_of_participants
-    content = "Glad to hear that %{volunteer_first_name}! How many people (including yourself) are coming to this event?\n\nPlease reply with a number."
+    if object_tags? || verb_tags?
+      content = "Last question. How many people (including yourself) are coming to this event?\n\nPlease reply with a number."
+    else
+      content = "Glad to hear that %{volunteer_first_name}! How many people (including yourself) are coming to this event?\n\nPlease reply with a number."
+    end
     Question.create(content: content, response_type: 2, task_id: @task.id, question_order: 2)
   end
 

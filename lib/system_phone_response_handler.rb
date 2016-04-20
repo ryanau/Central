@@ -8,11 +8,14 @@ class SystemPhoneResponseHandler
     @question = {}
     @next_question = {}
     @question_remaining = {}
+    @object_tags = {}
   end
 
   def proceed
     # handle responses from volunteer in a task
     check_volunteer_progress_in_task
+
+
     # check response type
     response_type_identifier
   end
@@ -39,10 +42,10 @@ class SystemPhoneResponseHandler
       @question_remaining = false
     end
     # might not need this now, since we're delegating the next question task to individual task response file, i.e. using question formatter
-    if @question_remaining && unanswered_question_ids.length > 1
-      unanswered_question_ids.shift
-      @next_question = Question.find(unanswered_question_ids.first)
-    end
+    # if @question_remaining && unanswered_question_ids.length > 1
+    #   unanswered_question_ids.shift
+    #   @next_question = Question.find(unanswered_question_ids.first)
+    # end
   end
 
   def response_type_identifier
@@ -57,6 +60,12 @@ class SystemPhoneResponseHandler
     elsif @question.response_type == 4
       # expecting word 'remove'
       remove_handler
+    elsif @question.response_type == 5
+      # expecting object tags
+      object_tags_handler
+    elsif @question.response_type == 6
+      # expecting verb tags
+      verb_tags_handler
     end
   end
 
@@ -66,7 +75,7 @@ class SystemPhoneResponseHandler
   end
 
   def incorrect_response_handler
-    # for now there are 4 types of responses
+    # for now there are 5 types of responses
     if @question.response_type == 1
       filler = "'YES' or 'NO'"
     elsif @question.response_type == 2
@@ -75,6 +84,19 @@ class SystemPhoneResponseHandler
       filler = "a word"
     elsif @question.response_type == 4
       filler = "'REMOVE' if you no longer want to volunteer for this event"
+    elsif @question.response_type == 5
+      # object tags
+      objects = ""
+      @object_tags.each do |tag|
+        objects << "#{tag.capitalize}\n"
+      end
+      filler = "the following items that you can bring *separated by a commma*:\n\n#{objects}\nPlease reply 'NO' if you cannot bring any of the item listed."
+    elsif @question.response_type == 6
+      verbs = ""
+      @verb_tags.each do |tag|
+        verbs << "#{tag.capitalize}\n"
+      end
+      filler = "the following actions that you're confident in performing *separated by a commma*:\n\n#{verbs}\nPlease reply 'NO' if you aren't confident in performing any of the actions listed."
     end
     content = "Sorry your input is invalid. Please reply with #{filler}."
     SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
@@ -86,7 +108,7 @@ class SystemPhoneResponseHandler
       log_response
       if @body == 'yes' && @question_remaining
         # ********** question formatter **********
-        question_formatter = QuestionFormatter.new(@task, @question, @volunteer)
+        question_formatter = QuestionFormatter.new(@task, @question, @volunteer, @body)
         next_question_content = question_formatter.proceed
         dispatch_next_question(next_question_content)
       else
@@ -101,7 +123,7 @@ class SystemPhoneResponseHandler
     if is_number?(@body) && @question_remaining
       log_response
       # ********** question formatter **********
-      question_formatter = QuestionFormatter.new(@task, @question, @volunteer)
+      question_formatter = QuestionFormatter.new(@task, @question, @volunteer, @body)
       next_question_content = question_formatter.proceed
       dispatch_next_question(next_question_content)
     else
@@ -119,6 +141,58 @@ class SystemPhoneResponseHandler
     end
   end
 
+  def object_tags_handler
+    sanitized = @body.split(/[,]/).map! { |tag| tag.strip }
+    @object_tags = @task.object_tags.pluck(:object)
+    # compare if there's any match
+    if !(sanitized & @object_tags).empty? || @body == 'no'
+      if !(sanitized & @object_tags).empty?
+      # there's a match
+      log_sanitized_response(sanitized)
+      # ********** question formatter **********
+      question_formatter = QuestionFormatter.new(@task, @question, @volunteer, @body)
+      next_question_content = question_formatter.proceed
+      dispatch_next_question(next_question_content)
+      else
+      # user has no object match
+      log_response
+      # ********** question formatter **********
+      question_formatter = QuestionFormatter.new(@task, @question, @volunteer, @body)
+      next_question_content = question_formatter.proceed
+      dispatch_next_question(next_question_content)
+      end
+    else
+      # wrong input
+      incorrect_response_handler
+    end
+  end
+
+  def verb_tags_handler
+    sanitized = @body.split(/[,]/).map! { |tag| tag.strip }
+    @verb_tags = @task.verb_tags.pluck(:verb)
+    # compare if there's any match
+    if !(sanitized & @verb_tags).empty? || @body == 'no'
+      if !(sanitized & @verb_tags).empty?
+      # there's a match
+      log_sanitized_response(sanitized)
+      # ********** question formatter **********
+      question_formatter = QuestionFormatter.new(@task, @question, @volunteer, @body)
+      next_question_content = question_formatter.proceed
+      dispatch_next_question(next_question_content)
+      else
+      # user has no verb match
+      log_response
+      # ********** question formatter **********
+      question_formatter = QuestionFormatter.new(@task, @question, @volunteer, @body)
+      next_question_content = question_formatter.proceed
+      dispatch_next_question(next_question_content)
+      end
+    else
+      # wrong input
+      incorrect_response_handler
+    end
+  end
+
   def after_volunteer_removes
     content = "You have removed yourself from the volunteering appointment: #{@task.title} by #{@task.user.organization_name}."
     SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
@@ -132,6 +206,12 @@ class SystemPhoneResponseHandler
 
   def log_response
     Response.create(question_id: @question.id, volunteer_id: @volunteer.id, content: @body)
+  end
+
+  def log_sanitized_response(response)
+    response.each do |tag|
+      Response.create(question_id: @question.id, volunteer_id: @volunteer.id, content: tag)
+    end
   end
 
   def is_number?(string)

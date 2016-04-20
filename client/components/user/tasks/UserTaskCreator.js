@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Modal, Input, Panel, ButtonInput, Button, Row, Col, ButtonToolbar } from 'react-bootstrap'
+import TagsInput from 'react-tagsinput';
+import { Modal, Input, Panel, ButtonInput, Button, Row, Col, ButtonToolbar } from 'react-bootstrap';
 import moment from 'moment';
 import DateTimeField from 'react-bootstrap-datetimepicker'
 
@@ -19,6 +20,8 @@ class UserTaskCreator extends React.Component {
 			location: "",
 			start: "",
 			end: "",
+			verbTags: [],
+			objectTags: [],
 			taskTypeId: 1,
 			eventId: this.props.event.id,
 			openModal: false,
@@ -57,6 +60,8 @@ class UserTaskCreator extends React.Component {
 			this.state.end,
 			this.state.taskTypeId,
 			this.state.eventId,
+			this.state.objectTags,
+			this.state.verbTags,
 		)
 		this.setState({
 			title: "",
@@ -66,6 +71,8 @@ class UserTaskCreator extends React.Component {
 			location: "",
 			start: "",
 			end: "",
+			verbTags: [],
+			objectTags: [],
       openModal: false,
 		})
 	}
@@ -83,6 +90,8 @@ class UserTaskCreator extends React.Component {
 			location: "",
 			start: "",
 			end: "",
+			verbTags: [],
+			objectTags: [],
 	    openModal: false,
 		});
 	}
@@ -103,6 +112,12 @@ class UserTaskCreator extends React.Component {
     } else {
       return 'Title is longer than 30 characters';
     }
+  }
+  _handleObjectTagsChange = (objectTags) => {
+  	this.setState({objectTags});
+  }
+  _handleVerbTagsChange = (verbTags) => {
+  	this.setState({verbTags});
   }
 	render() {
 		let modal, disabled
@@ -187,6 +202,26 @@ class UserTaskCreator extends React.Component {
 						<DateTimeField
 							onChange={this._endOnChange}
 							defaultText="Select End Date & Time"/>
+			      </Col>
+			    </Row>
+			  </Input>
+				<Input wrapperClassName="wrapper">
+			    <Row>
+			      <Col xs={4}>
+			        <strong>Object Tags</strong>
+			      </Col>
+			      <Col xs={8}>
+						  <TagsInput value={this.state.objectTags} onChange={this._handleObjectTagsChange} onlyUnique={true} maxTags={3}/>
+			      </Col>
+			    </Row>
+			  </Input>
+				<Input wrapperClassName="wrapper">
+			    <Row>
+			      <Col xs={4}>
+			        <strong>Verb Tags</strong>
+			      </Col>
+			      <Col xs={8}>
+						  <TagsInput value={this.state.verbTags} onChange={this._handleVerbTagsChange} onlyUnique={true} maxTags={3}/>
 			      </Col>
 			    </Row>
 			  </Input>

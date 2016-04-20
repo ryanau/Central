@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415234536) do
+ActiveRecord::Schema.define(version: 20160419235453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,13 @@ ActiveRecord::Schema.define(version: 20160415234536) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "object_tags", force: :cascade do |t|
+    t.string   "object",     null: false
+    t.integer  "task_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "phones", force: :cascade do |t|
     t.string   "number",     null: false
     t.datetime "created_at", null: false
@@ -93,12 +100,14 @@ ActiveRecord::Schema.define(version: 20160415234536) do
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "content",        null: false
-    t.integer  "response_type",  null: false
-    t.integer  "question_order", null: false
+    t.string   "content",                        null: false
+    t.integer  "response_type",                  null: false
+    t.float    "question_order",                 null: false
     t.integer  "task_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "object_tag",     default: false
+    t.boolean  "verb_tag",       default: false
   end
 
   create_table "replycodes", force: :cascade do |t|
@@ -193,6 +202,13 @@ ActiveRecord::Schema.define(version: 20160415234536) do
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
+
+  create_table "verb_tags", force: :cascade do |t|
+    t.string   "verb",       null: false
+    t.integer  "task_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "volunteers", force: :cascade do |t|
     t.string   "phone_number",                      null: false
