@@ -29,16 +29,36 @@ class UserEventListItem extends React.Component {
 		})
 	}
 	componentDidMount() {
-		// let map
-		// mapboxgl.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
-		// map = new mapboxgl.Map({
-  //     	container: this.state.uid,
-  //     	style: 'mapbox://styles/mapbox/streets-v8',
-  //     	center: [this.state.event.longitude, this.state.event.latitude],
-  //     	zoom: 10
-  //   	});
-		// map.scrollZoom.disable();
-		// map.resize();
+		let map
+		mapboxgl.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
+		map = new mapboxgl.Map({
+    	container: this.state.uid,
+    	style: 'mapbox://styles/mapbox/streets-v8',
+    	center: [this.state.event.longitude, this.state.event.latitude],
+    	zoom: 10
+  	});
+  	map.on('load', () => {
+	    map.addSource("markers", {
+	      "type": "geojson",
+	      "data": {
+	        "type": "FeatureCollection",
+	        "features": this.state.event.tasks_markers}
+	    });
+	    map.addLayer({
+		    "id": "markers",
+		    "type": "symbol",
+		    "source": "markers",
+		    "layout": {
+		      "icon-image": "{marker-symbol}-15",
+		      "text-field": "{title}",
+		      "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+		      "text-offset": [0, 0.6],
+		      "text-anchor": "top"}
+	    });
+		})
+		map.scrollZoom.disable();
+		map.resize();
+		map.addControl(new mapboxgl.Navigation());
 	}
   _makeId() {
     let text, possible
@@ -73,63 +93,6 @@ class UserEventListItem extends React.Component {
 				</form>
 			)
 		}
-
-		mapboxgl.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
-		
-		map = new mapboxgl.Map({
-      		container: this.state.uid,
-      		style: 'mapbox://styles/mapbox/streets-v8',
-      		center: [this.state.event.longitude, this.state.event.latitude],
-      		zoom: 10
-    	});
-
-    	map.on('load', function () {
-    	    map.addSource("markers", {
-    	        "type": "geojson",
-    	        "data": {
-    	            "type": "FeatureCollection",
-    	            "features": [{
-    	                "type": "Feature",
-    	                "geometry": {
-    	                    "type": "Point",
-    	                    "coordinates": [-77.03238901390978, 38.913188059745586]
-    	                },
-    	                "properties": {
-    	                    "title": "Mapbox DC",
-    	                    "marker-symbol": "monument"
-    	                }
-    	            }, {
-    	                "type": "Feature",
-    	                "geometry": {
-    	                    "type": "Point",
-    	                    "coordinates": [-122.414, 37.776]
-    	                },
-    	                "properties": {
-    	                    "title": "Mapbox SF",
-    	                    "marker-symbol": "harbor"
-    	                }
-    	            }]
-    	        }
-    	    });
-
-    	    map.addLayer({
-    	        "id": "markers",
-    	        "type": "symbol",
-    	        "source": "markers",
-    	        "layout": {
-    	            "icon-image": "{marker-symbol}-15",
-    	            "text-field": "{title}",
-    	            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-    	            "text-offset": [0, 0.6],
-    	            "text-anchor": "top"
-    	        }
-    	    });
-    	});
-
-		map.scrollZoom.disable();
-		map.resize();
-
-		console.log('rendering')
 		return (
 			<div>
 				<PageHeader>{event.name} <small>{event.city}</small></PageHeader>
