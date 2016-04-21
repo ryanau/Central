@@ -48,11 +48,11 @@ class RecruitVolunteerTaskResponse
         fill_in_expression
       else
         @next_question = @task.questions.find_by(question_order: 2)
-        fill_in_first_name
+        fill_in_first_name_and_expression
       end
     elsif @question.question_order == 1.2
       @next_question = @task.questions.find_by(question_order: 2)
-      fill_in_first_name
+      fill_in_first_name_and_expression
     elsif @question.question_order == 2
       @next_question = @task.questions.find_by(question_order: 3)
       content = @next_question.content
@@ -68,6 +68,11 @@ class RecruitVolunteerTaskResponse
   def fill_in_first_name
     content = @next_question.content
     @next_question_content = content % {volunteer_first_name: @volunteer.first_name}
+  end
+
+  def fill_in_first_name_and_expression
+    content = @next_question.content
+    @next_question_content = content % {volunteer_first_name: @volunteer.first_name, expression: generate_expression}
   end
 
   def generate_expression

@@ -3,7 +3,7 @@ module ReportDispatchBuilder
     report = Report.find(report_id)
     message = ""
     # message << report.title + "\n\n"
-    message << "Central: We have matched you with a number of personalized volunteering opportunities.\n\n"
+    message << "This is Central - the community volunteering platform for local disasters you signed up for. We have matched you with a number of volunteering opportunities.\n\n"
     message << "Please respond with the code within the [bracket] to sign up for your desired volunteering opportunity.\n\n"
     report.approved_messages.each do |msg|
       message << msg.content + "\n"
@@ -25,9 +25,3 @@ module ReportDispatchBuilder
     report.event.generate_next_report
   end
 end
-
-
-
-# digest opening line: "This is Central, the community volunteering platform for local disasters you signed up for. We have matched you with a number of volunteering opportunities"
-
-# each msg, more info, include blurb, time, location

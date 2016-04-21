@@ -10,8 +10,6 @@ class MessageCreator
   def build_message
     # create a message in a report for the task
     replycode = create_replycode
-    # message_content = "#{@task.title} by #{@user.organization_name} [#{replycode.code}]"
-
     # setting date and time to human readable format
     sDT = @task.start.strftime("%a, %m/%d %l:%M %p")
     eDT = @task.end.strftime("%a, %m/%d %l:%M %p")

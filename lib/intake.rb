@@ -24,13 +24,13 @@ class Intake
 		when 3
 			@volunteer.update!(age: @body.to_i)
 		when 4
-			@body == "yes" ? answer = true : answer = false
+			agree_checker ? answer = true : answer = false
 			@volunteer.update!(heavy_lifting: answer)
 		when 5
-			@body == "yes" ? answer = true : answer = false
+			agree_checker ? answer = true : answer = false
 			@volunteer.update!(driver: answer)
 		when 6
-			@volunteer.update!(zipcode: @body, profile_completed: true) #update volunteer profile to complete
+			@volunteer.update!(zipcode: @body, profile_completed: true)
 		end
 	end
 
@@ -64,4 +64,12 @@ class Intake
 	def add_last_name_to_database(volunteer, last_name)
 		volunteer.update!(last_name: last_name)
 	end
+
+  def agree_checker
+    if @body == 'yes' || @body == 'yeah' || @body == 'yea'
+      true
+    else
+      false
+    end
+  end
 end

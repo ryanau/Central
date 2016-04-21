@@ -22,9 +22,6 @@ class UserEvent extends React.Component {
 	componentDidMount() {
 	  EventStore.listen(this.onChange);
 	  EventActions.fetchUserEvent(location.pathname.match(`[^/]+$`)[0]);
-		let map
-		L.mapbox.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
-		map = L.mapbox.map("map", 'mapbox.streets').setView([40, -74.50], 9);
 	}
 	componentWillUnmount() {
 	  EventStore.unlisten(this.onChange);
@@ -32,7 +29,7 @@ class UserEvent extends React.Component {
 	  alt.recycle(EventStore);
 	}
 	render() {
-		let event, eventInfo, taskInfo
+		let event, eventInfo, taskInfo, map
 		event = this.state.event
 		if (this.state.event != null) {
 			eventInfo = (
@@ -45,15 +42,16 @@ class UserEvent extends React.Component {
 					<div>
 						<UserTasksContainer event={event}/>
 					</div>
-				)
-
+			)
+			L.mapbox.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
+			map = L.mapbox.map("map", 'mapbox.streets').setView([event.latitude, event.longitude], 9);
 		}
 		return (
 			<Grid>
 		      <div>
 				    <Panel header="Events" bsStyle="primary">
 							{eventInfo}
-							<div id="map"></div>
+							<div id="map" className="map"></div>
 				    </Panel>
 				    	<h3>Tasks</h3>
 				    	{taskInfo}
