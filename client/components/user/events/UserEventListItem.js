@@ -30,9 +30,9 @@ class UserEventListItem extends React.Component {
 	}
 	componentDidMount() {
 		let map
-			L.mapbox.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
-		map = L.mapbox.map(this.state.uid, 'mapbox.streets').setView([40, -74.50], 9);
-
+		L.mapbox.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
+		map = L.mapbox.map(this.state.uid, 'mapbox.streets').setView([this.props.event.latitude, this.props.event.longitude], 10);
+		map.scrollWheelZoom.disable();
 	}
   _makeId() {
     let text, possible
@@ -67,10 +67,11 @@ class UserEventListItem extends React.Component {
 				</form>
 			)
 		}
+		console.log('rendering')
 		return (
 			<div>
 				<PageHeader>{event.name} <small>{event.city}</small></PageHeader>
-				<div id={this.state.uid} style={{height: 400 + 'px'}}></div>
+				<div id={this.state.uid} className="map mB-10"></div>
 				{actionButton}
 				{userTaskContainer}
 			</div>

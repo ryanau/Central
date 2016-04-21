@@ -12,7 +12,7 @@ class UserResponseTable extends React.Component {
 	  	attendeeResponses: this.props.attendeeResponses,
 	  	objects: this.props.objects,
 	  	verbs: this.props.verbs,
-			windowWidth: window.innerWidth - 350,
+			windowWidth: window.innerWidth - 250,
 	  })
 	}
 	componentWillReceiveProps(nextProps) {

@@ -1,13 +1,16 @@
 def make_events
   disasters = ["Meatball Storm", "Candy Rain", "Champagne Volcano", "Cotton Candy Typhoon", "Chocolate Hurricane"]
   city_arr = ["SF", "LA", "SD", "NYC", "DC"]
+  coord = [["37.7749", "-122.4194"], ["34.03", "-118.15"], ["32.7157", "-117.1611"], ["40.7128", "-74.0059"], ["38.9072", "-77.0369"]]
   1.upto(5) do |n|
     city = city_arr[n-1]
     name = "#{city} #{disasters[n-1]}"
     event = Event.create(
       name: name,
       city: city,
-      admin_id: 1
+      admin_id: 1,
+      latitude: coord[n-1][0],
+      longitude: coord[n-1][1],
     )
     event.generate_first_report
   end
@@ -33,16 +36,42 @@ def make_messages
 end
 
 def make_tasks
-  1.upto(4) do |n|
-    Task.create(
-      title: FFaker::Lorem.phrase,
-      zipcode: "94704",
-      number_of_volunteers: n,
-      user_id: 1,
-      event_id: 1,
-      task_type_id: 1,
-    )
-  end
+  Task.create(
+    title: "Clean up debris",
+    zipcode: "94704",
+    number_of_volunteers: 20,
+    user_id: 1,
+    event_id: 1,
+    task_type_id: 1,
+    location: "Berkeley High School",
+    description: "Clear fallen trees around the school",
+    latitude: "37.8761",
+    longitude: "-122.2727",
+  )
+  Task.create(
+    title: "Dinner distribution",
+    zipcode: "94601",
+    number_of_volunteers: 10,
+    user_id: 1,
+    event_id: 1,
+    task_type_id: 1,
+    location: "Oakland City Hall",
+    description: "Give out dinners to those in need",
+    latitude: "37.8044",
+    longitude: "-122.2711",
+  )
+  Task.create(
+    title: "Build levee",
+    zipcode: "94101",
+    number_of_volunteers: 60,
+    user_id: 1,
+    event_id: 1,
+    task_type_id: 1,
+    location: "SF Ferry Building at Embarcadero",
+    description: "Prevent further flooding into the building",
+    latitude: "37.7956",
+    longitude: "-122.3933",
+  )
 end
 
 def make_questions
@@ -91,7 +120,7 @@ end
 case Rails.env
 when "development"
   make_events
-  # make_tasks
+  make_tasks
   # seed_number
   seed_ryan_volunteer
   make_task_type

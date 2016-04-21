@@ -208,7 +208,7 @@ class UserTaskCreator extends React.Component {
 				<Input wrapperClassName="wrapper">
 			    <Row>
 			      <Col xs={4}>
-			        <strong>Object Tags</strong>
+			        <strong>Ask volunteers to bring up to 3 items (Optional)</strong>
 			      </Col>
 			      <Col xs={8}>
 						  <TagsInput value={this.state.objectTags} onChange={this._handleObjectTagsChange} onlyUnique={true} maxTags={3}/>
@@ -218,7 +218,7 @@ class UserTaskCreator extends React.Component {
 				<Input wrapperClassName="wrapper">
 			    <Row>
 			      <Col xs={4}>
-			        <strong>Verb Tags</strong>
+			        <strong>Ask volunteers if they are confident in peforming up to 3 actions (Optional)</strong>
 			      </Col>
 			      <Col xs={8}>
 						  <TagsInput value={this.state.verbTags} onChange={this._handleVerbTagsChange} onlyUnique={true} maxTags={3}/>

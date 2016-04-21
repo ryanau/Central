@@ -6,7 +6,6 @@ class RecruitVolunteerTask
   def proceed
     # build questions in a task
     create_initial_question
-
     # check if there are verb/object tags
     create_tags_questions
     # generic follow up questions
@@ -14,7 +13,6 @@ class RecruitVolunteerTask
   end
 
   def create_initial_question
-    # content = "Hi %{volunteer_first_name}! Hope you are safe and sound. This is %{organization_name} contacting you through Central. Are you interested in volunteering for our upcoming event: %{task_title}?\n\nIf you are, please reply 'YES'. If not, please reply 'NO'. Thank you!"
     sDT = @task.start.strftime("%a, %m/%d %l:%M %p")
     eDT = @task.end.strftime("%a, %m/%d %l:%M %p")
     content = "Hi %{volunteer_first_name}! Hope you are safe and sound. This is %{organization_name} contacting you through Central. You've signed up for our upcoming volunteering opportunity:\n\n#{@task.title} at #{@task.location}. From #{sDT} to #{eDT}. Details: #{@task.description}.\n\nPlease confirm that you are coming by replying 'YES'. If not, please reply 'NO'. Thank you!"
@@ -45,7 +43,7 @@ class RecruitVolunteerTask
     @task.object_tags.each do |tag|
       objects << "#{tag.object.capitalize}\n"
     end
-    content = "%{expression}. To better utilize our resources, we would like to know if you can bring the following items:\n\n#{objects}\nPlease reply with the items that you can bring *separated by a comma*.\nPlease reply 'NO' if you cannot bring any of the item listed."
+    content = "%{expression}. To better utilize our resources, we would like to know if you can bring the following items:\n\n#{objects}\nPlease reply with the items that you can bring *separated by a comma*. If not, please reply 'NO'."
     Question.create(content: content, response_type: 5, task_id: @task.id, question_order: 1.1, object_tag: true)
   end
 
@@ -54,7 +52,7 @@ class RecruitVolunteerTask
     @task.verb_tags.each do |tag|
       verbs << "#{tag.verb.capitalize}\n"
     end
-    content = "%{expression}. Additionally, we would like to check if you can perform the following actions:\n\n#{verbs}\nPlease reply with the actions that you are confident in performing *separated by a comma*.\nPlease reply 'NO' if you are not confident in performing the above actions."
+    content = "%{expression}. Additionally, we would like to check if you can perform the following actions:\n\n#{verbs}\nPlease reply with the actions that you are confident in performing *separated by a comma*. If not, please reply 'NO'."
     Question.create(content: content, response_type: 6, task_id: @task.id, question_order: 1.2, verb_tag: true)
   end
 
@@ -65,7 +63,7 @@ class RecruitVolunteerTask
 
   def ask_number_of_participants
     if object_tags? || verb_tags?
-      content = "Last question. How many people (including yourself) are coming to this event?\n\nPlease reply with a number."
+      content = "%{expression}. Last question. How many people (including yourself) are coming to this event?\n\nPlease reply with a number."
     else
       content = "Glad to hear that %{volunteer_first_name}! How many people (including yourself) are coming to this event?\n\nPlease reply with a number."
     end
@@ -73,10 +71,9 @@ class RecruitVolunteerTask
   end
 
   def remove_if_volunteer_no_longer_available
-    # content = "We have confirmed you have %{number_of_participants} people coming!\n\nPlease reply 'REMOVE' if you are no longer interested in coming anymore."
     sDT = @task.start.strftime("%a, %m/%d %l:%M %p")
     eDT = @task.end.strftime("%a, %m/%d %l:%M %p")
-    content = "We have you confirmed for:\n\n#{@task.title} at #{@task.location} from #{sDT} to #{eDT}, along with %{number_of_participants} others.\n\nPlease reply with 'REMOVE' anytime if you're no longer able to help out."
+    content = "Great! We have you confirmed for:\n\n#{@task.title} at #{@task.location} from #{sDT} to #{eDT}, along with %{number_of_participants} others.\n\nPlease reply with 'REMOVE' anytime if you're no longer able to help out."
     Question.create(content: content, response_type: 4, task_id: @task.id, question_order: 3)
   end
 end
