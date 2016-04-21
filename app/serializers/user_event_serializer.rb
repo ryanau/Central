@@ -15,7 +15,12 @@ class UserEventSerializer < ActiveModel::Serializer
         },
         :properties => {
           :title => "#{task.user.organization_name}: #{task.title}",
-          "marker-symbol" => "rocket"
+          :location => task.location,
+          :description => task.description,
+          :start => task.start,
+          :end => task.end,
+          :zipcode => task.zipcode,
+          "marker-symbol" => "marker"
         }
       }
     end
