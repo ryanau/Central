@@ -143,12 +143,11 @@ class VolunteerSignUpBox extends React.Component {
     )
     return (
       <div>
-        <h4>Join Central Now</h4>
         {modal}
         <Button
           bsStyle="primary"
           onClick={this._openModal}>
-          Join as Volunteer
+          Join as Volunteer Now
         </Button>
       </div>
     );    
