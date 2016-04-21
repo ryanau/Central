@@ -39,7 +39,7 @@ class Intake
 		when 0
 			message = "Thank you for signing up with Central! We're going to begin by asking you a series of questions to help better match you with volunteering opportunities. To begin, what is your first name?"
 		when 1
-			message = "Got it, #{@volunteer.first_name}. How about the last name?"
+			message = "Got it, #{@volunteer.first_name}. How about your last name?"
 		when 2
 			message = "Ok, thanks. How old are you?"
 		when 3
@@ -49,7 +49,7 @@ class Intake
 		when 5
 			message = "All right, last question. What is the postal code of your current location?"
 		when 6
-			message = "That completes your registration with Central! We are matching you with the right volunteering opportunities. In the mean time, please sit back and relax!.\n\nThis number will no longer respond to messages, you may delete this thread."
+			message = "That completes your registration with Central! We are matching you with the right volunteering opportunities. In the mean time, please sit back and relax!\n\nThis number will no longer respond to messages, you may delete this thread."
 		else
 			return
 		end
