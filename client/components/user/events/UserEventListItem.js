@@ -29,7 +29,7 @@ class UserEventListItem extends React.Component {
 		})
 	}
 	componentDidMount() {
-		let map
+		let map, popup
 		mapboxgl.accessToken = "pk.eyJ1IjoiY2FsY2VudHJhbCIsImEiOiJjaW42bGJ3dGgwMTR3dmZsemh5aDhuYWF0In0.mirYmU-jrrfrGaXkgf3r7A";
 		map = new mapboxgl.Map({
     	container: this.state.uid,
@@ -50,15 +50,39 @@ class UserEventListItem extends React.Component {
 		    "source": "markers",
 		    "layout": {
 		      "icon-image": "{marker-symbol}-15",
-		      "text-field": "{title}",
-		      "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-		      "text-offset": [0, 0.6],
-		      "text-anchor": "top"}
+		      "icon-allow-overlap": true,
+		    }
 	    });
 		})
 		map.scrollZoom.disable();
 		map.resize();
 		map.addControl(new mapboxgl.Navigation());
+
+		popup = new mapboxgl.Popup({
+	    closeButton: false,
+	    closeOnClick: false
+		});
+		map.on('mousemove', function(e) {
+	    let features = map.queryRenderedFeatures(e.point, { layers: ['markers'] });
+	    // Change the cursor style as a UI indicator.
+	    map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+
+	    if (!features.length) {
+	        popup.remove();
+	        return;
+	    }
+
+	    let feature = features[0];
+
+	    // Populate the popup and set its coordinates
+	    // based on the feature found.
+	    popup.setLngLat(feature.geometry.coordinates)
+	        .setHTML(feature.properties.title)
+	        .addTo(map);
+		});
+	}
+	componentDidUpdate() {
+		console.log('did upate')
 	}
   _makeId() {
     let text, possible
