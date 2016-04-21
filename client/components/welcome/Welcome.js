@@ -30,12 +30,12 @@ class Welcome extends React.Component {
 		}
 		return (
 			<div>
-				<Jumbotron style={{backgroundColor: 'white'}}>
+				<Jumbotron className="TA_center" style={{backgroundColor: 'white'}}>
 				    <h1>Welcome to Central!</h1>
 				    <br/>
 				    <br/>
 				    <br/>
-				    <p>Central is a platform that helps solve the fundamental challenges facing volunteer organizations and evaluate the impact of NGOs...</p>
+				    <p><h4>Central is a platform that helps solve the fundamental challenges facing volunteer organizations and evaluate the impact of NGOs...</h4></p>
 				    <br/>
 				    <VolunteerSignUpBox/>
 				    <br/>
@@ -47,7 +47,7 @@ class Welcome extends React.Component {
 					<br/>
 					<Grid >
 						<Row className="show-grid">
-					      <Col xs={6} md={6}><code> 
+					      <Col xs={6} md={6}><code>
 					      	<h1 style={{color: 'white'}}>1000+</h1>
 	                  		<h4 style={{color: 'white'}}>recorded natural disasters in 2015</h4>
 					      </code></Col>
