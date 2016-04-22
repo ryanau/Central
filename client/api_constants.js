@@ -2,8 +2,6 @@ class Api_Constants {
 	constructor() {
 		this.origin = 'http://localhost:3000/api/'
 		this.frontend = 'http://localhost:8080/'
-		// this.origin = 'http://5a2c6ea0.ngrok.io/api/'
-		// this.frontend = 'http://bef732cc.ngrok.io/'
 		// this.origin = 'https://calcentral.herokuapp.com/api/'
 		// this.frontend = 'https://calcentral.herokuapp.com/'
 		this.admin_origin = this.origin + 'admin/'

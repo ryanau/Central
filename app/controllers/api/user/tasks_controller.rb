@@ -15,17 +15,17 @@ class Api::User::TasksController < Api::BaseController
     task = current_user.tasks.find_by(event_id: params[:event_id], id: params[:id])
     # authorize! :read, task
     render_json_message(200, resource: {task: task.user_task_serialize})
-    # rescue
-    #   render_json_message(404, errors: ["Task not found."])
+    rescue
+      render_json_message(404, errors: ["Task not found."])
   end
 
   def create
     task = Task.create!(create_params)
     if !params[:task][:object_tags].nil?
-      task.add_object_tags(params[:task][:object_tags])
+      task.add_object_tags(params[:task][:object_tags].downcase)
     end
     if !params[:task][:verb_tags].nil?
-      task.add_verb_tags(params[:task][:verb_tags])
+      task.add_verb_tags(params[:task][:verb_tags].downcase)
     end
     # TaskBuilderWorker -> TaskBuilder
     task.build_task
@@ -33,7 +33,7 @@ class Api::User::TasksController < Api::BaseController
     approved_tasks = event.approved_tasks.where(user_id: current_user.id)
     unapproved_tasks = event.unapproved_tasks.where(user_id: current_user.id)
     dispatched_tasks = event.dispatched_tasks.where(user_id: current_user.id)
-    render_json_message(201, message: "Task created!", resource: {approved_tasks: approved_tasks.map(&:serialize), unapproved_tasks: unapproved_tasks.map(&:serialize), dispatched_tasks: dispatched_tasks.map(&:serialize), event_id: event.id})
+    render_json_message(201, message: "Task created and pending approval.", resource: {approved_tasks: approved_tasks.map(&:serialize), unapproved_tasks: unapproved_tasks.map(&:serialize), dispatched_tasks: dispatched_tasks.map(&:serialize), event_id: event.id})
     rescue
       render_json_message(500, errors: ["Error when creating task."])
   end

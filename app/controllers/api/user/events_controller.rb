@@ -5,7 +5,7 @@ class Api::User::EventsController < Api::BaseController
     events = Event.unarchived.order(created_at: :DESC) - current_user.events.order(created_at: :DESC)
     activated_events = current_user.events.where(archived: false).order(created_at: :DESC)
     archived_activated_events = current_user.events.where(archived: true).order(created_at: :DESC)
-    render_json_message(200, resource: {events: events.map(&:serialize), activated_events: activated_events.map(&:user_event_serialize), archived_activated_events: archived_activated_events.map(&:user_event_serialize)})
+    render_json_message(200, resource: {events: events.map(&:serialize), activated_events: activated_events.map{|e| e.user_event_serialize(user_id: current_user.id)}, archived_activated_events: archived_activated_events.map{|e| e.user_event_serialize(user_id: current_user.id)}})
   end
 
   def show
@@ -24,7 +24,7 @@ class Api::User::EventsController < Api::BaseController
     archived_activated_events = current_user.events.where(archived: true)
     render_json_message(200, message: "Event activated!", resource: {events: events.map(&:serialize), activated_events: activated_events.map(&:user_event_serialize), archived_activated_events: archived_activated_events.map(&:user_event_serialize)})
     rescue
-      render_json_message(403, errors: event.errors.messages[:name])
+      render_json_message(500, errors: ["Error when activating event."])
   end
 
   private

@@ -3,7 +3,6 @@ class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
   include CanCan::ControllerAdditions
 
-
   # Handle unauthorized requests
   rescue_from CanCan::AccessDenied do |exception|
     render_json_message(:unauthorized, errors: [exception.message])

@@ -200,6 +200,8 @@ end
 def seed_production
   make_access_code
   make_task_type
+  Phone.create(number: "4847274200")
+  Phone.create(number: "4849334974")
   
   make_users
   make_events
@@ -215,9 +217,6 @@ def seed_production
   make_user_event
   make_messages
   update_report_to_dispatched
-
-  Phone.create(number: "4847274200")
-  Phone.create(number: "4849334974")
 end
 
 def make_admin
