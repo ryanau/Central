@@ -20,6 +20,7 @@ class UserTaskCreator extends React.Component {
 			location: "",
 			start: "",
 			end: "",
+			minDate: null,
 			verbTags: [],
 			objectTags: [],
 			taskTypeId: 1,
@@ -39,6 +40,7 @@ class UserTaskCreator extends React.Component {
 	_startOnChange = (dateTime) => {
 		this.setState({
 			start: moment(Number(dateTime)).format('X'),
+			minDate: moment(Number(dateTime)),
 		})
 	}
 	_endOnChange = (dateTime) => {
@@ -123,11 +125,13 @@ class UserTaskCreator extends React.Component {
 		let modal, disabled
     this.state.title.length > 0 && this.state.title.length <= 30 && this.state.zipcode.length > 0 && this.state.numberOfVolunteers.length > 0 && this.state.description.length > 0 && this.state.location.length > 0 && this.state.start.length > 0 && this.state.end.length > 0 ? disabled = false : disabled = true
 		modal = (
-			<Modal show={this.state.openModal}>
+			<Modal show={this.state.openModal} bsSize="large">
         <Modal.Header>
           <Modal.Title>Recruit Volunteers for {this.props.event.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <Row>
+        <Col lg={6}>
 				<form className="form-horizontal">
           <Input
             labelClassName="col-xs-4" wrapperClassName="col-xs-8"
@@ -181,6 +185,8 @@ class UserTaskCreator extends React.Component {
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
 				</form>
+				</Col>
+				<Col lg={6}>
 				<Input wrapperClassName="wrapper">
 			    <Row>
 			      <Col xs={4}>
@@ -199,9 +205,10 @@ class UserTaskCreator extends React.Component {
 			        <strong>End Date & Time</strong>
 			      </Col>
 			      <Col xs={8}>
-						<DateTimeField
-							onChange={this._endOnChange}
-							defaultText="Select End Date & Time"/>
+							<DateTimeField
+								onChange={this._endOnChange}
+								minDate={moment(this.state.minDate)}
+								defaultText="Select End Date & Time"/>
 			      </Col>
 			    </Row>
 			  </Input>
@@ -225,6 +232,8 @@ class UserTaskCreator extends React.Component {
 			      </Col>
 			    </Row>
 			  </Input>
+			  </Col>
+			  </Row>
 				</Modal.Body>
         <Modal.Footer>
           <Button button onClick={this._closeModal}>Cancel</Button>
@@ -240,7 +249,7 @@ class UserTaskCreator extends React.Component {
 						<Button
 		          bsStyle="primary"
 		          onClick={this._openModal}>
-		          Recruit Volunteers
+		          Create Task to Recruit Volunteers
 		        </Button>
 	        </ButtonToolbar>
         </div>

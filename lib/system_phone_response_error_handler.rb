@@ -28,13 +28,13 @@ class SystemPhoneResponseErrorHandler
       @object_tags.each do |tag|
         objects << "#{tag.capitalize}\n"
       end
-      filler = "the following items that you can bring *separated by a commma*:\n\n#{objects}\nPlease reply 'NO' if you cannot bring any of the item listed."
+      filler = "the following items that you can bring *separated by a commma*:\n\n#{objects}\nPlease reply 'NO' if you cannot bring any of the item listed"
     elsif @question.response_type == 6
       verbs = ""
       @verb_tags.each do |tag|
         verbs << "#{tag.capitalize}\n"
       end
-      filler = "the following actions that you're confident in performing *separated by a commma*:\n\n#{verbs}\nPlease reply 'NO' if you aren't confident in performing any of the actions listed."
+      filler = "the following actions that you're confident in performing *separated by a commma*:\n\n#{verbs}\nPlease reply 'NO' if you aren't confident in performing any of the actions listed"
     end
     content = "Sorry we did not catch that. Please reply with #{filler}."
     SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)

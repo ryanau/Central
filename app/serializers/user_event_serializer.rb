@@ -8,6 +8,11 @@ class UserEventSerializer < ActiveModel::Serializer
   def tasks_markers
     features = []
     Task.where(event_id: object.id).each do |task|
+      if instance_options[:user_id] == task.user_id
+        marker = "rocket"
+      else
+        marker = "marker"
+      end
       features << {:type => "Feature", 
         :geometry => {
           :type => "Point",
@@ -20,7 +25,7 @@ class UserEventSerializer < ActiveModel::Serializer
           :start => task.start,
           :end => task.end,
           :zipcode => task.zipcode,
-          "marker-symbol" => "marker"
+          "marker-symbol" => marker,
         }
       }
     end

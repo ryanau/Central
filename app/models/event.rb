@@ -34,8 +34,8 @@ class Event < ActiveRecord::Base
     ActiveModel::SerializableResource.new(self)
   end
 
-  def user_event_serialize
-    ActiveModel::SerializableResource.new(self, serializer: UserEventSerializer)
+  def user_event_serialize(params = {})
+    ActiveModel::SerializableResource.new(self, serializer: UserEventSerializer, user_id: params.fetch(:user_id, nil))
   end
 
   def event_task_serialize

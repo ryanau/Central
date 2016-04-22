@@ -72,32 +72,32 @@ class SystemPhoneResponseHandler
   end
 
   def incorrect_response_handler
-    # handler = SystemPhoneResponseErrorHandler.new(@question, @system_phone, @volunteer, @object_tags, @verb_tags)
-    # handler.proceed
-    if @question.response_type == 1
-      filler = "'YES' or 'NO'"
-    elsif @question.response_type == 2
-      filler = "a number"
-    elsif @question.response_type == 3
-      filler = "a word"
-    elsif @question.response_type == 4
-      filler = "'REMOVE' if you no longer want to volunteer for this event"
-    elsif @question.response_type == 5
-      # object tags
-      objects = ""
-      @object_tags.each do |tag|
-        objects << "#{tag.capitalize}\n"
-      end
-      filler = "the following items that you can bring *separated by a commma*:\n\n#{objects}\nPlease reply 'NO' if you cannot bring any of the item listed."
-    elsif @question.response_type == 6
-      verbs = ""
-      @verb_tags.each do |tag|
-        verbs << "#{tag.capitalize}\n"
-      end
-      filler = "the following actions that you're confident in performing *separated by a commma*:\n\n#{verbs}\nPlease reply 'NO' if you aren't confident in performing any of the actions listed."
-    end
-    content = "Sorry your input is invalid. Please reply with #{filler}."
-    SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
+    handler = SystemPhoneResponseErrorHandler.new(@question, @system_phone, @volunteer, @object_tags, @verb_tags)
+    handler.proceed
+    # if @question.response_type == 1
+    #   filler = "'YES' or 'NO'"
+    # elsif @question.response_type == 2
+    #   filler = "a number"
+    # elsif @question.response_type == 3
+    #   filler = "a word"
+    # elsif @question.response_type == 4
+    #   filler = "'REMOVE' if you no longer want to volunteer for this event"
+    # elsif @question.response_type == 5
+    #   # object tags
+    #   objects = ""
+    #   @object_tags.each do |tag|
+    #     objects << "#{tag.capitalize}\n"
+    #   end
+    #   filler = "the following items that you can bring *separated by a commma*:\n\n#{objects}\nPlease reply 'NO' if you cannot bring any of the item listed."
+    # elsif @question.response_type == 6
+    #   verbs = ""
+    #   @verb_tags.each do |tag|
+    #     verbs << "#{tag.capitalize}\n"
+    #   end
+    #   filler = "the following actions that you're confident in performing *separated by a commma*:\n\n#{verbs}\nPlease reply 'NO' if you aren't confident in performing any of the actions listed."
+    # end
+    # content = "Sorry your input is invalid. Please reply with #{filler}."
+    # SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
   end
 
   # different respones handler
