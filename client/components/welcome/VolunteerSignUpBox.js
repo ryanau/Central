@@ -80,7 +80,7 @@ class VolunteerSignUpBox extends React.Component {
         <form className="form-horizontal">
           <Input
             labelClassName="col-xs-4" wrapperClassName="col-xs-8"
-            type="text"
+            type="number"
             label="Phone Number"
             ref="phone"
             placeholder="e.g. 5109902345"
