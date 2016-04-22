@@ -103,7 +103,7 @@ class UserTaskCreator extends React.Component {
     if (title.length > 0 && title.length <= 30) {
       return 'success';
     } else {
-      return 'error';
+      return 'warning';
     }
   }
   _feedTitleCharacterCountPhrase() {
@@ -212,22 +212,16 @@ class UserTaskCreator extends React.Component {
 			      </Col>
 			    </Row>
 			  </Input>
-				<Input wrapperClassName="wrapper">
+				<Input wrapperClassName="wrapper" label="Ask volunteers to bring up to 3 items" help="Optional | Please hit the 'tab' or 'enter' key after entering each item">
 			    <Row>
-			      <Col xs={4}>
-			        <strong>Ask volunteers to bring up to 3 items (Optional)</strong>
-			      </Col>
-			      <Col xs={8}>
+			      <Col xs={12}>
 						  <TagsInput value={this.state.objectTags} onChange={this._handleObjectTagsChange} onlyUnique={true} maxTags={3}/>
 			      </Col>
 			    </Row>
 			  </Input>
-				<Input wrapperClassName="wrapper">
+				<Input wrapperClassName="wrapper" label="Ask volunteers if they are confident in peforming up to 3 actions" help="Optional | Please hit the 'tab' or 'enter' key after entering each verb">
 			    <Row>
-			      <Col xs={4}>
-			        <strong>Ask volunteers if they are confident in peforming up to 3 actions (Optional)</strong>
-			      </Col>
-			      <Col xs={8}>
+			      <Col xs={12}>
 						  <TagsInput value={this.state.verbTags} onChange={this._handleVerbTagsChange} onlyUnique={true} maxTags={3}/>
 			      </Col>
 			    </Row>
