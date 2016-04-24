@@ -8,6 +8,7 @@ import DateTimeField from 'react-bootstrap-datetimepicker'
 import TasksActions from 'actions/tasksActions';
 import TaskTypesActions from 'actions/tasktypesActions';
 
+import NewTaskMap from 'components/map/NewTaskMap';
 
 class UserTaskCreator extends React.Component {
 	constructor(props) {
@@ -18,6 +19,8 @@ class UserTaskCreator extends React.Component {
 			numberOfVolunteers: "",
 			description: "",
 			location: "",
+			lat: "",
+			lon: "",
 			start: "",
 			end: "",
 			minDate: null,
@@ -34,8 +37,14 @@ class UserTaskCreator extends React.Component {
       zipcode: this.refs.zipcode.getValue(),
       numberOfVolunteers: this.refs.numberOfVolunteers.getValue(),
       description: this.refs.description.getValue(),
-      location: this.refs.location.getValue(),
     })
+	}
+	_handleLocationChange = (response) => {
+		this.setState({
+			location: response.text,
+			lat: response.center[1],
+			lon: response.center[0],
+		})
 	}
 	_startOnChange = (dateTime) => {
 		this.setState({
@@ -58,6 +67,8 @@ class UserTaskCreator extends React.Component {
 			this.state.numberOfVolunteers,
 			this.state.description,
 			this.state.location,
+			this.state.lat,
+			this.state.lon,
 			this.state.start,
 			this.state.end,
 			this.state.taskTypeId,
@@ -71,6 +82,8 @@ class UserTaskCreator extends React.Component {
 			numberOfVolunteers: "",
 			description: "",
 			location: "",
+			lat: "",
+			lon: "",
 			start: "",
 			end: "",
 			verbTags: [],
@@ -90,6 +103,8 @@ class UserTaskCreator extends React.Component {
 			numberOfVolunteers: "",
 			description: "",
 			location: "",
+			lat: "",
+			lon: "",
 			start: "",
 			end: "",
 			verbTags: [],
@@ -165,16 +180,6 @@ class UserTaskCreator extends React.Component {
 				  	placeholder="Postal Code"
 				  	onKeyDown={this._handleKeydown}
 				  	onChange={this._handleChange}/>
-				  <Input
-            labelClassName="col-xs-4" wrapperClassName="col-xs-8"
-				  	type="text"
-				  	label="Location"
-				  	ref="location"
-            help="Required"
-				  	value={this.state.location}
-				  	placeholder="e.g. Berkeley High School/ Channing & Haste Intersection"
-				  	onKeyDown={this._handleKeydown}
-				  	onChange={this._handleChange}/>
           <Input
             labelClassName="col-xs-4" wrapperClassName="col-xs-8"
 				  	type="number"
@@ -227,6 +232,11 @@ class UserTaskCreator extends React.Component {
 			    </Row>
 			  </Input>
 			  </Col>
+			  </Row>
+			  <Row>
+			  	<Col lg={12}>
+				  	<NewTaskMap event={this.props.event} onLocationChange={this._handleLocationChange}/>
+			  	</Col>
 			  </Row>
 				</Modal.Body>
         <Modal.Footer>

@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import toastr from 'toastr';
 
+import VolunteerSignUpBox from 'components/welcome/VolunteerSignUpBox';
+
 import ApiConstants from 'api_constants';
 import ApiRequests from 'api_requests';
 
-import { Input, ButtonInput, Button, Panel, ButtonGroup, Row, Col, ButtonToolbar } from 'react-bootstrap';
+import { Input, Button, Panel, Col, ButtonToolbar, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class UserSignUp extends React.Component {
 	constructor(props) {
@@ -94,13 +96,19 @@ class UserSignUp extends React.Component {
     }
   }
   render() {
-    let disabled, panel
+    let disabled, panel, panelFooter
     this.state.email.length > 0 && this.state.password.length > 0 && this.state.code.length > 0 && this.state.password == this.state.password_confirmation ? disabled = false : disabled = true
+    panelFooter = (
+      <div>
+      <p>This is intended for humanitarian organizations given access by Central. To sign up as a volunteer please click below:</p>
+      <VolunteerSignUpBox/>
+      </div>
+    )
     return (
         <div className="mT-70">
           <Col xs={0} sm={3} md={4}></Col>
           <Col xs={12} sm={6} md={4}>
-            <Panel header="Organization Sign Up">
+            <Panel header="Organization Sign Up" footer={panelFooter}>
             <form>
               <Input
                 label="Email"

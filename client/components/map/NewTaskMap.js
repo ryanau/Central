@@ -1,6 +1,8 @@
 import React from 'react';
 
-class Map extends React.Component {
+import { Col, Row } from 'react-bootstrap';
+
+class NewTaskMap extends React.Component {
 	constructor(props) {
 		super(props);
 		this.onChange = this._onChange.bind(this);
@@ -31,8 +33,8 @@ class Map extends React.Component {
     	zoom: 10,
   	});
 		map.scrollZoom.disable();
-		geoCoder = new mapboxgl.Geocoder({
-			// container: 'geocoder-container'
+			geoCoder = new mapboxgl.Geocoder({
+			container: 'geocoder-container'
 		});
 		map.addControl(geoCoder);
 		map.addControl(new mapboxgl.Navigation());
@@ -51,6 +53,27 @@ class Map extends React.Component {
 		      "icon-image": "{marker-symbol}-15",
 		      "icon-allow-overlap": true,}
 	    });
+      map.addSource('single-point', {
+        "type": "geojson",
+        "data": {
+            "type": "FeatureCollection",
+            "features": []
+        }
+	    });
+       map.addLayer({
+        "id": "point",
+        "source": "single-point",
+        "type": "circle",
+        "paint": {
+            "circle-radius": 10,
+            "circle-color": "#FFA500"
+        }
+	    });
+		})
+
+		geoCoder.on('result', (ev) => {
+			map.getSource('single-point').setData(ev.result.geometry);
+			this.props.onLocationChange(ev.result)
 		})
 		popup = new mapboxgl.Popup({
 	    closeButton: false,
@@ -86,12 +109,20 @@ class Map extends React.Component {
   }
 	render() {
 		return (
-			<div>
-				<div id={this.state.uid} className="map mB-10"/>
-				<p>Roll over each marker to see more information. Your tasks are marked by a <strong>Rocket</strong>. Others tasks are marked by a <strong>Marker</strong>.</p>
+				<div>
+					<Row className="mB-10">
+						<Col lg={6} className="TA_right">
+							<strong>Location</strong>
+						</Col>
+						<Col lg={6}>
+							<div id="geocoder-container"/>
+						</Col>
+					</Row>
+					<p className="mb-10 TA_center">Roll over each marker to see more information. Your tasks are marked by a <strong>Rocket</strong>. Others tasks are marked by a <strong>Marker</strong>.</p>
+					<div id={this.state.uid} className="map"/>
 			</div>
 		)
 	}
 };
 
-export default Map;
+export default NewTaskMap;

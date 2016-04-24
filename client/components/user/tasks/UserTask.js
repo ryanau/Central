@@ -39,9 +39,8 @@ class UserTask extends React.Component {
 			taskTitle = this.state.task.title
 			createdAt = moment(task.created_at).fromNow()
 			taskInfo = (
-        <div className="mT-70">
-					<Col lg={1}>
-					</Col>
+        <div>
+					<Col lg={1}/>
 					<Col lg={10}>
 						<PageHeader>{taskTitle} <small>{task.event.name}</small></PageHeader>
 						<h4>Description: {task.description}</h4>
@@ -67,13 +66,16 @@ class UserTask extends React.Component {
 						</ListGroup>
 						<UserResponseTable attendeeResponses={task.number_of_attendees_responses} objects={task.objects} verbs={task.verbs}/>
 				</Col>
-					<Col lg={1}>
-					</Col>
+					<Col lg={1}/>
 				</div>
+			)
+		} else {
+			taskInfo = (
+				<h4>Loading...</h4>
 			)
 		}
 		return (
-			<div>
+			<div className="mT-70">
 				{taskInfo}
 				{table}
 			</div>

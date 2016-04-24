@@ -43,6 +43,6 @@ class Api::User::TasksController < Api::BaseController
   def create_params
     startDT = Time.at(params[:task][:start].to_i).to_datetime
     endDT = Time.at(params[:task][:end].to_i).to_datetime
-    params.require(:task).permit(:title, :zipcode, :number_of_volunteers, :date_time, :location, :description, :event_id, :task_type_id).merge(user_id: current_user.id, start: startDT, end: endDT)
+    params.require(:task).permit(:title, :zipcode, :number_of_volunteers, :date_time, :location, :description, :event_id, :task_type_id, :latitude, :longitude).merge(user_id: current_user.id, start: startDT, end: endDT)
   end
 end

@@ -39,11 +39,11 @@ class Welcome extends React.Component {
 						<Row className="show-grid">
 					      <Col xs={6} md={6}><code>
 					      	<h1 style={{color: 'white'}}>1000+</h1>
-	                  		<h4 style={{color: 'white'}}>recorded natural disasters in 2015</h4>
+              		<h4 style={{color: 'white'}}>recorded natural disasters in 2015</h4>
 					      </code></Col>
 					      <Col xs={6} md={6} ><code>
 					      	<h1 style={{color: 'white'}} >91.3%</h1>
-	                  		<h4 style={{color: 'white'}}>volunteered because they perceived the issue at hand as important</h4>
+              		<h4 style={{color: 'white'}}>volunteered because they perceived the issue at hand as important</h4>
 					      </code></Col>
 					    </Row>
 					</Grid>
