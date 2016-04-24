@@ -53,12 +53,12 @@ class NavBar extends React.Component {
       )
       userSignInLink = (
         <LinkContainer to={{ pathname: '/user/sign_in' }}>
-          <NavItem eventKey={1}>Organization Sign In</NavItem>
+          <NavItem eventKey={1}>Sign In</NavItem>
         </LinkContainer>
       )
       userSignUpLink = (
         <LinkContainer to={{ pathname: '/user/sign_up' }}>
-          <NavItem eventKey={2}>Organization Sign Up</NavItem>
+          <NavItem eventKey={2}>Sign Up</NavItem>
         </LinkContainer>
       )
     }

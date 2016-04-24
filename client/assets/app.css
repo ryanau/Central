@@ -32,6 +32,11 @@ html * {
 	text-align: center;
 }
 
+.TA_right {
+  text-align: right;
+}
+
+/* mapbox */
 .map {
 	height: 400px;
 }
