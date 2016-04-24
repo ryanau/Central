@@ -22,7 +22,7 @@ class UserDashboard extends React.Component {
 	}
 	render() {
 		return (
-			<div>
+      <div className="mT-70">
 				<Col lg={1}>
 				</Col>
 				<Col lg={10}>

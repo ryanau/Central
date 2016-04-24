@@ -35,3 +35,34 @@ html * {
 .map {
 	height: 400px;
 }
+
+/* Welcome.js page */
+.intro-header {
+  padding-top: 300px;
+  padding-bottom: 350px;
+  text-align: center;
+  color: #f8f8f8;
+  background: url(http://res.cloudinary.com/daqjgpz3i/image/upload/v1461469395/spark-dimmed_mgyiro.jpg) no-repeat center center;
+  background-size: cover;
+/*  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);*/
+}
+
+/* Footer */
+footer {
+	display: block;
+}
+
+.list-inline {
+  padding-left: 0;
+  margin-left: -5px;
+  list-style: none;
+}
+.list-inline > li {
+  display: inline-block;
+  padding-right: 5px;
+  padding-left: 5px;
+}

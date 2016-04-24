@@ -48,7 +48,7 @@ class UserEvent extends React.Component {
 		}
 		return (
 			<Grid>
-		      <div>
+        <div className="mT-70">
 				    <Panel header="Events" bsStyle="primary">
 							{eventInfo}
 							<div id="map" className="map"></div>

@@ -39,7 +39,7 @@ class UserTask extends React.Component {
 			taskTitle = this.state.task.title
 			createdAt = moment(task.created_at).fromNow()
 			taskInfo = (
-				<div>
+        <div className="mT-70">
 					<Col lg={1}>
 					</Col>
 					<Col lg={10}>
