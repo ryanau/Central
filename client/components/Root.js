@@ -66,9 +66,9 @@ class Root extends React.Component {
     return (
       <div>
         {navBar}
-        <div className="mT-70">
+
         {display}
-        </div>
+
         {React.cloneElement(this.props.children, {globalState: this.state})}
       </div>
     );    

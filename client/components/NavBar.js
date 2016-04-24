@@ -24,7 +24,7 @@ class NavBar extends React.Component {
     })
   }
   render() {
-    let signOutLink, userSignInLink, userSignUpLink, userName
+    let signOutLink, userSignInLink, userSignUpLink, userName, infoNav
     if (this.state.loggedIn && this.state.authorization == 'user') {
       userName = (
         <LinkContainer to={{ pathname: '/user/account' }}>
@@ -48,6 +48,9 @@ class NavBar extends React.Component {
         </LinkContainer>
       )
     } else {
+      infoNav = (
+        <NavItem href="#about" eventKey={1}>About</NavItem>
+      )
       userSignInLink = (
         <LinkContainer to={{ pathname: '/user/sign_in' }}>
           <NavItem eventKey={1}>Organization Sign In</NavItem>
@@ -55,7 +58,7 @@ class NavBar extends React.Component {
       )
       userSignUpLink = (
         <LinkContainer to={{ pathname: '/user/sign_up' }}>
-          <NavItem eventKey={1}>Organization Sign Up</NavItem>
+          <NavItem eventKey={2}>Organization Sign Up</NavItem>
         </LinkContainer>
       )
     }
@@ -72,6 +75,7 @@ class NavBar extends React.Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
+          {infoNav}
           </Nav>
           <Nav pullRight>
             {userName}

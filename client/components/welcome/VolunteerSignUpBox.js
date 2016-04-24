@@ -146,7 +146,6 @@ class VolunteerSignUpBox extends React.Component {
         {modal}
         <Button
           bsStyle="primary"
-          bsSize="large"
           onClick={this._openModal}>
           Join as Volunteer Now
         </Button>

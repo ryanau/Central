@@ -1,5 +1,4 @@
 import React from 'react';
-import alt from 'control';
 
 import { Row, Col, Grid, Jumbotron, Button } from "react-bootstrap";
 
@@ -19,8 +18,6 @@ class Welcome extends React.Component {
 	}
 	componentWillUnmount() {
 	}
-
-
 	render() {
 		var gridStyle = {
 		  color: 'white',
@@ -30,21 +27,14 @@ class Welcome extends React.Component {
 		}
 		return (
 			<div>
-				<Jumbotron className="TA_center" style={{backgroundColor: 'white'}}>
-				    <h1>Welcome to Central!</h1>
-				    <br/>
-				    <br/>
-				    <br/>
-				    <p><h4>Central is a platform that helps solve the fundamental challenges facing volunteer organizations and evaluate the impact of NGOs...</h4></p>
-				    <br/>
+				<a name="home"></a>
+				<div className="intro-header">
+			    <h1>Welcome to Central!</h1>
+			    <h4>Central is a platform that helps solve the fundamental challenges facing volunteer organizations and evaluate the impact of NGOs.</h4>
 				    <VolunteerSignUpBox/>
-				    <br/>
-				    <br/>
-				</Jumbotron>
+				</div>
 				<div style={gridStyle}>
-					<br/>
-					<br/>
-					<br/>
+				<a name="about"></a>
 					<Grid >
 						<Row className="show-grid">
 					      <Col xs={6} md={6}><code>
@@ -61,8 +51,14 @@ class Welcome extends React.Component {
 					<br/>
 					<br/>
 				</div>
-
-				</div>
+		<footer>
+			<Row>
+				<Col lg={12}>
+		      <p className="copyright text-muted small">Central.io 2016. All Rights Reserved</p>
+	      </Col>
+      </Row>
+    </footer>
+			</div>
 		)
 	}
 };
