@@ -42,7 +42,7 @@ class UserTasksContainer extends React.Component {
 						<UserTaskListItem key={task.id} task={task} event={event}/>
 				)
 			});
-		} else {approvedTasksLength = <div>Approved Tasks <Badge>0</Badge></div>}
+		} else {approvedTasksLength = <div>Approved Tasks to be Dispatched <Badge>0</Badge></div>}
 		if (this.state.unapprovedTasks[event.id] && this.state.unapprovedTasks[event.id].length > 0) {
 			unapprovedTasksLength = <div>Tasks Pending Approval <Badge>{this.state.unapprovedTasks[event.id].length}</Badge></div>
 			unapprovedTasks = this.state.unapprovedTasks[event.id].map((task) => {
