@@ -21,7 +21,7 @@ class Welcome extends React.Component {
 	render() {
 		var gridStyle = {
 		  color: 'white',
-		  backgroundImage: 'url( http://www.nasa.gov/sites/default/files/thumbnails/image/fire-slideshow1-main.jpg)',
+		  backgroundImage: 'url( https://www.nasa.gov/sites/default/files/thumbnails/image/fire-slideshow1-main.jpg)',
 		  WebkitTransition: 'all', // note the capital 'W' here
 		  msTransition: 'all' // 'ms' is the only lowercase vendor prefix
 		}
@@ -33,32 +33,68 @@ class Welcome extends React.Component {
 			    <h4>Central is a platform that helps solve the fundamental challenges facing volunteer organizations and evaluate the impact of NGOs.</h4>
 				    <VolunteerSignUpBox/>
 				</div>
-				<div style={gridStyle}>
 				<a name="about"></a>
+		    <div className="content-section-a">
+			    <div className="container">
+	          <Row>
+	            <Col lg={5} sm={6}>
+	              <h2 className="section-heading">Death to the Stock Photo</h2>
+	              <p className="lead">A special thanks toeath to the Stock Photo for providing the photographs that you see in this template. Visit their website to become a member.</p>
+	            </Col>
+	            <Col lg={5} sm={6} lgOffset={2}>
+	              <img className="img-responsive" src="https://res.cloudinary.com/daqjgpz3i/image/upload/v1461469395/spark-dimmed_mgyiro.jpg" alt=""/>
+	            </Col>
+	          </Row>
+	        </div>
+        </div>
+    		<div className="content-section-b">
+        	<div className="container">
+            <Row>
+              <Col lg={5} lgOffset={1} sm={6} smPush={6}>
+                <h2 className="section-heading">3D Device Mockups by PSDCovers</h2>
+                <p className="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by Visit their website to download some of their awesome, free photoshop actions!</p>
+              </Col>
+              <Col lg={5} smPull={6} sm={6}>
+                <img className="img-responsive" src="https://res.cloudinary.com/daqjgpz3i/image/upload/v1461469395/spark-dimmed_mgyiro.jpg" alt=""/>
+              </Col>
+            </Row>
+	        </div>
+    		</div>
+    		<div className="content-section-a">
+			    <div className="container">
+	          <Row>
+	            <Col lg={5} sm={6}>
+	              <h2 className="section-heading">Death to the Stock Photo</h2>
+	              <p className="lead">A special thanks toeath to the Stock Photo for providing the photographs that you see in this template. Visit their website to become a member.</p>
+	            </Col>
+	            <Col lg={5} sm={6} lgOffset={2}>
+	              <img className="img-responsive" src="https://res.cloudinary.com/daqjgpz3i/image/upload/v1461469395/spark-dimmed_mgyiro.jpg" alt=""/>
+	            </Col>
+	          </Row>
+	        </div>
+        </div>
+				<div style={gridStyle}>
 					<Grid >
 						<Row className="show-grid">
-					      <Col xs={6} md={6}><code>
-					      	<h1 style={{color: 'white'}}>1000+</h1>
-              		<h4 style={{color: 'white'}}>recorded natural disasters in 2015</h4>
-					      </code></Col>
-					      <Col xs={6} md={6} ><code>
-					      	<h1 style={{color: 'white'}} >91.3%</h1>
-              		<h4 style={{color: 'white'}}>volunteered because they perceived the issue at hand as important</h4>
-					      </code></Col>
-					    </Row>
+				      <Col xs={6} md={6}><code>
+				      	<h1 style={{color: 'white'}}>1000+</h1>
+	          		<h4 style={{color: 'white'}}>recorded natural disasters in 2015</h4>
+				      </code></Col>
+				      <Col xs={6} md={6} ><code>
+				      	<h1 style={{color: 'white'}} >91.3%</h1>
+	          		<h4 style={{color: 'white'}}>volunteered because they perceived the issue at hand as important</h4>
+				      </code></Col>
+				    </Row>
 					</Grid>
-					<br/>
-					<br/>
-					<br/>
 				</div>
-		<footer>
-			<Row>
-				<Col lg={12}>
-		      <p className="copyright text-muted small">Central.io 2016. All Rights Reserved</p>
-	      </Col>
-      </Row>
-    </footer>
-			</div>
+			<footer>
+				<Row>
+					<Col lg={12}>
+			      <p className="copyright text-muted small">Central 2016. All Rights Reserved</p>
+		      </Col>
+	      </Row>
+	    </footer>
+		</div>
 		)
 	}
 };

@@ -60,6 +60,69 @@ html * {
   filter: blur(5px);*/
 }
 
+/* Welcome.js content */
+/* img on right */
+.content-section-a {
+  padding: 220px 0;
+  /*background-color: #f8f8f8;*/
+  background: url(https://res.cloudinary.com/daqjgpz3i/image/upload/v1461469395/spark-dimmed_mgyiro.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+/* img on left */
+.content-section-b {
+  padding: 220px 0;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+  margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+  float: left;
+  width: 200px;
+  border-top: 3px solid #e7e7e7;
+}
+
+.lead {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
 /* Footer */
 footer {
 	display: block;
