@@ -7,4 +7,8 @@ class Volunteer < ActiveRecord::Base
   has_many :report_volunteer_logs
 
   validates :phone_number, uniqueness: true
+
+  def serialize
+    ActiveModel::SerializableResource.new(self)
+  end
 end

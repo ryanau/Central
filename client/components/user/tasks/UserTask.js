@@ -8,6 +8,7 @@ import TaskStore from 'stores/taskStore';
 import TaskActions from 'actions/taskActions';
 
 import UserResponseTable from '../responses/UserResponseTable';
+import UserCheckedInTable from '../responses/UserCheckedInTable';
 
 class UserTask extends React.Component {
 	constructor(props) {
@@ -58,13 +59,18 @@ class UserTask extends React.Component {
 							</ButtonToolbar>
 						</div>
 						<ListGroup>
-							<ListGroupItem># of Volunteers requested: {task.number_of_volunteers}</ListGroupItem>
 							<ListGroupItem>Digest reached: {task.report_reached}</ListGroupItem>
-							<ListGroupItem># of Volunteers responded: {task.volunteer_responded}</ListGroupItem>
+							<ListGroupItem># of volunteers responded: {task.volunteer_responded}</ListGroupItem>
 							<ListGroupItem># of total participants: {task.total_coming}</ListGroupItem>
-							<ListGroupItem># of Volunteers removed: {task.volunteer_removed}</ListGroupItem>
+							<ListGroupItem># of volunteers checked in: {task.volunteer_checked_in}</ListGroupItem>
+							<ListGroupItem># of volunteers removed: {task.volunteer_removed}</ListGroupItem>
 						</ListGroup>
-						<UserResponseTable attendeeResponses={task.number_of_attendees_responses} objects={task.objects} verbs={task.verbs}/>
+					  <Panel header="Checked In Volunteers" bsStyle="success">
+							<UserCheckedInTable checkedInResponses={task.checked_in_volunteers}/>
+						</Panel>
+					  <Panel header="Responded Volunteers">
+							<UserResponseTable attendeeResponses={task.number_of_attendees_responses} objects={task.objects} verbs={task.verbs}/>
+						</Panel>
 				</Col>
 					<Col lg={1}/>
 				</div>

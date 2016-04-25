@@ -200,11 +200,15 @@ class SystemPhoneResponseHandler
     content = "You've just successfully checked in for: #{@task.title}! Please follow the instructions given by the onsite coordinator.\n\nWe sincerely thank you for using Central - the volunteer matching platform for local disasters."
     SmsOutbound.send_from_system_phone(@system_phone.number, @volunteer.phone_number, content)
     # close conversation
-    terminate_conversation
+    check_in_conversation
   end
 
   def terminate_conversation
     @conversation.update(active: false)
+  end
+
+  def check_in_conversation
+    @conversation.update(checked_in: true)
   end
 
   def log_response
