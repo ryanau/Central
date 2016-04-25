@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { Link } from 'react-router';
-import { ListGroupItem } from 'react-bootstrap';
+import { ListGroupItem, Label } from 'react-bootstrap';
 
 class UserTaskListItem extends React.Component {
 	constructor(props) {
@@ -19,13 +19,24 @@ class UserTaskListItem extends React.Component {
 		})
 	}
 	render() {
-		let task, infoLink
+		let task, infoLink, header, label
 		task = this.state.task
 		infoLink = '/user/events/' + this.state.event.id + "/tasks/" + task.id
+		if (!task.dispatched) {
+			label = (<Label bsStyle="warning">Approval Pending</Label>)
+		} else if (task.volunteer_responded > 0) {
+			label = (<Label bsStyle="success">{task.volunteer_responded} responses</Label>)
+		} else {
+			label = (<Label bsStyle="info">No responses</Label>)
+		}
+		header = (
+			<Link to={infoLink}><h4>{task.title + ' at ' + task.location + ' (' + task.zipcode + ')'}</h4></Link>
+		)
 		return (
-			<ListGroupItem header={task.title + ' at ' + task.location + ' (' + task.zipcode + ')'}>
+			<ListGroupItem header={header}>
+				<p>{label}</p>
 				<p>Task created {moment(task.created_at).fromNow()}</p>
-				<p>{task.description}</p>
+				<p>Description: {task.description}</p>
 				<p>From {moment(task.start).format("ddd, M/D/YYYY, h:mm A") + ' to ' + moment(task.end).format("ddd, M/D/YYYY, h:mm A")}</p>
 				<p>Volunteers Requested: {task.number_of_volunteers}</p>
 				{<Link to={infoLink}>See Responses</Link>}

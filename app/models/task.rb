@@ -8,7 +8,8 @@ class Task < ActiveRecord::Base
   has_many :conversations
   has_many :volunteers, through: :conversations
   has_many :active_conversations, -> { where(conversations: {active: true})}, :class_name => "Conversation", :foreign_key => :task_id
-  has_many :inactive_conversations, -> { where(conversations: {active: false})}, :class_name => "Conversation", :foreign_key => :task_id
+  has_many :inactive_conversations, -> { where(conversations: {active: false, checked_in: false})}, :class_name => "Conversation", :foreign_key => :task_id
+  has_many :checked_in_conversations, -> { where(conversations: {active: true, checked_in: true})}, :class_name => "Conversation", :foreign_key => :task_id
 
   belongs_to :message
   belongs_to :report
@@ -20,13 +21,13 @@ class Task < ActiveRecord::Base
 
   def add_object_tags(object_tags)
     object_tags.each do |tag|
-      self.object_tags.create(object: tag)
+      self.object_tags.create(object: tag.downcase)
     end
   end
 
   def add_verb_tags(verb_tags)
     verb_tags.each do |tag|
-      self.verb_tags.create(verb: tag)
+      self.verb_tags.create(verb: tag.downcase)
     end
   end
 

@@ -32,7 +32,6 @@ class EventActions {
 			event_id: eventId
 		}
 		const resolve = (res) => {
-			console.log(res)
 			this.actions.storeEvent(res);
 		}
 		ApiRequests.get(ApiConstants.reports.dispatchNext, data, resolve)

@@ -88,7 +88,7 @@ class Map extends React.Component {
 		return (
 			<div>
 				<div id={this.state.uid} className="map mB-10"/>
-				<p>Roll over each marker to see more information. Your tasks are marked by a <strong>Rocket</strong>. Others tasks are marked by a <strong>Marker</strong>.</p>
+				<p>Hover over each marker to see more information. Your tasks are marked by a <strong>Rocket</strong>. Others tasks are marked by a <strong>Marker</strong>.</p>
 			</div>
 		)
 	}

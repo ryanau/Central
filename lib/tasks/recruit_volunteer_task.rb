@@ -73,7 +73,7 @@ class RecruitVolunteerTask
   def remove_if_volunteer_no_longer_available
     sDT = @task.start.strftime("%a, %m/%d %l:%M %p")
     eDT = @task.end.strftime("%a, %m/%d %l:%M %p")
-    content = "Great! We have you confirmed for:\n\n#{@task.title} at #{@task.location} from #{sDT} to #{eDT}, along with %{number_of_participants} others.\n\nPlease reply with 'REMOVE' anytime if you're no longer able to help out."
+    content = "Great! We have you confirmed for:\n\n#{@task.title} at #{@task.location} from #{sDT} to #{eDT}, along with %{number_of_participants} others.\n\nWhen you arrive at the site, please ask the coordinator for the check in code and enter it here.\n\nIf you're no longer able to help out, please reply with 'REMOVE' anytime."
     Question.create(content: content, response_type: 4, task_id: @task.id, question_order: 3)
   end
 end

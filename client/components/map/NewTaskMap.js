@@ -118,7 +118,7 @@ class NewTaskMap extends React.Component {
 							<div id="geocoder-container"/>
 						</Col>
 					</Row>
-					<p className="mb-10 TA_center">Roll over each marker to see more information. Your tasks are marked by a <strong>Rocket</strong>. Others tasks are marked by a <strong>Marker</strong>.</p>
+					<p className="mb-10 TA_center">Hover over each marker to see more information. Your tasks are marked by a <strong>Rocket</strong>. Others tasks are marked by a <strong>Marker</strong>.</p>
 					<div id={this.state.uid} className="map"/>
 			</div>
 		)

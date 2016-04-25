@@ -28,7 +28,7 @@ class Welcome extends React.Component {
 		return (
 			<div>
 				<a name="home"></a>
-				<div className="intro-header">
+				<div className="intro-header mT-minus-70">
 			    <h1>Welcome to Central!</h1>
 			    <h4>Central is a platform that helps solve the fundamental challenges facing volunteer organizations and evaluate the impact of NGOs.</h4>
 				    <VolunteerSignUpBox/>
