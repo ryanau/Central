@@ -40,6 +40,9 @@ html * {
   text-align: right;
 }
 
+.color_white {
+  color: white;
+}
 /* mapbox */
 .map {
 	height: 400px;
@@ -65,7 +68,7 @@ html * {
 .content-section-a {
   padding: 220px 0;
   /*background-color: #f8f8f8;*/
-  background: url(https://res.cloudinary.com/daqjgpz3i/image/upload/v1461469395/spark-dimmed_mgyiro.jpg) no-repeat center center;
+  background: url(https://res.cloudinary.com/daqjgpz3i/image/upload/v1461572134/flooding_snxdh3.jpg) no-repeat center center;
   background-size: cover;
 }
 

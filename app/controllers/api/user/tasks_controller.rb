@@ -34,8 +34,8 @@ class Api::User::TasksController < Api::BaseController
     unapproved_tasks = event.unapproved_tasks.where(user_id: current_user.id)
     dispatched_tasks = event.dispatched_tasks.where(user_id: current_user.id)
     render_json_message(201, message: "Task created and pending approval.", resource: {approved_tasks: approved_tasks.map(&:serialize), unapproved_tasks: unapproved_tasks.map(&:serialize), dispatched_tasks: dispatched_tasks.map(&:serialize), event_id: event.id})
-    # rescue
-    #   render_json_message(500, errors: ["Error when creating task."])
+    rescue
+      render_json_message(500, errors: ["Error when creating task."])
   end
 
   private

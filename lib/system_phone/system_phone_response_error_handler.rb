@@ -21,7 +21,7 @@ class SystemPhoneResponseErrorHandler
     elsif @question.response_type == 3
       filler = "a word"
     elsif @question.response_type == 4
-      filler = "'REMOVE' if you no longer want to volunteer for this event"
+      filler = "the check in code given by the onsite coordinateor after you arrive at the site, or 'REMOVE' if you no longer want to volunteer for this event"
     elsif @question.response_type == 5
       # object tags
       objects = ""

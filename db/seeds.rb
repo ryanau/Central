@@ -50,6 +50,7 @@ def make_tasks
     longitude: "-122.2727",
     start: DateTime.now,
     end: DateTime.now.to_time + 3600,
+    check_in_code: "1234",
     approved: true,
     dispatched: true, 
   )
@@ -70,6 +71,7 @@ def make_tasks
     longitude: "-122.2711",
     start: DateTime.now,
     end: DateTime.now.to_time + 3600,
+    check_in_code: "1235"
   )
   Task.create(
     title: "Build levee",
@@ -84,6 +86,7 @@ def make_tasks
     longitude: "-122.3933",
     start: DateTime.now,
     end: DateTime.now.to_time + 3600,
+    check_in_code: "1236"
   )
   Task.create(
     title: "Set up homeless shelters",
@@ -98,6 +101,7 @@ def make_tasks
     longitude: "-122.4862",
     start: DateTime.now,
     end: DateTime.now.to_time + 3600,
+    check_in_code: "1237"
   )
 end
 
@@ -158,6 +162,8 @@ end
 def seed_ryan_number
   Phone.create(number: "5102302759")
   Phone.create(number: "6692310845")
+  Phone.create(number: "2019034761")
+  Phone.create(number: "9734409239")
 end
 
 def make_volunteers

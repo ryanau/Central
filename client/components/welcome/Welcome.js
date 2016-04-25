@@ -34,7 +34,7 @@ class Welcome extends React.Component {
 				    <VolunteerSignUpBox/>
 				</div>
 				<a name="about"></a>
-		    <div className="content-section-a">
+		    <div className="content-section-a color_white">
 			    <div className="container">
 	          <Row>
 	            <Col lg={5} sm={6}>
@@ -60,7 +60,7 @@ class Welcome extends React.Component {
             </Row>
 	        </div>
     		</div>
-    		<div className="content-section-a">
+    		<div className="content-section-a color_white">
 			    <div className="container">
 	          <Row>
 	            <Col lg={5} sm={6}>

@@ -26,7 +26,7 @@ module Central
     # Enabling CORS from localhost:8080
     config.middleware.use Rack::Cors do
       allow do
-        origins 'https://localhost:8080', 'http://localhost:8080', 'http://calcentral.herokuapp.com', 'https://calcentral.herokuapp.com', 'http://bef732cc.ngrok.io'
+        origins 'https://localhost:8080', 'http://localhost:8080', 'http://calcentral.herokuapp.com', 'https://calcentral.herokuapp.com'
         resource '*',
           :headers => :any,
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],

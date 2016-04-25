@@ -23,17 +23,6 @@ class Api::Admin::ReportsController < Api::BaseController
       render_json_message(400, errors: ["Update unsuccessful."])
   end
 
-  def dispatch_report
-    # *** probably don't need this anymore, use dispatch_next
-    # report = Report.find(params[:report_id])
-    # if report.dispatch_report?
-    #   report.update(dispatching: true)
-    #   render_json_message(200, message: "Digest dispatching...", resource: {report: report.serialize})
-    # else
-    #   render_json_message(500, message: "Error when dispatching.")
-    # end
-  end
-
   def dispatch_next
     event = Event.find(params[:event_id])
     report = event.undispatched_reports.first

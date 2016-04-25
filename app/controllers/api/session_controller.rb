@@ -23,6 +23,6 @@ class Api::SessionController < Api::BaseController
     message = "Organization name updated as: #{organization_name}"
     render_json_message(201, message: message,resource: {organization_name: organization_name})
     rescue
-      render_json_message(500, errors: ["Error updating organization name"])
+      render_json_message(500, errors: ["Error updating organization name."])
   end
 end
