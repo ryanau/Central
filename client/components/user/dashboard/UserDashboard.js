@@ -22,11 +22,11 @@ class UserDashboard extends React.Component {
 	}
 	render() {
 		return (
-      <div className="mT-70">
+      <div>
 				<Col lg={1}>
 				</Col>
 				<Col lg={10}>
-					<PageHeader>Your Dashboard</PageHeader>
+					<PageHeader>My Dashboard</PageHeader>
 					<UserEventsContainer/>
 				</Col>
 				<Col lg={1}>

@@ -89,7 +89,7 @@ class UserAccount extends React.Component {
 				<Col lg={2}>
 				</Col>
 				<Col lg={8}>
-					<PageHeader>Your Account</PageHeader>
+					<PageHeader>My Account</PageHeader>
 					{organizationName}
 					{editButton}
 				</Col>

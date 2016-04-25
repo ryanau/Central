@@ -200,6 +200,7 @@ class UserTaskCreator extends React.Component {
 			      <Col xs={8}>
 			        <DateTimeField
 								onChange={this._startOnChange}
+								minDate={moment()}
 								defaultText="Select Start Date & Time"/>
 			      </Col>
 			    </Row>
