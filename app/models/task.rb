@@ -20,13 +20,13 @@ class Task < ActiveRecord::Base
 
   def add_object_tags(object_tags)
     object_tags.each do |tag|
-      self.object_tags.create(object: tag)
+      self.object_tags.create(object: tag.downcase)
     end
   end
 
   def add_verb_tags(verb_tags)
     verb_tags.each do |tag|
-      self.verb_tags.create(verb: tag)
+      self.verb_tags.create(verb: tag.downcase)
     end
   end
 
