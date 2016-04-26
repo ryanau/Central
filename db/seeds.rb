@@ -208,7 +208,7 @@ def seed_production
   make_task_type
   Phone.create(number: "4847274200")
   Phone.create(number: "4849334974")
-  
+  Phone.create(number: "7039883795")
   make_users
   make_events
 
