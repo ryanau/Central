@@ -33,7 +33,7 @@ class MainPhoneChecker
 
   def handle_invalid_replycode
     if did_volunteer_activate_replycode_previously?
-      content = "You have already replied with this replycode. A member of the NGO will contact you shortly."
+      content = "You have already replied with this replycode. A member of the relief organization will contact you shortly."
     else
       content = "Sorry your replycode is not valid. Please try again by replying with the code in the [bracket] from the previous digest."
     end
@@ -57,7 +57,7 @@ class MainPhoneChecker
     # find an unused system phone number
     phone_in_use = @volunteer.conversations.pluck(:phone_id)
     phone_availabe = Phone.all.pluck(:id) - phone_in_use
-    @system_phone = Phone.find(phone_availabe.first)
+    @system_phone = Phone.find(phone_availabe.sample)
   end
 
   def act_on_task_type

@@ -37,7 +37,7 @@ class UserTask extends React.Component {
 		let task, taskInfo, attendeeResponses, table, refreshButton, taskTitle, createdAt, checkInWell
 		task = this.state.task
 		if (task != null) {
-			if (task.check_in_code != null) checkInWell = <Well>Check In Code: <strong>{task.check_in_code}</strong> | Please distribute to volunteers when they arrive at the site.</Well>
+			if (task.check_in_code != null) checkInWell = <Well>Check In Code: <strong>{task.check_in_code}</strong> | Please have the volunteers enter it when they arrive at the site</Well>
 			taskTitle = this.state.task.title
 			createdAt = moment(task.created_at).fromNow()
 			taskInfo = (
