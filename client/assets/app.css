@@ -46,6 +46,10 @@ html * {
 .color_white {
   color: white;
 }
+
+.italics {
+  font-style: italic;
+}
 /* mapbox */
 .map {
 	height: 400px;
@@ -53,8 +57,8 @@ html * {
 
 /* Welcome.js page */
 .intro-header {
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 300px;
+  padding-bottom: 300px;
   text-align: center;
   color: #f8f8f8;
   background: url(https://res.cloudinary.com/daqjgpz3i/image/upload/v1461469395/spark-dimmed_mgyiro.jpg) no-repeat center center;
@@ -66,7 +70,6 @@ html * {
   filter: blur(5px);*/
 }
 
-<<<<<<< HEAD
 /* Welcome.js content */
 /* img on right */
 .content-section-a {
@@ -130,7 +133,6 @@ html * {
   }
 }
 
-=======
 .header-1 {
   text-transform: uppercase;
   padding-bottom: 50px;
@@ -143,7 +145,7 @@ html * {
 .para-1 {
   font-size: 150%;
   padding-top: 20px;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   padding-left: 15%;
   padding-right: 15%;
 }
@@ -152,6 +154,9 @@ html * {
   padding-top: 100px;
   padding-bottom: 100px;
   text-align: center;
+/*  background: url(http://res.cloudinary.com/daqjgpz3i/image/upload/v1461572134/flooding_snxdh3.jpg) no-repeat center center;
+  background-size: cover;*/
+  background-color: #e9fcf4;
 }
 
 .header-2 {
@@ -175,7 +180,7 @@ html * {
   padding-right: 10%;
 }
 .para-3 {
-  font-size: 110%;
+  font-size: 120%;
   padding-bottom: 10px;
   padding-left: 5%;
   padding-right: 5%;
@@ -266,8 +271,6 @@ html * {
   display: block;
   margin-left: auto;
   margin-right: auto;
-
-
 }
 
 .image-2 {

@@ -1,5 +1,5 @@
 def make_events
-  disasters = ["Meatball Storm", "Candy Rain", "Champagne Volcano", "Cotton Candy Typhoon", "Chocolate Hurricane"]
+  disasters = ["Thunder Storm", "Tornado Storm", "Forest Fire", "Typhoon", "Hurricane"]
   city_arr = ["SF", "LA", "SD", "NYC", "DC"]
   coord = [["37.7749", "-122.4194"], ["34.03", "-118.15"], ["32.7157", "-117.1611"], ["40.7128", "-74.0059"], ["38.9072", "-77.0369"]]
   1.upto(5) do |n|

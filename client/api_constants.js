@@ -1,9 +1,9 @@
 class Api_Constants {
 	constructor() {
-		this.origin = 'http://localhost:3000/api/'
-		this.frontend = 'http://localhost:8080/'
-		// this.origin = 'https://calcentral.herokuapp.com/api/'
-		// this.frontend = 'https://calcentral.herokuapp.com/'
+		// this.origin = 'http://localhost:3000/api/'
+		// this.frontend = 'http://localhost:8080/'
+		this.origin = 'https://calcentral.herokuapp.com/api/'
+		this.frontend = 'https://calcentral.herokuapp.com/'
 		this.admin_origin = this.origin + 'admin/'
 		this.user_origin = this.origin + 'user/'
 		this.volunteer_origin = this.origin + 'volunteers/'
