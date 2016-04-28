@@ -15,7 +15,7 @@ import UserSignUp from 'components/account/user/UserSignUp';
 import AdminAuth from 'components/account/AdminAuth';
 import AccountActivation from 'components/account/AccountActivation';
 import AuthComplete from 'components/account/AuthComplete';
-import UserSignOut from 'components/account/UserSignOut';
+import UserSignOut from 'components/account/user/UserSignOut';
 import AdminSignOut from 'components/account/AdminSignOut';
 
 // Admin

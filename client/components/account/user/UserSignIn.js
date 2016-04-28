@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import toastr from 'toastr';
 
 import ApiConstants from 'api_constants';
