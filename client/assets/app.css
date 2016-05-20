@@ -43,6 +43,13 @@ html * {
   text-align: left;
 }
 
+.color_white {
+  color: white;
+}
+
+.italics {
+  font-style: italic;
+}
 /* mapbox */
 .map {
 	height: 400px;
@@ -50,8 +57,8 @@ html * {
 
 /* Welcome.js page */
 .intro-header {
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 300px;
+  padding-bottom: 300px;
   text-align: center;
   color: #f8f8f8;
   background: url(https://res.cloudinary.com/daqjgpz3i/image/upload/v1461469395/spark-dimmed_mgyiro.jpg) no-repeat center center;
@@ -61,6 +68,69 @@ html * {
   -o-filter: blur(5px);
   -ms-filter: blur(5px);
   filter: blur(5px);*/
+}
+
+/* Welcome.js content */
+/* img on right */
+.content-section-a {
+  padding: 220px 0;
+  /*background-color: #f8f8f8;*/
+  background: url(https://res.cloudinary.com/daqjgpz3i/image/upload/v1461572134/flooding_snxdh3.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+/* img on left */
+.content-section-b {
+  padding: 220px 0;
+  border-top: 1px solid #e7e7e7;
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.section-heading {
+  margin-bottom: 30px;
+}
+
+.section-heading-spacer {
+  float: left;
+  width: 200px;
+  border-top: 3px solid #e7e7e7;
+}
+
+.lead {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.img-responsive,
+.thumbnail > img,
+.thumbnail a > img,
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 }
 
 .header-1 {
@@ -75,7 +145,7 @@ html * {
 .para-1 {
   font-size: 150%;
   padding-top: 20px;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   padding-left: 15%;
   padding-right: 15%;
 }
@@ -84,6 +154,9 @@ html * {
   padding-top: 100px;
   padding-bottom: 100px;
   text-align: center;
+/*  background: url(http://res.cloudinary.com/daqjgpz3i/image/upload/v1461572134/flooding_snxdh3.jpg) no-repeat center center;
+  background-size: cover;*/
+  background-color: #e9fcf4;
 }
 
 .header-2 {
@@ -107,7 +180,7 @@ html * {
   padding-right: 10%;
 }
 .para-3 {
-  font-size: 110%;
+  font-size: 120%;
   padding-bottom: 10px;
   padding-left: 5%;
   padding-right: 5%;
@@ -198,8 +271,6 @@ html * {
   display: block;
   margin-left: auto;
   margin-right: auto;
-
-
 }
 
 .image-2 {
@@ -235,7 +306,6 @@ html * {
  /* padding-left: 8%;
   padding-right: 8%;*/
 }
-
 
 /* Footer */
 footer {

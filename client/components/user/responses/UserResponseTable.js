@@ -101,14 +101,14 @@ class UserResponseTable extends React.Component {
 				      <TextCell
 				        data={attendeeResponses}
 				        field={["volunteer", "heavy_lifting"]}/>}
-				    width={150}/>
+				    width={120}/>
 				  <Column
 				    header={<Cell>Phone</Cell>}
 				    cell={
 				      <TextCell
 				        data={attendeeResponses}
 				        field={["volunteer", "phone_number"]}/>}
-				    width={150}/>
+				    width={100}/>
 				  <Column
 				    header={<Cell>Zipcode</Cell>}
 				    cell={

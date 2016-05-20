@@ -2,7 +2,7 @@ import React from 'react';
 import alt from 'control';
 import moment from 'moment';
 import { Table, Column, Cell } from 'fixed-data-table';
-import { ListGroup, ListGroupItem, Panel, Button, ButtonToolbar, Glyphicon, Col, PageHeader } from 'react-bootstrap'
+import { ListGroup, ListGroupItem, Panel, Button, ButtonToolbar, Glyphicon, Col, PageHeader, Well } from 'react-bootstrap'
 
 import TaskStore from 'stores/taskStore';
 import TaskActions from 'actions/taskActions';
@@ -34,9 +34,10 @@ class UserTask extends React.Component {
 		TaskActions.fetchUserTask(location.pathname.match(`[^/]+$`)[0], location.pathname.match(/events\/(\d+)/)[1]);
 	}
 	render() {
-		let task, taskInfo, attendeeResponses, table, refreshButton, taskTitle, createdAt
+		let task, taskInfo, attendeeResponses, table, refreshButton, taskTitle, createdAt, checkInWell
 		task = this.state.task
 		if (task != null) {
+			if (task.check_in_code != null) checkInWell = <Well>Check In Code: <strong>{task.check_in_code}</strong> | Please have the volunteers enter it when they arrive at the site</Well>
 			taskTitle = this.state.task.title
 			createdAt = moment(task.created_at).fromNow()
 			taskInfo = (
@@ -65,6 +66,7 @@ class UserTask extends React.Component {
 							<ListGroupItem># of volunteers checked in: {task.volunteer_checked_in}</ListGroupItem>
 							<ListGroupItem># of volunteers removed: {task.volunteer_removed}</ListGroupItem>
 						</ListGroup>
+						{checkInWell}
 					  <Panel header="Checked In Volunteers" bsStyle="success">
 							<UserCheckedInTable checkedInResponses={task.checked_in_volunteers}/>
 						</Panel>

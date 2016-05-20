@@ -6,7 +6,6 @@ import TasksStore from 'stores/tasksStore';
 import TasksActions from 'actions/tasksActions';
 
 import UserTaskListItem from './UserTaskListItem';
-// import UserTaskTypeSelector from './UserTaskTypeSelector';
 import UserTaskCreator from './UserTaskCreator';
 
 class UserTasksContainer extends React.Component {
@@ -38,31 +37,22 @@ class UserTasksContainer extends React.Component {
 		if (this.state.approvedTasks[event.id] && this.state.approvedTasks[event.id].length > 0) {
 			approvedTasksLength = <div>Approved Tasks <Badge>{this.state.approvedTasks[event.id].length}</Badge></div>
 			approvedTasks = this.state.approvedTasks[event.id].map((task) => {
-				return (
-						<UserTaskListItem key={task.id} task={task} event={event}/>
-				)
+				return (<UserTaskListItem key={task.id} task={task} event={event}/>)
 			});
 		} else {approvedTasksLength = <div>Approved Tasks to be Dispatched <Badge>0</Badge></div>}
 		if (this.state.unapprovedTasks[event.id] && this.state.unapprovedTasks[event.id].length > 0) {
 			unapprovedTasksLength = <div>Tasks Pending Approval <Badge>{this.state.unapprovedTasks[event.id].length}</Badge></div>
 			unapprovedTasks = this.state.unapprovedTasks[event.id].map((task) => {
-				return (
-						<UserTaskListItem key={task.id} task={task} event={event}/>
-				)
+				return (<UserTaskListItem key={task.id} task={task} event={event}/>)
 			});
 		} else {unapprovedTasksLength = <div>Tasks Pending Approval <Badge>0</Badge></div>}
 		if (this.state.dispatchedTasks[event.id] && this.state.dispatchedTasks[event.id].length > 0) {
 			dispatchedTasksLength = <div>Dispatched Tasks <Badge>{this.state.dispatchedTasks[event.id].length}</Badge></div>
 			dispatchedTasks = this.state.dispatchedTasks[event.id].map((task) => {
-				return (
-						<UserTaskListItem key={task.id} task={task} event={event}/>
-				)
+				return (<UserTaskListItem key={task.id} task={task} event={event}/>)
 			});
 		} else {dispatchedTasksLength = <div>Dispatched Tasks <Badge>0</Badge></div>}
 		if (!event.archived && event.activated) {
-			// taskTypeSelector = (
-			// 	<UserTaskTypeSelector eventId={this.props.event.id}/>
-			// )
 			taskCreator = (
 				<UserTaskCreator event={this.props.event}/>
 			)

@@ -18,6 +18,12 @@ module SmsOutbound
     twilio_sms(from, to, message)
   end
 
+  def self.send_from_demo_phone(to, message)
+    from = ENV['TWILIO_DEMO']
+    to = '+1' + to.to_s
+    twilio_sms(from, to, message)
+  end  
+
   private
   
   def self.twilio_sms(from, to, body)
