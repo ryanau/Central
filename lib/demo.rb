@@ -19,6 +19,8 @@ class Demo
       @volunteer.update!(first_name: @body.capitalize)
     when 2
       @volunteer.update!(last_name: @body.capitalize)
+    when 3
+      @volunteer.update!(non_profit: @body.capitalize)
     end
   end
 
