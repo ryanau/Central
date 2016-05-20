@@ -7,7 +7,10 @@ class SmsInboundChecker
   end
 
   def proceed
-    if check_intake_phone?
+    if check_twilio_demo_phone?
+      demo = Demo.new(@caller_phone, @body)
+      demo.proceed
+    elsif check_intake_phone?
       intake = Intake.new(@caller_phone, @body)
       intake.proceed
     elsif is_caller_a_registered_volunteer?
@@ -39,6 +42,10 @@ class SmsInboundChecker
 
   def check_intake_phone?
     @target_phone == ENV['TWILIO_INTAKE']
+  end
+
+  def check_twilio_demo_phone?
+    @target_phone == ENV['TWILIO_DEMO']
   end
 
   def check_main_phone?
